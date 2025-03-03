@@ -45,12 +45,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_textbox(\"firstname\")"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_firstname_0",
+            "accessorId": "acc_textbox_firstname"
           },
           {
-            "paramMode": "string",
-            "customValue": "sai"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_firstname_0"
           }
         ],
         "stepCategory": "inbuilt",
@@ -63,12 +66,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_textbox(\"firstname\")"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_firstname_0",
+            "accessorId": "acc_textbox_firstname"
           },
           {
-            "paramMode": "string",
-            "customValue": "s"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_firstname_0"
           }
         ],
         "stepCategory": "inbuilt",
@@ -80,12 +86,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_textbox(\"lastname\")"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_lastname_1",
+            "accessorId": "acc_textbox_lastname"
           },
           {
-            "paramMode": "string",
-            "customValue": "a"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_lastname_1"
           }
         ],
         "stepCategory": "inbuilt",
@@ -97,12 +106,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_emailbox(\"email\")"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_email_2",
+            "accessorId": "acc_emailbox_email"
           },
           {
-            "paramMode": "string",
-            "customValue": "sa@example.com"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_email_2"
           }
         ],
         "stepCategory": "inbuilt",
@@ -114,12 +126,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_telephonebox(\"telephone\")"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_telephone_3",
+            "accessorId": "acc_telephonebox_telephone"
           },
           {
-            "paramMode": "string",
-            "customValue": "123"
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_telephone_3"
           }
         ],
         "stepCategory": "inbuilt",

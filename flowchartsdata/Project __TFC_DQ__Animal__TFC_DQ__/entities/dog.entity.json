@@ -1,0 +1,103 @@
+{
+  "name": "dog",
+  "id": "-1",
+  "type": 1,
+  "content": {
+    "default": {
+      "attr_firstname_0": {
+        "name": "firstname",
+        "accessors": [
+          {
+            "id": "acc_textbox_firstname",
+            "name": "Firstname Input",
+            "accessor": "_textbox(\"firstname\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "sai",
+          "min-length": "0",
+          "max-length": "0"
+        },
+        "invalidData": [],
+        "validData": [
+          {
+            "value": "a",
+            "comment": "1 char"
+          },
+          {
+            "value": "afs bkj",
+            "comment": "6 char"
+          },
+          {
+            "value": "less than 32",
+            "comment": "less 32"
+          }
+        ]
+      },
+      "attr_lastname_1": {
+        "name": "lastname",
+        "accessors": [
+          {
+            "id": "acc_textbox_lastname",
+            "name": "Lastname Input",
+            "accessor": "_textbox(\"lastname\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "a",
+          "min-length": "0",
+          "max-length": "0"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_email_2": {
+        "name": "email",
+        "accessors": [
+          {
+            "id": "acc_emailbox_email",
+            "name": "Email Input",
+            "accessor": "_emailbox(\"email\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "email",
+        "props": {
+          "names": [
+            "sa"
+          ],
+          "domains": [
+            "example.com"
+          ],
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_telephone_3": {
+        "name": "telephone",
+        "accessors": [
+          {
+            "id": "acc_telephonebox_telephone",
+            "name": "Telephone Input",
+            "accessor": "_telephonebox(\"telephone\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "number",
+        "props": {
+          "min": "123",
+          "max": "123"
+        },
+        "invalidData": [],
+        "validData": []
+      }
+    }
+  },
+  "enabled": false,
+  "parentId": ""
+}
