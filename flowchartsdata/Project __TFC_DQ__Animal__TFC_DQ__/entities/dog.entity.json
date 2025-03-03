@@ -5,7 +5,7 @@
   "content": {
     "default": {
       "attr_firstname_0": {
-        "name": "firstname",
+        "name": "f_name",
         "accessors": [
           {
             "id": "acc_textbox_firstname",
@@ -33,11 +33,19 @@
           {
             "value": "less than 32",
             "comment": "less 32"
+          },
+          {
+            "value": "test",
+            "comment": "4 char"
+          },
+          {
+            "value": "none",
+            "comment": "none"
           }
         ]
       },
       "attr_lastname_1": {
-        "name": "lastname",
+        "name": "l_name",
         "accessors": [
           {
             "id": "acc_textbox_lastname",
@@ -56,7 +64,7 @@
         "validData": []
       },
       "attr_email_2": {
-        "name": "email",
+        "name": "e_mail",
         "accessors": [
           {
             "id": "acc_emailbox_email",
@@ -79,7 +87,7 @@
         "validData": []
       },
       "attr_telephone_3": {
-        "name": "telephone",
+        "name": "t_phone",
         "accessors": [
           {
             "id": "acc_telephonebox_telephone",
