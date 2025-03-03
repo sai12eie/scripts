@@ -16,6 +16,19 @@
     "steps": [
       {
         "commented": false,
+        "action": "_wait",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "2000"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
         "action": "_click",
         "stepParameters": [
           {
@@ -148,6 +161,19 @@
             "paramMode": "default",
             "parameterId": "dog_",
             "attributeId": "attr_email_2"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_wait",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "5000"
           }
         ],
         "stepCategory": "inbuilt",
