@@ -15,3 +15,4 @@ $a=$a.substring(1);
 _log($m);
 _assertEqual("a1-a2-a3-a4-a3-a2-a4-", $m);
 _log("tests")
+_log("test")
