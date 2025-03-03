@@ -20,7 +20,7 @@
         "stepParameters": [
           {
             "paramMode": "code",
-            "customValue": "2000"
+            "customValue": "20000"
           }
         ],
         "stepCategory": "inbuilt",
