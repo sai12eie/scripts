@@ -27,6 +27,10 @@
             "comment": "1 char"
           },
           {
+            "value": "afs bkj",
+            "comment": "6 char"
+          },
+          {
             "value": "thirtytwocharactersstringlong",
             "comment": "32 char"
           },
