@@ -20,7 +20,20 @@
         "stepParameters": [
           {
             "paramMode": "code",
-            "customValue": "20000"
+            "customValue": "6000"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_wait",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "5000"
           }
         ],
         "stepCategory": "inbuilt",
@@ -109,6 +122,19 @@
       },
       {
         "commented": false,
+        "action": "_log",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "new line"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
         "action": "_setValue",
         "stepParameters": [
           {
@@ -149,19 +175,6 @@
       },
       {
         "commented": false,
-        "action": "_log",
-        "stepParameters": [
-          {
-            "paramMode": "string",
-            "customValue": "new line"
-          }
-        ],
-        "stepCategory": "inbuilt",
-        "stepType": "Action",
-        "specific": []
-      },
-      {
-        "commented": false,
         "action": "_setValue",
         "stepParameters": [
           {
@@ -174,19 +187,6 @@
             "paramMode": "default",
             "parameterId": "dog_",
             "attributeId": "attr_email_2"
-          }
-        ],
-        "stepCategory": "inbuilt",
-        "stepType": "Action",
-        "specific": []
-      },
-      {
-        "commented": false,
-        "action": "_wait",
-        "stepParameters": [
-          {
-            "paramMode": "code",
-            "customValue": "5000"
           }
         ],
         "stepCategory": "inbuilt",
