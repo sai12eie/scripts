@@ -16,11 +16,11 @@
     "steps": [
       {
         "commented": false,
-        "action": "_wait",
+        "action": "_click",
         "stepParameters": [
           {
             "paramMode": "code",
-            "customValue": "6000"
+            "customValue": "_submit(\"Continue\")"
           }
         ],
         "stepCategory": "inbuilt",
@@ -46,33 +46,7 @@
         "stepParameters": [
           {
             "paramMode": "code",
-            "customValue": "_submit(\"Continue\")"
-          }
-        ],
-        "stepCategory": "inbuilt",
-        "stepType": "Action",
-        "specific": []
-      },
-      {
-        "commented": false,
-        "action": "_click",
-        "stepParameters": [
-          {
-            "paramMode": "code",
             "customValue": "_link(\"My Account\")"
-          }
-        ],
-        "stepCategory": "inbuilt",
-        "stepType": "Action",
-        "specific": []
-      },
-      {
-        "commented": false,
-        "action": "_click",
-        "stepParameters": [
-          {
-            "paramMode": "code",
-            "customValue": "_link(\"Register\")"
           }
         ],
         "stepCategory": "inbuilt",
