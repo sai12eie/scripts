@@ -108,13 +108,13 @@
           {
             "paramMode": "default",
             "parameterId": "dog_",
-            "attributeId": "attr_email_2",
-            "accessorId": "acc_emailbox_email"
+            "attributeId": "attr_telephone_3",
+            "accessorId": "acc_telephonebox_telephone"
           },
           {
             "paramMode": "default",
             "parameterId": "dog_",
-            "attributeId": "attr_email_2"
+            "attributeId": "attr_telephone_3"
           }
         ],
         "stepCategory": "inbuilt",
@@ -141,13 +141,13 @@
           {
             "paramMode": "default",
             "parameterId": "dog_",
-            "attributeId": "attr_telephone_3",
-            "accessorId": "acc_telephonebox_telephone"
+            "attributeId": "attr_email_2",
+            "accessorId": "acc_emailbox_email"
           },
           {
             "paramMode": "default",
             "parameterId": "dog_",
-            "attributeId": "attr_telephone_3"
+            "attributeId": "attr_email_2"
           }
         ],
         "stepCategory": "inbuilt",
