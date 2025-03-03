@@ -2,7 +2,7 @@
   "description": "",
   "title": "PS",
   "content": {
-    "isCustomFunctionsFromScriptsDir": false,
+    "isCustomFunctionsFromScriptsDir": true,
     "projectSuiteInfo": [],
     "flowchartsAndExternalDdcsvInfo": {},
     "filters": {},
