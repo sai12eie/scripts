@@ -1,6 +1,6 @@
 {
   "name": "Logout",
-  "id": "0",
+  "id": "-1",
   "type": 3,
   "content": {
     "isSystemKeyword": false,
@@ -15,6 +15,19 @@
           {
             "paramMode": "string",
             "customValue": "tets"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_log",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "test"
           }
         ],
         "stepCategory": "inbuilt",
