@@ -5,7 +5,7 @@
   "content": {
     "default": {
       "attr_firstname_0": {
-        "name": "first_name",
+        "name": "firstname",
         "accessors": [
           {
             "id": "acc_textbox_firstname",
@@ -72,7 +72,7 @@
         "validData": []
       },
       "attr_email_2": {
-        "name": "email_id",
+        "name": "email",
         "accessors": [
           {
             "id": "acc_emailbox_email",
