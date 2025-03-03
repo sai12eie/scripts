@@ -1,0 +1,41 @@
+{
+  "name": "Open Registration page",
+  "id": "0",
+  "type": 3,
+  "content": {
+    "isSystemKeyword": false,
+    "title": "Open Registration page",
+    "specific": [],
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_link(\"Phones \u0026 PDAs\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_button(\"grid-view\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

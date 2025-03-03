@@ -1,12 +1,11 @@
 {
-  "modifiedOn": "2024-05-08T07:29:34.879827Z",
   "name": "Enter $user details",
   "id": "-1",
   "type": 3,
-  "createdOn": "2024-04-17T22:42:13Z",
   "content": {
     "isSystemKeyword": false,
     "title": "Enter $user details",
+    "specific": [],
     "parameters": [
       {
         "parameterId": "user_",
@@ -32,7 +31,8 @@
           }
         ],
         "stepCategory": "inbuilt",
-        "stepType": "Action"
+        "stepType": "Action",
+        "specific": []
       },
       {
         "commented": false,
@@ -51,7 +51,8 @@
           }
         ],
         "stepCategory": "inbuilt",
-        "stepType": "Action"
+        "stepType": "Action",
+        "specific": []
       },
       {
         "commented": false,
@@ -70,7 +71,8 @@
           }
         ],
         "stepCategory": "inbuilt",
-        "stepType": "Action"
+        "stepType": "Action",
+        "specific": []
       },
       {
         "commented": false,
@@ -89,7 +91,8 @@
           }
         ],
         "stepCategory": "inbuilt",
-        "stepType": "Action"
+        "stepType": "Action",
+        "specific": []
       },
       {
         "commented": false,
@@ -108,7 +111,8 @@
           }
         ],
         "stepCategory": "inbuilt",
-        "stepType": "Action"
+        "stepType": "Action",
+        "specific": []
       },
       {
         "commented": false,
@@ -127,7 +131,8 @@
           }
         ],
         "stepCategory": "inbuilt",
-        "stepType": "Action"
+        "stepType": "Action",
+        "specific": []
       },
       {
         "commented": false,
@@ -143,7 +148,8 @@
           }
         ],
         "stepCategory": "inbuilt",
-        "stepType": "Action"
+        "stepType": "Action",
+        "specific": []
       },
       {
         "commented": false,
@@ -155,7 +161,21 @@
           }
         ],
         "stepCategory": "inbuilt",
-        "stepType": "Action"
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_log",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "test"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
       }
     ]
   },

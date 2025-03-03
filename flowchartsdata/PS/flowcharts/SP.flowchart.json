@@ -1,0 +1,99 @@
+{
+  "name": "SP",
+  "id": "-1",
+  "type": 0,
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_registeraccount_0"
+        ]
+      },
+      "fcn_registeraccount_0": {
+        "id": "fcn_registeraccount_0",
+        "content": "Register Account",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_openregistrationpage_0"
+        ]
+      },
+      "fcn_openregistrationpage_0": {
+        "id": "fcn_openregistrationpage_0",
+        "content": "Open Registration page",
+        "nodeType": "action",
+        "branches": [
+          "fcn_filltheregisterdetails_0"
+        ]
+      },
+      "fcn_filltheregisterdetails_0": {
+        "id": "fcn_filltheregisterdetails_0",
+        "content": "Fill the register details",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifytheaccountcreateddetails_0"
+        ]
+      },
+      "fcn_verifytheaccountcreateddetails_0": {
+        "id": "fcn_verifytheaccountcreateddetails_0",
+        "content": "Verify the account created details",
+        "nodeType": "state",
+        "branches": [
+          "fcn_logout_0"
+        ]
+      },
+      "fcn_logout_0": {
+        "id": "fcn_logout_0",
+        "content": "Logout",
+        "nodeType": "action",
+        "branches": []
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150.0,
+        "left": 500.0
+      },
+      "fcn_registeraccount_0": {
+        "top": 211.0,
+        "left": 500.0
+      },
+      "fcn_openregistrationpage_0": {
+        "top": 270.0,
+        "left": 500.0
+      },
+      "fcn_filltheregisterdetails_0": {
+        "top": 329.0,
+        "left": 500.0
+      },
+      "fcn_verifytheaccountcreateddetails_0": {
+        "top": 388.0,
+        "left": 500.0
+      },
+      "fcn_logout_0": {
+        "top": 447.0,
+        "left": 500.0
+      }
+    },
+    "isPrimary": true,
+    "pathNames": [
+      {
+        "pathKey": [
+          "fcn_registeraccount_0",
+          "fcn_openregistrationpage_0",
+          "fcn_filltheregisterdetails_0",
+          "fcn_verifytheaccountcreateddetails_0",
+          "fcn_logout_0"
+        ],
+        "dependsPathUID": "17408504565200",
+        "isValidationsEnabled": false
+      }
+    ],
+    "flowChartUID": "fcUID_sp_0",
+    "pathExecutionOrder": []
+  },
+  "enabled": true,
+  "parentId": ""
+}
