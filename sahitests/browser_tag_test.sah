@@ -1,0 +1,10 @@
+//<browser>
+__zzz = 10;
+//</browser>
+
+_assertEqual(10, __zzz);
+_assertEqual(10, __zzz);
+_navigateTo("/demo/linkTest.htm");
+_assertEqual(10, __zzz);
+
+_include("browser_tag_include.sah");

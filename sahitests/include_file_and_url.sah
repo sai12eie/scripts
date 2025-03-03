@@ -1,0 +1,5 @@
+_navigateTo("/demo/training/")
+_include("http://gramam/demo/scripts/5_file_with_near.sah");
+_navigateTo("/demo/");
+_include("clicksTest.sah");
+_alert(2);

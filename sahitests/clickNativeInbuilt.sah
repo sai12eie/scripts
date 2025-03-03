@@ -1,0 +1,6 @@
+_navigateTo("http://sahitest.com/demo/");
+_clickNative(_xy(_link("Form Test"), 10, 10));
+
+_navigateTo("http://sahitest.com/demo/framesTest.htm");
+_clickNative(_xy(_link("IFrame via doc write[1]"), 10, 10));
+

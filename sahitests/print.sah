@@ -1,0 +1,29 @@
+_navigateTo("/demo/print.htm");
+
+_assertFalse(_printCalled());
+_expectPrint();
+_click(_button("Print"));
+_assert(_printCalled());
+_clearPrintCalled();
+_assertFalse(_printCalled());
+_expectPrint();
+_click(_button("Print"));
+_assert(_printCalled());
+_clearPrintCalled();
+
+_expectPrint(true);
+_click(_button("Print"));
+_click(_button("Print 1"));
+
+//Added tests for Print dialog to be shown with browser automation.
+
+_lockWindow();
+_focusWindow();
+_clearPrintCalled();
+_assertFalse(_printCalled());
+_call(_sahi.displayPrintDialog = true);
+_click(_button("Print"));
+_wait(5000);
+_typeKeyCodeNative(java.awt.event.KeyEvent.VK_ESCAPE);
+_assertTrue(_printCalled());
+_unlockWindow();

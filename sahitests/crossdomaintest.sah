@@ -1,0 +1,83 @@
+_navigateTo("crossdomaintest.htm");
+
+function setUp(){
+  _startHarLogging();
+}
+
+function tearDown(){
+  _stopHarLogging();
+}
+
+function testDiffDomainXHR() {
+	_click(_submit("Click to Invoke Another Site"));
+	_assertVisible(_link(0));
+	var $expected = "crossdomaintest.php?is_options_disable=true";
+	_assertContainsText($expected, _link(0)) ;
+	verifyHARLogs($expected);
+}
+
+function testDiffDomainXHRDownloadWithoutResponse() {
+	// File gets downloaded but we cannot access the response
+	_click(_submit("Click to Download From Another Site"));
+	_assertEqual("testsaveas.pdf", _lastDownloadedFileName());
+	_assertEqual("",_getText(_div("div2")));
+	_clearLastDownloadedFileName();
+	var $expected = "testsaveas.pdf";
+	verifyHARLogs($expected);
+}
+
+function testDiffDomainXHRDownloadWithResponse() {
+	// File gets downloaded. We can access the response after adding 'Access-Control-Allow-Origin' header
+	// For build system
+	_sendHTMLResponseAfterFileDownload(true, {"Access-Control-Allow-Origin":"https://internal.sahitest.com"});
+	// For local run
+	//_sendHTMLResponseAfterFileDownload(true, {"Access-Control-Allow-Origin":"https://sahitest.com"});
+	_click(_submit("Click to Download From Another Site"));
+	_assertEqual("testsaveas.pdf", _lastDownloadedFileName());
+	_assertContainsText("File testsaveas.pdf was downloaded to your file system", _div("div2"));
+	_clearLastDownloadedFileName();
+	_sendHTMLResponseAfterFileDownload(false);
+	var $expected = "testsaveas.pdf";
+	verifyHARLogs($expected);
+}
+
+function testDiffDomainWithCredentialsXHR() {
+	_click(_submit("Click to Invoke Another Site withCredentials"));
+	_assertVisible(_link(0, _in(_div("div3"))));
+	var $expected = "crossdomaintest.php?is_options_disable=true&withCredentials_xhr=true";
+	_assertContainsText($expected, _link(0, _in(_div("div3"))));
+	verifyHARLogs($expected);
+}
+
+function testDiffDomainWithCustomHeaderXHR() {
+	_click(_submit("Click to Invoke Another Site With Custom Header"));
+	_assertVisible(_link(0, _in(_div("div4"))));
+	var $expected = "crossdomaintest.php?is_options_disable=false";
+	_assertContainsText($expected, _link(0, _in(_div("div4"))));
+	verifyHARLogs($expected);
+}
+
+function testDiffDomainWithCustomHeaderWithCredentialsXHR() {
+	_click(_submit("Click to Invoke Another Site With Custom Header withCredentials"));
+	_assertVisible(_link(0, _in(_div("div5"))));
+	var $expected = "crossdomaintest.php?is_options_disable=false&withCredentials_xhr=true";
+	_assertContainsText($expected, _link(0, _in(_div("div5"))));
+	verifyHARLogs($expected);
+}
+
+function verifyHARLogs($expected){
+	var $harLogs = _getHarLogs();
+	if($harLogs.length == 0) _fail("No request Url found! Expected: " + $expected);
+	for (var $i=0; $i<$harLogs.length; $i++) {
+		var $harLog = $harLogs[$i];
+		_log( "Requested url : " + $harLog.requestUrl);
+//		_assertEqual("/" + $expected + "/", $harLog.requestUrl);
+//		if($harLog.requestUrl.indexOf($expected) == -1) _fail("Following expected request not found: " + $expected + " Actual requestUrl = " + $harLog.requestUrl);
+		if(!$harLog.requestUrl.endsWith($expected)) _fail("Following expected request not found: " + $expected + " Actual requestUrl = " + $harLog.requestUrl);
+	}
+}
+	
+var $unitTests = ["testDiffDomainXHR", "testDiffDomainXHRDownloadWithoutResponse", "testDiffDomainXHRDownloadWithResponse", "testDiffDomainWithCredentialsXHR", "testDiffDomainWithCustomHeaderXHR", "testDiffDomainWithCustomHeaderWithCredentialsXHR"];
+_runUnitTests($unitTests);
+
+

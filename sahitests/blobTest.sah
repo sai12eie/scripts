@@ -1,0 +1,102 @@
+
+function testImageDownloadFromLink(){
+	_click(_button("Create Image Link"));
+	_click(_link("Download ready"));
+	_wait(5000,_lastDownloadedFileName() != null);
+	var $imgName = _lastDownloadedFileName()
+	_assertEqual("add.gif", $imgName);
+	var $imgFilePath = _userDataPath("temp/addSaved.gif");
+	_saveDownloadedAs($imgFilePath);
+	var $same = _compareImages("add.gif", $imgFilePath, 10);
+	_assert($same);
+	_deleteFile($imgFilePath);
+}
+
+function testFileDownloadFromLink(){
+	_click(_button("Create File Link"));
+	_click(_link("Download ready"));
+	_wait(5000,_lastDownloadedFileName() != null);
+	var $fileName = _lastDownloadedFileName()
+	_assertEqual("myFile.txt", $fileName);
+	var $textFilePath = _userDataPath("temp/myFileSaved.txt");
+	_saveDownloadedAs($textFilePath);
+	var $textContent = _readFile($textFilePath);
+	_assertEqual("This is for Blob test", $textContent);
+	_deleteFile($textFilePath);
+	_clearLastDownloadedFileName();
+	_click(_button("remove Links"));
+}
+
+
+function testDownloadBlobType3(){
+	// Test blob download type 3. This opens a blob URL using window.open in a new tab.
+	_click(_button("Download blob type 3"));
+	_wait(5000,_lastDownloadedFileName() != null);
+	var $textFilePath = _userDataPath("temp/testBlob3Saved.csv");
+	_saveDownloadedAs($textFilePath);
+	var $textContent = _readFile($textFilePath);
+	_assertEqual("/r2c1,r2c2,blobType3/", $textContent);
+	_deleteFile($textFilePath);
+	_clearLastDownloadedFileName();
+}
+
+function testBlobDownloadViaResponseSubstitution(){
+	// Test Blob download via Response Substitution. In this case, the link element is not added to HTML DOM. So, we need to use substitution rule.
+	_addResponseSubstitutionRule("testBlob", ".*/blobTest.htm", false, "a.dispatchEvent(ev);", "_sahi.downloadFromBlobUrl(blobURL, fileName); return;");
+	_wait(1000);
+	// May be required on build machine
+	_navigateTo("/demo/blobTest.htm", true);
+	_click(_button("Download excel"));
+	_wait(5000,_lastDownloadedFileName() != null);
+	var $csvFileName = _lastDownloadedFileName()
+	_assertEqual("testFile.csv", $csvFileName);
+	var $textFilePath = _userDataPath("temp/testFileSaved.csv");
+	_saveDownloadedAs($textFilePath);
+	var $textContent = _readFile($textFilePath);
+	_assertEqual("/r2c1,r2c2,r2c3/", $textContent);
+	_deleteFile($textFilePath);
+	_clearLastDownloadedFileName();
+	_removeResponseSubstitutionRule("testBlob");
+	_navigateTo("/demo/blobTest.htm", true);
+}
+
+
+function testDownloadBlobType2(){
+	// Test blob download type 2. This dispatches click event on blob link with 'bubbles' as false and 'cancelable' as true.
+	_click(_button("Download blob type 2"));
+	_wait(5000,_lastDownloadedFileName() != null);
+	var $csvFileName = _lastDownloadedFileName()
+	_assertEqual("testBlob2.csv", $csvFileName);
+	var $textFilePath = _userDataPath("temp/testBlob2Saved.csv");
+	_saveDownloadedAs($textFilePath);
+	var $textContent = _readFile($textFilePath);
+	_assertEqual("/r2c1,r2c2,blobType2/", $textContent);
+	_deleteFile($textFilePath);
+	_clearLastDownloadedFileName();
+}
+
+function testDownloadBlobType1(){
+	// Test blob download type 1. This dispatches click event on blob link with 'bubbles' as true and 'cancelable' as false.
+	_click(_button("Download blob type 1"));
+	_wait(5000,_lastDownloadedFileName() != null);
+	var $csvFileName = _lastDownloadedFileName()
+	_assertEqual("testBlob1.csv", $csvFileName);
+	var $textFilePath = _userDataPath("temp/testBlob1Saved.csv");
+	_saveDownloadedAs($textFilePath);
+	var $textContent = _readFile($textFilePath);
+	_assertEqual("/r2c1,r2c2,blobType1/", $textContent);
+	_deleteFile($textFilePath);
+	_clearLastDownloadedFileName();
+}
+
+/* --Functions Above-- */
+
+_navigateTo("/demo/blobTest.htm");
+_resource("add.gif");
+
+if(_isIE()){
+	_runUnitTests(["testFileDownloadFromLink","testImageDownloadFromLink"]);
+} 
+else{
+	_runUnitTests();
+}

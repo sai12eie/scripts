@@ -1,0 +1,18 @@
+//(_setValue(_textbox("a"), "b"));
+
+$st = ""; 
+_setValue(_textbox("user"), "aa");
+$st2 = "";//_textbox("user");
+$st3 = "";//_password("password");
+
+(function() {
+	_set($st2, _getText(_textbox("user")));
+})();
+
+(function b() {
+	(function() {
+		_set($st3,  "b" + _getText(_textbox("user")));
+	})();
+})()
+_assertEqual("aa", $st2);
+_assertEqual("baa", $st3);

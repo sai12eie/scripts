@@ -1,0 +1,79 @@
+_include("../Admin.sah");
+_include("../../../AR/OpenCart_AR.sah");
+
+/**
+* AddNewProduct
+* @param $ProductName - 
+* @param $ProductDescriptionMetaTitle - 
+* @param $ProductDescriptionTag - 
+* @param $Model - 
+* @param $Price - 
+* @param $Quantity - 
+* @param $Weight - 
+* @param $WeightClass - 
+* @param $ManufacturerName - 
+* @param $TaxClass -
+*/
+function CreateNewProduct($ProductName, $ProductDescriptionMetaTitle, $ProductDescriptionTag, $Model, $Price, $Quantity, $Weight, $WeightClass, $ManufacturerName, $TaxClass) {
+	$Price = parseFloat($Price).toFixed(2);
+	_click($_LINK_BTN_BTNPRIMARY);
+	_setValue($_TEXTBOX_PRODUCT_NAME, $ProductName);
+	_setValue($_TEXTBOX_PRODUCT_META_TITLE, $ProductDescriptionMetaTitle);
+	_setValue($_TEXTBOX_PRODUCT_DESCRIPTIONTAG, $ProductDescriptionTag);
+	
+//	_click($LINK_CHINESE);
+//	_setValue($_TEXTBOX_PRODUCT_NAME1, $ProductName);
+//	_setValue($_TEXTBOX_PRODUCT_META_TITLE1, $ProductDescriptionMetaTitle);
+//	_setValue($_TEXTBOX_PRODUCT_DESCRIPTIONTAG1, $ProductDescriptionTag);
+	
+	_click($_LINK_DATA);
+	_setValue($_TEXTBOX_MODEL, $Model);
+	_setValue($_TEXTBOX_PRICE, $Price);
+	if($TaxClass){
+		_setSelected($_SELECT_TAX_CLASS_ID, $TaxClass);
+	}
+	_setValue($_TEXTBOX_QUANTITY, $Quantity);
+	_setValue($_TEXTBOX_WEIGHT, $Weight);
+	_setSelected($_SELECT_WEIGHT_CLASS_ID, $WeightClass);
+	_assertEqual($WeightClass, _getSelectedText($_SELECT_WEIGHT_CLASS_ID));
+	_click($_LINK_LINKS);
+	_setValue($_TEXTBOX_MANUFACTURER, $ManufacturerName);
+	_click(_link($ManufacturerName));
+	_assertEqual($ManufacturerName, _getValue($_TEXTBOX_MANUFACTURER));
+	_click($_SUBMIT_BTN_BTNPRIMARY);
+	_assertExists(_div("Success: You have modified products! ×"));
+}
+
+function GotoProductsPage(){
+	_click($_LINK_CATALOG);
+	_click($_LINK_PRODUCTS);
+}
+
+/**
+* DeleteProductIfExists
+* @param $object - 
+* @paramobject ProductName
+*/
+function DeleteProductIfExists($ProductName){
+	var $data=_readCSVFile("../Data/Admin.csv")[0];
+	var $Username = $data[0];
+	var $Password = $data[1];
+	LoginAsAdmin($Username, $Password);
+	GotoProductsPage();
+	DeleteProduct($ProductName);
+}
+
+function DeleteProduct($product){
+	_setValue($_TEXTBOX_FILTERNAME, $product);
+	_click($_BUTTON_FILTER);
+	if(_exists(_cell($product))){
+		_check(_checkbox(0, _leftOf(_cell($product))));
+		_clearLastConfirm();
+		_expectConfirm("Are you sure?", true);
+		_click(_button("btn btn-danger"));
+		_assertEqual("Are you sure?", _lastConfirm(false));
+		_assertExists(_div("Success: You have modified products! ×"));
+	}else{
+		_log("product not added...", "CUSTOM");
+	}
+}

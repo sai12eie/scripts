@@ -1,0 +1,15 @@
+"TestCase","Data","Key Word","Argument 1","Argument 2"
+,,"loadSahi","../Lib/Admin/Catalog/Products.sah"
+,,"loadSahi","../Lib/Admin/Catalog/Manufacturers.sah"
+,,"loadSahi","../Lib/Admin/Admin.sah"
+
+,,"_windowAction","maximize"
+"Create Manufacturer",,"[Documentation]","Create  product manufacturer"
+,"[../Data/Admin.csv]","Login As Admin","Username:demo","Password:IgMGDxZUBhxF"
+,,"Create New Manufacture If Not Exists","Manufacturer Name:Logitech","Manufacturer Keyword:Logitech"
+
+"Create New Product",,"[Documentation]","Create product with all information"
+,"[../Data/Products.csv:ProductInfo1]","[Repeat]"
+,,"Delete Product If Exists","Product Name:Logitech Wired Keyboard"
+,,"Create New Product","Product Name:Logitech Wired Keyboard","Product Description MetaTitle:Logitech Keyboard","Product Description Tag:Keyboard","Model:v10.0.0","Price:250.00","Quantity:100","Weight:650","Weight Class:Gram","Manufacturer Name:Logitech"
+,,"[End]"

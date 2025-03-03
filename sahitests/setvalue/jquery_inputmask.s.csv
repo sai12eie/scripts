@@ -1,0 +1,23 @@
+"Tags","TestCase","Key Word","Argument 1","Argument 2"
+,,"loadSahi","jquery_inputmask.sah"
+
+"all","Test With Type API","[Documentation]","Using _type API"
+,,"Test With Type API"
+
+"all","Incomplete Values","[Documentation]","Setting incomplete value in the field"
+,,"IncompleteValues"
+
+"all","Complete Values Without Separators","[Documentation]","Setting the complete value in the field without separator"
+,,"Complete Values Without Separators"
+
+"all","Complete Values With Separators","[Documentation]","Setting the complete value in the field with separator"
+,,"Complete Values With Separators"
+
+"all","HiddenElements","[Documentation]","Setting the value on hidden elements"
+,,"Hidden Elements"
+
+"all","Customer Input Mask Issues","[Documentation]","This testcase test input mask, Issue came from customer"
+,,"Customer Input Mask Issues"
+
+"//external","Special Chars Values","[Documentation]","Using special char"
+"//",,"Special Chars Values"

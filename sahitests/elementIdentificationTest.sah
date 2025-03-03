@@ -1,0 +1,31 @@
+function testIdentification(){
+	_assertExists(_submit("general"));
+	_assertVisible(_submit("common[1]"));
+	_assertExists(_submit("generic"));
+	_assertExists(_submit("general[1]"));
+	_assertExists(_submit("common"));
+	_assertExists(_submit("generic[1]"));
+	_assertExists(_submit("generic[1]"));
+	_assertExists(_div(_div(1)));
+	_assertNotExists(_div(_div("randomStr")));
+	_startLookInside(_div("/Licenses:/"))
+	_assertExists(_listItem(_listItem(1)));
+	_assertNotExists(_listItem(_listItem(10)));
+	_stopLookInside();
+	_assertExists(_link(_link(1)));
+	_assertNotExists(_link(_link("randomStr")));
+	_assertExists(_textbox(_textbox("user")));
+	_assertExists(_textbox(_textbox(1)));
+}
+
+function testIdentification2(){
+	_assertExists(_button("Save"));
+	_assertExists(_button("Save[2]"));
+	_assertExists(_button("Save[1]"));
+	_assertExists(_button("Cancel"));
+	_assertExists(_button("Cancel[1]"));
+	_assertExists(_button("Cancel[2]"));
+}
+
+_navigateTo("/demo/elementIdentification.htm");
+_runUnitTests();

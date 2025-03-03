@@ -1,0 +1,42 @@
+function testAddToScriptInfo(){
+	_addToScriptInfo("description",$description);
+	var $scriptInfo = _scriptInfo();
+	_assertEqual($description, $scriptInfo.description);
+}
+
+function testUserAgentInfo(){
+	var $scriptInfo = _scriptInfo();
+	if(_isEdgeNew()){
+		_assertEqual("/^Mozilla\\/5.0 [(]Windows NT 10.0; Win64; x64[)] AppleWebKit\\/537.36 [(]KHTML, like Gecko[)] Chrome\\/[1-9][0-9][0-9].0.0.0 Safari\\/537.36 Edg\\/[1-9][0-9][0-9].0.0.0/", $scriptInfo.userAgent);
+	}else if(_isChrome() || _isBrave()){
+		_assertEqual("/^Mozilla\\/5.0 [(]Windows NT 10.0; Win64; x64[)] AppleWebKit\\/537.36 [(]KHTML, like Gecko[)] Chrome\\/[1-9][0-9][0-9].0.0.0 Safari\\/537.36/", $scriptInfo.userAgent);
+	}else if(_isFF()){
+		_assertEqual("/^Mozilla\\/5.0 [(]Windows NT 10.0; Win64; x64; rv:[1-9][0-9][0-9].0[)] Gecko\\/20100101 Firefox\\/[1-9][0-9][0-9].0/", $scriptInfo.userAgent);
+	}else if(_isIE()){
+		_assertEqual("Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko", $scriptInfo.userAgent);
+	}else{
+		_log($scriptInfo.userAgent, "CUSTOM");
+		_assert(false, "Test script need to update for this browser");
+	}
+}
+
+function testBrowserVersion(){
+	var $scriptInfo = _scriptInfo();
+	if(_isEdgeNew()){
+		_assertEqual("/^Edge [0-9][0-9][0-9][.].*/", $scriptInfo.browserVersion);
+	}else if(_isChrome()){
+		_assertEqual("/^Chrome [0-9][0-9][0-9][.].*/", $scriptInfo.browserVersion);
+	}else if(_isBrave()){
+		_assertEqual("/^Brave [(]Chromium [0-9][0-9][0-9][.].*[)]$/", $scriptInfo.browserVersion);
+	}else if(_isFF()){
+		_assertEqual("/^Firefox [0-9][0-9][0-9][.].*/", $scriptInfo.browserVersion);
+	}else if(_isIE()){
+		_assertEqual("IE 11.0", $scriptInfo.browserVersion);
+	}else{
+		_assertNotEqual("", $scriptInfo.browserVersion);
+	}
+	_assertNotNull($scriptInfo.browserVersion);
+}
+
+var $description = "Test for script info";
+_runUnitTests();

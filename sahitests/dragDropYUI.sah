@@ -1,0 +1,3 @@
+_navigateTo("http://developer.yahoo.com/yui/examples/dragdrop/dd-reorder.html");
+_dragDrop(_xy(_listItem("list 1, item 1"), 2, 2), _listItem("list 2, item 1"), 60, 2);
+_dragDrop(_xy(_listItem("list 1, item 1"), 2, 2), _xy(_list("ul2"),2,2), 60, 32);

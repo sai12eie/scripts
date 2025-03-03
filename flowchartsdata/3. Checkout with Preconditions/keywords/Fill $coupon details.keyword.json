@@ -1,0 +1,83 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.574Z",
+  "name": "Fill $coupon details",
+  "id": "45886",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.574Z",
+  "content": {
+    "title": "Fill $coupon details",
+    "parameters": [
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"btn btn-primary\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_01679636456422",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_01679636456422"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_11679636456422",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_11679636456422"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_21679636456422",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_21679636456422"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

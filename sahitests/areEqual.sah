@@ -1,0 +1,36 @@
+function checkCondition ($result) {
+  	if($result){
+ 	 _assertTrue($result);
+	}else{
+ 	 _assertFalse($result);
+	}
+}
+var $compare = _areEqual("/^a.*c$/", "a");
+checkCondition($compare);
+$compare = _areEqual(/^a.*c$/, "abc");
+checkCondition($compare);
+$t = function() {return _getText(_link("Link Test")); };
+$compare = _areEqual("Link Test111", $t()); //to check anonymous function as a function arg
+checkCondition($compare);
+
+var $compare2 =  _areEqual("Link Test", function() { return _getText(_link("Link Test")); });
+checkCondition($compare2);
+
+_assertTrue(_areEqual("abc", "abc"));
+_assertTrue(_areEqual("/ab/", "abc"));
+_assertTrue(_areEqual("/^a.*c$/", "abc"));
+_assertTrue(_areEqual(/^a.*c$/, "abc"));
+
+_assertFalse(_areEqual("/^ab$/", "abc"));
+
+$exp = ["/[a-z]+$/", "b"];
+$act = ["ab", "b"];
+_assertTrue(_areEqual($exp, $act));
+
+_assertFalse(_areEqual($exp, ["ab123", "b"]));
+
+
+$exp = [/[a-z]+$/, "b"];
+$act = ["ab", "b"];
+_assertTrue(_areEqual($exp, $act));
+_assertFalse(_areEqual($exp, ["ab123", "b"]));

@@ -1,0 +1,37 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.824Z",
+  "name": "Navigate from @base to @registrationx",
+  "id": "45909",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.824Z",
+  "content": {
+    "title": "Navigate from @base to @registrationx",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"My Account\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Register\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

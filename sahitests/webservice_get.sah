@@ -1,0 +1,13 @@
+var $word = "potato";
+var $webserviceURL = "http://services.aonaware.com/DictService/DictService.asmx/Define?word=" + $word;
+
+var $response = _readURL($webserviceURL);
+//_sahi.print($response);
+
+$data = $response.replace(/<[?]xml[^<]*</, '<');
+
+default xml namespace = "http://services.aonaware.com/webservices/"; 
+var $xml = new XML($data);
+var $meaning = $xml.Definitions[0].Definition[0].WordDefinition[0].toString();
+//_sahi.print($meaning);
+_alert($meaning);

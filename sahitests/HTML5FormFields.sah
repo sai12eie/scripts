@@ -1,0 +1,17 @@
+_navigateTo("/demo/html5_form_fields.htm");
+_setValue(_datebox("dob"), "2012-12-18");
+_assertEqual("2012-12-18", _getValue(_datebox("dob")));
+_wait(6000);
+_assertEqual("2012-12-18", _getValue(_textbox("textdate")));
+_setValue(_rangebox("points"), "3");
+_assertEqual("3", _getValue(_rangebox("points")));	
+_wait(6000);
+_assertEqual("3", _getValue(_textbox("textrange")));
+_setValue(_rangebox("points"), "5");		
+_assertEqual("5", _getValue(_rangebox("points")));		
+_setValue(_weekbox("week2"), "2009-W10");	
+_assertEqual("2009-W10", _getValue(_weekbox("week2")));	
+	
+		
+		
+		

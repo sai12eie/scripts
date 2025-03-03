@@ -1,0 +1,20 @@
+function setFileNative($fileEl, $path) {
+	_focusWindow();
+	_wait(1000); // needed
+	// focus on the element
+	_focus($fileEl);
+	// click "space" to bring up the browser dialog
+	_sahi._typeKeyCodeNative(java.awt.event.KeyEvent.VK_SPACE);
+	_wait(1000);
+	// type the file path
+	_sahi._typeNative($path);
+	_wait(1000);
+	// press enter
+	_sahi._typeKeyCodeNative(java.awt.event.KeyEvent.VK_ENTER);
+	_wait(5000);
+}
+
+_navigateTo("http://demos.telerik.com/aspnet-ajax/asyncupload/examples/additionalfields/defaultcs.aspx");
+var $file = "C:\\Users\\narayan\\Desktop\\a.txt";
+setFileNative(_file("ctl00_ContentPlaceHolder1_RadAsyncUpload1file0"), $file);
+_log("Done");

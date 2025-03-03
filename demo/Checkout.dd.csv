@@ -1,0 +1,4 @@
+"#script","url","tags","depends"
+"Scenarios/CheckoutProduct.s.csv","https://demoapps.testflowchart.com/opencart/","all"
+"Scenarios/CheckoutProductWithValidCoupon.s.csv","https://demoapps.testflowchart.com/opencart/","validCoupon,all"
+"Scenarios/Should_Fail_Invalid_Coupon.s.csv","https://demoapps.testflowchart.com/opencart/","invalidCoupon,all"

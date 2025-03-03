@@ -1,0 +1,76 @@
+function setUp(){
+	_navigateTo("/demo/formTest.htm");
+}
+
+function testSetValueDoesNothingOnDisabledFields() {
+	_setValue(_textbox("t1"), "aaa");
+	_assertEqual("aaa", _getValue(_textbox("t1")));
+	
+	_call(_textbox("t1").disabled = true);
+	_setValue(_textbox("t1"), "sss");
+	_assertEqual("aaa", _getValue(_textbox("t1")));
+	
+	_call(_textbox("t1").disabled = false);
+	_setValue(_textbox("t1"), "rrr");
+	_assertEqual("rrr", _getValue(_textbox("t1")));
+}
+
+function testTypeDoesNothingOnDisabledFields() {
+	_setValue(_textbox("t1"), ""); //blank it
+	
+	_type(_textbox("t1"), "aaa");
+	_assertEqual("aaa", _getValue(_textbox("t1")));
+	
+	_call(_textbox("t1").disabled = true);
+	_type(_textbox("t1"), "sss");
+	_assertEqual("aaa", _getValue(_textbox("t1")));
+	
+	_call(_textbox("t1").disabled = false);
+	_type(_textbox("t1"), "rrr");
+	_assertEqual("aaarrr", _getValue(_textbox("t1")));
+}
+
+function testSetValueDoesNothingOnReadOnlyFields() {
+	_setValue(_textbox("t1"), ""); //blank it
+	
+	_setValue(_textbox("t1"), "aaa");
+	_assertEqual("aaa", _getValue(_textbox("t1")));
+	
+	_call(_textbox("t1").readOnly = true);
+	_setValue(_textbox("t1"), "sss");
+	_assertEqual("aaa", _getValue(_textbox("t1")));
+	
+	_call(_textbox("t1").readOnly = false);
+	_setValue(_textbox("t1"), "rrr");
+	_assertEqual("rrr", _getValue(_textbox("t1")));
+}
+
+function testNewLinesInTextArea() {
+	_setValue(_textarea("ta1"), "a\nb");
+	_assertEqual("a\nb", _getText(_textarea("ta1")));
+	
+	_setValue(_textarea("ta1"), "a\n\nb");
+	_assertEqual("a\n\nb", _getText(_textarea("ta1")));
+}
+
+function testSetValueClearsFieldBeforeWriting() {
+	_setValue(_textbox("t1"), "aaa");
+	_assertEqual("aaa", _getValue(_textbox("t1")));
+	_setValue(_textbox("t1"), "bbb");
+	_assertEqual("bbb", _getValue(_textbox("t1")));
+}
+
+function testSetValueAndTypeForMixedCaseAndNumbers() {
+	var $str = "aBCDef 123456789 ~!@#$%^&*() -_=+[{]}\|;:'\",<.>/?";
+	if (_sahi._isIE9Plus()) {
+		$str = "aBCDef 123456789 ~!@#$%^*() -_=+[{]}\|;:'\",<.>/?"; // removed &. sets blank in IE8. TODO Fix later?
+	}
+	_setValue(_textbox("t1"), $str);
+	_assertEqual($str, _getValue(_textbox("t1")));
+	
+	_setValue(_textbox("t1"), "");
+	_type(_textbox("t1"), $str);
+	_assertEqual($str, _getValue(_textbox("t1")));
+}
+
+_runUnitTests();

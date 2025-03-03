@@ -1,0 +1,19 @@
+_click(_link("Window Open Test"));
+_focusWindow();
+_popup("popWin")._click(_link("Link Test"));
+_selectWindow("popWin");
+_focusWindow();
+_selectWindow();
+_popup("popWin")._click(_link("Back"));
+
+_click(_link("Window Open Test With Title"));
+_focusWindow();
+_popup("With Title")._click(_link("Link Test"));
+_selectWindow("With Title");
+_focusWindow();
+_selectWindow();
+_popup("With Title")._click(_link("Back"));
+
+_selectWindow("popWin");
+_focusWindow();
+_selectWindow();

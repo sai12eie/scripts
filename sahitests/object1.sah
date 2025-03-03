@@ -1,0 +1,33 @@
+function A() {
+	this.bFn = function($b) {
+		_log("In bFn: " + $b);
+	}
+}
+
+A.prototype.cFn = function($c) {
+	_log("In cFn: " + $c);
+}
+
+function dFn($d) {
+	_log("In dFn: " + $d);
+//	_click(_button("abc"));
+}
+
+var eFn = function($e) {
+	_log("In eFn: " + $e);
+}
+
+var fFn = new Function("$f", '_log("In fFn: " + $f);');
+
+var gFn = function hFn($gh){
+	_log("In g/hFn: " + $gh);
+}
+
+
+var a = new A();
+a.bFn("bb");
+a.cFn("cc");
+dFn("dd");
+eFn("ee");
+fFn("ff");
+gFn("gghh");

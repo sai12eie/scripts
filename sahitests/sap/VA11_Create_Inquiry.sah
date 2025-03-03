@@ -1,0 +1,57 @@
+_setMode("SAP");
+
+// Launch SAP logon pad
+_launchSAPGUI();
+
+// Open 'ECC1' connection
+_openSAPConnection("ECC1");
+
+// Login using credentials
+_selectWindow("SAP");
+_setValue(_textbox("wnd[0]/usr/txtRSYST-BNAME"), "testUser");
+_setPassword(_password("wnd[0]/usr/pwdRSYST-BCODE"), "BQMKFwpSKV8SZA==");
+_keyPress(_window("SAP"), "Enter");
+
+// Start VA11 transaction
+_selectWindow("SAP Easy Access");
+_setValue(_okCodeField("wnd[0]/tbar[0]/okcd"), "VA11");
+_keyPress(_window("SAP Easy Access"), "Enter");
+
+// Create an inquiry
+_selectWindow("Create Inquiry: Initial Screen");
+_setValue(_ctextfield("wnd[0]/usr/ctxtVBAK-AUART"), "IN");
+_setValue(_ctextfield("wnd[0]/usr/ctxtVBAK-VKORG"), "1000");
+_setValue(_ctextfield("wnd[0]/usr/ctxtVBAK-VTWEG"), "10");
+_keyPress(_window("Create Inquiry: Initial Screen"), "Enter");
+
+_selectWindow("Create Inquiry: Overview");
+_setValue(_ctextfield("wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/ctxtKUAGV-KUNNR"), "T-L63A01");
+_setValue(_ctextfield("wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/ctxtKUWEV-KUNNR"), "T-L63A01");
+_setValue(_ctextfield("wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV45A:4411/ctxtVBAK-ANGDT"), "15.04.2020");
+_setValue(_ctextfield("wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV45A:4411/ctxtVBAK-BNDDT"), "20.04.2020");
+_setValue(_ctextfield("wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV45A:4411/subSUBSCREEN_TC:SAPMV45A:4912/tblSAPMV45ATCTRL_U_ERF_ANGEBOT/ctxtRV45A-MABNR[1,0]"), "100-100");
+_setValue(_textbox("wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV45A:4411/subSUBSCREEN_TC:SAPMV45A:4912/tblSAPMV45ATCTRL_U_ERF_ANGEBOT/txtRV45A-KWMENG[2,0]"), "3");
+_keyPress(_window("Create Inquiry: Overview"), "Enter");
+_setValue(_ctextfield("wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV45A:4411/subSUBSCREEN_TC:SAPMV45A:4912/tblSAPMV45ATCTRL_U_ERF_ANGEBOT/ctxtRV45A-MABNR[1,1]"), "100-200");
+_setValue(_textbox("wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV45A:4411/subSUBSCREEN_TC:SAPMV45A:4912/tblSAPMV45ATCTRL_U_ERF_ANGEBOT/txtRV45A-KWMENG[2,1]"), "2");
+_keyPress(_window("Create Inquiry: Overview"), "Enter");
+_click(_button("wnd[0]/tbar[0]/btn[11]"));
+
+// Read and verify status message and extract inquiry number
+var $statusInfo = _getStatusInformation();
+var $statusMessage = $statusInfo.Message; // e.g Inquiry 10000267 has been saved
+var $pattern = "/^Inquiry (.*) has been saved$/";
+
+_assertEqual($pattern, $statusMessage);
+var $inquiryNumber = _extract($statusMessage, $pattern, true);
+
+// Captures the screenshot
+_takePageScreenShot();
+
+// Close window and log off
+_closeWindow("");
+_selectWindow("Log Off");
+_click(_button("wnd[1]/usr/btnSPOP-OPTION1"));
+
+// Close SAP logon pad
+_closeSAPGUI();

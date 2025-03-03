@@ -1,0 +1,127 @@
+_click(_link("Open Self"));
+
+_selectWindow("Sahi Tests[1]");
+_click(_link("Open Self"));
+
+//----close Sahi Tests[1] window
+
+_selectWindow("Sahi Tests[1]");
+_wait(4000);
+_click(_link("Close Self"));
+//_wait(4000);
+_popup("Sahi Tests[1]")._assertNotNull(_link("Link Test"));
+_popup("Sahi Tests")._assertNotNull(_link("Link Test"));
+
+_selectWindow("Sahi Tests[1]");
+_wait(2000);
+var $exists = _windowExists("Sahi Tests[2]", 2000);
+_assertFalse($exists);
+
+_click(_link("Open Self"));
+
+_selectWindow();
+_assertNotNull(_link("Link Test"));
+_selectWindow("Sahi Tests[1]");
+_assertNotNull(_link("Link Test"));
+_selectWindow("Sahi Tests[2]");
+_assertNotNull(_link("Link Test"));
+
+//----open link test in Sahi Tests[1] window
+
+_selectWindow("Sahi Tests[1]");
+_click(_link("Link Test"));
+_popup("Sahi Tests[1]")._assertNotNull(_link("Link Test"));
+_popup("Sahi Tests")._assertNotNull(_link("Link Test"));
+
+_wait(2000);
+var $exists2 = _windowExists("Sahi Tests[2]", 2000);
+_assertFalse($exists2);
+
+_selectWindow("Link Test");
+_click(_link("Back"));
+
+_popup("Sahi Tests[2]")._assertNotNull(_link("Link Test"));
+_popup("Sahi Tests[1]")._assertNotNull(_link("Link Test"));
+_popup("Sahi Tests")._assertNotNull(_link("Link Test"));
+
+//----open link test in Sahi Tests (base) window
+
+_selectWindow("Sahi Tests");
+_click(_link("Link Test"));
+_popup("Sahi Tests[1]")._assertNotNull(_link("Link Test"));
+_popup("Sahi Tests")._assertNotNull(_link("Link Test"));
+
+_selectWindow("Link Test");
+_click(_link("Back"));
+
+_popup("Sahi Tests[2]")._assertNotNull(_link("Link Test"));
+_popup("Sahi Tests[1]")._assertNotNull(_link("Link Test"));
+_popup("Sahi Tests")._assertNotNull(_link("Link Test"));
+
+//-----index on iframe
+
+_selectWindow("Sahi Tests");
+_click(_link("Window Open Test With Title"));
+_click(_link("Window Open Test With Title"));
+
+_wait(3000);
+
+_selectWindow("With Title");
+_assertExists(_link("Link Test"));
+_selectWindow("With Title[1]");
+_assertExists(_link("Link Test"));
+
+_popup("With Title")._click(_link("Different Domains External"));
+_popup("With Title[1]")._click(_link("Different Domains External"));
+_wait(3000);
+
+_selectDomain("/sahipro.com/");
+_selectWindow("/Sahi Pro Blog/");
+_wait(10000, _isVisible(_heading1("Blog")));
+_assertExists(_submit("Search"));
+
+_selectWindow("/Sahi Pro Blog/[1]");
+_wait(10000, _isVisible(_heading1("Blog")));
+_assertExists(_submit("Search"));
+
+_selectWindow("/Sahi Pro Blog/");
+_assertExists(_link("Issues and Fixes"));
+_assertEqual("https://www.sahipro.com/category/fix", _fetch(_link("Issues and Fixes").href));
+
+_selectWindow("/Sahi Pro Blog/[1]");
+_assertExists(_link("Tips"));
+_assertEqual("https://www.sahipro.com/category/tips", _fetch(_link("Tips").href));
+
+//-----iframe in same page with sub-iframe
+
+_selectWindow();
+_selectDomain();
+_wait(1000);
+_click(_link("Window Open Test With Title"));
+
+_selectWindow("With Title[2]");
+_wait(1000);
+_click(_link("Iframe Different Domains[1]"));
+
+_selectDomain("sahitest1.com");
+_selectWindow("Sahi Tests");
+_assertExists(_heading2("Sahi Tests"));
+_assertExists(_heading2("Sahi Tests[1]"));
+
+_selectDomain();
+_selectWindow("With Title[2]");
+_click(_link("Iframe Different Domains"));
+
+_selectDomain("sahitest1.com");
+_selectWindow("Sahi Tests");
+
+var $timer = new Date();
+_assertExists(_heading2("Sahi Tests"));
+_assertExists(_heading2("Sahi Tests[1]"));
+_assertExists(_heading2("Sahi Tests[2]"));
+_assertExists(_heading2("Sahi Tests[3]"));
+
+var $timer2 = new Date();
+var $diff = $timer2 - $timer;
+_assert($diff < 15000, "Should have returned quickly");
+

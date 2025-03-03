@@ -1,0 +1,12 @@
+var $msg = "Nothing";
+function onAlert($s){
+	_debug("Here");
+	$msg = "Alert Called: " + $s;
+}
+
+_navigateTo("/demo/alertTest.htm", true);
+_setValue(_textbox("t1"), "Hi There");
+_click(_button("Click For Alert"));
+//_alert(_onAlert);
+_wait(1000);
+_alert($msg);

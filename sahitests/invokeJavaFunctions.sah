@@ -1,0 +1,12 @@
+_importJava("demo.training.*");
+
+$userModule.login("test", "secret");
+$userModule.addBooks(1, 2, 3);
+$userModule.verifyTotal(1750);
+$userModule.logout();
+
+$userModuleInstance = _loadJavaInstance("demo.training.UserModule");
+$userModuleInstance.login("test", "secret")
+$userModuleInstance.addBooks(3, 2, 1);
+$userModuleInstance.verifyTotal(1650);
+$userModuleInstance.logout();

@@ -1,0 +1,186 @@
+onScriptError=onScriptFailure=null
+
+var $suiteInfo = _suiteInfo();
+var $baseurl = $suiteInfo["baseURL"];
+_log("baseURL : " + $baseurl, "CUSTOM");
+var $urlhost = $baseurl.substring($baseurl.indexOf("/") + 2,  $baseurl.indexOf("/", 8));
+_log("urlhost : " + $urlhost, "CUSTOM");
+
+function MethodGet() {
+	_navigateTo("/demo/php/request_headers.php");
+	var $href = _fetch(window.top.location.href);
+	$request = new RESTRequest();
+	$request.setHeader("Accept-Encoding", "deflate,sdch");
+	$request.setURL($href);
+	$request.addToQueryString("Place", "Banga&lore");
+	$request.addToQueryString("PIN", "5600 68");
+	var $p = new Parameter();
+	$p.add("Name", "Jane");
+	$p.add("Age", "25");
+	$request.addToBody($p);
+	$response = $request.submit("get");
+	var $responseBody = $response.getBodyAsString();
+	//	_sahi.print("\n----------\n" + $responseBody + "\n----------\n");
+	_assert($responseBody.indexOf("Request Method : GET") != -1);
+	_assert($responseBody.indexOf("Request URI : /demo/php/request_headers.php?Place=Banga&lore&PIN=5600 68") != -1);
+	_assert($responseBody.indexOf("Query String : Place=Banga&lore&PIN=5600 68") != -1);
+	_assert($responseBody.indexOf("Request Body : </br>") != -1);
+}
+
+function REST401() {
+	$request = new RESTRequest();
+	$request.setURL("http://" + $urlhost + "/demo/401/index.htm");
+	$request.setCredentials("testuser", "password");
+
+	$response = new RESTResponse();
+	$response = $request.submit("get");
+
+	var $s = $response.getResponseCode();
+	_assertEqual("200",$s);
+}
+
+function MethodPost() {
+	_navigateTo("/demo/php/request_headers.php");
+	var $href = _fetch(window.top.location.href);
+	$request = new RESTRequest();
+	$request.setHeader("Accept-Encoding", "deflate,sdch");
+	$request.setURL($href);
+	$request.addToQueryString("Place", "Bangalore");
+	var $p = new Parameter();
+	$p.add("Name", "Jane");
+	$p.add("Age", "25");
+	$request.addToBody($p);
+	$response = $request.submit("post");
+	var $responseBody = $response.getBodyAsString();
+	_assert($responseBody.indexOf("Request Method : POST") != -1);
+	_assert($responseBody.indexOf("Request URI : /demo/php/request_headers.php?Place=Bangalore") != -1);
+	_assert($responseBody.indexOf("Query String : Place=Bangalore") != -1);
+	_assert($responseBody.indexOf("Request Body : Name=Jane&Age=25</br>") != -1);
+}
+/**
+*	Commented out for passing the build
+*/
+function MethodDelete() {
+	_navigateTo("/demo/php/request_headers.php");
+	var $href = _fetch(window.top.location.href);
+	$request = new RESTRequest();
+	$request.setURL($href);
+	$response = $request.submit("Delete");
+	_assert($response.getBodyAsString().indexOf("Request Method : DELETE") != -1);
+}
+
+function HttpDefaultGetCredentialKey(){
+	$request = new RESTRequest();
+	var $url ="http://" + $urlhost+"/demo/401/index.htm";
+	_assertEqual("http://" + $urlhost+":80", $request.getCredentialKey($url));
+}
+
+function HttpsDefaultGetCredentialKey() {
+	$request = new RESTRequest();
+	var $url ="https://" + $urlhost+"/demo/401/index.htm";
+	_assertEqual("https://" + $urlhost+":443", $request.getCredentialKey($url));
+}
+
+function HttpsWithPortGetCredentialKey() {
+	$request = new RESTRequest();
+	var $url ="http://" + $urlhost+":8888/demo/401/index.htm";
+	_assertEqual("http://" + $urlhost+":8888", $request.getCredentialKey($url));
+}
+
+function HttpWithPortGetCredentialKey() {
+	$request = new RESTRequest();
+	var $url ="http://" + $urlhost+":50/demo/401/index.htm";
+	_assertEqual("http://" + $urlhost+":50", $request.getCredentialKey($url));
+}
+
+function URLWithoutSingleSlashGetCredentialKey(){
+	$request = new RESTRequest();
+	var $url ="http://" + $urlhost;
+	_assertEqual("http://" + $urlhost+":80", $request.getCredentialKey($url));
+}
+
+function XmlNameSpaceTest(){
+	$request = new RESTRequest();
+	$request.setURL("http://www.webservicex.net/geoipservice.asmx/GetGeoIP");
+	$request.addToQueryString("IPAddress", "72.14.228.129");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	$responseBody = $responseBody.replace(/<\?xml.*?>/g, '').replace(/\n/g, '').replace(/\r/g,'');
+	var $responseBodyObj = new XML($responseBody);
+	default xml namespace = $responseBodyObj.name().uri;
+	_assertEqual("200", $response.getResponseCode());
+	_assertNotNull($responseBodyObj.ReturnCode);
+	_assertEqual("1", $responseBodyObj.ReturnCode.toString());
+	_assertNotNull($responseBodyObj.IP);
+	_assertEqual("72.14.228.129", $responseBodyObj.IP.toString());
+	_assertNotNull($responseBodyObj.ReturnCodeDetails);
+	_assertEqual("Success", $responseBodyObj.ReturnCodeDetails.toString());
+	_assertNotNull($responseBodyObj.CountryName);
+	_assertEqual("United States", $responseBodyObj.CountryName.toString());
+	_assertNotNull($responseBodyObj.CountryCode);
+	_assertEqual("USA", $responseBodyObj.CountryCode.toString());
+}
+
+function EncodeBodyParam(){
+	$request = new RESTRequest();
+	$request.setURL("http://sahitest.com/demo/php/request_headers.php");
+	var $pin="(5)60102";
+	$request.addToQueryString("PINCODE", $pin);
+	$response = $request.submit("GET");
+	_assertEqual("200", $response.getResponseCode());
+	var $responseBody = decodeURIComponent($response.getBodyAsString());
+	_assert($responseBody.indexOf( $pin ) != -1);
+}
+
+function HeaderContainSpecialCharacter(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/headers");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("sec-fetch-dest", "empty");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, br");
+	var $acceptLanguage = "en-IN,en;q=0.9,mr-IN;q=0.8,mr;q=0.7,en-GB;q=0.6,en-US;q=0.5";
+	$request.setHeader("Accept-Language", $acceptLanguage);
+	var $cookie = "ct0=a406b39043ad19e0a539a39fc6ab38a4; guest_id=v1:149916099908694482; _ga=GA1.2.1801731052.1499161003; _gid=GA1.2.903379832.1499161003; _gat=1; privacy_2017=1; _twitter_sess=BAh7CSIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7ADoPY3JlYXRlZF9hdGwrCK909QxdAToMY3NyZl9pZCIlYTllNmI0MDRlMGFlMTYwYjJhMWFkZWU2ZDAwNTczNjA6B2lkIiVjYTNiNTVkYzBiZWY3N2JjYjY4MjViMDE4OTcxMWY5Yg==--1a9e579decf70c4ed45b7d27e8bb9a1e74e4a462";
+	$request.setHeader("Cookie", $cookie);
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertEqual($acceptLanguage, $responseBodyObj.headers["Accept-Language"]);
+	_assertEqual($cookie, $responseBodyObj.headers.Cookie);
+}
+
+function SpecialCharInJSONBody(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/anything");
+	$request.setHeader("Content-Type", "application/JSON");
+	$request.setBody("{\"email\":\"testuser+21@example.com\",\"password\":\"admin@&123\%\"}");
+	$response = $request.submit("POST");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertEqual("{\"email\":\"testuser+21@example.com\",\"password\":\"admin@&123\%\"}", $responseBodyObj.data);
+}
+	
+function PostXmlDataToSoapRequest(){
+	var $request = new RESTRequest();
+	$request.setHeader("Content-Type", "application/soap+xml");
+	$request.setURL("http://iis.sahitest.com/soap/Calculator.asmx?op=Add");
+	var $body =
+	"<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+	"<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">" +
+	"  <soap12:Body>" +
+	"    <Add xmlns=\"http://tempuri.org/\">" +
+	"      <a>2</a>" +
+	"      <b>2</b>" +
+	"    </Add>" +
+	"  </soap12:Body>" +
+	"</soap12:Envelope>";
+	$request.setBody($body);
+	var $response = $request.submit("post");
+	_assertEqual("200", $response.getResponseCode());
+	_assertTrue($response.getBodyAsString().indexOf("<AddResult>4</AddResult>") != -1);
+}

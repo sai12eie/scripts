@@ -1,0 +1,742 @@
+onScriptError = onScriptFailure = null;
+_navigateTo("/demo/positionalsNew.htm");
+
+function testElementNotFoundIsEnabledAPI(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 var $enabled = _isEnabled(_button("Login"));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _button("Login") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundIsEnabledAPIWithRelation(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 var $enabled = _isEnabled(_submit("Login", _in(_div("not available"))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _div("not available") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	
+	try{
+		_disableDefaultErrorLogging();
+		 var $enabled = _isEnabled(_button("Login", _in(_div(0))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _button("Login", _in(_div(0))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWhenRelationNotDefined1() {
+	_navigateTo("/demo/positionalsNew.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $text = _getText(_div("black"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("black") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundWhenRelationNotDefined2() {
+	_navigateTo("/demo/positionalsNew.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $text = _getText(_div(/black/));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div(/black/) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundWhenRelationDefinedAndRelationElementNotFound() {
+	_navigateTo("/demo/positionalsNew.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $text = _getText(_div(/blue/, _under(_div("Lower black"))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("Lower black") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundWhenRelationDefinedAndRelationElementFound() {
+	_navigateTo("/demo/positionalsNew.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $text = _getText(_div(/blue/, _under(_div("Lower blue"))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div(/blue/, _under(_div("Lower blue"))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundWhenNestedRelationDefinedAndSecondLevelRelationElementNotFound() {
+	_navigateTo("/demo/positionalsNew.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $text = _getText(_div(/blue/, _above(_div("Lower blue", _above(_div("black"))))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("black") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundWhenNestedRelationDefinedAndFirstLevelRelationElementNotFound() {
+	_navigateTo("/demo/positionalsNew.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $text = _getText(_div(/blue/, _above(_div("black", _above(_div("Lower blue"))))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("black", _above(_div("Lower blue"))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundWhenNestedRelationDefinedAndRelationElementsFound1() {
+	_navigateTo("/demo/positionalsNew.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $text = _getText(_div("black", _above(_div("Upper blue", _above(_div("Lower blue"))))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("black", _above(_div("Upper blue", _above(_div("Lower blue"))))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundWhenNestedRelationDefinedAndRelationElementsFound2() {
+	_navigateTo("/demo/positionalsNew.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $text = _getText(_div(/black/, _above(_div("Upper blue", _above(_div("Lower blue"))))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div(/black/, _above(_div("Upper blue", _above(_div("Lower blue"))))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testFirstElementNotFoundWithMultiArgumentAPIWhenRelationNotDefined() {
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_dragDrop(_image("dragWrong"), _div("div1"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _image("dragWrong") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testSecondElementNotFoundWithMultiArgumentAPIWhenRelationNotDefined() {
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_dragDrop(_image("drag1"), _div("divWrong"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("divWrong") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testSecondElementNotFoundWithMultiArgumentAPIWhenSecondLevelRelationNotFound() {
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_dragDrop(_image("drag1"), _div("div1", _above(_div("div2", _above(_div("divWrong"))))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("divWrong") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testSecondElementNotFoundWithMultiArgumentAPIWhenFirstLevelRelationNotFound() {
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_dragDrop(_image("drag1"), _div("div1", _above(_div("divWrong", _above(_div("div3"))))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("divWrong", _above(_div("div3"))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testSecondElementNotFoundWithMultiArgumentAPIWhenRelationFound() {
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_dragDrop(_image("drag1"), _div("divWrong", _above(_div("div2", _above(_div("div3"))))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("divWrong", _above(_div("div2", _above(_div("div3"))))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCollectAPIWhenRelationElementNotFound() {
+	_navigateTo("/demo/count.htm");
+	try{
+		_disableDefaultErrorLogging();
+		var $els = _collect("_link", "/group 1/", _in(_div("divWrong")));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _div("divWrong") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenTableNotFound1() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table("wrong"), "Tooth brush", "Price"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _table("wrong") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenTableNotFound2() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table(/wrong/), "Tooth brush", "Price"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _table(/wrong/) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenColumnIsNull() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table("t2"), "Tooth brush"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell(_table("t2"), "Tooth brush") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenColumnIsNotFound1() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table("t2"), "Tooth brush", "wrong"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell(_table("t2"), "Tooth brush", "wrong") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenColumnIsNotFound2() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table("t2"), "Tooth brush", 7));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell(_table("t2"), "Tooth brush", 7) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenColumnIsNotFound3() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table("t2"), "Tooth brush", /price1/));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell(_table("t2"), "Tooth brush", /price1/) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenRowIsNotFound1() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table("t2"), "wrong", "Price"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell(_table("t2"), "wrong", "Price") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenRowIsNotFound2() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table("t2"), 7, "Price"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell(_table("t2"), 7, "Price") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellTableWhenRowIsNotFound3() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell(_table("t2"), /teeth/, "Price"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell(_table("t2"), /teeth/, "Price") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellAPI() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell("Rs. 29"));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell("Rs. 29") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testElementNotFoundForCellAPIWithRelation() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText(_cell("Rs. 29", _in(_table("t2"))));
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: _cell("Rs. 29", _in(_table("t2"))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testActionAPIWithNoArguments() {
+	_navigateTo("/demo/tableTest.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getText();
+	} catch($e){
+		_enableDefaultErrorLogging();
+		var $msg = $e.message;
+		if($msg.replace(/_sahi./g, "").indexOf('Error: The parameter passed to _getText was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $msg);
+		}
+	}
+}
+
+function testActionAPIWithInvalidArgument() {
+	_navigateTo("/demo/tableTest.htm");
+	if(_isIE()){
+		_assertEqual("",_getText("Invalid"));
+	} else {
+		_assertEqual(null,_getText("Invalid"));
+	}
+}
+
+function testListWithElementNotExists(){
+	_navigateTo("/demo/datalist.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_setValueFromList(_emailbox("d5Id_email"), "xyz");
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _emailbox("d5Id_email") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testCheckboxElementDoesNotExists(){
+	_navigateTo("/demo/clicks.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_click(_checkbox("Checkbox does not exist"));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _checkbox("Checkbox does not exist") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundForMultipleRelation1(){
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_highlight(_image("drag1", _above(_image("drag3", _in(_div("wrong")))), _in(_div(1, _above(_div(2))))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _div("wrong") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundForMultipleRelation2(){
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_selectRange(_image("drag1", _above(_image("wrong", _in(_div(3)))), _in(_div(1, _above(_div(2))))), 2, 5);
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _image("wrong", _in(_div(3))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundForMultipleRelation3(){
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_setFile3(_image("drag1", _above(_image("drag3", _in(_div(3)))), _in(_div(1, _above(_div("wrong2"))))), "upload me.txt");
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _div("wrong2") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundForMultipleRelation4(){
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_getOptions(_select("drag1", _above(_image("drag3", _in(_div(3)))), _in(_div("wrong", _above(_div(2))))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _div("wrong", _above(_div(2))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundForMultipleRelation5(){
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_highlight(_image("wrong", _above(_image("drag3", _in(_div(3)))), _in(_div(1, _above(_div(2))))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _image("wrong", _above(_image("drag3", _in(_div(3)))), _in(_div(1, _above(_div(2))))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundForMultipleElementsAndRelation1(){
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_dragDrop(_image("wrong", _above(_image("drag3", _in(_div(3)))), _in(_div(1, _above(_div(2))))), _div("div1", _above(_div("div2", _above(_div("div3")))), _above(_div("div3", _under(_div("div2"))))));	
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _image("wrong", _above(_image("drag3", _in(_div(3)))), _in(_div(1, _above(_div(2))))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundForMultipleElementsAndRelation2(){
+	_navigateTo("/demo/dragDropDataTransfer.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_dragDrop(_image("drag1", _above(_image("drag3", _in(_div(3)))), _in(_div(1, _above(_div(2))))), _div("wrong", _above(_div("div2", _above(_div("div3")))), _above(_div("div3", _under(_div("div2"))))));	
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _div("wrong", _above(_div("div2", _above(_div("div3")))), _above(_div("div3", _under(_div("div2"))))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testButtonElementNotFound(){
+	_navigateTo("/demo/");
+	try{
+		_disableDefaultErrorLogging();
+		 _click(_button("NotExists"));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _button("NotExists") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testSetPasswordElementNotFoundWithRelation(){
+	_navigateTo("/demo/training/login.htm");
+	_setValue(_textbox("user"), "test");
+	try{
+		_disableDefaultErrorLogging();
+		_setPassword(_password("password2", _near(_cell("Password"))), "secret");
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _password("password2", _near(_cell("Password"))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testSubmitElementNotFoundWithRelation1(){
+	_navigateTo("/demo/training/login.htm");
+	_setValue(_textbox("user"), "test");
+	_setPassword(_password("password"), "secret");
+	try{
+		_disableDefaultErrorLogging();
+		 _click(_submit("Login1", _in(_div(0))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _submit("Login1", _in(_div(0))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testSubmitElementNotFoundWithRelation2(){
+	_navigateTo("/demo/training/login.htm");
+	_setValue(_textbox("user"), "test");
+	_setPassword(_password("password"), "secret");
+	try{
+		_disableDefaultErrorLogging();
+		 _click(_submit("Login1", _near(_cell("Password"))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _submit("Login1", _near(_cell("Password"))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationAboveOrUnder(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 _check(_checkbox("Login1", _aboveOrUnder(_password("password"))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _checkbox("Login1", _aboveOrUnder(_password("password"))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationLeftOrRightOf(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 _mouseOver(_cell("Username1", _leftOrRightOf(_textbox("user"))));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _cell("Username1", _leftOrRightOf(_textbox("user"))) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationAboveOrUnderAndIntegerOffset(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 _rightClick(_submit("Login1", _aboveOrUnder(_password("password"), 10)));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _submit("Login1", _aboveOrUnder(_password("password"), 10)) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationAboveOrUnderAndIntegerArrayOffset(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 _doubleClick(_submit("Login1", _aboveOrUnder(_password("password"), [10,10])));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _submit("Login1", _aboveOrUnder(_password("password"), [10,10])) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationLeftOrRightOfAndIntegerOffset(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 _setSelected(_select("Username1", _leftOrRightOf(_textbox("user"), 10)), "abc");
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _select("Username1", _leftOrRightOf(_textbox("user"), 10)) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationLeftOrRightOfAndIntegerArrayOffset(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 var $text = _getValue(_cell("Username1", _leftOrRightOf(_textbox("user"), [10,10])));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _cell("Username1", _leftOrRightOf(_textbox("user"), [10,10])) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationLeftOfAndIntegerOffset(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 _xy(_cell("Username1", _leftOf(_textbox("user"), 10)));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _cell("Username1", _leftOf(_textbox("user"), 10)) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationRightOfAndIntegerOffset(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_keyDown(_cell("Username1", _rightOf(_textbox("user"), 10)), "a");
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _cell("Username1", _rightOf(_textbox("user"), 10)) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationAboveAndIntegerOffsetAndLimit(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		_click(_submit("Login1", _above(_password("password"), 10, 20)));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _submit("Login1", _above(_password("password"), 10, 20)) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testElementNotFoundWithRelationUnderAndIntegerOffsetAndLimit(){
+	_navigateTo("/demo/training/login.htm");
+	try{
+		_disableDefaultErrorLogging();
+		 _click(_submit("Login1", _under(_password("password"), 10, 20)));
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _submit("Login1", _under(_password("password"), 10, 20)) was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+	}
+	_enableDefaultErrorLogging();
+}
+
+_runUnitTests();

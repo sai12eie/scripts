@@ -1,0 +1,8 @@
+_resource("snapshot_login_short.png");
+_resource("snapshot_totaled.png");
+_navigateTo("http://sahitest.com/demo/training");
+_setValue(_textbox("user"), "test");
+var $same = _compareImages("snapshot_login_short.png", "snapshot_login_short.png", 10);
+_assert($same);
+var $same2 = _compareImages("snapshot_login_short.png", "snapshot_totaled.png", 10);
+_assert(!$same2);

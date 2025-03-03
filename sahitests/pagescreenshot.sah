@@ -1,0 +1,54 @@
+var $screenshot = "screenshot.png";
+var $mode2ScreenShot = "mode2Screenshot.png";
+
+_navigateTo("/demo/");
+_click(_link("TakePageScreenshot Test"));
+_lockWindow();
+_focusWindow();
+_takePageScreenShot(_table(0), $screenshot);
+_takePageScreenShot(_table("elInsideScrolledEl"), $mode2ScreenShot, false, {mode: 2});
+_assertSnapShot($mode2ScreenShot, _table("elInsideScrolledEl"), 20, true, {mode:2}); 
+_assertSnapShot($screenshot, _table(0));
+_unlockWindow();
+
+_navigateTo("/demo/scrollbars.html");
+_lockWindow();
+_focusWindow();
+_takePageScreenShot(null, $screenshot);
+_assertSnapShot($screenshot, null, 20, true);
+_unlockWindow();
+_navigateTo("http://en.wikipedia.org/wiki/Tytonidae");
+//_navigateTo("http://www.rediff.com/");
+_lockWindow();
+_focusWindow();
+_takePageScreenShot("", $screenshot);	
+_assertSnapShot($screenshot, "", 25, true);
+_unlockWindow();
+
+//_log("From script: done");
+_lockWindow();
+_focusWindow();
+_takePageScreenShot(_table("infobox biota"), $screenshot, false, {delay:200});
+_assertSnapShot($screenshot, _table("infobox biota"), 20, true);
+_unlockWindow();
+
+_navigateTo("/demo/");
+_click(_link("Frames Test"));
+_click(_link("Table Test[1]"));
+_lockWindow();
+_focusWindow();
+_takePageScreenShot("", $screenshot);
+_assertSnapShot($screenshot, "", 20, true);
+_unlockWindow();
+
+_lockWindow();
+_focusWindow();
+_takePageScreenShot(_table(4), $screenshot);
+_assertSnapShot($screenshot, _table(4), 20, true);
+_unlockWindow();
+
+_lockWindow();
+_focusWindow();
+_takePageScreenShot(_table("t4"), $screenshot);
+_assertSnapShot($screenshot, _table("t4"), 20, true);
+_unlockWindow();

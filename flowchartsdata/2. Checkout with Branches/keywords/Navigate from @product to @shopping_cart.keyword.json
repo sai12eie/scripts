@@ -1,0 +1,28 @@
+{
+  "modifiedOn": "2024-05-07T08:31:58.472Z",
+  "name": "Navigate from @product to @shopping_cart",
+  "id": "0",
+  "type": 3,
+  "createdOn": "2024-05-07T08:31:58.472Z",
+  "content": {
+    "title": "Navigate from @product to @shopping_cart",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_navigateTo",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "https://demoapps.testflowchart.com/opencart/"
+          }
+        ],
+        "stepType": "Action",
+        "stepCategory": "inbuilt"
+      }
+    ],
+    "isSystemKeyword": true
+  },
+  "enabled": false,
+  "parentId": ""
+}

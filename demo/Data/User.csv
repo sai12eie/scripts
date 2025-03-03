@@ -1,0 +1,12 @@
+"UserCredentials","Firstname","Lastname","Email","Telephone","Password","Confirm"
+,"Sahi","Pro","sahipro@example.com","1234567890","EiwBChVSWQ==","EiwBChVSWQ=="
+,"Sahi","Runner","sahirunner@example.com","1234567891","EiwBChVSWQ==","EiwBChVSWQ=="
+,"Sahi","Add-on","sahiaddon@example.com","1234567892","EiwBChVSWQ==","EiwBChVSWQ=="
+
+
+"WrongData","Firstname","Lastname","Email","Telephone","Password","Confirm","Message"
+,"Mahendra","Dhoni","msd@example","1234567890","NQkaFxZBAQdQJQA=","NQkaFxZBAQdQJQA=","E-Mail Address does not appear to be valid!"
+,"Virat","Kohli","iamvirat@example.com","12","NQkaFxZBAQdQJQA=","NQkaFxZBAQdQJQA=","Telephone must be between 3 and 32 characters!"
+,"Surya","Yadav","sky@example2.co.in","1234567890","NQkaFxZBAQd=","NQkaFx","Password confirmation does not match password!"
+,"Zachman Gustavsson Zimmerman Johansen","Mate","oz@example.com","1234567890","NQkaFxZBAQdQJQA=","NQkaFxZBAQdQJQA=","First Name must be between 1 and 32 characters!"
+,"Mate","Yousef Wilson Yuill Smith Yarish Davies","oz@example.com","1234567890","NQkaFxZBAQdQJQA=","NQkaFxZBAQdQJQA=","Last Name must be between 1 and 32 characters!"

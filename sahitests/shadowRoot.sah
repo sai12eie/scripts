@@ -1,0 +1,75 @@
+function testShaowDOMv1() {
+	_assertExists(_heading1("Heading A"));
+	_assertEqual("Heading A", _getText(_heading1("Heading A")));
+	_assertContainsText("Heading A", _heading1("Heading A"))
+	_assertExists(_heading2("Heading A"));
+	_assertEqual("Heading A", _getText(_heading2("Heading A")));
+	_assertContainsText("Heading A", _heading2("Heading A"))
+	_assertExists(_heading3("Heading A"));
+	_assertEqual("Heading A", _getText(_heading3("Heading A")));
+	_assertContainsText("Heading A", _heading3("Heading A"));
+	_assertExists(_heading1("Heading B"));
+	_assertEqual("Heading B", _getText(_heading1("Heading B")));
+	_assertContainsText("Heading B", _heading1("Heading B"))
+	_assertExists(_heading2("Heading C"));
+	_assertEqual("Heading C", _getText(_heading2("Heading C")));
+	_assertContainsText("Heading C", _heading2("Heading C"));
+	_assertExists(_heading3("Heading D"));
+	_assertEqual("Heading D", _getText(_heading3("Heading D")));
+	_assertContainsText("Heading D", _heading3("Heading D"));
+	_assertExists(_heading3("Heading D[1]"));
+	_assertEqual("Heading D", _getText(_heading3("Heading D[1]")));
+	_assertContainsText("Heading D", _heading3("Heading D[1]"));
+
+	_setAccessorIgnoreCase(true);
+
+	_assertExists(_heading3("Heading A"));
+	_assertEqual("Heading A", _getText(_heading3("Heading A")));
+	_assertContainsText("Heading A", _heading3("HEADing A"));
+	_assertExists(_heading1("Heading B"));
+	_assertEqual("Heading B", _getText(_heading1("Heading B")));
+	_assertContainsText("Heading B", _heading1("HeadING b"))
+
+	_setAccessorIgnoreCase(false);
+
+	_assertNotContainsText("HEADing A", _heading3("Heading A"));
+	_assertNotContainsText("HeadING b", _heading1("Heading B"))
+}
+
+function click($combo, $expected){
+	_click(_div("Experiment Zone"), $combo);
+	_assertEqual($expected, _getText(_div("clickTest")));
+}
+function tearDown(){
+	_setValue(_div("result"), "");
+}
+function testNormalClick(){
+	click(null, "click");
+}
+
+function testCtrlClick(){
+	click("CTRL", "<ctrl>click");
+}
+
+function testAltClick(){
+	click("ALT", "<alt>click");
+}
+
+function testShiftClick(){
+	click("SHIFT", "<shift>click");
+}
+
+function testMetaClick(){
+	click("META", "<meta>click");
+}
+
+function testCombinationClicks(){
+	click("CTRL|ALT", "<ctrl><alt>click");
+	click("CTRL|SHIFT", "<ctrl><shift>click");
+	click("ALT|SHIFT", "<alt><shift>click");
+	click("SHIFT|ALT", "<alt><shift>click");
+	click("CTRL|ALT|SHIFT", "<ctrl><alt><shift>click");
+}
+
+_navigateTo("/demo/shadowRoot.html");
+_runUnitTests();

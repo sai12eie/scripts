@@ -1,0 +1,99 @@
+function verifyDatabase($mysql){
+	$mysql.update("delete from user where name='Ajeet' and age=25");
+	$mysql.update("delete from user where name='Vimal' and age=40");
+
+	var $rs1 = $mysql.select("select count(*) from user");
+	var $x = $rs1[0]["count(*)"];
+	_assertEqual(1, $x);
+
+	$mysql.update("insert into user (id, name, age) values (1, 'Ajeet', 25)");
+	$mysql.update("insert into user (id, name, age) values (3, 'Vimal', 40)");
+
+	var $rs1 = $mysql.select("select count(*) from user");
+	var $x = $rs1[0]["count(*)"];
+	_assertEqual(3, $x);
+	var $rs = $mysql.select("select id, name, age from user order by age asc limit 10");
+	_assertEqual(3, $rs.length);
+
+	_log(_sahi.toJSON($rs[0]));
+
+	_assertEqual(3, $rs[0].length);
+	_assertEqual("Ajeet", $rs[0].name);
+	_assertEqual("Ajeet", $rs[0][1]);
+	_assertEqual("Ajeet", $rs[0]["name"]);
+	_assertEqual(25, $rs[0].age);
+	_assertEqual(25, $rs[0][2]);
+	_click(_link("Link Test"));
+	_click(_link("Back"));
+
+	_assertEqual(3, $rs[1].length);
+	_assertEqual(3, $rs[1].id);
+	_assertEqual(3, $rs[1][0]);
+	_assertEqual(3, $rs[1]["id"]);
+	_assertEqual("Vimal", $rs[1].name);
+	_assertEqual("Vimal", $rs[1][1]);
+	_assertEqual("Vimal", $rs[1]["name"]);
+	_assertEqual(40, $rs[1].age);
+	_assertEqual(40, $rs[1][2]);
+	_click(_link("Link Test"));
+	_click(_link("Back"));
+	
+	function getColumnNames(){
+		var $rs = $mysql.select("select * from user limit 0", true);
+		return $rs[0];
+	}
+
+	// get column names
+	var $colNames = getColumnNames();
+	_assertEqual(["id","name","age"], $colNames);
+
+	// _dataDrive
+	function showRow($id, $name, $age) {
+		_log($id + " " + $name + " " + $age);
+	}
+
+	var $data = $mysql.select("select id, name, age from user order by age asc limit 10");
+	_dataDrive(showRow, $data);
+	
+	_assertEqual([1,"Ajeet",25], $data[0]);
+	_assertEqual([3,"Vimal",40], $data[1]);
+	_assertEqual([2,"Deepika",55], $data[2]);
+}
+var $mysql1 = _getDB("com.mysql.jdbc.Driver", 
+					"jdbc:mysql://localhost/sahitest?allowMultiQueries=true&amp;sessionVariables=sql_mode=NO_BACKSLASH_ESCAPES&amp;zeroDateTimeBehavior=convertToNull", 
+					"root", "secret");
+
+verifyDatabase($mysql1);
+
+var $mysql2  = _getDB("com.mysql.jdbc.Driver", 
+					 "jdbc:mysql://localhost/sahitest?allowMultiQueries=true&amp;sessionVariables=sql_mode=NO_BACKSLASH_ESCAPES&amp;zeroDateTimeBehavior=convertToNull", 
+					 "root", "MgkKEQBU", true);
+
+verifyDatabase($mysql2);
+
+try{
+	var $mysql3  = _getDB("com.mysql.jdbc.Driver", 
+			 "jdbc:mysql://localhost/sahitest?allowMultiQueries=true&amp;sessionVariables=sql_mode=NO_BACKSLASH_ESCAPES&amp;zeroDateTimeBehavior=convertToNull", 
+			 "root", "MgkKEQBU", false);
+	$mysql3.select("select id, name, age from user order by age asc limit 10");
+}catch($ex){
+	_log("Exception :" + $ex);
+	_assertNotEqual("", $ex);
+}
+
+var $props1 = new java.util.Properties();
+$props1.put("user", "root");
+$props1.put("password", "Sahi1234");
+$props1.put("internal_logon", "sysoper");
+var $mysql4 = _getDB("com.mysql.jdbc.Driver", 
+					 "jdbc:mysql://localhost/sahitest?allowMultiQueries=true&amp;sessionVariables=sql_mode=NO_BACKSLASH_ESCAPES&amp;zeroDateTimeBehavior=convertToNull", 
+					$props1);
+
+verifyDatabase($mysql4);
+
+var $props2 = { "user": "root", "password": "Sahi1234", "internal_logon": "sysoper" };
+var $mysql5 = _getDB("com.mysql.jdbc.Driver", 
+					 "jdbc:mysql://localhost/sahitest?allowMultiQueries=true&amp;sessionVariables=sql_mode=NO_BACKSLASH_ESCAPES&amp;zeroDateTimeBehavior=convertToNull", 
+					$props2);
+
+verifyDatabase($mysql5);

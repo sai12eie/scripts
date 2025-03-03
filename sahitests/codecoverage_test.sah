@@ -1,0 +1,12 @@
+_setMode("BROWSER");
+_navigateTo("/demo/codecoverage/sample.htm");
+_click(_button("Button 1"));
+_assertEqual("Flag is enabled for Button 1", _getValue(_textbox("result")));
+_click(_button("Button 2"));
+_assertEqual("Flag is disabled for Button 2", _getValue(_textbox("result")));
+_click(_button("Button 3"));
+_assertEqual("Flag is enabled for Button 3", _getValue(_textbox("result")));
+_click(_button("Button 4"));
+_assertEqual("Flag is disabled for Button 4", _getValue(_textbox("result")));
+_click(_button("Button 5"));
+_assertEqual("Flag is enabled for Button 5", _getValue(_textbox("result")));

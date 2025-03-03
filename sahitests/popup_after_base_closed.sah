@@ -1,0 +1,9 @@
+_click(_link("Link Test"));
+_click(_link("Back"));
+_click(_link("Window Open Test With Title"));
+// close here
+_wait(5000);
+_popup("With Title")._click(_link("Form Test"));
+_popup("With Title")._setValue(_textbox("t1"), "a");
+_popup(/framesTestWithTitle/)._setValue(_textbox(1), "f");
+_popup("With Title")._setValue(_textbox("name"), "v");

@@ -1,0 +1,44 @@
+function testSetModes() {
+  _setMode("TESTMODE1");
+  $mode = _sahi.testMode();
+  _assertEqual("TESTMODE1", $mode);
+
+  _setMode("TESTMODE2");
+  $mode = _sahi.testMode();
+  _assertEqual("TESTMODE2", $mode);
+
+  _setMode("BROWSER");
+  $mode = _sahi.testMode();
+  _assertEqual("BROWSER", $mode);
+}
+
+function testStateAcrossModes() {
+  var $state1 = "state1";
+  var $state2 = "state2";
+  
+  _setMode("TESTMODE1");
+  _sahi.testSetStateInLib($state1);
+
+  _setMode("TESTMODE2");
+  $state = _sahi.testGetStateInLib();
+  _assertEqual($state1, $state);
+  _sahi.testSetStateInLib($state2);
+  
+  _setMode("TESTMODE1");
+  $state = _sahi.testGetStateInLib();
+  _assertEqual($state2, $state);
+}
+
+function testFetchFunctionsAcrossModes() {
+  _setMode("TESTMODE1");
+  _assert(typeof _sahi.testFn1 != 'undefined');
+  _assert(typeof _sahi.testFn2 == 'undefined');
+  _assertEqual("TESTMODE1-testCommonFn", _sahi.testCommonFn());
+  
+  _setMode("TESTMODE2");
+  _assert(typeof _sahi.testFn1 == 'undefined');
+  _assert(typeof _sahi.testFn2 != 'undefined');
+  _assertEqual("TESTMODE2-testCommonFn", _sahi.testCommonFn());
+}
+
+_runUnitTests();

@@ -1,0 +1,4 @@
+(function () {
+    var $x = "Hello!!";
+	_log("code folding disabled");
+})();

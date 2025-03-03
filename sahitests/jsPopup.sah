@@ -1,0 +1,81 @@
+_include("alertTest.sah");
+_include("testConfirm.sah");
+Packages.net.sf.sahi.config.Configuration.setUserProperty("log.js.alert.popups.log.type.without.expectation", "ERROR");
+Packages.net.sf.sahi.config.Configuration.setUserProperty("log.js.confirmation.popups.log.type.without.expectation", "ERROR");
+Packages.net.sf.sahi.config.Configuration.setUserProperty("log.js.prompt.popups.log.type.without.expectation", "ERROR");
+Packages.net.sf.sahi.config.Configuration.setUserProperty("log.js.print.popups.log.type.without.expectation", "ERROR");
+function onScriptEnd(){
+ Packages.net.sf.sahi.config.Configuration.setUserProperty("log.js.alert.popups.log.type.without.expectation", "");
+ Packages.net.sf.sahi.config.Configuration.setUserProperty("log.js.confirmation.popups.log.type.without.expectation", "");
+ Packages.net.sf.sahi.config.Configuration.setUserProperty("log.js.prompt.popups.log.type.without.expectation", "");
+ Packages.net.sf.sahi.config.Configuration.setUserProperty("log.js.print.popups.log.type.without.expectation", "");
+}
+
+function testPrompt() {
+	check();
+	_click(_link("Frames Test"));
+	check();
+	_click(_link("IFrames Test"));
+	check();
+	_click(_link("Prompt Page"));
+	var $prompt = _lastPrompt(true);
+	var $expectedPrompt = [];
+	_assertEqual($prompt,$expectedPrompt);
+	_expectPrompt("/Some/", "abc",true)
+	_click(_button("Click For Prompt"));
+	_assertNotNull(_textbox("t1"));
+	_assertEqual("abc", _textbox("t1").value);
+	$prompt = _lastPrompt(true);
+	$expectedPrompt = ["Some prompt?"];
+	_assertEqual($prompt,$expectedPrompt);
+	_click(_link("Back"));
+	_click(_link("Prompt Page"));
+	//_expectPrompt("/Some/", "abc")
+	_click(_button("Click For Prompt"));
+	_assertNotNull(_textbox("t1"));
+	_assertEqual("abc", _textbox("t1").value);
+	$prompt = _lastPrompt(true);
+	$expectedPrompt = ["Some prompt?","Some prompt?"];
+	_assertEqual($prompt,$expectedPrompt);
+	_click(_link("Back"));
+}
+
+function testAllJsPopup() {
+	_navigateTo("/demo/jsPopup.htm");
+	var $isAlert = false;
+	var $isConfirm = false;
+	var $isPrompt = false;
+	var $isPrint = false;
+	try {
+		_disableDefaultErrorLogging();
+		_click(_submit("All popup this page"));
+		_assertEqual("show alert", _lastAlert());
+		_assertEqual("show confirm", _lastConfirm());
+		_assertEqual("show prompt", _lastPrompt());
+	} catch (e) {
+		var $message = e.message;
+		if($message.indexOf("alert: show alert") != -1) $isAlert = true;
+		if($message.indexOf("confirm: show confirm") != -1) $isConfirm = true;
+		if($message.indexOf("prompt: show prompt") != -1) $isPrompt = true;
+		if($message.indexOf("print called") != -1) $isPrint = true;
+		if(!$isAlert || !$isConfirm || !$isPrompt || !$isPrint){
+			try{
+				_logException(e);
+				_wait(1000);
+				_assertEqual("show alert", _lastAlert());
+				_assertEqual("show confirm", _lastConfirm());
+				_assertEqual("show prompt", _lastPrompt());
+			} catch (e2) {
+				_logException(e2);
+				$message = e2.message;
+				if(!$isAlert && $message.indexOf("alert: show alert") == -1) _fail();
+				if(!$isConfirm && $message.indexOf("confirm: show confirm") == -1) _fail();
+				if(!$isPrompt && $message.indexOf("prompt: show prompt") == -1) _fail();
+				if(!$isPrint && $message.indexOf("print called") == -1) _fail();
+			}
+		}
+		else _logException(e);
+	}
+}
+
+_runUnitTests(["testAllJsPopup", "testAlert", "testConfirm", "testPrompt"]);

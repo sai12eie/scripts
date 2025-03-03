@@ -1,0 +1,124 @@
+_navigateTo("/demo/iframesDomainTest.htm");
+
+var $tcCount = 1;
+
+var $t = _testcase($tcCount++, "Indexing spans multiple iframes from different domains").start();
+_domain("sahitest1.com")._assertExists(_link("Link Test"));
+_domain("sahitest1.com")._assertExists(_link("Link Test[1]"));
+$t.end();
+
+$t = _testcase($tcCount++, "Drop back to base domain").start();
+_setValue(_textbox("checkRecord"), "abc");
+$t.end();
+
+
+$t = _testcase($tcCount++, "Perform actions on domain again.").start();
+_domain("sahitest1.com")._click(_link("Form Test"));
+_wait(1000);
+_domain("sahitest1.com")._click(_link("Form Test"));
+_domain("sahitest1.com")._setValue(_textbox("t1"), "aa");
+_domain("sahitest1.com")._setValue(_textbox("t1[1]"), "bb");
+$t.end();
+
+$t = _testcase($tcCount++, "With ignore case").start();
+_setAccessorIgnoreCase(true);
+_domain("sAHItest1.com")._setValue(_textbox("t1[1]"), "bb");
+_setAccessorIgnoreCase(false);
+$t.end();
+
+
+$t = _testcase($tcCount++, "Using _selectDomain. Indexing spans multiple iframes from different domains").start();
+_navigateTo("/demo/iframesDomainTest.htm");
+
+_selectDomain("https://sahitest1.com");
+_assertExists(_link("Link Test"));
+_assertExists(_link("Link Test[1]"));
+$t.end();
+
+$t = _testcase($tcCount++, "Using _selectDomain. With ignore case").start();
+_setAccessorIgnoreCase(true);
+
+_selectDomain("SAHItest1.com");
+_assertExists(_link("Link Test"));
+_assertExists(_link("Link Test[1]"));
+$t.end();
+
+$t = _testcase($tcCount++, "Using _selectDomain. Drop back to base domain").start();
+_selectDomain();
+_setValue(_textbox("checkRecord"), "abc");
+
+
+_selectDomain("sahitest1.com");
+_click(_link("Form Test"));
+
+_selectDomain();
+_wait(1000);
+$t.end();
+
+
+$t = _testcase($tcCount++, "Using _selectDomain. Reselect domain and check").start();
+_selectDomain("sahitest1.com");
+_click(_link("Form Test"));
+_setValue(_textbox("t1"), "aa");
+_setValue(_textbox("t1[1]"), "bb");
+$t.end();
+
+
+$t = _testcase($tcCount++, "Perform actions on domain non-top iframe.").start();
+_selectDomain();
+_navigateTo("/demo/framesTestWithTitle.htm");
+_click(_link("Iframe Different Domains"));
+_click(_link("Iframe Different Domains"));
+
+_selectDomain("sahitest1.com");
+_assertExists(_link("Link Test[3]"));
+_click(_link("Link Test[1]"));
+_click(_link("Table Test[1]"));
+_assertExists(_link("linkByContent"));
+_assertExists(_heading3("Table Without Id"));
+$t.end();
+
+$t = _testcase($tcCount++, "Open iframe in reverse order and perform actions on domain non-top iframe.").start();
+_selectDomain();
+_navigateTo("/demo/framesTestWithTitle.htm");
+_click(_link("Iframe Different Domains[1]"));
+_click(_link("Iframe Different Domains"));
+
+_selectDomain("sahitest1.com");
+_assertExists(_link("Link Test[3]"));
+_click(_link("Link Test[1]"));
+_click(_link("Table Test[1]"));
+_assertExists(_link("linkByContent"));
+_assertExists(_heading3("Table Without Id"));
+$t.end();
+
+$t = _testcase($tcCount++, "Perform actions on domain non-top iframe with nested cross domain.").start();
+_selectDomain();
+_navigateTo("/demo/framesTestWithTitle.htm");
+_click(_link("Iframe Different Domains"));
+_click(_link("Iframe Different Domains"));
+
+_selectDomain("sahitest1.com");
+_assertExists(_link("Link Test[3]"));
+_click(_link("Different Domains External"));
+_click(_link("Link Test"));
+_click(_link("Table Test"));
+_assertExists(_link("linkByContent"));
+_assertExists(_heading3("Table Without Id"));
+$t.end();
+
+$t = _testcase($tcCount++, "Open iframe in reverse order and perform actions on domain non-top iframe  with nested cross domain.").start();
+_selectDomain();
+_navigateTo("/demo/framesTestWithTitle.htm");
+_click(_link("Iframe Different Domains[1]"));
+_click(_link("Iframe Different Domains"));
+
+_selectDomain("sahitest1.com");
+_assertExists(_link("Link Test[3]"));
+_click(_link("Different Domains External"));
+_click(_link("Link Test"));
+_click(_link("Table Test"));
+_assertExists(_link("linkByContent"));
+_assertExists(_heading3("Table Without Id"));
+$t.end();
+

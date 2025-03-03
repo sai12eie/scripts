@@ -1,0 +1,26 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.534Z",
+  "name": "Navigate from @base to @login_admin_screen",
+  "id": "45882",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.534Z",
+  "content": {
+    "title": "Navigate from @base to @login_admin_screen",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_navigateTo",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "\"/opencart/admin/\""
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

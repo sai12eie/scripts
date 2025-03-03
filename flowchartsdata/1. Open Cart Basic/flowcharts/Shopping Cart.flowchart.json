@@ -1,0 +1,91 @@
+{
+  "modifiedOn": "2024-05-06T05:21:46.691Z",
+  "name": "Shopping Cart",
+  "id": "-1",
+  "type": 0,
+  "createdOn": "2024-05-05T23:51:11Z",
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_shoppingcart_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_shoppingcart_0": {
+        "id": "fcn_shoppingcart_0",
+        "content": "Shopping Cart",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_gotoproductpage_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_gotoproductpage_0": {
+        "id": "fcn_gotoproductpage_0",
+        "content": "Go to Product page",
+        "nodeType": "action",
+        "branches": [
+          "fcn_additemtocart_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_additemtocart_0": {
+        "id": "fcn_additemtocart_0",
+        "content": "Add item to cart",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifyitemaddedtocart_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_verifyitemaddedtocart_0": {
+        "id": "fcn_verifyitemaddedtocart_0",
+        "content": "Verify item added to cart",
+        "nodeType": "state",
+        "branches": [],
+        "dataSetId": "-1"
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150,
+        "left": 500
+      },
+      "fcn_shoppingcart_0": {
+        "top": 211,
+        "left": 500
+      },
+      "fcn_gotoproductpage_0": {
+        "top": 270,
+        "left": 500
+      },
+      "fcn_additemtocart_0": {
+        "top": 329,
+        "left": 500
+      },
+      "fcn_verifyitemaddedtocart_0": {
+        "top": 388,
+        "left": 500
+      }
+    },
+    "settings": {
+      "maxProceedsPerPath": 10000,
+      "maxProceedDepth": 100,
+      "maxProceedsPerDepth": 1,
+      "maxProceedsForFirstDepth": 1,
+      "maxMatchingPaths": 3,
+      "maxPathRepititionsPerComboPath": 1,
+      "maxToggles": 2
+    },
+    "isPrimary": true,
+    "pathNames": [],
+    "flowChartUID": "fcUID_1714972700809",
+    "pathExecutionOrder": []
+  },
+  "enabled": true,
+  "parentId": ""
+}

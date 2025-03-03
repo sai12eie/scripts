@@ -1,0 +1,37 @@
+function getHeaders($response) {
+	var $headersArr = $response.split("\n");
+	var $headers = new Object();
+	for (var i = 0; i < $headersArr.length; i++) {
+		var $header = $headersArr[i];
+		if ($header != "") {
+			var $parts = $header.split(":");
+			var $key = $parts[0];
+			$parts.shift(); // removes the key from the array
+			$headers[$key] = $parts.join(':');
+		}
+	}
+	return $headers;
+}
+
+_addHttpHeader("Request-Token", "SAHI-PRO");
+_addHttpHeader("User-Agent", "Desktop Browser");
+_navigateTo("/demo/php/request_headers.php", true);
+var $headers = getHeaders(_fetch("document.getElementsByTagName('body')[0].innerText"));
+_assertEqual("/.*,Desktop Browser/", $headers["User-Agent"]); //check for comma as well, because we are adding header. So user-agent will be two with comma separated.
+_assertEqual("SAHI-PRO", $headers["Request-Token"]);
+
+_setHttpHeader("User-Agent", "Desktop Browser");
+_navigateTo("/demo/php/request_headers.php", true);
+var $headers = getHeaders(_fetch("document.getElementsByTagName('body')[0].innerText"));
+_assertEqual("Desktop Browser", $headers["User-Agent"]);
+
+_resetHttpHeader("User-Agent");
+_navigateTo("/demo/php/request_headers.php", true);
+var $headers = getHeaders(_fetch("document.getElementsByTagName('body')[0].innerText"));
+var $userAgent = $headers["User-Agent"];
+_assertEqual(-1, $userAgent.indexOf("Desktop Browser"));
+
+_removeHttpHeader("Request-Token");
+_navigateTo("/demo/php/request_headers.php", true);
+var $headers = getHeaders(_fetch("document.getElementsByTagName('body')[0].innerText"));
+_assertEqual(null, $headers["Request-Token"]);

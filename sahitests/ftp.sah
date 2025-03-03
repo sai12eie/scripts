@@ -1,0 +1,2 @@
+var $out = _execute(_resolvePath("myftp.bat"), true);
+_alert($out);

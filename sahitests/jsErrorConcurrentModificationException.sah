@@ -1,0 +1,9 @@
+_navigateTo("/demo/jsError.htm");
+function throwJSErrors() {
+	_click(_button("Throw JS Errors"));
+	_wait(5000);
+}
+
+for(var $i = 0; $i < 10; $i++) {
+	throwJSErrors();
+}

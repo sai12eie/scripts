@@ -1,0 +1,33 @@
+function testChildrenOverlappingElement() {
+	_assertExists(_div("parent[0]"));
+}
+
+function testBottomLeftCoveredElement() {
+	_assertNotVisible(_div("BottomLeftCoveredElement"));
+}
+
+function testTopLeftCoveredElement() {
+	_assertNotVisible(_div("parent[2]"));
+}
+
+function testTopRightCoveredElement() {
+	_assertNotVisible(_div("parent[3]"));
+}
+
+function testBottomRightCoveredElement() {
+	_assertNotVisible(_div("parent[4]"));
+}
+
+function testNormalElement() {
+	_assertExists(_div("parent[1]"));
+}
+
+function testChildrenSurpassingElement() {
+	_assertExists(_div("ChildrenSurpassingElement"));
+	_assertExists(_div(6));
+}
+
+_navigateTo("isElementOnTopTestPage.html");
+_setStrictVisibilityCheck(true,true);
+_windowAction("maximize");
+_runUnitTests();

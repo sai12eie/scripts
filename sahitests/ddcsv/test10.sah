@@ -1,0 +1,4 @@
+_log("test10","success");
+_assertEqual("test10.sah,low,ddcsv.dd.csv,user",$tags);
+_assertEqual("5000",$empid);
+_log("Employee Id = " + $empid);

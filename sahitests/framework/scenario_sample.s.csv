@@ -1,0 +1,13 @@
+"Comment","TestCase","Key Word","Argument1","Argument2","Argument3"
+,,"loadSahi","sample_lib_new.sah"
+
+,"Check shopping cart total","[Documentation]","Smoke test for add books"
+,,"Login","User Name:test","Password:secret"
+,,"Add Books","Num Java:3","Num Ruby:2","Num Python:1"
+,,"Verify Total","Total:1650"
+,,"Logout"
+
+,"Test login error message","[Documentation]","Checks Invalid login message"
+,,"Login","User Name:test","Password:bad password"
+,,"Verify Not Logged In"
+,,"Verify Error Message","Message:'Invalid username or password'"

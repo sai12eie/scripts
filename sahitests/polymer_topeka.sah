@@ -1,0 +1,41 @@
+_navigateTo("http://polymer-topeka.appspot.com/");
+
+_setStrictVisibilityCheck(true);
+_click(_paperInput("first"));
+_setValue(_textbox("First Name"), "test");
+_setValue(_textbox("Last Initial"), "secret");
+_click(_coreIcon("avatar-12"));
+
+_wait(1000);
+_click(_paperFab("check"));
+_click(_coreIcon("play-arrow"));
+
+_wait(1000);
+_click(_paperFab("av:play-arrow"));
+_click(_paperButton("Ricotta"));
+
+_wait(1000);
+_click(_paperFab("check"));
+_click(_paperButton("False"));
+
+_wait(1000);
+_click(_paperFab("check"));
+_click(_paperCheckbox("Honey"));
+_click(_paperCheckbox("Water"));
+_click(_paperCheckbox("Brown Sugar"));
+
+_wait(1000);
+_click(_paperFab("check"));
+_click(_paperButton("Corn"));
+_click(_paperButton("Wheat"));
+
+_wait(1000);
+_click(_paperFab("check"));
+_assertEqual("8", _getText(_div("pts")));
+
+_wait(2000);
+_click(_paperIconButton("arrow-back"));
+_assertEqual("test s", _getText(_div("user-name")));
+_click(_coreIcon("arrow-forward[1]"));
+_wait(1000);
+_click(_paperButton("Sign Out"));

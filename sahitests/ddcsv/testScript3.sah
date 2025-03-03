@@ -1,0 +1,4 @@
+_log("testScript3","success");
+_assertEqual("level3Suite.suite,high,ddcsv.dd.csv,user",$tags);
+_assertEqual("6000",$empid);
+_log("Employee Id = " + $empid);

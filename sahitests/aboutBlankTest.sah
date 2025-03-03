@@ -1,0 +1,6 @@
+_navigateTo("/demo/aboutBlank.htm");
+_click(_submit("Click for about:blank Window"));
+_selectWindow("aboutBlankWindow");
+_assertExists(_div(0));
+_assertVisible(_div(0));
+_assertEqual("Hello World!", _getText(_div(0)));

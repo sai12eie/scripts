@@ -1,0 +1,40 @@
+{
+  "modifiedOn": "2024-05-06T05:42:39.218Z",
+  "name": "Add item to cart",
+  "id": "-1",
+  "type": 3,
+  "createdOn": "2024-05-05T18:37:13Z",
+  "content": {
+    "isSystemKeyword": false,
+    "title": "Add item to cart",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_link(\"iPhone\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_button(\"Add to Cart\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

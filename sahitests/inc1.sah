@@ -1,0 +1,6 @@
+_log("Started My Script");
+_include("inc2.sah");
+login("test", "secret");
+addBooks(2, 1, 1);
+verifyTotal(1150);
+_click(_button("Logout"));

@@ -1,0 +1,41 @@
+_resource("makeAssociative.xlsx");
+_resource("makeAssociative.csv");
+
+function testExcel() {
+	var $data = _readExcelFile("makeAssociative.xlsx");
+	var $type = $data.get("dog", "type");
+	_assertEqual("omnivore", $type);
+	var $type = $data.get("sheep", "type");
+	_assertEqual("herbivore", $type);
+  
+  	var $d = $data.groupBy("data1");
+  	var $expectedAr = [["java", "ruby", "python"], ["3", "2", "1"], ["4", "5", "0"]];
+  
+  	_assertEqual($expectedAr, $d);
+  
+  	var $d = $data.groupBy("data1", ["python", "java"]);
+  	var $expectedAr = [["python", "java"], ["1", "3"], ["0", "4"]];
+  
+  	_assertEqual($expectedAr, $d);
+  
+}
+
+function testCSV() {
+	var $data = _readCSVFile("makeAssociative.csv");
+	var $type = $data.get("dog", "type");
+	_assertEqual("omnivore", $type);
+	var $type = $data.get("sheep", "type");
+	_assertEqual("herbivore", $type);
+  
+ 	var $d = $data.groupBy("data1");
+  	var $expectedAr = [["java", "ruby", "python"], ["3", "2", "1"], ["4", "5", "0"]];
+  
+  	_assertEqual($expectedAr, $d);
+  
+  	var $d = $data.groupBy("data1", ["python", "java"]);
+  	var $expectedAr = [["python", "java"], ["1", "3"], ["0", "4"]];
+  
+  	_assertEqual($expectedAr, $d);
+}
+
+_runUnitTests();

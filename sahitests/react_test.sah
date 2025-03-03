@@ -1,0 +1,13 @@
+_navigateTo("reactpage/react.html");
+_setValue(_datebox("inputdate"), "2018-12-21");
+_assertVisible(_div("2018-12-21"));
+_assertEqual("2018-12-21", _getText(_div("inputtext")));
+_setValue(_rangebox("inputrange"), "85");
+_assertVisible(_div("85"));
+_assertEqual("85", _getText(_div("textinputrange")));
+_setValue(_textbox("inputtext"), "Hi there");
+_assertVisible(_div("Hi there"));
+_assertEqual("Hi there", _getText(_div("textinputtext")));
+_setValue(_numberbox("inputnumber"), "25");
+_assertVisible(_div("25"));
+_assertEqual("25", _getText(_div("textinputnumber")));

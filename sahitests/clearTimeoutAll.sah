@@ -1,0 +1,5 @@
+_navigateTo("/demo/index.htm");
+_click(_link("Clear Timeout All"));
+_log("Did not hang here! Sahi!");
+_click(_link("Back"));
+_log("Done");

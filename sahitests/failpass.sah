@@ -1,0 +1,22 @@
+// When testing, ensure that the value in the flag_xx file is "fail" without double quotes.
+var $file = "d:/temp/flag";
+
+if (_isIE()) {
+  $file += "_ie.txt"
+} else if (_isFF()) {
+  $file += "_ff.txt"
+} else if (_isChrome()) {
+  $file += "_chrome.txt"
+}
+
+var $contents = _readFile($file);
+
+if ($contents == 'fail') {
+	_writeFile("pass", $file, true);
+    _assert(false);
+    
+} else {
+	_writeFile("fail", $file, true);
+	// Uncomment it for retry to be failure. If commented, retry will be success.
+	// _assert(false);
+}

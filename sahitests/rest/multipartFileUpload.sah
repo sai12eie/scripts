@@ -1,0 +1,74 @@
+function testLocalFileUpload(){
+	$request = new RESTRequest();
+	$request.setURL("http://sahitest.com/demo/php/fileUpload.php");
+	$request.setHeader("Content-Type", "multipart/form-data; boundary=--bnd");
+	
+	// TODO: make the upload file path relative to sahi home directory or as is if absolute 
+	var $filepath = _userDataDir() + "/scripts/sahitests/upload me.txt";
+	var $body = "sahi-file://" + $filepath;
+	$request.addToBody("file", $body);
+	$request.addToBody("submit", "Submit Single");
+	$request.addToBody("multi", "false");
+	$response = $request.submit("POST");
+	var $responseBody = $response.getBodyAsString();
+
+	//assertions
+
+	_assertEqual("200", $response.getResponseCode());
+	_log("response: " + $responseBody);
+}
+
+function testSahiScriptEmbeddedFileContent(){
+	$request = new RESTRequest();
+	$request.setURL("http://sahitest.com/demo/php/fileUpload.php");
+	$request.setHeader("Content-Type", "multipart/form-data; boundary=---bnd123456789abcde");
+	$request.addToBody("file", "sahi-base64://upload me.txt;dGhpcyBpcyBiYXNlNjQgc3RyaW5n");
+	$request.addToBody("submit", "Submit Single");
+	$request.addToBody("multi", "false");
+	$response = $request.submit("POST");
+	var $responseBody = $response.getBodyAsString();
+
+	//assertions
+
+	_assertEqual("200", $response.getResponseCode());
+	_assertTrue($responseBody.indexOf("0.0205078125 Kb") != -1);
+	_log("response: " + $responseBody);
+}
+
+function testRawMultiPartUpload(){
+	// raw multipart file fileUpload
+	// this is to test whether the REST object does not generate another boundary out of the already
+	// constructed boundaries
+	var boundaryContent = '-----bnd123456789abcde\r\n'
+		+ 'Content-Disposition: form-data; name="file"; filename="upload me.txt"\r\n'
+		+ 'Content-Type: text/plain\r\n'
+		+ '\r\n'
+		+ 'this is base64 string\r\n'
+		+ '-----bnd123456789abcde\r\n'
+		+ 'Content-Disposition: form-data; name="submit"\r\n'
+		+ '\r\n'
+		+ 'Submit Single\r\n'
+		+ '-----bnd123456789abcde\r\n'
+		+ 'Content-Disposition: form-data; name="multi"\r\n'
+		+ '\r\n'
+		+ 'false\r\n'
+		+ '-----bnd123456789abcde--\r\n';
+
+	$request = new RESTRequest();
+	$request.setURL("http://sahitest.com/demo/php/fileUpload.php");
+	$request.setHeader("Content-Type", "multipart/form-data; boundary=---bnd123456789abcde");
+	$request.setBody(boundaryContent);
+	$response = $request.submit("POST");
+	var $responseBody = $response.getBodyAsString();
+
+	//assertions
+
+	_assertEqual("200", $response.getResponseCode());
+	_assertTrue($responseBody.indexOf("0.0205078125 Kb") != -1);
+	_log("response: " + $responseBody);
+
+}
+
+testLocalFileUpload();
+testSahiScriptEmbeddedFileContent();
+testRawMultiPartUpload();

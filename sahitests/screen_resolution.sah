@@ -1,0 +1,7 @@
+var $dimension = new java.awt.Dimension();
+$dimension = new java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+
+var $width = $dimension.getWidth();
+var $height = $dimension.getHeight();
+_assertEqual(1920, $width);
+_assertEqual(1080, $height);

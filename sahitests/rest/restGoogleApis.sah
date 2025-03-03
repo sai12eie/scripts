@@ -1,0 +1,30 @@
+/*
+$clientID, $ClientSecret , redirect_uri, email and password need to changed accordingly
+*/
+
+var $clientID = "sample_client_Id";
+var $clientSecret = "sample_client_secret";
+
+_setValue(_textbox("restui_authz_endPointUrl"), "https://accounts.google.com/o/oauth2/v2/auth");
+_setValue(_textbox("client_id"),  "sample client id");
+_setValue(_textbox("redirect_uri"), "http://www.example.com");
+_setValue(_textbox("scope"), "https://www.googleapis.com/auth/calendar");
+_click(_submit("Go"));
+
+if(_isVisible(_paragraph("example@gmail.com"))){
+	_click(_paragraph("example@gmail.com"));
+}
+else {
+	_setValue(_emailbox("identifier"), "example@gmail.com");
+	_click(_span("Next"));
+	_setPassword(_password("password"), "Encrypted_Password");
+	_click(_span("Next"));
+}
+_click(_span("ALLOW"));
+
+_setValue(_textbox("restui_access_endPointUrl"), "https://www.googleapis.com/oauth2/v4/token");
+_setValue(_textbox("client_id"), $clientID);
+_setValue(_textbox("client_secret"), $clientSecret);
+_setValue(_textbox(""), "http://www.example.com");
+
+_click(_submit("Get Access Token"));

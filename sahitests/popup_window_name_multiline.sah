@@ -1,0 +1,36 @@
+function testWithSahiWindowName() {
+	_selectWindow();
+	_navigateTo("/demo");
+	_click(_link("Iframe Different Domains"));
+	_selectDomain("sahitest1.com");
+	_click(_link("Window Open Test With Title"));
+	_selectDomain();
+	var $url1 = "https://sahitest1.com/demo/framesTestWithTitle.htm";
+	_selectWindow("With Title");
+	changeWinNameAndTest($url1);
+}
+
+function testWithUserWindowName() {
+	_selectWindow();
+	_navigateTo("/demo");
+	_click(_link("Iframe Different Domains"));
+	_selectDomain("sahitest1.com");
+	_click(_link("Window Open Test"));
+	_selectDomain();
+	var $url2 = "https://sahitest1.com/demo/framesTest.htm";
+	_selectWindow("popWin");
+	changeWinNameAndTest($url2);
+}
+
+function changeWinNameAndTest($url) {
+	var $winName = "{\"$\":{\"memLimit\":2000,\\n\"autoFlush\":true,\\n\"crossDomain\":false,\\n\"includeProtos\":false,\\n\"includeFunctions\":false,\\n\"currentDomain\":\"0.144:9444\"}}";
+	_call(window.name=$winName);
+	_selectWindow($winName);
+	_assertExists(_link("Link Test"));
+	_assertVisible(_link("Link Test"));
+
+	_navigateTo($url, true);
+	_assertExists(_link("Link Test"));
+	_assertVisible(_link("Link Test"));
+}
+_runUnitTests();

@@ -1,0 +1,251 @@
+/** Problem statement
+* if we are using switch statement and we have some commented line case then 1st step after comment line skipping. 
+*/
+
+(function() {
+	// it is temp
+	_navigateTo("/demo/training/");
+	_click(_submit("Login"));
+	_assertEqual("Invalid username or password", _getText(_div("errorMessage")));
+
+	/* This is commented line */
+	_navigateTo("/demo/training/register.htm");
+	_assertExists(_button("Register"));
+
+	/**
+	* This commented line
+	* check
+	* 2
+	*/
+	_navigateTo("/demo/clickCombo.htm");
+	_assertExists(_div("Experiment Zone"));
+
+	//1st comment line
+	// 2nd comment line
+	_navigateTo("/demo/");
+	_click(_link("Link Test"));
+	_assertExists(_link("linkByContent"));
+})();
+
+(function() {
+	switch("check1"){
+		case "check1":
+				// it is temp
+				//1st comment line
+			   // 2nd comment line
+				_navigateTo("/demo/training/");
+				_click(_submit("Login"));
+				_assertEqual("Invalid username or password", _getText(_div("errorMessage")));
+				_log("Check 1 Case !!!", "CUSTOM1");
+				break;
+			
+		default:
+				/**
+				* This commented line
+				* default
+				* case
+				*/
+				_navigateTo("/demo/clickCombo.htm");
+				_assertExists(_div("Experiment Zone"));
+				_log("Default Case !!!", "CUSTOM1");
+				break;
+	}
+})();
+
+function checkSwitchCase($case){
+	_wait(2000);
+	switch ($case) {
+		case "check1":
+			// it is temp
+			_navigateTo("/demo/training/");
+			_click(_submit("Login"));
+			_assertEqual("Invalid username or password", _getText(_div("errorMessage")));
+			_log("Check 1 Case !!!", "CUSTOM1");
+			break;
+			
+		case "check2":
+			/* This is commented line */
+			_navigateTo("/demo/training/register.htm");
+			_assertExists(_button("Register"));
+			_log("Check 2 Case !!!", "CUSTOM1");
+			break;
+		
+		case "check3":
+			/**
+			* This commented line
+			* check
+			* 2
+			*/
+			_navigateTo("/demo/clickCombo.htm");
+			_assertExists(_div("Experiment Zone"));
+			_log("Check 3 Case !!!", "CUSTOM1");
+			break;
+			
+		default:
+			//1st comment line
+			// 2nd comment line
+			_navigateTo("/demo/");
+			_click(_link("Link Test"));
+			_assertExists(_link("linkByContent"));
+			_log("Default Case...!!!", "CUSTOM1");
+			break;
+	}
+}
+
+function checkWithFor(){
+	for(var $i=0; $i<2; $i++){
+		if($i==0){
+			// commented
+			_navigateTo("/demo/training/");
+			_click(_submit("Login"));
+			_assertEqual("Invalid username or password", _getText(_div("errorMessage")));
+			_log("1st Commented !!!", "CUSTOM1");
+
+			//1st comment line
+			// 2nd comment line
+			_navigateTo("/demo/");
+			_click(_link("Link Test"));
+			_assertExists(_link("linkByContent"));
+			_log("2nd Commented !!!", "CUSTOM1");
+		}
+		if($i==1){
+			/* This is commented line */
+			_navigateTo("/demo/training/register.htm");
+			_assertExists(_button("Register"));
+			_log("3rd Commented !!!", "CUSTOM1");
+
+			/**
+			* This commented line
+			* check
+			* 2
+			*/
+			_navigateTo("/demo/clickCombo.htm");
+			_assertExists(_div("Experiment Zone"));
+			_log("4th Commented !!!", "CUSTOM1");
+		}
+	}
+}
+
+function checkWithWhile(){
+	var $i = 0;
+	while($i<2){
+		if($i==0){
+			// commented
+			_navigateTo("/demo/training/");
+			_click(_submit("Login"));
+			_assertEqual("Invalid username or password", _getText(_div("errorMessage")));
+			_log("1st Commented !!!", "CUSTOM1");
+
+			//1st comment line
+			// 2nd comment line
+			_navigateTo("/demo/");
+			_click(_link("Link Test"));
+			_assertExists(_link("linkByContent"));
+			_log("2nd Commented !!!", "CUSTOM1");
+		} else if($i==1){
+			/* This is commented line */
+			_navigateTo("/demo/training/register.htm");
+			_assertExists(_button("Register"));
+			_log("3rd Commented !!!", "CUSTOM1");
+
+			/**
+			* This commented line
+			* check
+			* 2
+			*/
+			_navigateTo("/demo/clickCombo.htm");
+			_assertExists(_div("Experiment Zone"));
+			_log("4th Commented !!!", "CUSTOM1");
+		}
+		$i++;
+	}
+}
+
+function checkWithDoWhile(){
+	var $i=0;
+	do{
+		if($i==0){
+			// commented
+			_navigateTo("/demo/training/");
+			_click(_submit("Login"));
+			_assertEqual("Invalid username or password", _getText(_div("errorMessage")));
+			_log("1st Commented !!!", "CUSTOM1");
+
+			//1st comment line
+			// 2nd comment line
+			_navigateTo("/demo/");
+			_click(_link("Link Test"));
+			_assertExists(_link("linkByContent"));
+			_log("2nd Commented !!!", "CUSTOM1");
+		}
+		else{
+			/* This is commented line */
+			_navigateTo("/demo/training/register.htm");
+			_assertExists(_button("Register"));
+			_log("3rd Commented !!!", "CUSTOM1");
+
+			/**
+			* This commented line
+		    * check
+			* 2
+			*/
+			_navigateTo("/demo/clickCombo.htm");
+			_assertExists(_div("Experiment Zone"));
+			_log("4th Commented !!!", "CUSTOM1");
+			
+		}
+		$i++;
+	}
+	while($i<2);
+}
+
+check = function(){
+	for(var $i=0; $i<4; $i++){
+		switch ($i) {
+			case 0:
+				// it is temp
+				_navigateTo("/demo/training/");
+				_click(_submit("Login"));
+				_assertEqual("Invalid username or password", _getText(_div("errorMessage")));
+				_log("Case 0 !!!", "CUSTOM1");
+				break;
+
+			case 1:
+				/* This is commented line */
+				_navigateTo("/demo/training/register.htm");
+				_assertExists(_button("Register"));
+				_log("Case 1 !!!", "CUSTOM1");
+				break;
+				
+			case 2:
+				/**
+				* commented line
+				* 2
+				*/
+				_navigateTo("/demo/training/register.htm");
+				_assertExists(_button("Register"));
+				_log("Case 2 !!!", "CUSTOM1");
+				break;
+
+			default:
+				//1st comment line
+				// 2nd comment line
+				_navigateTo("/demo/");
+				_click(_link("Link Test"));
+				_assertExists(_link("linkByContent"));
+				_log("Default Case !!!", "CUSTOM1");
+				break;
+		}
+	}
+	return true;
+}
+
+checkSwitchCase("check1");
+checkSwitchCase("check2");
+checkSwitchCase("check3");
+checkSwitchCase("def");
+checkWithFor();
+checkWithWhile();
+checkWithDoWhile();
+var $returnedVal = check();
+_assertTrue($returnedVal);

@@ -1,0 +1,18 @@
+function checkFirstBlankCell($a, $b, $c){
+  _assertEqual(null,  $a);
+  _assertEqual("TC1A2",  $b);
+  _assertEqual("TC1A3",  $c);
+}
+
+function checkMiddleBlankCell($a, $b, $c){
+  _assertEqual("TC1A1",  $a);
+  _assertEqual(null,  $b);
+  _assertEqual("TC1A3",  $c);
+}
+
+function checkLastBlankCell($a, $b, $c){
+  _assertEqual("TC1A1",  $a);
+  _assertEqual("TC1A2",  $b);
+  _assertEqual(null,  $c);
+}
+

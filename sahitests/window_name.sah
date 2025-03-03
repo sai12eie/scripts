@@ -1,0 +1,12 @@
+function testWindowNameShouldNotBeBlankByDefault() {
+	// SHOULD NOT BE BLANK. popup identification mechanism will fail
+	_assertNotEqual("", window.name);
+}
+
+function testModifyWindowNameInHTML() {
+	_navigateTo("windowName.htm");
+	// This will gets failed if window name is set before the first ping.
+	_assertExists(_heading1("Window Name is Test"));
+}
+
+_runUnitTests();

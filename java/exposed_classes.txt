@@ -1,0 +1,7 @@
+# separate fully qualified names of classes with a new line
+demo.actions.mouse.ClickCombo
+
+
+
+
+demo.actions.focus.WindowFocusTest

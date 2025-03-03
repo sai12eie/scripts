@@ -1,0 +1,29 @@
+"TestCase","Key Word","Argument 1","Argument 2"
+,"loadSahi","setupTeardown_inc.sah"
+
+"[Global]","[SetUp]"
+,"logMe","GS1"
+,"logMe","GS2"
+,"[TearDown]"
+,"logMe","GT1"
+,"logMe","GT2"
+
+"My First Testcase","[Documentation]","My testcase description. Modify as needed"
+,"logMe","TC11"
+,"logMe","TC12"
+
+"My Second Testcase","[Documentation]","My testcase description. Modify as needed"
+,"logMe","TC21"
+,"logMe","TC22"
+
+
+
+"[Global]","[SetUp]"
+,"[TearDown]"
+
+"Verify Sequence","[Documentation]"
+,"getTrace"
+,"_assertEqual","GS1|GS2|TC11|TC12|GT1|GT2|GS1|GS2|TC21|TC22|GT1|GT2|","[ReturnValue]"
+,"getTrace"
+,"$retVal=","[ReturnValue]"
+,"_assertEqual","GS1|GS2|TC11|TC12|GT1|GT2|GS1|GS2|TC21|TC22|GT1|GT2|","$retVal"

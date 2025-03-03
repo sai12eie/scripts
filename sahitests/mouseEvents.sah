@@ -1,0 +1,167 @@
+
+function testRrightClickNativeCombo(){
+	_focusWindow();
+	_lockWindow();
+	_click(_button("Clear"));
+	_click(_button("Clear All"));
+	_click(_reset("Reset[1]"));
+	_check(_checkbox(0, _rightOf(_label("dblclick"))));
+	_click(_button("Add event listeners"));
+	_rightClickNative(_div("Div"));
+	_wait(500);
+	_typeKeyCodeNative(java.awt.event.KeyEvent.VK_ESCAPE);
+	var $rightClickNative = "\nd1:contextmenu";
+	_assertContainsText($rightClickNative, _textarea("logs"));
+	_click(_button("Clear"));
+	_check(_checkbox("e.shiftKey"));
+	_check(_checkbox("e.ctrlKey"));
+	_rightClickNative(_div("Div"), "CTRL");
+	_wait(500);
+	_typeKeyCodeNative(java.awt.event.KeyEvent.VK_ESCAPE);
+	var $rightClickNativeWithCtrl = "\nd1:contextmenu; e.shiftKey=false; e.ctrlKey=true";
+	_assertContainsText($rightClickNativeWithCtrl, _textarea("logs"));
+	if(!_isFF()){
+		_click(_button("Clear"));
+		_rightClickNative(_div("Div"), "CTRL|SHIFT");
+		_wait(500);
+		_typeKeyCodeNative(java.awt.event.KeyEvent.VK_ESCAPE);
+		var $rightClickNativeWithCtrlAndSift = "\nd1:contextmenu; e.shiftKey=true; e.ctrlKey=true";
+		_assertContainsText($rightClickNativeWithCtrlAndSift, _textarea("logs"));
+	}
+	_unlockWindow();
+}
+
+function testDoubleClickNativeCombo(){
+	_focusWindow();
+	_lockWindow();
+	_click(_button("Clear"));
+	_click(_button("Clear All"));
+	_click(_reset("Reset[1]"));
+	_check(_checkbox(0, _rightOf(_label("click"))));
+	_click(_button("Add event listeners"));
+	_doubleClickNative(_button("Button"));
+	var $doubleClickNative = "\nb1:dblclick";
+	_assertContainsText($doubleClickNative, _textarea("logs"));
+	_click(_button("Clear"));
+	_check(_checkbox("e.shiftKey"));
+	_check(_checkbox("e.ctrlKey"));
+	_doubleClickNative(_button("Button"), "CTRL");
+	_wait(500);
+	var $doubleClickNativeWithCtrl = "\nb1:dblclick; e.shiftKey=false; e.ctrlKey=true";
+	_assertContainsText($doubleClickNativeWithCtrl, _textarea("logs"));
+	_click(_button("Clear"));
+	_doubleClickNative(_button("Button"), "CTRL|SHIFT");
+	var $doubleClickNativeWithCtrlAndSift = "\nb1:dblclick; e.shiftKey=true; e.ctrlKey=true";
+	_assertContainsText($doubleClickNativeWithCtrlAndSift, _textarea("logs"));
+	_unlockWindow();
+}
+
+function testMouseOverCombo(){
+	_click(_button("Clear"));
+	_click(_button("Clear All"));
+	_click(_reset("Reset[1]"));
+	_check(_checkbox(0, _rightOf(_label("mousemove"))));
+	_click(_button("Add event listeners"));
+	_focusWindow();
+	_mouseOver(_div("Div"));
+	var $mouseOverOnDiv = "\nd1:mouseover";
+	_assertContainsText($mouseOverOnDiv, _textarea("logs"));
+	_click(_button("Clear"));
+	_check(_checkbox("e.shiftKey"));
+	_check(_checkbox("e.ctrlKey"));
+	_focusWindow();
+	_mouseOver(_div("Div"), "CTRL");
+	var $mouseOverWithCtrl = "\nd1:mouseover; e.shiftKey=false; e.ctrlKey=true";
+	_assertContainsText($mouseOverWithCtrl, _textarea("logs"));
+	_click(_button("Clear"));
+	_focusWindow();
+	_mouseOver(_div("Div"), "CTRL|SHIFT");
+	var $mouseOverWithCtrlAndSift = "\nd1:mouseover; e.shiftKey=true; e.ctrlKey=true";
+	_assertContainsText($mouseOverWithCtrlAndSift, _textarea("logs"));
+}
+
+function testMouseUpCombo(){
+	_click(_button("Clear"));
+	_click(_button("Clear All"));
+	_click(_reset("Reset[1]"));
+	_check(_checkbox(0, _rightOf(_label("mouseout"))));
+	_click(_button("Add event listeners"));
+	_focusWindow();
+	_mouseUp(_div("Div"));
+	var $mouseUpOnDiv = "\nd1:mouseup";
+	_assertContainsText($mouseUpOnDiv, _textarea("logs"));
+	_click(_button("Clear"));
+	_focusWindow();
+	_mouseUp(_radio("r11"), true);
+	var $mouseUpOnRadio = "\nr11:mouseup";
+	_assertContainsText($mouseUpOnRadio, _textarea("logs"));
+	_click(_button("Clear"));
+	_check(_checkbox("e.shiftKey"));
+	_check(_checkbox("e.ctrlKey"));
+	_focusWindow();
+	_mouseUp(_div("Div"), false, "CTRL");
+	var $mouseUpWithCtrl = "\nd1:mouseup; e.shiftKey=false; e.ctrlKey=true";
+	_assertContainsText($mouseUpWithCtrl, _textarea("logs"));
+	_click(_button("Clear"));
+	_focusWindow();
+	_mouseUp(_div("Div"), false, "CTRL|SHIFT");
+	var $mouseUpWithCtrlAndSift = "\nd1:mouseup; e.shiftKey=true; e.ctrlKey=true";
+	_assertContainsText($mouseUpWithCtrlAndSift, _textarea("logs"));
+}
+
+function testMouseDownCombo(){
+	_navigateTo("/demo/eventSequence.htm");
+	_click(_button("Clear"));
+	_click(_button("Clear All"));
+	_click(_reset("Reset[1]"));
+	_check(_checkbox(0, _leftOf(_label("mouseenter"))));
+	_click(_button("Add event listeners"));
+	_focusWindow();
+	_mouseDown(_div("Div"));
+	var $mouseDownOnDiv = "\nd1:mousedown";
+	_assertContainsText($mouseDownOnDiv, _textarea("logs"));
+	_click(_button("Clear"));
+	_focusWindow();
+	_mouseDown(_radio("r11"), true);
+	var $rightClickOnRadio = "\nr11:mousedown";
+	_assertContainsText($rightClickOnRadio, _textarea("logs"));
+	_click(_button("Clear"));
+	_check(_checkbox("e.shiftKey"));
+	_check(_checkbox("e.ctrlKey"));
+	_focusWindow();
+	_mouseDown(_div("Div"), false, "CTRL");
+	var $mouseDownWithCtrl = "\nd1:mousedown; e.shiftKey=false; e.ctrlKey=true";
+	_assertContainsText($mouseDownWithCtrl, _textarea("logs"));
+	_click(_button("Clear"));
+	_focusWindow();
+	_mouseDown(_div("Div"), false, "CTRL|SHIFT");
+	var $mouseDownWithCtrlAndSift = "\nd1:mousedown; e.shiftKey=true; e.ctrlKey=true";
+	_assertContainsText($mouseDownWithCtrlAndSift, _textarea("logs"));
+}
+
+function testMouseOver(){
+	_focusWindow();
+	_mouseOver(_button("Capture mouse over"));
+	_assertEqual("[MOUSE_OVER][MOUSE_ENTER][MOUSE_MOVE]", _textarea("t2").value);
+	_click(_button("Clear"));
+}
+
+function testMouseUp(){
+	_focusWindow();
+	_mouseUp(_button("Capture mouse up"));
+	_assertEqual("[MOUSE_UP]", _textarea("t2").value);
+	_click(_button("Clear"));
+}
+
+function testMouseDown(){
+	_navigateTo("/demo/mouseEvents.htm");
+	_focusWindow();
+	_mouseOverNative(_button("Clear"));
+	_click(_button("Clear"));
+	_mouseDown(_button("Capture mouse down"));
+	_assertEqual("[MOUSE_DOWN]", _textarea("t2").value);
+	_click(_button("Clear"));
+}
+
+_windowAction("maximize");
+_runUnitTests();

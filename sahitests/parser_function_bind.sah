@@ -1,0 +1,14 @@
+var variable = "Global variable";
+
+Object = function(){
+	this.variable = "Object variable";
+}
+
+var o = new Object();
+
+var printVariable = function(){
+	var $var = this.variable;
+	_log($var);
+}.bind(o);
+
+printVariable();

@@ -1,0 +1,37 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.688Z",
+  "name": "Add $product to $cart",
+  "id": "45896",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.688Z",
+  "content": {
+    "title": "Add $product to $cart",
+    "parameters": [
+      {
+        "parameterId": "product_",
+        "entityTypeId": "product",
+        "suffix": ""
+      },
+      {
+        "parameterId": "cart_",
+        "entityTypeId": "cart",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_italic(\"fa fa-shopping-cart\", _near(_link($product.name)))"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

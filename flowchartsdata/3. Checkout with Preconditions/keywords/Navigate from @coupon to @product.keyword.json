@@ -1,0 +1,37 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.603Z",
+  "name": "Navigate from @coupon to @product",
+  "id": "45889",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.603Z",
+  "content": {
+    "title": "Navigate from @coupon to @product",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Catalog\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Products\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

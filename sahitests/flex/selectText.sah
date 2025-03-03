@@ -1,0 +1,18 @@
+_navigateTo("/demo/flex/mx/selectText41.html");
+_selectRange(_f("sampleId1").s_textarea("sparkTextArea"), 0,14);
+var $text = _getSelectedText(_f("sampleId1").s_textarea("sparkTextArea"));
+_assertEqual("Spark TextArea", $text);
+
+_selectRange(_f("sampleId1").s_textinput("sparkTextInput"), 0,15);
+$text = _getSelectedText(_f("sampleId1").s_textinput("sparkTextInput"));
+_assertEqual("Spark TextInput", $text);
+
+_selectRange(_f("sampleId1").s_richeditabletext("sparkRET"), 0,22);
+$text = _getSelectedText(_f("sampleId1").s_richeditabletext("sparkRET"));
+_assertEqual("Spark RichEditableText", $text);
+
+_selectRange(_f("sampleId1").textarea("multineTextArea"), 0, 11);
+$text = _getSelectedText(_f("sampleId1").textarea("multineTextArea"));
+_assertEqual("MX TextArea", $text);
+
+    

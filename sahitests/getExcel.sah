@@ -1,0 +1,136 @@
+_resource("getExcelTest.xls");
+var $origFile = "getExcelTest.xls";
+var $excelFile = "getExcelTestCopied.xls";
+if (_fileExists($excelFile)) _deleteFile($excelFile);
+_copyFile($origFile, $excelFile);
+onScriptEnd = function() {
+	if (_fileExists($excelFile)) _deleteFile($excelFile);
+}
+
+
+var $excel = _getExcel($excelFile,"Sheet1");
+
+//Set Data
+$excel.deleteRows(0);
+var $len = $excel.getData().length;
+_assertEqual(0, $len);
+var $excelData=[["ajay","babu","cheeran"],["david","elango","frank"],["gokul","hari","irfan"],["jo","kumar","latha"],["mani","naraen","ojha"],["peter","queen","richard"],["shalini","thomas","umesh"]];
+$excel.setData($excelData);
+var $data=$excel.getData();
+_assertEqual("elango",$data[1][1]);
+var $len = $data.length;
+_assertEqual(7, $len);
+
+//Get Data
+var $getdata=$excel.getData();
+_assertEqual("irfan",$getdata[2][2]);
+
+
+//Insert New Row
+var $insertRowData=["varun","wargees","xezwanth"];
+var $insertRowIndex=3;
+$excel.insertRow($insertRowData,$insertRowIndex);
+var $dataAfterInsertRow=$excel.getData();
+_assertEqual("wargees",$dataAfterInsertRow[3][1]);
+var $len = $dataAfterInsertRow.length;
+_assertEqual(8, $len);
+
+
+//Insert New Rows
+var $insertRowsData=[["yamini","eeswar","sasi"],["durai","ojasna","sukrith"]];
+var $insertRowsIndex=4;
+$excel.insertRows($insertRowsData,$insertRowsIndex);
+var $dataAfterInsertRows=$excel.getData();
+_assertEqual("sasi",$dataAfterInsertRows[4][2]);
+var $len = $dataAfterInsertRows.length;
+_assertEqual(10, $len);
+
+//Insert New Row using calculated lastRowIndex
+var $insertRowData=["karunakaran","siva","ravi"];
+var $data=$excel.getData();
+var $insertRowIndex=$data.length;
+$excel.insertRow($insertRowData,$insertRowIndex);
+var $dataAfterInsertRow=$excel.getData();
+_assertEqual("siva",$dataAfterInsertRow[10][1]);
+var $len = $dataAfterInsertRow.length;
+_assertEqual(11, $len);
+
+//Insert New Rows using calculated lastRowsIndex
+var $insertRowsData=[["silva","raghunath","Vijiraj"],["rukmani","vijaya","dharwesh"]];
+var $data=$excel.getData();
+var $insertRowsIndex=$data.length;
+$excel.insertRows($insertRowsData,$insertRowsIndex);
+var $dataAfterInsertRows=$excel.getData();
+_assertEqual("dharwesh",$dataAfterInsertRows[12][2]);
+
+
+//Insert New Row at lastRow without Row Index
+var $insertRowData=["kathir","femina","jandir"];
+$excel.insertRow($insertRowData);
+var $dataAfterInsertRow=$excel.getData();
+_assertEqual("femina",$dataAfterInsertRow[13][1]);
+
+
+//Insert New Rows at lastRow without Rows Index
+var $insertRowsData=[["shoba","ravi","vasi"],["kajol","rani","sharuk"]];
+$excel.insertRows($insertRowsData);
+var $dataAfterInsertRows=$excel.getData();
+_assertEqual("sharuk",$dataAfterInsertRows[15][2]);
+
+
+//Delete Row
+var $deleteRowIndex=4;
+$excel.deleteRow($deleteRowIndex);
+var $dataAfterRowDelete=$excel.getData();
+_assertNotEqual("sasi",$dataAfterRowDelete[4][2]);
+_assertEqual(15, $dataAfterRowDelete.length);
+
+//Delete Rows
+var $deleteRowsIndexes=[1,4];
+$excel.deleteRows($deleteRowsIndexes);
+var $dataAfterDeleteRows=$excel.getData();
+_assertNotEqual("Paudyal",$dataAfterDeleteRows[1][1]);
+_assertEqual("wargees",$dataAfterDeleteRows[2][1]);
+_assertEqual(13, $dataAfterDeleteRows.length);
+
+//Delete rows after particular index
+var $index=6;
+$excel.deleteRows($index);
+var $dataAfterDeleteRowsIndex = $excel.getData();
+_assertEqual(6, $dataAfterDeleteRowsIndex.length);
+
+//Get Cell Value
+var $excelGet=$excel.get(2,2);
+_assertEqual("xezwanth",$excelGet,"Values Matched");
+
+
+//Set Cell Value
+var $excelData=$excel.set(2,2,"444-444-4444");
+var $dataAfterSet=$excel.getData();
+_assertEqual("444-444-4444",$dataAfterSet[2][2]);
+
+//Insert New Row at Index
+var $insertRowData=["k2","f2","j2"];
+$excel.insertRow($insertRowData, 1);
+var $dataAfterInsertRow=$excel.getData();
+_assertEqual("f2",$dataAfterInsertRow[1][1]);
+_assertEqual("hari", $excel.getCellObject(2,1).toString());
+var $font = $excel.getCellFont(2,1);
+//_assertEqual(10, $font.getFontHeightInPoints());
+//_assertEqual("Arial", $font.getFontName());
+//_assertEqual(32767, $font.getColor());
+
+// _dataDrive
+$excel.deleteRows(0);
+var $len = $excel.getData().length;
+_assertEqual(0, $len);
+var $excelData=[["a","a1","a2"],["b","b1","b2"]];
+$excel.setData($excelData);
+
+var $data = _getExcel($excelFile).getDataForDataDrive();
+var $concat = [];
+function addMe ($name, $name1){
+	$concat.push($name1);
+}
+_dataDrive(addMe, $data);
+_assertEqual("a1,b1", $concat.join(","));

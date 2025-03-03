@@ -1,0 +1,59 @@
+function testConfirm(){
+	_navigateTo("/demo/testConfirm.htm");
+	_expectConfirm("/.*/", false, false);
+	_click(_button(0));
+	try {
+		_disableDefaultErrorLogging();
+		_click(_button(1));
+		_assertEqual("This is my confirm box too", _lastConfirm());
+	} catch (e) {
+		_logException(e);
+		var $message = e.message;
+		_log($message);
+		if($message.indexOf("confirm: This is my confirm box too") == -1) _fail();
+	}
+	_assertEqual("false", _getValue(_textbox("t1")));
+	_assertEqual("true", _getValue(_textbox("t2")));
+	_navigateTo("/demo/testConfirm.htm", true);
+	_expectConfirm("/.*/", false);
+	_click(_button(0));
+	try {
+		_disableDefaultErrorLogging();
+		_click(_button(1));
+		_assertEqual("This is my confirm box too", _lastConfirm());
+	} catch (e) {
+		_logException(e);
+		var $message = e.message;
+		_log($message);
+		if($message.indexOf("confirm: This is my confirm box too") == -1) _fail();
+	}
+	_assertEqual("false", _getValue(_textbox("t1")));
+	_assertEqual("true", _getValue(_textbox("t2")));
+	_navigateTo("/demo/testConfirm.htm", true);
+	_expectConfirm("/.*/", false, true);
+	_click(_button(0));
+	_click(_button(1));
+	_assertEqual("false", _getValue(_textbox("t1")));
+	_assertEqual("false", _getValue(_textbox("t2")));
+	_navigateTo("/demo/testConfirm.htm", true);
+	_expectConfirm("/.*/", true, true);
+	_click(_button(0));
+	_click(_button(1));
+	_assertEqual("true", _getValue(_textbox("t1")));
+	_assertEqual("true", _getValue(_textbox("t2")));
+	_navigateTo("/demo/testConfirm.htm", true);
+	_expectConfirm("/.*/", false);
+	_click(_button(0));
+	try {
+		_disableDefaultErrorLogging();
+		_click(_button(1));
+		_assertEqual("This is my confirm box too", _lastConfirm());
+	} catch (e) {
+		_logException(e);
+		var $message = e.message;
+		_log($message);
+		if($message.indexOf("confirm: This is my confirm box too") == -1) _fail();
+	}
+	_assertEqual("false", _getValue(_textbox("t1")));
+	_assertEqual("true", _getValue(_textbox("t2")));
+}

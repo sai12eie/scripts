@@ -1,0 +1,34 @@
+function testAlert() {
+	_navigateTo("/demo/alertTest.htm");
+	_expectAlert("/Alert/");
+	_click(_button("Click For Alert"));
+	_assertEqual("Alert Message", _lastAlert());
+	try {
+		_disableDefaultErrorLogging();
+		_click(_button("Click For Alert"));
+		_assertEqual("Alert Message", _lastAlert());
+	} catch (e) {
+		_logException(e);
+		var $message = e.message;
+		if($message.indexOf("alert: Alert Message") == -1) _fail();
+	}
+	_expectAlert("/You must correct the following Errors/");
+	_click(_button("Click For Multiline Alert"));
+
+	_expectAlert("/.*/", false);
+	_click(_button("Click For Alert"));
+	_expectAlert("/.*/", false);
+	_click(_button("Click For Multiline Alert"));
+	_assertEqual("You must correct the following Errors:\nYou must select a messaging price plan.\nYou must select an international messaging price plan.\nYou must enter a value for the Network Lookup Charge", _lastAlert());
+	_expectAlert("/.*/", false);
+	_click(_button("Multiline Unicode"));
+
+	_expectAlert("/.*/",true);
+	_click(_button("Click For Alert"));
+	_click(_button("Click For Multiline Alert"));
+	_assertEqual("You must correct the following Errors:\nYou must select a messaging price plan.\nYou must select an international messaging price plan.\nYou must enter a value for the Network Lookup Charge", _lastAlert());
+	_click(_button("Multiline Unicode"));
+
+	_expectAlert("/Click/");
+	_click(_button("Click For Alert"));
+}

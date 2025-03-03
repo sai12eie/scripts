@@ -1,0 +1,51 @@
+function testAutohealSameTag(){
+	_assertEqual("Id will be changed", _getText(_paragraph("para")));
+	_assertEqual("href will be changed", _getText(_link("/htt.*:\\/\\/.*.sahitest.com\\/demo\\/autoHealTest2.htm#imageAutohealScenarios/")));
+	_assertEqual("Title will be changed", _getText(_link("link with title")));
+	_assertEqual("Class will be changed", _getText(_div("uniqueClass")));
+	
+	_assertEqual("Textbox id will be chaned", _getValue(_textbox("textbox")));
+	_assertEqual("Password name will be changed", _getText(_password("password")));
+	_assertEqual("editable Image src will be changed", _getValue(_imageSubmitButton("img.png")));
+	
+	_assertEqual("editable Image alt will be changed", _getValue(_imageSubmitButton("Submit")));
+	_assertEqual("5", _getText(_numberbox("uniqueClass2")));
+	_assertEqual("id will be changed", _getAttribute(_image("imgId"), "alt"));
+	//_assertEqual("src wd extension will be changed", _getAttribute(_image("img.png[1]"), "alt"));
+	_assertEqual("src wdout extension will be changed", _getAttribute(_image("img"), "alt"));
+//	_assertEqual("/htt.*:\\/\\/.*.sahitest.com\\/demo\\/imgNew.png/", _getAttribute(_image("alt will be changed"), "src"));
+//	_assertEqual("title will be changed", _getAttribute(_image("image title"), "alt"));
+//	_assertEqual("Unique class will be changed", _getAttribute(_image("uniqueClass3"), "alt"));
+	//_assertEqual("size will be changed", _getAttribute(_image("img.png[4]"), "alt"));
+}
+
+function testAutohealDifferentTag(){
+	_assertEqual("heading tag will be changed", _getText(_heading2("heading")));
+	_assertEqual("Div tag will be changed", _getText(_div("div")));
+	//_assertEqual("td tag will be changed", _getText(_cell("cell")));
+	_assertEqual("link tag will be changed", _getText(_link("linkIdenitifier")));
+	_assertEqual("textbox type will be changed wd id same", _getValue(_textbox("txtId")));
+	_assertEqual("Password type will be changed wd class same", _getValue(_password("pwdClass")));
+	_assertEqual("txtAreaName", _getAttribute(_textarea("txtAreaName"),"name"));
+	_assertNotTrue(_isChecked(_radio("radioValue")));
+	_assertNotTrue(_isChecked(_checkbox("checkboxValue")));
+	//_assertEqual("Button will be changed to Submit", _getText(_button("submit")));
+	//_assertEqual("Submit will be changed to button", _getText(_submit("submit")));
+	//_assertEqual("submit", _getAttribute(_submit("submit"), "name"));
+	_assertEqual("submit", _getAttribute(_reset("submit"), "name"));
+	//_assertEqual("approve", _getAttribute(_button("approve"), "class"));
+	_assertEqual("approve", _getAttribute(_image("approve"),"class"));
+	//_assertEqual("approve", _getAttribute(_submit("approve"), "class"));
+	_assertEqual("approve", _getAttribute(_image("approve[1]"), "class"));
+}
+
+function testAutohealComplexScenario(){
+	_assertEqual("web", _getAttribute(_checkbox("web"),"class"));
+	_assertEqual("concurrent", _getValue(_checkbox("concurrent")));
+}
+
+_navigateTo("/demo/autoHealTest2.htm");
+_runUnitTests();
+
+_navigateTo("/demo/autoHealTestWdElChanged2.htm");
+_runUnitTests();

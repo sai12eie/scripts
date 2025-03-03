@@ -1,0 +1,76 @@
+/** Native File Upload Start **/
+_sahi.robot = new java.awt.Robot();  
+Sahi.prototype._typeNative = function(str){
+	for (var i=0; i<str.length; i++){
+		var c = str.charAt(i);
+		var keyCode = str.charCodeAt(i);
+		var shiftKey = false;
+		switch (c){
+			case ":":{
+				shiftKey = true;
+				keyCode = java.awt.event.KeyEvent.VK_SEMICOLON;
+				break;
+			}
+			case "\\":{
+				keyCode = java.awt.event.KeyEvent.VK_BACK_SLASH;
+				break;
+			}
+			case "_":{
+				shiftKey = true;
+				keyCode = java.awt.event.KeyEvent.VK_MINUS;
+				break;
+			}
+		}
+		if ((keyCode >= 97 && keyCode <= 122) || (keyCode >= 65 && keyCode <= 90)) {
+			shiftKey = (keyCode >= 65 && keyCode <= 90); 
+			keyCode = eval("java.awt.event.KeyEvent.VK_" + (""+c).toUpperCase());
+		}
+		
+		if (shiftKey) this.robot.keyPress(java.awt.event.KeyEvent.VK_SHIFT);
+		try{
+			this._typeNativeKeyCode(keyCode);
+		}catch(e){
+			print (c + " " + e);
+		}finally{
+			if (shiftKey) this.robot.keyRelease(java.awt.event.KeyEvent.VK_SHIFT);
+		}
+	}
+};
+Sahi.prototype._typeNativeKeyCode = function(keyCode){
+	this.robot.keyPress(keyCode);
+	this.robot.keyRelease(keyCode);
+};
+Sahi.prototype._focusWindow = function () {
+	var oldTitle = _sahi._title();
+	var newTitle = "" + (new Date()).getTime();
+	this.scheduleNoLog("document.title = " + this.quoted(newTitle));
+	this.wait(100);
+	if (Packages.net.sf.sahi.util.Utils.isWindows()) {
+		var cmd = "cmd /C " + ("" + net.sf.sahi.config.Configuration.getAbsolutePath("tools/windowfocus.exe")).replace('/', '\\') + " \"" + newTitle + "\"";
+		_sahi._execute(cmd, true);
+	}
+	this.wait(100);
+	this.scheduleNoLog("document.title = " + this.quoted(oldTitle));
+};
+function setFileUpload($fileEl, $path) {
+	_focusWindow();
+	_wait(1000); // needed
+	// focus on the element
+	_focus($fileEl);
+	// click "space" to bring up the browser dialog
+	_sahi._typeNativeKeyCode(java.awt.event.KeyEvent.VK_SPACE);
+	_wait(1000);
+	// type the file path
+	_sahi._typeNative($path);
+	_wait(1000);
+	// press enter
+	_sahi._typeNativeKeyCode(java.awt.event.KeyEvent.VK_ENTER);
+	_wait(5000);
+}
+/** Native File Upload End **/
+
+
+_navigateTo("http://demos.telerik.com/aspnet-ajax/asyncupload/examples/additionalfields/defaultcs.aspx");
+var $file = "C:\\Users\\narayan\\Desktop\\a.txt";
+setFileUpload(_file("ctl00_ContentPlaceHolder1_RadAsyncUpload1file0"), $file);
+_log("Done");

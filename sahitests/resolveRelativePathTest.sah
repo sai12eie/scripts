@@ -1,0 +1,49 @@
+
+function testAssertEqualImages() {
+   _assertEqualImages("resolve/login.png", "snapshot_login_short.png", null, true);
+}
+
+function testCompareImages(){
+   var $same = _compareImages("resolve/login.png", "snapshot_login_short.png");
+	_assert($same);
+}
+
+function testLogImage(){
+	_logImage("assert_log_tiger.jpg", "Tiger image via logImage!", "INFO");
+}
+
+function testTakePageScreenShotWithPath(){
+	var $exists = _fileExists("resolve/testResolve.png");
+  	if ($exists) _deleteFile("resolve/testResolve.png");
+  	$exists = _fileExists("resolve/testResolve.png");
+   	_assertFalse($exists);
+	_assertVisible(_link("Link Test"));
+	_lockWindow();
+	_focusWindow();
+	_windowAction("maximize");
+  	_takePageScreenShot(null, "resolve/testResolve.png");
+	_unlockWindow();
+  	$exists = _fileExists("resolve/testResolve.png");
+  	_assert($exists);
+  	if ($exists) _deleteFile("resolve/testResolve.png");
+}
+
+function testScriptPath(){
+	var $path = _scriptPath();
+	_assert($path.indexOf("resolveRelativePathTest.sah") != -1);
+  	
+}
+
+function testResolvePath(){
+	var $image = "abcd.png";
+	var $path = _scriptPath();
+	$path = $path.substring(0, $path.lastIndexOf("/"));
+	$path = $path + "/" + $image;
+	_assertEqual($path, _resolvePath($image));
+}
+
+_resource("resolve/login.png");
+_resource("snapshot_login_short.png");
+_resource("assert_log_tiger.jpg");
+
+_runUnitTests();

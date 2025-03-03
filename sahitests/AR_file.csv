@@ -1,0 +1,8 @@
+"Key","ArValue1","ArValue2"
+"$_TEXTBOX_USER","_textbox(""user"")","_textbox(""$USER"")"
+"$_PASSWORD_PASSWORD","_password(""password"")","_password(""$PASSWORD"")"
+"//$_SUBMIT_LOGIN","_submit(""Login"")","_submit(""Login"")"
+"$_SUBMIT_LOGIN","_submit(""Login"")","_submit(""Login"")"
+"$_BUTTON_LOGOUT","_button(""Logout"")","_button(""Logout"")"
+
+"$_LINK_LINK_TEXT","_link(""Not Exists"")"

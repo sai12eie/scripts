@@ -1,0 +1,82 @@
+// Bypass all requests
+_byPassWaitMechanism(true);
+_navigateTo("/demo/php/delayedLoad.php?t=4");
+var $time = parseInt(_getText(_div("clock")));
+_assert($time < 2);
+_navigateTo("/demo/php/delayedLoad.php?t=4");
+_byPassWaitMechanism(false);
+$time = parseInt(_getText(_div("clock")));
+_assert($time >= 4 && $time < 7);
+
+// Bypass a specific fetch request
+if(!_isIE()) {
+	_navigateTo("/demo/fetchAPITest.htm");
+	_byPassWaitMechanism(true, "/delayedLoadInner/", "fetch");
+	var $startTimer = new Date().getTime();
+	_click(_button("b1"));
+	_log("here");
+	var $endTimer = new Date().getTime();
+	var $diff = $endTimer - $startTimer;
+	_assert($diff < 2000);
+	_byPassWaitMechanism(false);
+	var $startTimer = new Date().getTime();
+	_click(_button("b1"));
+	_log("here");
+	var $endTimer = new Date().getTime();
+	var $diff = $endTimer - $startTimer;
+	_assert($diff > 3000 && $diff < 7000);
+}
+
+// Bypass a specific XHR request
+_navigateTo("/demo/xhrReadyStateTest.htm");
+_byPassWaitMechanism(true, "/clicks.htm/");
+var $firstTime = new Date().getTime();
+_click(_button("b1"));
+_log("here");
+var $secondTime = new Date().getTime();
+var $diff = $secondTime - $firstTime;
+_assert($diff < 1000);
+_byPassWaitMechanism(false);
+
+// Enable bypassing streaming URls
+_readURL("http://localhost:9999/_s_/dyn/ConfigureUI_changePropertyValue?fileName=config%2Fuserdata.properties&propertyName=sahi.auto_wait.bypass_streaming_urls&propertyValue=true&t=" + Date.now());
+// wait for 2 seconds for the configure to take effect
+_wait(2000);
+
+// Check if a specific fetch request url that is present in streaming urls is bypassed
+if(!_isIE()) {
+
+	var $loc = _fetch(window.location);
+	var $streamingUrl1 = url = $loc.protocol + "//" + $loc.hostname + ($loc.port ? (':' + $loc.port) : '') + '/demo/php/delayedLoadInner.php?t=3';
+	Packages.net.sf.sahi.config.Configuration.setStreamingUrl($streamingUrl1, true);
+	_navigateTo("/demo/fetchAPITest.htm");
+	var $startTimer = new Date().getTime();
+	_click(_button("b1"));
+	_log("here");
+	var $endTimer = new Date().getTime();
+	var $diff = $endTimer - $startTimer;
+	_assert($diff < 2000);
+	Packages.net.sf.sahi.config.Configuration.setStreamingUrl($streamingUrl1, false);
+}
+
+// Check if a specific XHR request url that is present in streaming urls is bypassed
+var $loc = _fetch(window.location);
+var $streamingUrl2 = url = $loc.protocol + "//" + $loc.hostname + ($loc.port ? (':' + $loc.port) : '') + '/demo/clicks.htm';
+Packages.net.sf.sahi.config.Configuration.setStreamingUrl($streamingUrl2, true);
+_navigateTo("/demo/xhrReadyStateTest.htm");
+var $firstTime = new Date().getTime();
+_click(_button("b1"));
+_log("here");
+var $secondTime = new Date().getTime();
+var $diff = $secondTime - $firstTime;
+_assert($diff < 2000);
+Packages.net.sf.sahi.config.Configuration.setStreamingUrl($streamingUrl2, false);
+
+_navigateTo("/demo/php/delayedLoad.php?t=4");
+$time = parseInt(_getText(_div("clock")));
+_assert($time >= 4 && $time < 7);
+
+// Disable bypassing streaming URls
+_readURL("http://localhost:9999/_s_/dyn/ConfigureUI_changePropertyValue?fileName=config%2Fuserdata.properties&propertyName=sahi.auto_wait.bypass_streaming_urls&propertyValue=false&t=" + Date.now());
+// wait for 2 seconds for the configure to take effect
+_wait(2000);

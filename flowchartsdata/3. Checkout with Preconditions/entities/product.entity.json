@@ -1,0 +1,109 @@
+{
+  "modifiedOn": "2024-06-19T11:20:48.318Z",
+  "name": "product",
+  "id": "-1",
+  "type": 1,
+  "createdOn": "2024-05-08T23:26:34Z",
+  "content": {
+    "default": {
+      "attr_01679636522544": {
+        "name": "name",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Name Input",
+            "accessor": "_textbox(\"product_description[1][name]\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "Pr",
+          "min-length": "5",
+          "max-length": "7",
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_11679636522545": {
+        "name": "meta",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Meta Input",
+            "accessor": "_textbox(\"product_description[1][meta_title]\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "product 1",
+          "min-length": "0",
+          "max-length": "0",
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_21679636522545": {
+        "name": "model",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Model Input",
+            "accessor": "_textbox(\"model\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "M1",
+          "min-length": "0",
+          "max-length": "0",
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_31679636522545": {
+        "name": "price",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Price Input",
+            "accessor": "_textbox(\"price\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "number",
+        "props": {
+          "min": "200",
+          "max": "200"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_41679636522545": {
+        "name": "quantity",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Quantity Input",
+            "accessor": "_textbox(\"quantity\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "number",
+        "props": {
+          "min": "100",
+          "max": "100"
+        },
+        "invalidData": [],
+        "validData": []
+      }
+    }
+  },
+  "enabled": false,
+  "parentId": ""
+}

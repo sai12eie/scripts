@@ -1,0 +1,26 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.657Z",
+  "name": "Logout Admin",
+  "id": "45893",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.657Z",
+  "content": {
+    "title": "Logout Admin",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Logout\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

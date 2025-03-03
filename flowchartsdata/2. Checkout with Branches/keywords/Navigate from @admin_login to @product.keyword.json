@@ -1,0 +1,36 @@
+{
+  "modifiedOn": "2024-05-07T07:31:52.064Z",
+  "name": "Navigate from @admin_login to @product",
+  "id": "0",
+  "type": 3,
+  "createdOn": "2024-05-07T07:31:52.064Z",
+  "content": {
+    "title": "Navigate from @admin_login to @product",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "customValue": "_link(\"Catalog\")",
+            "paramMode": "code"
+          }
+        ]
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "customValue": "_link(\"Products\")",
+            "paramMode": "code"
+          }
+        ]
+      }
+    ],
+    "isSystemKeyword": true
+  },
+  "enabled": false,
+  "parentId": ""
+}

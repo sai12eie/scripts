@@ -1,0 +1,8 @@
+_navigateTo("fetchAPITest.htm");
+var $startTimer = new Date().getTime();
+_click(_button("b1"));
+_log("here");
+var $endTimer = new Date().getTime();
+var $diff = $endTimer - $startTimer;
+_log($diff);
+_assert($diff > 3000);

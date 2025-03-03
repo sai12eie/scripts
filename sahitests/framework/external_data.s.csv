@@ -1,0 +1,91 @@
+"TestCase","Data","Key Word","Argument1","Argument2","Argument3"
+,,"loadSahi","database.sah"
+,,"_resource","externalExcelData.xls"
+,,"_resource","externalExcelData2.xls"
+,,"_resource","externalExcelData3.xls"
+,,"_resource","externalCSVData.csv"
+,,"_resource","externalCSVData2.csv"
+,,"_resource","externalCSVData3.csv"
+
+,,"D1=_readExcelFile","externalExcelData.xls","Sheet1","{includeHeader:true}"
+,,"D2=_readExcelFile","externalExcelData2.xls","Sheet1","{includeHeader:true}"
+,,"D3=_readExcelFile","externalExcelData3.xls","Sheet1","{includeHeader:true}"
+
+,,"D4=_readCSVFile","externalCSVData.csv","{includeHeader:true}"
+,,"D5=_readCSVFile","externalCSVData2.csv","{includeHeader:true}"
+,,"D6=_readCSVFile","externalCSVData3.csv","{includeHeader:true}"
+
+,,"$jdbcDriver=","""org.h2.Driver"""
+,,"$jdbcURL=","""jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"""
+,,"createInMemoryDatabase","$jdbcDriver","$jdbcURL"
+,,"$db=","_getDB($jdbcDriver, $jdbcURL, """", """")"
+,,"$sql=","""SELECT * FROM EXTERNALDATA"""
+,,"D7=","$db.selectWithHeader($sql)"
+,,"$sql1=","""SELECT TOTAL,TOTALROW,H1,H2 FROM EXTERNALDATA"""
+,,"D8=","$db.selectWithHeader($sql1)"
+,,"dropTable","$jdbcDriver","$jdbcURL"
+
+"Excel external data usage",,"[Documentation]","External data usage from excel"
+,,"countRows","[D1:data3]"
+,,"resetCount"
+,,"countRows","[D1:data4]"
+,,"resetCount"
+,,"countRows","[D1:data5:h1]","[D1:data5:h2]","[D1:data5:total]","[D1:data5:totalRow]"
+,,"resetCount"
+
+"Excel Data Driven data",,"[Keyword]","countRows"
+,,"[Data]","[D1:data1]"
+,,"resetCount"
+,,"[Keyword]","countRows2"
+,,"[Data]","[D1:data6]"
+,,"verifyDataRowsCountExcludingComments","5"
+,,"resetCount"
+
+"Excel Data Drive header",,"[Keyword]","countRows"
+,,"[Data]","[D1:data2:h1]","[D1:data2:h2]","[D1:data2:total]","[D1:data2:totalRow]"
+,,"resetCount"
+
+"Excel Data Drive2",,"[Keyword]","countRows"
+,,"[Data]","[D2]"
+,,"resetCount"
+
+"Excel Data Drive3",,"[Keyword]","countRows"
+,,"[Data]","[D3::h1]","[D3::h2]","[D3::total]","[D3::totalRow]"
+,,"resetCount"
+
+
+"CSV external data usage",,"[Documentation]","External data usage from CSV"
+,,"countRows","[D4:data3]"
+,,"resetCount"
+,,"countRows","[D4:data4]"
+,,"resetCount"
+,,"countRows","[D4:data5:h1]","[D4:data5:h2]","[D4:data5:total]","[D4:data5:totalRow]"
+,,"resetCount"
+
+"CSV Data Drive4",,"[Keyword]","countRows"
+,,"[Data]","[D4:data1]"
+,,"resetCount"
+
+"CSV Data Drive headers",,"[Keyword]","countRows"
+,,"[Data]","[D4:data2:h1]","[D4:data2:h2]","[D4:data2:total]","[D4:data2:totalRow]"
+,,"resetCount"
+
+"CSV Data Drive5",,"[Keyword]","countRows"
+,,"[Data]","[D5]"
+,,"resetCount"
+
+"CSV Data Drive6",,"[Keyword]","countRows"
+,,"[Data]","[D6::h1]","[D6::h2]","[D6::total]","[D6::totalRow]"
+,,"resetCount"
+
+"Database Data Drive7",,"[Keyword]","countRows"
+,,"[Data]","[D7]"
+,,"resetCount"
+
+"Database Data Drive8",,"[Keyword]","countRows"
+,,"[Data]","[D8::H1]","[D8::H2]","[D8::TOTAL]","[D8::TOTALROW]"
+,,"resetCount"
+
+"New Data Drive",,"[Documentation]","New Data Drive with Commented Rows"
+,"[D1:data6]","countRows2","arg:1"
+,,"verifyDataRowsCountExcludingComments","5"

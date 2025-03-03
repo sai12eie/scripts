@@ -1,0 +1,10 @@
+"name","type"
+"goat","herbivore"
+"cow","herbivore"
+"dog","omnivore"
+"cat","omnivore"
+"sheep","herbivore"
+
+"data1","java","ruby","python"
+,"3","2","1"
+,"4","5","0"

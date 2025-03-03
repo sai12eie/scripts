@@ -1,0 +1,11 @@
+_include("stackTraceL2.sah");
+function level1(){
+	level2();
+}
+
+function level2(){
+	_alert(_stackTrace());
+	level3();
+}
+
+level1();

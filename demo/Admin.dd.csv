@@ -1,0 +1,4 @@
+"#script","url","tags"
+"Scenarios/CreateNewCoupon.s.csv","https://demoapps.testflowchart.com/opencart/","coupon,all"
+"Scenarios/CreateNewProduct.s.csv","https://demoapps.testflowchart.com/opencart/","product,all"
+"Scenarios/RegisterNewUser.s.csv","https://demoapps.testflowchart.com/opencart/","user,all"

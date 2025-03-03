@@ -1,0 +1,80 @@
+_resource("includes/values.txt");
+function testScriptName(){
+	_assertEqual("evalOnRhino.sah", _scriptName());
+}
+function testScriptPath(){
+	var $path = _scriptPath();
+	_assert($path.indexOf("evalOnRhino.sah") != -1);
+	_assertEqual($path, _scriptPath());
+	_assertNotEqual(_scriptName(), _scriptPath());
+}
+function testUserDataPath(){
+	var $path = _userDataPath("123");
+	_assertEqual($path, _userDataPath("123"));
+}
+function testReadFile(){
+	var $userDirPath = _userDataDir();
+	var $fileContents = _readFile($userDirPath + "/scripts/sahitests/includes/values.txt");
+	_assertEqual($fileContents, _readFile(_userDataDir() + "/scripts/sahitests/includes/values.txt"));
+}
+function testReadCSVFile(){
+	var $userDirPath = _userDataDir();
+	var $fileContents = _readCSVFile($userDirPath + "/scripts/sahitests/includes/values.txt");
+	_assertEqual($fileContents, _readCSVFile(_userDataDir() + "/scripts/sahitests/includes/values.txt"));
+}
+function xtestLocalVariable(){
+	var $x = 10;
+	_alert(_evalOnRhino("$x"));
+	_assertEqual(10, _evalOnRhino("$x"));
+	$x = 20;
+	_assertEqual(20, _evalOnRhino("$x"));
+}
+var $y = 10;
+function testGlobalVariable(){
+	_assertEqual(10, _evalOnRhino("$y"));
+	$y = 20;
+	_assertEqual(20, _evalOnRhino("$y"));
+}
+function testScriptPathWithForwardSlashes(){
+	var $path = _scriptPath();
+	_assertEqual($path, _scriptPath("/"));
+}
+function testScriptPathWithBackSlashes(){
+  	var $path = _scriptPath().replace(/\//g, "\\");
+	_assertEqual($path, _scriptPath("\\"));
+}
+function testUserDataDirWithForwardSlashes(){
+	var $path = _userDataDir();
+	_assertEqual($path, _userDataDir("/"));
+}
+function testUserDataDirWithBackSlashes(){
+  	var $path = _userDataDir().replace(/\//g, "\\");
+	_assertEqual($path, _userDataDir("\\"));
+}
+function testUserDataPathWithForwardSlashes(){
+	var $path = _userDataPath("123");
+	_assertEqual($path, _userDataPath("123", "/"));
+}
+function testUserDataPathWithBackSlashes(){
+  	var $path = _userDataPath("123").replace(/\//g, "\\");
+	_assertEqual($path, _userDataPath("123", "\\"));
+}
+function testResolvePathWithForwardSlashes(){
+	var $path = _resolvePath("123");
+	_assertEqual($path, _resolvePath("123", "/"));
+}
+function testResolvePathWithBackSlashes(){
+  	var $path = _resolvePath("123").replace(/\//g, "\\");
+	_assertEqual($path, _resolvePath("123", "\\"));
+}
+_runUnitTests();
+
+//_alert(_readFile("D:\\Dev\\sahi\\sahi_993\\sahi0.log"));
+//var $x = 20;
+//_alert(_evalOnRhino("_sessionInfo()").scriptPath);
+////_click(_link("Frames Test"));
+//var $x = 50;
+//_click(_link("Form Test"));
+//_alert(_evalOnRhino("$x"));
+//_alert(_evalOnRhino("null"));
+//_alert(_evalOnRhino(null));

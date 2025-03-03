@@ -1,0 +1,14 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.783Z",
+  "name": "Navigate from @coupon to @logout_admin_screen",
+  "id": "45905",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.783Z",
+  "content": {
+    "title": "Navigate from @coupon to @logout_admin_screen",
+    "parameters": [],
+    "steps": []
+  },
+  "enabled": false,
+  "parentId": ""
+}

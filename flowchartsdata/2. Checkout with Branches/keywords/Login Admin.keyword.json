@@ -1,0 +1,56 @@
+{
+  "modifiedOn": "2024-04-08T05:22:31.137Z",
+  "name": "Login Admin",
+  "id": "44857",
+  "type": 3,
+  "createdOn": "2024-04-08T05:22:31.137Z",
+  "content": {
+    "title": "Login Admin",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_textbox(\"username\")"
+          },
+          {
+            "isCustomParameter": true,
+            "customValue": "\"demo\""
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_password(\"password\")"
+          },
+          {
+            "isCustomParameter": true,
+            "customValue": "\"coolstore\""
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_submit(\"Login\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

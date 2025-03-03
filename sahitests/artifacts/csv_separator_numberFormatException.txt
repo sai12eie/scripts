@@ -1,0 +1,166 @@
+
+C:\MultiSahiPro_Install\V611_2011\userdata\bin>SET SAHI_HOME=..\..
+
+C:\MultiSahiPro_Install\V611_2011\userdata\bin>SET SAHI_USERDATA_DIR=..
+
+C:\MultiSahiPro_Install\V611_2011\userdata\bin>SET SAHI_EXT_CLASS_PATH="../extlib/*"
+
+C:\MultiSahiPro_Install\V611_2011\userdata\bin>CALL setjava.bat
+
+C:\MultiSahiPro_Install\V611_2011\userdata\bin>set SAHI_JAVA_HOME=C:\Program Files\Java\jre7
+
+C:\MultiSahiPro_Install\V611_2011\userdata\bin>set PATH=C:\Program Files\Java\jre7\bin;c:\graphicsmagick;C:\Ruby200-x64\bin;C:\Program Files (x86)\EasyPHP-DevServer-13.1VC11\binaries\php\php_runningversion;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\
+v1.0\;C:\Program Files\apache-maven-3.1.0-bin\apache-maven-3.1.0\bin;D:\dev\bin;C:\Program Files\apache-ant-1.9.2\bin;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files\Java\jdk1.7.0_45\bin;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Git\bin;C:\Program Files\Java\jdk1.7.0_45\bin
+
+
+C:\MultiSahiPro_Install\V611_2011\userdata\bin>CALL ..\..\bin\dashboard.bat
+--------
+SAHI_HOME: ..\..
+SAHI_USERDATA_DIR: ..
+SAHI_EXT_CLASS_PATH: "../extlib/*"
+--------
+java version "1.7.0_45"
+Java(TM) SE Runtime Environment (build 1.7.0_45-b18)
+Java HotSpot(TM) 64-Bit Server VM (build 24.45-b08, mixed mode)
+Aug 14, 2015 12:32:20 PM net.sf.sahi.config.Configuration reinitialize
+INFO: Sahi properties file = C:\MultiSahiPro_Install\V611_2011\config\sahi.properties
+Aug 14, 2015 12:32:20 PM net.sf.sahi.config.Configuration reinitialize
+INFO: Sahi user properties file = C:\MultiSahiPro_Install\V611_2011\userdata\config\userdata.properties
+Aug 14, 2015 12:32:20 PM net.sf.sahi.util.BrowserTypesLoader loadAvailableBrowserTypes
+INFO:
+-----
+Reading browser types from: C:\MultiSahiPro_Install\V611_2011\userdata\config\browser_types.xml
+-----
+
+-----------------------------------------------------
+>>>> Sahi Pro 1-User License licensed to Sahi Dev License
+>>>> Issued on Tue Apr 28 19:33:06 IST 2015
+-----------------------------------------------------
+>>>> Sahi Pro v6.1.0 started. Listening on port: 9999
+>>>> Configure your browser to use this server and port as its proxy
+>>>> Browse any page and CTRL-ALT-DblClick on the page to bring up the Sahi Controller
+Aug 14, 2015 12:32:22 PM net.sf.sahi.util.Utils setUrlConnectionFollowRedirectsInternal
+INFO: urlConnectionFollowRedirectsInternal = false
+Aug 14, 2015 12:32:22 PM in.co.sahi.datastore.SahiDB <clinit>
+INFO: Using Database:
+driverName=org.h2.Driver
+jdbcurl=jdbc:h2:C:/MultiSahiPro_Install/V611_2011/userdata/database/db0;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;IGNORECASE=TRUE
+userName=sa
+Using Connection Pool
+Aug 14, 2015 12:32:22 PM in.co.sahi.datastore.SahiDB createTables
+INFO: Check tables version
+Aug 14, 2015 12:32:23 PM in.co.sahi.datastore.SahiDB createTables
+INFO: versionFromDB=2015-08-13 17:41:10
+Aug 14, 2015 12:32:23 PM in.co.sahi.datastore.SahiDB createTables
+INFO: version=2015-08-13 17:41:10
+Aug 14, 2015 12:32:23 PM in.co.sahi.datastore.SahiDB createTables
+INFO: At current version. No changes were done.
+Aug 14, 2015 12:32:23 PM in.co.sahi.datastore.SahiDB createTables
+INFO: {result: [["SAHIKEY","SAHIVALUE"],["dbVersion","72"],["versionNo","2015-08-13 17:41:10"]]}
+Aug 14, 2015 12:32:23 PM in.co.sahi.datastore.SahiDB createTables
+INFO: Finished preparing report tables: 520ms
+Aug 14, 2015 12:32:40 PM in.co.sahi.distributed.DSahiRunner startNonDistributedRun
+INFO: SuiteId : sahi_6a6b8ef509d7504dcb0b75e0909619a6cf18
+Aug 14, 2015 12:32:40 PM in.co.sahi.distributed.DSahiRunner startNonDistributedRun
+INFO: URL : http://localhost:9999/_s_/dyn/in.co.sahi.command.Master_runNonDistributed?1=1&port=9999&host=localhost&isSingleSessionS=false&a=a&baseURL=http%3A%2F%2Fsahitest.com%2Fdemo%2F&browserType=chrome&debug=false&emailProp=&suiteId=sahi_6a6b8ef509d7504dcb0b75e0909619a6cf18&useSingleSession=false
+&isSendEmailS=null&threads=5&scriptsPathMaster=C%3A%2FMultiSahiPro_Install%2FV611_2011%2Fuserdata%2Fscripts%2F&suite=demo%2Flabel.sah&sendEmailPeriodicallyS=null
+Aug 14, 2015 12:32:40 PM in.co.sahi.command.Master addNodes
+INFO: syncNodes = false
+Aug 14, 2015 12:32:40 PM in.co.sahi.distributed.DSuiteRunner addNode
+INFO: Adding localhost:9999
+Aug 14, 2015 12:32:40 PM net.sf.sahi.test.TestLauncher execute
+INFO: #### Running Script: C:/MultiSahiPro_Install/V611_2011/userdata/scripts/demo/label.sah
+java.lang.NumberFormatException: For input string: "default xml namespace = "
+        at java.lang.NumberFormatException.forInputString(Unknown Source)
+        at java.lang.Integer.parseInt(Unknown Source)
+        at java.lang.Integer.parseInt(Unknown Source)
+        at net.sf.sahi.playback.SahiScript.addXMLOperatorsInAstNode(SahiScript.java:222)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:311)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:306)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:297)
+        at net.sf.sahi.playback.SahiScript.addTranslateFunction(SahiScript.java:248)
+        at net.sf.sahi.playback.SahiScript.setScript(SahiScript.java:117)
+        at net.sf.sahi.playback.FileScript.loadScript(FileScript.java:40)
+        at net.sf.sahi.playback.SahiScript.init(SahiScript.java:1002)
+        at net.sf.sahi.playback.SahiScript.<init>(SahiScript.java:109)
+        at net.sf.sahi.playback.FileScript.<init>(FileScript.java:34)
+        at net.sf.sahi.playback.ScriptFactory.getScript(ScriptFactory.java:18)
+        at net.sf.sahi.playback.ScriptFactory.getScript(ScriptFactory.java:22)
+        at net.sf.sahi.test.TestLauncher.execute(TestLauncher.java:105)
+        at in.co.sahi.distributed.BrowserType.execute(BrowserType.java:143)
+        at in.co.sahi.distributed.BrowserType$1.run(BrowserType.java:232)
+        at java.lang.Thread.run(Unknown Source)
+java.lang.NumberFormatException: For input string: "."
+        at java.lang.NumberFormatException.forInputString(Unknown Source)
+        at java.lang.Integer.parseInt(Unknown Source)
+        at java.lang.Integer.parseInt(Unknown Source)
+        at net.sf.sahi.playback.SahiScript.addXMLOperatorsInAstNode(SahiScript.java:222)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:311)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:306)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:297)
+        at net.sf.sahi.playback.SahiScript.addTranslateFunction(SahiScript.java:248)
+        at net.sf.sahi.playback.SahiScript.setScript(SahiScript.java:117)
+        at net.sf.sahi.playback.FileScript.loadScript(FileScript.java:40)
+        at net.sf.sahi.playback.SahiScript.init(SahiScript.java:1002)
+        at net.sf.sahi.playback.SahiScript.<init>(SahiScript.java:109)
+        at net.sf.sahi.playback.FileScript.<init>(FileScript.java:34)
+        at net.sf.sahi.playback.ScriptFactory.getScript(ScriptFactory.java:18)
+        at net.sf.sahi.playback.ScriptFactory.getScript(ScriptFactory.java:22)
+        at net.sf.sahi.test.TestLauncher.execute(TestLauncher.java:105)
+        at in.co.sahi.distributed.BrowserType.execute(BrowserType.java:143)
+        at in.co.sahi.distributed.BrowserType$1.run(BrowserType.java:232)
+        at java.lang.Thread.run(Unknown Source)
+java.lang.NumberFormatException: For input string: ".."
+        at java.lang.NumberFormatException.forInputString(Unknown Source)
+        at java.lang.Integer.parseInt(Unknown Source)
+        at java.lang.Integer.parseInt(Unknown Source)
+        at net.sf.sahi.playback.SahiScript.addXMLOperatorsInAstNode(SahiScript.java:222)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:311)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:306)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:297)
+        at net.sf.sahi.playback.SahiScript.addTranslateFunction(SahiScript.java:248)
+        at net.sf.sahi.playback.SahiScript.setScript(SahiScript.java:117)
+        at net.sf.sahi.playback.FileScript.loadScript(FileScript.java:40)
+        at net.sf.sahi.playback.SahiScript.init(SahiScript.java:1002)
+        at net.sf.sahi.playback.SahiScript.<init>(SahiScript.java:109)
+        at net.sf.sahi.playback.FileScript.<init>(FileScript.java:34)
+        at net.sf.sahi.playback.ScriptFactory.getScript(ScriptFactory.java:18)
+        at net.sf.sahi.playback.ScriptFactory.getScript(ScriptFactory.java:22)
+        at net.sf.sahi.test.TestLauncher.execute(TestLauncher.java:105)
+        at in.co.sahi.distributed.BrowserType.execute(BrowserType.java:143)
+        at in.co.sahi.distributed.BrowserType$1.run(BrowserType.java:232)
+        at java.lang.Thread.run(Unknown Source)
+java.lang.NumberFormatException: For input string: "::"
+        at java.lang.NumberFormatException.forInputString(Unknown Source)
+        at java.lang.Integer.parseInt(Unknown Source)
+        at java.lang.Integer.parseInt(Unknown Source)
+        at net.sf.sahi.playback.SahiScript.addXMLOperatorsInAstNode(SahiScript.java:222)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:311)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:306)
+        at net.sf.sahi.playback.SahiScript.parse(SahiScript.java:297)
+        at net.sf.sahi.playback.SahiScript.addTranslateFunction(SahiScript.java:248)
+        at net.sf.sahi.playback.SahiScript.setScript(SahiScript.java:117)
+        at net.sf.sahi.playback.FileScript.loadScript(FileScript.java:40)
+        at net.sf.sahi.playback.SahiScript.init(SahiScript.java:1002)
+        at net.sf.sahi.playback.SahiScript.<init>(SahiScript.java:109)
+        at net.sf.sahi.playback.FileScript.<init>(FileScript.java:34)
+        at net.sf.sahi.playback.ScriptFactory.getScript(ScriptFactory.java:18)
+        at net.sf.sahi.playback.ScriptFactory.getScript(ScriptFactory.java:22)
+        at net.sf.sahi.test.TestLauncher.execute(TestLauncher.java:105)
+        at in.co.sahi.distributed.BrowserType.execute(BrowserType.java:143)
+        at in.co.sahi.distributed.BrowserType$1.run(BrowserType.java:232)
+        at java.lang.Thread.run(Unknown Source)
+Aug 14, 2015 12:32:40 PM net.sf.sahi.test.ProcessHelper execute
+INFO: "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --user-data-dir=C:/MultiSahiPro_Install/V611_2011/userdata\browser\chrome\profiles\sahi0 --proxy-server=127.0.0.1:9999 --disable-popup-blocking --always-authorize-plugins --allow-outdated-plugins --enable-npapi --incognito "http://s
+ahi.example.com/_s_/dyn/Player_auto?startUrl=http%3A%2F%2Fsahitest.com%2Fdemo%2F__SahiAmpersandSahi__sahisid=sahi_6a6b8ef509d7504dcb0b75e0909619a6cf18sahixe4719412096e104d740a10a0d58b3de0849ex__SahiAmpersandSahi__isSingleSession=false"
+Aug 14, 2015 12:32:43 PM net.sf.sahi.test.ProcessHelper$PIDGatherer run
+INFO: PIDs: [5356, 3964, 6568, 5680]; 2462 ms
+logsInfo=null
+Killing C:/MultiSahiPro_Install/V611_2011/userdata/scripts/demo/label.sah pids: [5356, 3964, 6568, 5680]
+Aug 14, 2015 12:33:03 PM net.sf.sahi.test.ProcessHelper kill
+INFO: Kill: [5356, 3964, 6568, 5680]
+logsInfo=null
+Aug 14, 2015 12:33:07 PM in.co.sahi.command.Master killAll
+INFO: killAll: ALL
+Aug 14, 2015 12:33:07 PM in.co.sahi.distributed.DSuiteRunner kill
+INFO: kill called

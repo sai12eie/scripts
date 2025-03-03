@@ -1,0 +1,111 @@
+_resource("upload me.txt");
+_resource("uploadme2.txt");
+_resource("uploadme3.txt");
+
+var $userDirPath = _userDataDir();
+var $path = _scriptPath();
+var $sdf = new java.text.SimpleDateFormat("E MMM dd yyyy HH:mm:ss");
+
+function getFileModifiedDateTime(){
+	$path = _resolvePath("upload me.txt");
+	var $file = new java.io.File($path);
+	var $time = $file.lastModified();
+	var $mTime = $sdf.format($time);
+	return $mTime;
+}
+
+function setUp(){
+	_navigateTo("/demo/php/fileUpload.htm");	
+}
+
+function testFileModifiedDate() {
+	$path = _resolvePath("uploadme3.txt");
+	var $file = new java.io.File($path);
+	var $time = $file.lastModified();
+	var $newLastModifiedString = "Tue Apr 06 2021 14:05:04";
+	var $newLastModifiedDate = $sdf.parse($newLastModifiedString);
+	$file.setLastModified($newLastModifiedDate.getTime());
+	
+	_setFile3(_span("dynamicUpload"), "uploadme3.txt");
+	_assertEqual("Last Modified Date:Tue Apr 06 2021 14:05:04 GMT+0530 (India Standard Time)", _getText(_span("fileType[1]")));
+}
+
+function testFilesValidation(){
+	_setFile3(_file("file[3]"), ["upload me.txt", "uploadme2.txt"]);
+	 _assertExists(_span("File Size:312"));
+	_assertExists(_span("File Size:332"));	
+	_assertExists(_span("File Name:upload me.txt"));
+	_assertExists(_span("File Name:uploadme2.txt"));
+	_assertExists(_span("upload me.txt"));
+	_assertExists(_span("uploadme2.txt"));
+}
+
+function testFormDataAppend(){
+	_setFile3(_file("file[3]"), ["upload me.txt"]);
+	_assertExists(_span("upload me.txt"));
+	if(!_isIE()){
+		_assertTrue(_eval(_file("file[3]").files instanceof FileList));
+		_assertFalse(_eval(_file("file[3]").files[0] instanceof FileList));
+	}
+}
+
+function testFormSubmission(){
+	_setFile3(_file("file[][2]"), ["upload me.txt", "uploadme2.txt"]);
+	_click(_submit("Submit Multiple"));
+	_assertContainsText("Array", _span("type"));
+	_assertContainsText("upload me.txt", _span("file"));
+	_assertContainsText("0.3046875 Kb", _span("size"));		
+	_assertContainsText("uploadme2.txt", _span("file[1]"));
+	_assertContainsText("0.32421875 Kb", _span("size[1]"));	
+}
+
+function testActionURL(){
+	_setFile3(_file("file4"), "upload me.txt", "fileUpload.php");
+	_click(_submit("Submit Single[2]"));
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+function testBrowserHang(){
+	_click(_submit("Remove All Element"));
+	_assertNotExists(_file("elToBeRemoved"))
+}
+
+function testViaRemovedFileEl(){
+	var $time = getFileModifiedDateTime();
+	_log("File modified date is : " + $time, "CUSTOM");
+	
+	_setFile3(_span("dynamicUpload"), "upload me.txt");
+	_assertExists(_span("upload me.txt"));
+	_assertExists(_span("0.3046875 Kb"));
+	_assertNotExists(_file("dynamicInput"));
+	var $text = "Last Modified Date:"+ $time + " GMT+0530 (India Standard Time)";
+	_assertEqual($text, _getText(_span("fileType[1]")));
+}
+
+function testBrowserHang(){
+	_click(_submit("Remove All Element"));
+	_assertNotExists(_file("elToBeRemoved"));
+	_assertNotExists(_span("Child Element"));
+}
+
+function testDynamicFileEl(){
+	_setFile3(_span("dynamicUpload2"), "uploadme2.txt");
+	_assertExists(_span("uploadme2.txt"));
+	_assertExists(_span("0.32421875 Kb"));
+}
+
+function testViaFarHiddenFileEl(){
+	_setFile3(_span("Upload via hidden element which is not near"), "upload me.txt", null, _file("farHiddenFile"));
+	_assertExists(_span("upload me.txt"));
+	_assertExists(_span("0.3046875 Kb"));
+}
+
+function testViaHiddenFileEl(){
+	_setFile3(_span("Upload via hidden element"), "upload me.txt");
+	_assertExists(_span("upload me.txt"));
+	_assertExists(_span("0.3046875 Kb"));
+}
+
+_runUnitTests();

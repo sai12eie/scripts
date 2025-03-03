@@ -1,0 +1,12 @@
+function onJSError($s){
+	_log($s, "custom1");
+	return $s.indexOf("xx") == -1;
+}
+
+_navigateTo("/demo/index.htm");
+_navigateTo("/demo/jsError.htm");
+_click(_button("Click works"));
+_click(_button("Click causes error"));
+_click(_button("Click works"));
+_log("done");
+

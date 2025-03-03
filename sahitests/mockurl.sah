@@ -1,0 +1,9 @@
+_navigateTo("/demo/label.htm", true);
+_assertNotExists(_div("url"));
+var $pattern = ".*/demo[/]label.htm";
+_addMock($pattern, "net.sf.sahi.command.MockResponder_simple");
+_navigateTo("/demo/label.htm", true);
+_assertContainsText("/demo/label.htm",_div("url"));
+_removeMock($pattern);
+_navigateTo("/demo/label.htm", true);
+_assertNotExists(_div("url"));

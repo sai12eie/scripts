@@ -1,0 +1,27 @@
+function testOuth2YahooApi() {
+	_navigateTo("/_s_/dyn/pro/REST_authzForm");
+	_include("restYahooApis.sah");
+	_wait(1000);
+	$request = new RESTRequest();
+	$request.setURL("https://social.yahooapis.com/v1/user/DVWWDTYY4JPGAEMIZZOCOBOTLDXQ/profile");
+	$request.setAuthCredentials("authType", "OAuth 2.0");
+	var $accessToken = _getValue(_textbox("accessTokenResp"));
+	$request.setHeader("Authorization", "Bearer "+$accessToken);
+	$response = $request.submit("GET");
+	_assertEqual("200", $response.getResponseCode());
+}
+
+function testOuth2GoogleApi() {
+	_navigateTo("/_s_/dyn/pro/REST_authzForm");
+	_include("restGoogleApis.sah");
+	_wait(1000);
+	$request = new RESTRequest();
+	$request.setURL("https://www.googleapis.com/calendar/v3/calendars/example@gmail.com/events");
+	$request.setAuthCredentials("authType", "OAuth 2.0");
+	var $accessToken = _getValue(_textbox("accessTokenResp"));
+	$request.setHeader("Authorization", "Bearer "+$accessToken);
+	$response = $request.submit("GET");
+	_assertEqual("200", $response.getResponseCode());
+}
+
+_runUnitTests();

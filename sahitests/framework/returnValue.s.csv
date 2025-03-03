@@ -1,0 +1,15 @@
+"TestCase","Key Word","Argument1","Argument2","Argument3"
+
+"Verify return value","[Documentation]"
+,"parseInt","""123aaa"""
+,"$x=","[ReturnValue]"
+,"_assertEqual","123","$x"
+
+
+"Verify return value resets","[Documentation]"
+,"parseInt","""123aaa"""
+,"$x=","[ReturnValue]"
+,"_assertEqual","123","$x"
+,"escape","""a:b"""
+,"$x=","[ReturnValue]"
+,"_assertEqual","a%3Ab","$x"

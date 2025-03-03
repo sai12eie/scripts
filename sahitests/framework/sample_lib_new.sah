@@ -1,0 +1,98 @@
+_navigateTo("/demo/training/");
+
+function Login($UserName, $Password){
+	_setValue(_textbox("user"), $UserName);
+	_setValue(_password("password"), $Password);
+	_click(_submit("Login"));
+}
+
+function DoEmptyAllCell(){
+	_setValue(_textbox("q"), "");
+	_setValue(_textbox("q[1]"), "");
+	_setValue(_textbox("q[2]"), "");
+}
+
+
+function AddBooks($NumJava, $NumRuby, $NumPython){
+	_setValue(_textbox("q", _near(_cell("Core Java"))), $NumJava);
+	_setValue(_textbox("q", _near(_cell("Ruby for Rails"))), $NumRuby);
+	_setValue(_textbox("q", _near(_cell("Python Cookbook"))), $NumPython);
+	_click(_button("Add"));
+}
+
+function VerifyTotal($Total){
+	_assertEqual($Total, _textbox("total").value);
+}
+
+function Logout(){
+	_click(_button("Logout"));
+}
+
+function VerifyNotLoggedIn(){
+	_assertExists(_textbox("user"));
+}
+
+function VerifyErrorMessage($Message){
+	_assert(_isVisible(_div("errorMessage")));
+	_assertEqual($Message, _getText(_div("errorMessage")));
+}
+
+function CheckTotal($NumJava, $NumRuby, $NumPython, $Total) {
+	_setValue(_textbox("q", _near(_cell("Core Java"))), $NumJava);
+	_setValue(_textbox("q", _near(_cell("Ruby for Rails"))), $NumRuby);
+	_setValue(_textbox("q", _near(_cell("Python Cookbook"))), $NumPython);
+	_click(_button("Add"));
+	_assertEqual($Total, _textbox("total").value);
+}
+
+function VerifyEmptyCell($NumJava, $NumRuby, $NumPython){
+	var $total = $NumJava + $NumRuby + $NumPython;
+	var $q1 = +_getValue(_textbox(0, _under(_cell("Add quantity to cart"))));
+	var $q2 = +_getValue(_textbox(1, _under(_cell("Add quantity to cart"))));
+	var $q3 = +_getValue(_textbox(2, _under(_cell("Add quantity to cart"))));
+	var $t = $q1+$q2+$q3;
+	_assertEqual($t, $total);
+}
+
+
+var $jdbcDriver= "org.h2.Driver";
+var $jdbcURL= "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
+function CreateBooksData(){
+	try {
+		java.lang.Class.forName($jdbcDriver);
+		var $connection = java.sql.DriverManager.getConnection($jdbcURL, "", "");
+		var $stmt = $connection.createStatement();
+		$stmt.execute("CREATE TABLE BOOKSDATA(NumJava INT, NumRuby INT, NumPython INT, Total INT)");
+		$stmt.execute("INSERT INTO BOOKSDATA(NumJava, NumRuby, NumPython, Total) VALUES(1, 2, 3, 1750)");
+		$stmt.execute("INSERT INTO BOOKSDATA(NumJava, NumRuby, NumPython, Total) VALUES(1, 1, 1, 850)");
+	}
+	catch ($e) {
+		_debug($e);
+	}
+	finally {
+		$stmt.close();
+		$connection.close();
+	}
+}
+
+function GetBooksData(){
+	var $db= _getDB($jdbcDriver, $jdbcURL, "", "");
+	var $sql = "SELECT * FROM BOOKSDATA";
+	return $db.selectWithHeader($sql);
+}
+
+function DeleteBooksData(){
+	try {
+		java.lang.Class.forName($jdbcDriver);
+		var $connection = java.sql.DriverManager.getConnection($jdbcURL, "", "");
+		var $stmt = $connection.createStatement();
+		$stmt.execute("DROP TABLE BOOKSDATA");
+	}
+	catch ($e) {
+		_debug($e);
+	}
+	finally {
+		$stmt.close();
+		$connection.close();
+	}
+}

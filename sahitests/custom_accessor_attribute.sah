@@ -1,0 +1,8 @@
+_navigateTo("/demo/custom_accessor_attribute.htm");
+_assertEqual("1 2 3", _getText(_cell({'rowId':'1','columnId':'2','position':'3'})))
+_assertEqual("3 4 5", _getText(_cell({'rowId':'3','columnId':'4','position':'5'})))
+_assertEqual("MyValue", _getValue(_textbox({'data-aid':'MyUniqueId'})));
+_assertEqual("Custom Accessor Attribute", _getText(_div("child")));
+_assertEqual("Custom Accessor Attribute 1 2 3 3 4 5", _getText(_div("parent")));
+_assertEqual("MyValue", _getValue(_textbox("testId")));
+_assertEqual("1 2 3", _getText(_cell("testId")));

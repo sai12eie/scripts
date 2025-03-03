@@ -1,0 +1,39 @@
+/**
+ * Save an image from a URL.
+ * 
+ * @param $imgURL
+ * @param $filePath
+ * @returns
+ */
+function saveImage($imgURL, $filePath) {
+	var $bytes= Packages.net.sf.sahi.util.Utils.readURL($imgURL);
+	Packages.net.sf.sahi.util.Utils.writeFile($bytes, $filePath, true);
+}
+
+function testSaveImage() {
+	saveImage("/demo/add.gif", "C:/cross.gif");
+}
+
+function getAllOptionsUsingCollect($selectId) {
+	var $options = _collect("_option", "/.*/", _in(_select($selectId)));
+	for (var $i=0; $i<$options.length; $i++) {
+		_alert(_getText($options[$i]));
+	}
+}  
+
+function getAllOptionsUsingFetch($selectId) {
+	var $options = _fetch(_select($selectId).options);
+	for (var $i=0; $i<$options.length; $i++) {
+		_alert(_getText($options[$i]));
+	}
+} 
+
+function getAllOptionsUsingSet($selectId) {
+	var $options;
+	_set($options, _select($selectId).options);
+	for (var $i=0; $i<$options.length; $i++) {
+		_alert(_getText($options[$i]));
+	}
+} 
+
+getAllOptionsUsingCollect(3);

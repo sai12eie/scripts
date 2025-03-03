@@ -1,0 +1,4 @@
+_log($url);
+_log($tags);
+_assertEqual("all", $tags);
+_assertEqual("https://www.google.co.in/search?q=sahipro&oq=sahipro", $url);

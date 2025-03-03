@@ -1,0 +1,128 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.622Z",
+  "name": "Fill $product details",
+  "id": "45890",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.622Z",
+  "content": {
+    "title": "Fill $product details",
+    "parameters": [
+      {
+        "parameterId": "product_",
+        "entityTypeId": "product",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"btn btn-primary\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_01679636522544",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_01679636522544"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_11679636522545",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_11679636522545"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Data\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_21679636522545",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_21679636522545"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_31679636522545",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_31679636522545"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_41679636522545",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_41679636522545"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

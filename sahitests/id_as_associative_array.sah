@@ -1,0 +1,90 @@
+_click(_link("Link Test"));
+
+function testNormalAttributeSimple() {
+	_navigateTo("linkTest.htm");
+	_assertEqual(_image("imgWithLink"), _image({"alt":"imgWithLink"}));
+	_assertEqual(_image("imgWithLink"), _image({"sahiIndex":0}));
+	_assertEqual(_image("imgWithLink"), _image({"sahiIndex":"0"}));
+	
+	_assertEqual(_link("linkByContent"), _link({"sahiText":"linkByContent"}));
+	_assertEqual(_link("linkById"), _link({"id":"linkById"}));
+	
+}
+
+function testNormalAttributeCombo() {
+	_navigateTo("linkTest.htm");
+	_assertEqual(_image("imgWithLink[1]"), _image({"alt":"imgWithLink", "sahiIndex":1}));
+	_assertEqual(_link("linkById"), _link({"id":"linkById", "sahiIndex":0}));
+}
+
+function testFileFromURLSimple() {
+	_navigateTo("linkTest.htm");
+	_assertEqual(_image("imgWithLink"), _image("add.gif"));
+	_assertEqual(_image("imgWithLink"), _image({"sahiFileName": "add.gif"}));
+}
+
+function testFileFromURLCombo() {
+	_navigateTo("linkTest.htm");
+	_assertNotEqual(_image("imgWithLink[1]"), _image({"sahiFileName": "add.gif", "sahiIndex": 0}));
+	_assertEqual(_image("imgWithLink[1]"), _image({"sahiFileName": "add.gif", "sahiIndex": 2}));
+}
+
+function testAssociatedLabelSimple() {
+	_navigateTo("label.htm");
+	_assertEqual(_textbox(0), _textbox("Username"));
+
+	_assertEqual(_textbox("Username"), _textbox({"sahiLabel":"Username"}));
+}
+
+function testAssociatedLabelCombo() {
+	_navigateTo("label.htm");
+	_assertEqual(_textbox(1), _textbox("Username[1]"));
+
+	_assertEqual(_textbox("Username[1]"), _textbox({"sahiLabel":"Username", "sahiIndex":1}));
+}
+
+function testControllerIdentificationForImageShowsSahiFileName() {
+	/*
+	 [{"accessor":"","shortHand":"imgWithLink[1]","type":"_image","event":"_click","value":null,"relationStr":null,"attr":"title|alt"},
+	 {"accessor":"","shortHand":"add.gif[2]","type":"_image","event":"_click","value":null,"relationStr":null,"attr":"sahiFileName"},
+	 {"accessor":"","shortHand":2,"type":"_image","event":"_click","value":null,"relationStr":null,"attr":"index"}]
+	 */
+	_navigateTo("linkTest.htm");
+	var $accessorInfo = _fetch(_sahi.identify(_image(2))).apis;
+	
+	_assertEqual(3, $accessorInfo.length);
+	
+	_assertEqual("imgWithLink[1]", $accessorInfo[0].shortHand);
+	_assertEqual("title|alt", $accessorInfo[0].attr);
+
+	_assertEqual("add.gif[2]", $accessorInfo[1].shortHand);
+	_assertEqual("sahiFileName", $accessorInfo[1].attr);
+
+	_assertEqual(2, $accessorInfo[2].shortHand);
+	_assertEqual("index", $accessorInfo[2].attr); // why? this should be sahiIndex
+
+	_assertEqual("add.gif", _getAttribute(_image(2), "sahiFileName"))
+}
+
+function testControllerIdentificationForImageShowsSahiLabel() {
+	/*
+	[{"accessor":"","shortHand":"Username[1]","type":"_textbox","event":"_setValue","value":"","valueType":"value","relationStr":null,"anchorStr":null,"attr":"sahiLabel"},
+	{"accessor":"","shortHand":1,"type":"_textbox","event":"_setValue","value":"","valueType":"value","relationStr":null,"anchorStr":null,"attr":"index"}]
+	 */
+	_navigateTo("label.htm");
+	var $accessorInfo = _fetch(_sahi.identify(_textbox(1))).apis;
+	
+	_assertEqual(2, $accessorInfo.length);
+	
+	_assertEqual("Username[1]", $accessorInfo[0].shortHand);
+	_assertEqual("sahiLabel", $accessorInfo[0].attr);
+
+	_assertEqual(1, $accessorInfo[1].shortHand);
+	_assertEqual("index", $accessorInfo[1].attr); // why? this should be sahiIndex
+	
+	_assertEqual("Username", _getAttribute(_textbox(1), "sahiLabel"))
+}
+
+//_runUnitTests([testControllerIdentificationForImageShowsSahiFileName, testControllerIdentificationForImageShowsSahiLabel]);
+
+_runUnitTests();

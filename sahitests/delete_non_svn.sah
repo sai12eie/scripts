@@ -1,0 +1,22 @@
+function deleteDir(dir) {
+	if (dir.getAbsolutePath().indexOf(".svn") != -1) return;
+	try {
+		if (dir.exists()) {
+			var files = dir.listFiles();
+			var len = files.length; // cached length so it doesn't have to
+									// be looked up in loop
+			for (var i = 0; i < len; i++) {
+				if (files[i].isDirectory()) {
+					deleteDir(files[i]);
+				} else {
+					files[i]["delete"]();
+				}
+			}
+			//dir.delete();
+		}
+	} catch (e) {
+		_sahi.print(e);
+	}
+}
+
+deleteDir(new java.io.File("D:/tt/osticket - Copy/"));

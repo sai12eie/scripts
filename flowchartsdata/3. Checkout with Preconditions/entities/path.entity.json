@@ -1,0 +1,20 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.409Z",
+  "name": "path",
+  "id": "45871",
+  "type": 1,
+  "createdOn": "2024-05-09T04:56:34.409Z",
+  "content": {
+    "default": {},
+    "specific": [
+      {
+        "combo": {
+          "_applyCoupon": true
+        },
+        "overrides": {}
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

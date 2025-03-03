@@ -1,0 +1,9 @@
+var $_s = "";
+
+function logMe($s) {
+	$_s += $s + "|";
+}
+
+function getTrace() {
+  return $_s;
+}

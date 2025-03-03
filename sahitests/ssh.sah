@@ -1,0 +1,16 @@
+_include("ssh_constants.sah");
+
+var ssh = new Packages.org.twdata.enchanter.impl.DefaultStreamConnection();
+ssh.connect( "www.tytosoftware.com", 7822, $username, $password);
+ssh.waitFor("~$");
+ssh.sendLine("ls -al");
+java.lang.System.out.println("Done sending");
+var $i=0;
+var $output = [];
+while (true) {
+	var $line = ssh.getLine();
+	if ($line == null || "~$" == _sahi.trim($line) || $i++ > 50) break;
+	$output.push($line);
+}
+_alert($output.join("\r\n"));
+ssh.disconnect();

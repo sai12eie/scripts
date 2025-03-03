@@ -1,0 +1,23 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.372Z",
+  "name": "loggedin_admin_screen",
+  "id": "45868",
+  "type": 2,
+  "createdOn": "2024-05-09T04:56:34.372Z",
+  "content": {
+    "accessors": [
+      {
+        "id": "acc0",
+        "name": "Link Catalog",
+        "accessor": "_link(\"Catalog\")"
+      },
+      {
+        "id": "acc1",
+        "name": "Link Products",
+        "accessor": "_link(\"Products\")"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

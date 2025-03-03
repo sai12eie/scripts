@@ -1,0 +1,32 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.634Z",
+  "name": "Save $product",
+  "id": "45891",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.634Z",
+  "content": {
+    "title": "Save $product",
+    "parameters": [
+      {
+        "parameterId": "product_",
+        "entityTypeId": "product",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_submit(\"btn btn-primary\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

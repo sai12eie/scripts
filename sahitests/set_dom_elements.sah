@@ -1,0 +1,7 @@
+_navigateTo("/demo/");
+var $htmlLinks;
+_set($htmlLinks, document.links);
+
+for (var $i=0; $i<$htmlLinks.length; $i++) {
+	_log($htmlLinks[$i].href);
+}

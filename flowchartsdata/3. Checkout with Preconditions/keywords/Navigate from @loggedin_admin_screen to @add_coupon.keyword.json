@@ -1,0 +1,37 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.554Z",
+  "name": "Navigate from @loggedin_admin_screen to @add_coupon",
+  "id": "45884",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.554Z",
+  "content": {
+    "title": "Navigate from @loggedin_admin_screen to @add_coupon",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Marketing\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Coupons\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

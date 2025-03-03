@@ -1,0 +1,6 @@
+"group_1","$user.firstname","$user.lastname"
+"","Suresh","Raina"
+"","Saurav","Ganguly"
+"group_2","$user.firstname","$user.lastname"
+"","Saurav","Ganguly"
+"","Sachin","Tendulkar"

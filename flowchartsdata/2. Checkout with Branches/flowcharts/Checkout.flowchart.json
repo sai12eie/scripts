@@ -1,0 +1,1305 @@
+{
+  "modifiedOn": "2024-05-29T05:50:03.399Z",
+  "name": "Checkout",
+  "id": "-1",
+  "type": 0,
+  "createdOn": "2024-04-23T05:35:28Z",
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_checkout_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_checkout_1715236523122_0": {
+        "id": "fcn_checkout_1715236523122_0",
+        "content": "Checkout",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_admin_login_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_admin_login_1715236523122_0": {
+        "id": "fcn_admin_login_1715236523122_0",
+        "content": "@admin_login",
+        "nodeType": "action",
+        "branches": [
+          "fcn_loginadmin_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_loginadmin_1715236523122_0": {
+        "id": "fcn_loginadmin_1715236523122_0",
+        "content": "Login Admin",
+        "nodeType": "action",
+        "branches": [
+          "fcn_createproduct_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_createproduct_1715236523122_0": {
+        "id": "fcn_createproduct_1715236523122_0",
+        "content": "Create Product",
+        "nodeType": "pathsublabel",
+        "branches": [
+          "fcn_product_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_product_1715236523122_0": {
+        "id": "fcn_product_1715236523122_0",
+        "content": "@product",
+        "nodeType": "action",
+        "branches": [
+          "fcn_fillproductdetails_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_fillproductdetails_1715236523122_0": {
+        "id": "fcn_fillproductdetails_1715236523122_0",
+        "content": "Fill $product details",
+        "nodeType": "action",
+        "branches": [
+          "fcn_saveproduct_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_saveproduct_1715236523122_0": {
+        "id": "fcn_saveproduct_1715236523122_0",
+        "content": "Save $product",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifyproductdetails_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_verifyproductdetails_1715236523122_0": {
+        "id": "fcn_verifyproductdetails_1715236523122_0",
+        "content": "Verify $product details",
+        "nodeType": "state",
+        "branches": [
+          "fcn_path_applycoupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_path_applycoupon_1715236523122_0": {
+        "id": "fcn_path_applycoupon_1715236523122_0",
+        "content": "$path._applyCoupon?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_logoutadmin_1715236523122_0": {
+        "id": "fcn_logoutadmin_1715236523122_0",
+        "content": "Logout Admin",
+        "nodeType": "action",
+        "branches": [
+          "fcn_checkout_1715236523122_1"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_checkout_1715236523122_1": {
+        "id": "fcn_checkout_1715236523122_1",
+        "content": "Checkout",
+        "nodeType": "pathsublabel",
+        "branches": [
+          "fcn_shopping_cart_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_shopping_cart_1715236523122_0": {
+        "id": "fcn_shopping_cart_1715236523122_0",
+        "content": "@shopping_cart",
+        "nodeType": "action",
+        "branches": [
+          "fcn_searchproduct_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_searchproduct_1715236523122_0": {
+        "id": "fcn_searchproduct_1715236523122_0",
+        "content": "Search $product",
+        "nodeType": "action",
+        "branches": [
+          "fcn_addproducttocart_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_addproducttocart_1715236523122_0": {
+        "id": "fcn_addproducttocart_1715236523122_0",
+        "content": "Add $product to $cart",
+        "nodeType": "action",
+        "branches": [
+          "fcn_viewcart_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_viewcart_1715236523122_0": {
+        "id": "fcn_viewcart_1715236523122_0",
+        "content": "View $cart",
+        "nodeType": "action",
+        "branches": [
+          "fcn_path_applycoupon_1715236523122_1"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_path_applycoupon_1715236523122_1": {
+        "id": "fcn_path_applycoupon_1715236523122_1",
+        "content": "$path._applyCoupon?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_verifycarttotal_1715236523122_0",
+          "fcn_applycoupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_verifycarttotal_1715236523122_0": {
+        "id": "fcn_verifycarttotal_1715236523122_0",
+        "content": "Verify $cart total",
+        "nodeType": "state",
+        "branches": [],
+        "dataSetId": "-1"
+      },
+      "fcn_applycoupon_1715236523122_0": {
+        "id": "fcn_applycoupon_1715236523122_0",
+        "content": "Apply $coupon",
+        "nodeType": "action",
+        "branches": [
+          "fcn_coupon_couponcreated_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_couponcreated_1715236523122_0": {
+        "id": "fcn_coupon_couponcreated_1715236523122_0",
+        "content": "$coupon._couponCreated?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0": {
+        "id": "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0",
+        "content": "Verify $coupon discount NOT applied to $cart",
+        "nodeType": "state",
+        "branches": [],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_isenabled_1715236523122_0": {
+        "id": "fcn_coupon_isenabled_1715236523122_0",
+        "content": "$coupon._isEnabled?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_isforproduct_1715236523122_0": {
+        "id": "fcn_coupon_isforproduct_1715236523122_0",
+        "content": "$coupon._isForProduct?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_verifycoupondiscountappliedtocart_1715236523122_0",
+          "fcn_coupon_isforsameproduct_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_verifycoupondiscountappliedtocart_1715236523122_0": {
+        "id": "fcn_verifycoupondiscountappliedtocart_1715236523122_0",
+        "content": "Verify $coupon discount applied to $cart",
+        "nodeType": "state",
+        "branches": [],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_isforsameproduct_1715236523122_0": {
+        "id": "fcn_coupon_isforsameproduct_1715236523122_0",
+        "content": "$coupon._isForSameProduct?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0",
+          "fcn_verifycoupondiscountappliedtocart_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_couponcreated_1715236523122_1": {
+        "id": "fcn_coupon_couponcreated_1715236523122_1",
+        "content": "$coupon._couponCreated?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236802882_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_createcoupon_1715236523122_0": {
+        "id": "fcn_createcoupon_1715236523122_0",
+        "content": "Create Coupon",
+        "nodeType": "pathsublabel",
+        "branches": [
+          "fcn_coupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_1715236523122_0": {
+        "id": "fcn_coupon_1715236523122_0",
+        "content": "@coupon",
+        "nodeType": "action",
+        "branches": [
+          "fcn_fillcoupondetails_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_fillcoupondetails_1715236523122_0": {
+        "id": "fcn_fillcoupondetails_1715236523122_0",
+        "content": "Fill $coupon details",
+        "nodeType": "action",
+        "branches": [
+          "fcn_coupon_isforproduct_1715236523122_2"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_isforproduct_1715236523122_2": {
+        "id": "fcn_coupon_isforproduct_1715236523122_2",
+        "content": "$coupon._isForProduct?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_product_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_isenabled_1715236523122_1": {
+        "id": "fcn_coupon_isenabled_1715236523122_1",
+        "content": "$coupon._isEnabled?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_disablecoupon_1715236523122_0",
+          "fcn_enablecoupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_disablecoupon_1715236523122_0": {
+        "id": "fcn_disablecoupon_1715236523122_0",
+        "content": "Disable $coupon",
+        "nodeType": "action",
+        "branches": [
+          "fcn_savecoupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_savecoupon_1715236523122_0": {
+        "id": "fcn_savecoupon_1715236523122_0",
+        "content": "Save $coupon",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifycouponcreated_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_enablecoupon_1715236523122_0": {
+        "id": "fcn_enablecoupon_1715236523122_0",
+        "content": "Enable $coupon",
+        "nodeType": "action",
+        "branches": [
+          "fcn_savecoupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_setproductforcoupon_1715236523122_0": {
+        "id": "fcn_setproductforcoupon_1715236523122_0",
+        "content": "Set $product for $coupon",
+        "nodeType": "action",
+        "branches": [
+          "fcn_coupon_isenabled_1715236523122_1"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_isforproduct_1715236802882_0": {
+        "id": "fcn_coupon_isforproduct_1715236802882_0",
+        "content": "$coupon._isForProduct?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_isforsameproduct_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_product_1715236802882_0": {
+        "id": "fcn_product_1715236802882_0",
+        "content": "@product",
+        "nodeType": "action",
+        "branches": [
+          "fcn_fillproduct2details_1715236802882_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_fillproduct2details_1715236802882_0": {
+        "id": "fcn_fillproduct2details_1715236802882_0",
+        "content": "Fill $product2 details",
+        "nodeType": "action",
+        "branches": [
+          "fcn_saveproduct2_1715236802882_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_saveproduct2_1715236802882_0": {
+        "id": "fcn_saveproduct2_1715236802882_0",
+        "content": "Save $product2",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifyproduct2details_1715236802882_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_verifyproduct2details_1715236802882_0": {
+        "id": "fcn_verifyproduct2details_1715236802882_0",
+        "content": "Verify $product2 details",
+        "nodeType": "state",
+        "branches": [
+          "fcn_createcoupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_coupon_isforsameproduct_0": {
+        "id": "fcn_coupon_isforsameproduct_0",
+        "content": "$coupon._isForSameProduct?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_createsecondproduct_0",
+          "fcn_createcoupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_productproduct2_0": {
+        "id": "fcn_productproduct2_0",
+        "content": "$product!\u003d$product2?",
+        "nodeType": "decision",
+        "branches": [
+          null,
+          "fcn_product_1715236802882_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_product_0": {
+        "id": "fcn_product_0",
+        "content": "$coupon._isForSameProduct?",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_setproductforcoupon_1715237723787_0",
+          "fcn_setproductforcoupon_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_setproductforcoupon_1715237723787_0": {
+        "id": "fcn_setproductforcoupon_1715237723787_0",
+        "content": "Set $product2 for $coupon",
+        "nodeType": "action",
+        "branches": [
+          "fcn_coupon_isenabled_1715236523122_1"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_createsecondproduct_0": {
+        "id": "fcn_createsecondproduct_0",
+        "content": "Create Second Product",
+        "nodeType": "pathsublabel",
+        "branches": [
+          "fcn_productproduct2_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_verifycouponcreated_0": {
+        "id": "fcn_verifycouponcreated_0",
+        "content": "Verify $coupon created",
+        "nodeType": "state",
+        "branches": [
+          "fcn_logoutadmin_1715236523122_0"
+        ],
+        "dataSetId": "-1"
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150,
+        "left": 500
+      },
+      "fcn_checkout_1715236523122_0": {
+        "top": 221.953125,
+        "left": 65.9375
+      },
+      "fcn_admin_login_1715236523122_0": {
+        "top": 280.953125,
+        "left": 65.9375
+      },
+      "fcn_loginadmin_1715236523122_0": {
+        "top": 340.953125,
+        "left": 65.9375
+      },
+      "fcn_createproduct_1715236523122_0": {
+        "top": 221.953125,
+        "left": 362.96875
+      },
+      "fcn_product_1715236523122_0": {
+        "top": 280.953125,
+        "left": 510
+      },
+      "fcn_fillproductdetails_1715236523122_0": {
+        "top": 340.953125,
+        "left": 510
+      },
+      "fcn_saveproduct_1715236523122_0": {
+        "top": 413.265625,
+        "left": 510
+      },
+      "fcn_verifyproductdetails_1715236523122_0": {
+        "top": 483.453125,
+        "left": 510
+      },
+      "fcn_path_applycoupon_1715236523122_0": {
+        "top": 553.578125,
+        "left": 510
+      },
+      "fcn_logoutadmin_1715236523122_0": {
+        "top": 1005.09375,
+        "left": 937.953125
+      },
+      "fcn_checkout_1715236523122_1": {
+        "top": 1070.078125,
+        "left": 937.953125
+      },
+      "fcn_shopping_cart_1715236523122_0": {
+        "top": 1136.078125,
+        "left": 938.953125
+      },
+      "fcn_searchproduct_1715236523122_0": {
+        "top": 1209.234375,
+        "left": 939.953125
+      },
+      "fcn_addproducttocart_1715236523122_0": {
+        "top": 1280.078125,
+        "left": 937.953125
+      },
+      "fcn_viewcart_1715236523122_0": {
+        "top": 1350.234375,
+        "left": 937.953125
+      },
+      "fcn_path_applycoupon_1715236523122_1": {
+        "top": 1425.421875,
+        "left": 937.953125
+      },
+      "fcn_verifycarttotal_1715236523122_0": {
+        "top": 1509.234375,
+        "left": 1242.96875
+      },
+      "fcn_applycoupon_1715236523122_0": {
+        "top": 1509.234375,
+        "left": 937.953125
+      },
+      "fcn_coupon_couponcreated_1715236523122_0": {
+        "top": 1582.40625,
+        "left": 937.953125
+      },
+      "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0": {
+        "top": 1872.578125,
+        "left": 1478.953125
+      },
+      "fcn_coupon_isenabled_1715236523122_0": {
+        "top": 1663.578125,
+        "left": 937.953125
+      },
+      "fcn_coupon_isforproduct_1715236523122_0": {
+        "top": 1749.734375,
+        "left": 937.953125
+      },
+      "fcn_verifycoupondiscountappliedtocart_1715236523122_0": {
+        "top": 1871.578125,
+        "left": 937.953125
+      },
+      "fcn_coupon_isforsameproduct_1715236523122_0": {
+        "top": 1816.90625,
+        "left": 1242.96875
+      },
+      "fcn_coupon_couponcreated_1715236523122_1": {
+        "top": 627.578125,
+        "left": 510
+      },
+      "fcn_coupon_isforproduct_1715236802882_0": {
+        "top": 707.09375,
+        "left": 510
+      },
+      "fcn_createcoupon_1715236523122_0": {
+        "top": 221.953125,
+        "left": 783.96875
+      },
+      "fcn_coupon_1715236523122_0": {
+        "top": 277.953125,
+        "left": 1140.96875
+      },
+      "fcn_fillcoupondetails_1715236523122_0": {
+        "top": 337.953125,
+        "left": 1140.96875
+      },
+      "fcn_coupon_isforproduct_1715236523122_2": {
+        "top": 410.265625,
+        "left": 1140.96875
+      },
+      "fcn_coupon_isenabled_1715236523122_1": {
+        "top": 704.09375,
+        "left": 1140.96875
+      },
+      "fcn_disablecoupon_1715236523122_0": {
+        "top": 833.625,
+        "left": 1430.953125
+      },
+      "fcn_savecoupon_1715236523122_0": {
+        "top": 873.09375,
+        "left": 1140.96875
+      },
+      "fcn_verifycouponcreated_0": {
+        "top": 939.09375,
+        "left": 1140.96875
+      },
+      "fcn_enablecoupon_1715236523122_0": {
+        "top": 778.125,
+        "left": 1140.96875
+      },
+      "fcn_product_0": {
+        "top": 480.453125,
+        "left": 1430.953125
+      },
+      "fcn_setproductforcoupon_1715237723787_0": {
+        "top": 624.578125,
+        "left": 1639.96875
+      },
+      "fcn_setproductforcoupon_1715236523122_0": {
+        "top": 550.578125,
+        "left": 1430.953125
+      },
+      "fcn_coupon_isforsameproduct_0": {
+        "top": 776.125,
+        "left": 510
+      },
+      "fcn_createsecondproduct_0": {
+        "top": 849.625,
+        "left": 510
+      },
+      "fcn_productproduct2_0": {
+        "top": 914.09375,
+        "left": 510
+      },
+      "fcn_product_1715236802882_0": {
+        "top": 1005.09375,
+        "left": 510
+      },
+      "fcn_fillproduct2details_1715236802882_0": {
+        "top": 1070.078125,
+        "left": 510
+      },
+      "fcn_saveproduct2_1715236802882_0": {
+        "top": 1136.078125,
+        "left": 510
+      },
+      "fcn_verifyproduct2details_1715236802882_0": {
+        "top": 1209.234375,
+        "left": 510
+      }
+    },
+    "settings": {
+      "maxProceedDepth": 100,
+      "maxProceedsForFirstDepth": 1,
+      "maxProceedsPerDepth": 1,
+      "maxPathRepititionsPerComboPath": 1,
+      "maxProceedsPerPath": 10000,
+      "maxToggles": 2,
+      "maxMatchingPaths": 3
+    },
+    "isPrimary": true,
+    "pathNames": [
+      {
+        "pathName": "Do not apply coupon",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_verifycarttotal_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetGroupName": "Data",
+          "dataSetName": "Coupon Not Applied.csv"
+        }
+      },
+      {
+        "pathName": "Apply coupon that is not created",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetGroupName": "Data",
+          "dataSetName": "Coupon Not Applied.csv"
+        }
+      },
+      {
+        "pathName": "Apply disabled coupon",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_disablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetGroupName": "Data",
+          "dataSetName": "Coupon Not Applied.csv"
+        }
+      },
+      {
+        "pathName": "Apply enabled coupon",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_enablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_0",
+          "fcn_verifycoupondiscountappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetGroupName": "Data",
+          "dataSetName": "Coupon Applied.csv"
+        }
+      },
+      {
+        "pathName": "Apply disabled coupon for a different product",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_productproduct2_0",
+          "fcn_product_1715236802882_0",
+          "fcn_fillproduct2details_1715236802882_0",
+          "fcn_saveproduct2_1715236802882_0",
+          "fcn_verifyproduct2details_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715237723787_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_disablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetGroupName": "Data",
+          "dataSetName": "Coupon Not Applied.csv"
+        }
+      },
+      {
+        "pathName": "Apply coupon for a different product",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_productproduct2_0",
+          "fcn_product_1715236802882_0",
+          "fcn_fillproduct2details_1715236802882_0",
+          "fcn_saveproduct2_1715236802882_0",
+          "fcn_verifyproduct2details_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715237723787_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_enablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_0",
+          "fcn_coupon_isforsameproduct_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetGroupName": "Data",
+          "dataSetName": "Coupon Not Applied.csv"
+        }
+      },
+      {
+        "pathName": "Apply disabled coupon for specific product",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_disablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetGroupName": "Data",
+          "dataSetName": "Coupon Not Applied.csv"
+        }
+      },
+      {
+        "pathName": "Apply coupon for specific product",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_enablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_0",
+          "fcn_coupon_isforsameproduct_1715236523122_0",
+          "fcn_verifycoupondiscountappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetGroupName": "Data",
+          "dataSetName": "Coupon Applied.csv"
+        }
+      },
+      {
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_createsecondproduct_0",
+          "fcn_productproduct2_0",
+          "fcn_product_1715236802882_0",
+          "fcn_fillproduct2details_1715236802882_0",
+          "fcn_saveproduct2_1715236802882_0",
+          "fcn_verifyproduct2details_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715237723787_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_disablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "pathName": "Apply disabled coupon for different product",
+        "dataSet": {
+          "dataSetName": "Coupon Not Applied.csv",
+          "dataSetGroupName": "Data"
+        }
+      },
+      {
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_createsecondproduct_0",
+          "fcn_productproduct2_0",
+          "fcn_product_1715236802882_0",
+          "fcn_fillproduct2details_1715236802882_0",
+          "fcn_saveproduct2_1715236802882_0",
+          "fcn_verifyproduct2details_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715237723787_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_enablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_0",
+          "fcn_coupon_isforsameproduct_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "pathName": "Apply coupon for different product",
+        "dataSet": {
+          "dataSetName": "Coupon Not Applied.csv",
+          "dataSetGroupName": "Data"
+        }
+      },
+      {
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_disablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_verifycouponcreated_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetName": "Coupon Not Applied.csv",
+          "dataSetGroupName": "Data"
+        }
+      },
+      {
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_createsecondproduct_0",
+          "fcn_productproduct2_0",
+          "fcn_product_1715236802882_0",
+          "fcn_fillproduct2details_1715236802882_0",
+          "fcn_saveproduct2_1715236802882_0",
+          "fcn_verifyproduct2details_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715237723787_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_disablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_verifycouponcreated_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetName": "Coupon Not Applied.csv",
+          "dataSetGroupName": "Data"
+        }
+      },
+      {
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_createsecondproduct_0",
+          "fcn_productproduct2_0",
+          "fcn_product_1715236802882_0",
+          "fcn_fillproduct2details_1715236802882_0",
+          "fcn_saveproduct2_1715236802882_0",
+          "fcn_verifyproduct2details_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715237723787_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_enablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_verifycouponcreated_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_0",
+          "fcn_coupon_isforsameproduct_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetName": "Coupon Not Applied.csv",
+          "dataSetGroupName": "Data"
+        }
+      },
+      {
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_disablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_verifycouponcreated_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_verifycoupondiscountnotappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetName": "Coupon Not Applied.csv",
+          "dataSetGroupName": "Data"
+        }
+      },
+      {
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_enablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_verifycouponcreated_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_0",
+          "fcn_verifycoupondiscountappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetName": "Coupon Applied.csv",
+          "dataSetGroupName": "Data"
+        }
+      },
+      {
+        "pathKey": [
+          "fcn_checkout_1715236523122_0",
+          "fcn_admin_login_1715236523122_0",
+          "fcn_loginadmin_1715236523122_0",
+          "fcn_createproduct_1715236523122_0",
+          "fcn_product_1715236523122_0",
+          "fcn_fillproductdetails_1715236523122_0",
+          "fcn_saveproduct_1715236523122_0",
+          "fcn_verifyproductdetails_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_1",
+          "fcn_coupon_isforproduct_1715236802882_0",
+          "fcn_coupon_isforsameproduct_0",
+          "fcn_createcoupon_1715236523122_0",
+          "fcn_coupon_1715236523122_0",
+          "fcn_fillcoupondetails_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_2",
+          "fcn_product_0",
+          "fcn_setproductforcoupon_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_1",
+          "fcn_enablecoupon_1715236523122_0",
+          "fcn_savecoupon_1715236523122_0",
+          "fcn_verifycouponcreated_0",
+          "fcn_logoutadmin_1715236523122_0",
+          "fcn_checkout_1715236523122_1",
+          "fcn_shopping_cart_1715236523122_0",
+          "fcn_searchproduct_1715236523122_0",
+          "fcn_addproducttocart_1715236523122_0",
+          "fcn_viewcart_1715236523122_0",
+          "fcn_path_applycoupon_1715236523122_1",
+          "fcn_applycoupon_1715236523122_0",
+          "fcn_coupon_couponcreated_1715236523122_0",
+          "fcn_coupon_isenabled_1715236523122_0",
+          "fcn_coupon_isforproduct_1715236523122_0",
+          "fcn_coupon_isforsameproduct_1715236523122_0",
+          "fcn_verifycoupondiscountappliedtocart_1715236523122_0"
+        ],
+        "dataSet": {
+          "dataSetName": "Coupon Applied.csv",
+          "dataSetGroupName": "Data"
+        }
+      }
+    ],
+    "flowChartUID": "fcUID_1715236521146",
+    "pathExecutionOrder": []
+  },
+  "enabled": true,
+  "parentId": ""
+}

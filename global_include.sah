@@ -1,0 +1,97 @@
+function onScriptError($e) {
+	if(_sahi.isTFCModeEnabled()) _tfcLog($__tfcix+ "__tfc__:onScriptError", "NO_LOG");
+	return onScriptErrorDefault($e);
+}
+function onScriptFailure($e) {
+	if(_sahi.isTFCModeEnabled()) _tfcLog($__tfcix+ "__tfc__:onScriptFailure", "NO_LOG");
+	onScriptFailureDefault($e);
+}
+
+
+function onScriptErrorDefault($e) {
+	if(_sahi.isTFCModeEnabled()) _tfcLog($__tfcix+ "__tfc__:onScriptErrorDefault", "NO_LOG");
+	if ($e.isBrowserNotResponding || $e.isWindowNotExist) {
+		if (!_sahi.isPhantomJS()) {
+			_lockWindow();
+			_takeScreenShot();
+			_unlockWindow();
+			if(_sahi.isBrowserLike())
+				dumpWindowInfo();
+		}
+	}
+	else {
+		if (_sahi.isAndroid() || _sahi.isIOS() || _sahi.isGeneric()) {
+			_takeScreenShot();
+		} else if (_sahi.isJava() || _sahi.isWindows() || _sahi.isApplet()) {
+			_focusWindow();
+			_takePageScreenShot();
+		} else if (_sahi.isSAP()) {
+			_takePageScreenShot();
+		} else {
+//			_takeScreenShot(); // uncomment this if you want a full desktop screenshot too.
+			_lockWindow();
+			_focusWindow();
+			_takePageScreenShot();
+			_unlockWindow();
+		}
+	}
+	return false;
+}
+
+
+function onScriptFailureDefault($e) {
+	if(_sahi.isTFCModeEnabled()) _tfcLog($__tfcix+ "__tfc__:onScriptFailureDefault", "NO_LOG");
+	if ($e.isBrowserNotResponding) {
+		if (!_sahi.isPhantomJS()) {
+			_takeScreenShot();
+			if(_sahi.isBrowserLike())
+				dumpWindowInfo();
+		}
+	}
+	else {
+		if (_sahi.isAndroid() || _sahi.isIOS() || _sahi.isGeneric()) {
+			_takeScreenShot();
+		} else if (_sahi.isJava() || _sahi.isWindows() || _sahi.isApplet()) {
+			_focusWindow();
+			_takePageScreenShot();
+		} else if (_sahi.isSAP()) {
+			_takePageScreenShot();
+		} else {
+//			_takeScreenShot(); // uncomment this if you want a full desktop screenshot too.
+			_lockWindow();
+			_focusWindow();
+			_takePageScreenShot();
+			_unlockWindow();
+		}
+	}
+}
+
+function dumpWindowInfo() {
+	var s = "";
+	var info = _getWindows();
+	for (var i=0; i<info.length; i++) {
+		var w = info[i];
+		s += "\n-------------------\nWindow " + i + ":\n-------------------";
+		s += "\n  windowName: " + w.windowName;
+		s += "\n  derivedName:" + w.derivedName;
+		s += "\n  windowTitle:" + w.windowTitle;
+		s += "\n  windowURL:" + w.windowURL;
+		s += "\n  wasOpened:" + w.wasOpened + " (" + (w.wasOpened == 1 ? "popup window" : "base window") + ")";
+		s += "\n  domain:" + w.domain;
+		var initDate = new Date(parseFloat(w.initialTime));
+		var lastDate = new Date(parseFloat(w.lastTime));
+		var currentDate = new Date();
+		s += "\n  initialTime:" + initDate.toUTCString();
+		s += "\n  lastTime:" + lastDate.toUTCString();
+		s += "\n  currentTime:" + currentDate.toUTCString();
+		s += "\n  Last communication:" +  (currentDate - lastDate) + " ms ago"; 
+	}
+	_sahi._log(s);
+	
+	if(s.length>0){
+		var fnStr = '<script>'+
+			'replaceWindowInfo('+ _sahi.toJSON(s) + ');'+
+			'</script>';
+		_sahi._log(fnStr,"RAW");
+	}
+}

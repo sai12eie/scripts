@@ -1,0 +1,40 @@
+_navigateTo("/demo/pointerEvents.htm");
+
+var $pointerEvents = false;
+var $msPointerEvents = false;
+_set($pointerEvents, window.navigator.pointerEnabled);     // true if IE-11
+_set($msPointerEvents, window.navigator.msPointerEnabled); // true if IE-10
+
+_mouseDown(_button("Capture pointer down"));
+if ($pointerEvents) {
+	_assertEqual("[POINTER_DOWN][MOUSE_DOWN]",_textarea("t2").value);
+} else if ($msPointerEvents) {
+	_assertEqual("[MSPOINTER_DOWN][MOUSE_DOWN]",_textarea("t2").value);
+} else {
+	_assertEqual("[MOUSE_DOWN]",_textarea("t2").value);
+}
+_click(_button("Clear"));
+
+_mouseUp(_button("Capture pointer up"));
+if ($pointerEvents) {
+	_assertEqual("[POINTER_UP][MOUSE_UP]",_textarea("t2").value);
+} else if ($msPointerEvents) {
+	_assertEqual("[MSPOINTER_UP][MOUSE_UP]",_textarea("t2").value);
+} else {
+	_assertEqual("[MOUSE_UP]",_textarea("t2").value);
+}
+_click(_button("Clear"));
+
+_mouseOver(_button("Capture pointer over"));
+if ($pointerEvents) {
+	_assertEqual("[POINTER_OVER][MOUSE_OVER]",_textarea("t2").value);
+} else if ($msPointerEvents) {
+	_assertEqual("[MSPOINTER_OVER][MOUSE_OVER]",_textarea("t2").value);
+} else {
+	_assertEqual("[MOUSE_OVER]",_textarea("t2").value);
+}
+_click(_button("Clear"));
+
+_click(_button("Click"));
+_assertEqual("[CLICK]",_textarea("t2").value);
+_click(_button("Clear"));

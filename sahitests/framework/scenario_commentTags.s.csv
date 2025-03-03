@@ -1,0 +1,13 @@
+"Comment","Tags","TestCase","Key Word","Argument1","Argument2","Argument3"
+,,,"loadSahi","sample_lib.sah"
+
+"TC_Pass","all","Check shopping cart total","[Documentation]","Smoke test for add books"
+,,,"login","test","secret"
+,,,"addBooks","3","2","1"
+,,,"verifyTotal","1650"
+,,,"logout"
+
+"TC_Fail","fail","Test login error message","[Documentation]","Checks Invalid login message"
+,,,"login","test","bad password"
+,,,"logout"
+

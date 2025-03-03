@@ -1,0 +1,80 @@
+_resource("highlight_t1.jpg");
+_resource("highlight_tb.jpg");
+_resource("highlight_t2.jpg");
+_resource("highlight_tb2.jpg");
+_resource("highlight_t1_firefox.png");
+_resource("highlight_tb_firefox.png");
+_resource("highlight_t2_firefox.png");
+_resource("highlight_tb2_firefox.png");
+_resource("highlight_t1_ie.png");
+_resource("highlight_tb_ie.png");
+_resource("highlight_t2_ie.png");
+_resource("highlight_tb2_ie.png");
+
+_lockWindow(30000);
+_focusWindow();
+_windowAction("maximize");
+
+_navigateTo("/demo/linkTest.htm");
+//_takePageScreenShot(_textbox("t1"), "highlight_t1.jpg");
+if(_isChrome() || _isBrave() || _isEdgeNew()){
+	_highlight(_textbox("t1"));
+	_assertSnapShot("highlight_t1.jpg", _textbox("t1"));
+}
+else if(_isFF()){
+	_highlight(_textbox("t1"));
+	_assertSnapShot("highlight_t1_firefox.png", _textbox("t1"));
+}
+else if(_isIE()){
+	_highlight(_textbox("t1"));
+	_assertSnapShot("highlight_t1_ie.png", _textbox("t1"));
+}
+
+
+//_takePageScreenShot(_textbox("tb", _in(_iframe("myframe"))), "highlight_tb.jpg");
+if(_isChrome() || _isBrave() || _isEdgeNew()){
+	_highlight(_textbox("tb", _in(_iframe("myframe"))));
+	_assertSnapShot("highlight_tb.jpg", _textbox("tb", _in(_iframe("myframe"))));
+}
+else if(_isFF()){
+	_highlight(_textbox("tb", _in(_iframe("myframe"))));
+	_assertSnapShot("highlight_tb_firefox.png", _textbox("tb", _in(_iframe("myframe"))));
+}
+else if(_isIE()){
+	_highlight(_textbox("tb", _in(_iframe("myframe"))));
+	_assertSnapShot("highlight_tb_ie.png", _textbox("tb", _in(_iframe("myframe"))));
+}
+_navigateTo("/demo/framesTest.htm");
+_click(_link("Link Test"));
+_click(_link("Link Test"));
+//_takePageScreenShot(_textbox("t1"), "highlight_t2.jpg");
+
+if(_isChrome() || _isBrave() || _isEdgeNew()){
+	_highlight(_textbox("t1"));
+	_assertSnapShot("highlight_t2.jpg", _textbox("t1"));
+}
+else if(_isFF()){
+	_highlight(_textbox("t1"));
+	_assertSnapShot("highlight_t2_firefox.png", _textbox("t1"));
+}
+else if(_isIE()){
+	_highlight(_textbox("t1"));
+	_assertSnapShot("highlight_t2_ie.png", _textbox("t1"));
+}
+
+
+//_takePageScreenShot(_textbox("tb", _in(_iframe("myframe"))), "highlight_tb2.jpg");
+
+if(_isChrome() || _isBrave() || _isEdgeNew()){
+	_highlight(_textbox("tb", _in(_iframe("myframe"))));
+	_assertSnapShot("highlight_tb2.jpg", _textbox("tb", _in(_iframe("myframe"))));
+}
+else if(_isFF()){
+	_highlight(_textbox("tb", _in(_iframe("myframe"))));
+	_assertSnapShot("highlight_tb2_firefox.png", _textbox("tb", _in(_iframe("myframe"))));
+}
+else if(_isIE()){
+	_highlight(_textbox("tb", _in(_iframe("myframe"))));
+	_assertSnapShot("highlight_tb2_ie.png", _textbox("tb", _in(_iframe("myframe"))));
+}
+_unlockWindow();

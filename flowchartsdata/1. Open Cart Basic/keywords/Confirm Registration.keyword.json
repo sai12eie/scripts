@@ -1,0 +1,39 @@
+{
+  "modifiedOn": "2024-05-08T10:22:35.956669600Z",
+  "name": "Confirm Registration",
+  "id": "-1",
+  "type": 3,
+  "createdOn": "2024-04-18T04:14:20Z",
+  "content": {
+    "isSystemKeyword": false,
+    "title": "Confirm Registration",
+    "parameters": [
+      {
+        "parameterId": "user_",
+        "entityTypeId": "user",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_heading1(0)"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "paramMode": "string",
+          "customValue": "Your Account Has Been Created!"
+        }
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

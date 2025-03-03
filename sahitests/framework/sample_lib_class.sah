@@ -1,0 +1,33 @@
+_navigateTo("/demo/training/login.htm");
+function DemoClass()
+{
+	this.login = function($username, $password){
+		_setValue(_textbox("user"), $username);
+		_setValue(_password("password"), $password);
+		_click(_submit("Login"));
+	}
+		
+	this.addBooks = function($numJava, $numRuby, $numPython){
+		_setValue(_textbox("q", _near(_cell("Core Java"))), $numJava);
+		_setValue(_textbox("q", _near(_cell("Ruby for Rails"))), $numRuby);
+		_setValue(_textbox("q", _near(_cell("Python Cookbook"))), $numPython);
+		_click(_button("Add"));
+	}
+
+	this.verifyTotal = function($total){
+		_assertEqual($total, _textbox("total").value);	
+	}
+
+	this.logout = function(){
+		_click(_button("Logout"));
+	}
+
+	this.verifyNotLoggedIn = function(){
+		_assertExists(_textbox("user"));
+	}
+
+	this.verifyErrorMessage = function($msg){
+		_assert(_isVisible(_div("errorMessage")));
+		_assertEqual($msg, _getText(_div("errorMessage")));
+	}
+}

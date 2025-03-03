@@ -1,0 +1,153 @@
+
+/* Lib/Users/RegisterNewUser.sah */
+var $_SPAN_CARET = _span("caret");
+var $_LINK_REGISTER = _link("Register");
+var $_TEXTBOX_FIRSTNAME = _textbox("firstname");
+var $_TEXTBOX_LASTNAME = _textbox("lastname");
+var $_EMAILBOX_EMAIL = _emailbox("email");
+var $_TELEPHONEBOX_TELEPHONE = _telephonebox("telephone");
+var $_PASSWORD_PASSWORD = _password("password");
+var $_PASSWORD_CONFIRM = _password("confirm");
+var $_LABEL_SUBSCRIBE = _label("Subscribe");
+var $_CHECKBOX_AGREE = _checkbox("agree");
+var $_SUBMIT_CONTINUE = _submit("Continue");
+var $_HEADING1_YOURACCOUNTHASBEENCREATED = _heading1("Your Account Has Been Created!");
+var $_LINK_CONTINUE = _link("Continue");
+var $_LINK_EDITACCOUNT = _link("Edit Account");
+var $_LINK_LOGIN = _link("Login");
+var $_TEXTBOX_EMAIL = _textbox("email");
+var $_SUBMIT_LOGIN = _submit("Login");
+var $_LINK_EDITYOURACCOUNTINFORMATION = _link("Edit your account information");
+var $_TEXTBOX_FILTEREMAIL = _textbox("filter_email");
+var $_LINK_MYACCOUNT = _link("My Account");
+var $_LINK_MYACCOUNT1 = _link("My Account[1]");
+var $_LINK_MODIFYYOURADDRESSBOOKENTRIES = _link("Modify your address book entries");
+var $_LINK_NEWADDRESS = _link("New Address");
+var $_TEXTBOX_COMPANY = _textbox("company");
+var $_TEXTBOX_ADDRESS_1 = _textbox("address_1");
+var $_TEXTBOX_ADDRESS_2 = _textbox("address_2");
+var $_TEXTBOX_CITY = _textbox("city");
+var $_TEXTBOX_POSTCODE = _textbox("postcode");
+var $_SELECT_COUNTRY_ID = _select("country_id");
+var $_SELECT_ZONE_ID = _select("zone_id");
+var $_RADIO_DEFAULT = _radio("default");
+var $_DIV_YOURADDRESSHASBEENSUCCESSFULLYADDED = _div("Your address has been successfully added");
+var $_CELL_TYTOSOFTWARE = _cell("/Tyto Software Pvt Ltd/");
+
+/* Lib/Common.sah */
+var $_LINK_LOGOUT = _link("Logout");
+var $_TEXTBOX_SYMBOL_LEFT = _textbox("symbol_left");
+var $_TEXTBOX_SYMBOL_RIGHT = _textbox("symbol_right");
+var $_TEXTBOX_DECIMAL_PLACE = _textbox("decimal_place");
+var $_TEXTBOX_VALUE = _textbox("value");
+var $_SELECT_STATUS = _select("status");
+var $_DIV_ALERTSUCCESS = _div("/alert-success/");
+var $_LINK_NEXT = _link(">");
+var $_LINK_FIRSTPAGE = _link("|<");
+var $_BUTTON_DELETE = _button("Delete");
+var $_LINK_BTN_BTNPRIMARY = _link("btn btn-primary");
+var $_SUBMIT_BTN_BTNPRIMARY = _submit("btn btn-primary");
+var $_BUTTON_FILTER = _button("Filter");
+
+/*Lib/Admin/Admin.sah */
+var $_TEXTBOX_USERNAME = _textbox("username");
+var $_LINK_SYSTEM = _link("System");
+var $_LINK_LOCALISATION = _link("Localisation");
+var $_LINK_CURRENCIES = _link("Currencies");
+var $_LINK_ADDNEW = _link("Add New");
+var $_TEXTBOX_TITLE = _textbox("title");
+var $_TEXTBOX_CODE = _textbox("code");
+var $_LISTITEM_CUSTOMERS = _listItem("Customers");
+var $_LINK_CUSTOMERS_IN_LISTITEM_CUSTOMERS = _link("Customers", _in($_LISTITEM_CUSTOMERS));
+var $_TEXTBOX_FILTERNAME = _textbox("filter_name");
+
+/* Lib/Admin/Catalog/Manufacturers.sah */
+var $_LINK_CATALOG = _link("Catalog");
+var $_LINK_MANUFACTURERS = _link("Manufacturers");
+var $_TEXTBOX_NAME = _textbox("name");
+var $_LINK_SEO = _link("SEO");
+var $_TEXTBOX_MANUFACTURER_SEO_Keyword = _textbox("/manufacturer_seo_url/");
+
+/* Lib/Admin/Catalog/Products.sah */
+var $_LINK_PRODUCTS = _link("Products");
+var $_TEXTBOX_PRODUCT_NAME = _textbox("Product Name");
+var $_TEXTBOX_PRODUCT_META_TITLE = _textbox("Meta Tag Title");
+var $_TEXTBOX_PRODUCT_DESCRIPTIONTAG = _textbox("Product Tags");
+var $LINK_CHINESE = _link("Chinese");
+var $_TEXTBOX_PRODUCT_NAME1 = _textbox("Product Name[1]");
+var $_TEXTBOX_PRODUCT_META_TITLE1 = _textbox("Meta Tag Title[1]");
+var $_TEXTBOX_PRODUCT_DESCRIPTIONTAG1 = _textbox("Product Tags[1]");
+var $_LINK_DATA = _link("Data");
+var $_TEXTBOX_MODEL = _textbox("model");
+var $_LINK_LINKS = _link("Links");
+var $_TEXTBOX_MANUFACTURER = _textbox("manufacturer");
+var $_TEXTBOX_PRICE = _textbox("price");
+var $_TEXTBOX_WEIGHT = _textbox("weight");
+var $_TEXTBOX_QUANTITY = _textbox("quantity");
+var $_SELECT_TAX_CLASS_ID = _select("tax_class_id");
+var $_SELECT_WEIGHT_CLASS_ID = _select("weight_class_id")
+
+/* Lib/Admin/Marketing/Coupons.sah */
+var $_LINK_CUSTOMERS = _link("Customers");
+var $_LINK_MARKETING = _link("Marketing");
+var $_LINK_COUPONS = _link("Coupons");
+var $_TEXTBOX_COUPONNAME = _textbox("Coupon Name");
+var $_SELECT_TYPE = _select("type");
+var $_TEXTBOX_USES_TOTAL = _textbox("uses_total");
+var $_TEXTBOX_USES_CUSTOMER = _textbox("uses_customer");
+var $_TEXTBOX_DISCOUNT = _textbox("discount");
+
+/* Lib/Users/User.sah */
+var $_DIV_CHECKOUT = _div("Checkout");
+var $_LINK_CHECKOUT_IN_DIV_CHECKOUT = _link("Checkout", _in($_DIV_CHECKOUT));
+var $_RADIO_PAYMENT_ADDRESS = _radio("payment_address");
+var $_BUTTON_CONTINUE = _button("Continue");
+var $_RADIO_SHIPPING_ADDRESS = _radio("shipping_address");
+var $_DIV_SHIPPINGADDRESS = _div("/shipping-address/");
+var $_BUTTON_CONTINUE_IN_DIV_SHIPPINGADDRESS = _button("Continue", _in($_DIV_SHIPPINGADDRESS));
+var $_RADIO_SHIPPING_METHOD = _radio("shipping_method");
+var $_DIV_SHIPPINGMETHOD = _div("/shipping-method/");
+var $_BUTTON_CONTINUE_IN_DIV_SHIPPINGMETHOD = _button("Continue", _in($_DIV_SHIPPINGMETHOD));
+var $_RADIO_CASHONDELIVERY = _radio("Cash On Delivery");
+var $_DIV_IHAVEREADANDAGREETOTHETERMSCONDITIONS = _div("I have read and agree to the Terms & Conditions");
+var $_BUTTON_CONTINUE_IN_DIV_IHAVEREADANDAGREETOTHETERMSCONDITIONS = _button("Continue", _in($_DIV_IHAVEREADANDAGREETOTHETERMSCONDITIONS));
+var $_CELL_PRODUCTNAME = _cell("Product Name");
+var $_CELL_MODEL = _cell("Model");
+var $_CELL_QUANTITY = _cell("Quantity");
+var $_CELL_TOTAL = _cell("Total:");
+var $_CELL_0_RIGHTOF_CELL_TOTAL = _cell(0, _rightOf($_CELL_TOTAL));
+var $_BUTTON_CONFIRMORDER = _button("Confirm Order");
+var $_HEADING1_YOURORDERHASBEENPLACED = _heading1("Your order has been placed!");
+var $_LINK_SHOPPINGCART = _link("shopping cart");
+var $_HEADING1_SHOPPINGCART = _heading1("/Shopping Cart/");
+var $_TEXTBOX_QUANTITY_UNDER_CELL_QUANTITY = _textbox("/quantity/", _under($_CELL_QUANTITY));
+var $_CELL_UNITPRICE = _cell("Unit Price");
+var $_CELL_SUBTOTAL = _cell("Sub-Total:");
+var $_CELL_FLATSHIPPINGRATE = _cell("Flat Shipping Rate:");
+var $_DIV_TABLERESPONSIVE = _div("table-responsive");
+var $_CELL_TOTAL_IN_DIV_TABLERESPONSIVE = _cell("Total", _in($_DIV_TABLERESPONSIVE));
+var $_TEXTBOX_SEARCH = _textbox("search");
+var $_DIV_SEARCH = _div("search");
+var $_BUTTON_0_IN_DIV_SEARCH = _button(0, _in($_DIV_SEARCH));
+var $_LISTITEM_AVAILABILITYINSTOCK = _listItem("Availability: In Stock");
+var $_BUTTON_ADDTOCART = _button("Add to Cart");
+var $_DIV_ALERTALERTSUCCESSALERTDISMISSIBLE = _div("alert alert-success alert-dismissible");
+var $_LINK_HISTORY = _link("history");
+var $_CELL_ORDERID = _cell("Order ID");
+var $_CELL_0_UNDER_CELL_ORDERID = _cell(0, _under($_CELL_ORDERID));
+var $_CELL_TOTAL_0 = _cell("Total");
+var $_CELL_0_UNDER_CELL_TOTAL = _cell(0, _under($_CELL_TOTAL_0));
+var $_LINK_SALES = _link("Sales");
+var $_LINK_ORDERS = _link("Orders");
+var $_STRONG_FLATRATE = _strong("Flat Rate");
+var $_LABEL_FLATSHIPPINGRATE_NEAR_STRONG_FLATRATE = _label("/Flat Shipping Rate - /", _near($_STRONG_FLATRATE));
+var $_LINK_USECOUPONCODE = _link("Use Coupon Code");
+var $_TEXTBOX_COUPON = _textbox("coupon");
+var $_BUTTON_APPLYCOUPON = _button("Apply Coupon");
+
+var $_DIV_LISTGROUP = _div("list-group");
+var $_LINK_ORDERHISTORY_IN_DIV_LISTGROUP = _link("Order History", _in($_DIV_LISTGROUP));
+var $_HEADING1_ORDERHISTORY = _heading1("Order History");
+var $_PARAGRAPH_YOUHAVENOTMADEANYPREVIOUSORDERS = _paragraph("You have not made any previous orders!");
+var $LINK_ORDERHISTORY = _link("Order History");
+var $CELL_COUPON =_cell("/Coupon [(].*[)]:/");

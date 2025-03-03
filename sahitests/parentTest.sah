@@ -1,0 +1,39 @@
+
+function testParentNode(){
+	var $parentNode = _parentNode(_cell("x1-2"), 1);
+	var $cells = _collect("_cell", "/.*/", _in($parentNode));
+	_assertEqual("x1-2", _getText($cells[2]));
+	$parentNode = _parentNode(_cell("x1-2"), 2);
+	$cells = _collect("_cell", "/.*/", _in($parentNode));
+	_assertEqual("x1-2", _getText($cells[6]));
+}
+
+function testParentCell(){
+	var $parentCell = _parentCell(_cell("x1-2"), 1);
+	var $cells = _collect("_cell", "/.*/", _in($parentCell));
+	_assertEqual("x1-2", _getText($cells[6]));
+	$parentCell = _parentCell(_cell("x1-2"), 2);
+	$cells = _collect("_cell", "/.*/", _in($parentCell));
+	_assertEqual("x1-2", _getText($cells[16]));
+}
+
+function testParentRow(){
+	var $parentRow = _parentRow(_cell("x1-2"), 1);
+	var $cells = _collect("_cell", "/.*/", _in($parentRow));
+	_assertEqual("x1-2", _getText($cells[2]));
+	$parentRow = _parentRow(_cell("x1-2"), 2);
+	$cells = _collect("_cell", "/.*/", _in($parentRow));
+	_assertEqual("x1-2", _getText($cells[9]));
+}
+
+function testParentTable(){
+	var $parentTable = _parentTable(_cell("x1-2"), 1);
+	var $cells = _collect("_cell", "/.*/", _in($parentTable));
+	_assertEqual("x1-2", _getText($cells[6]));
+	$parentTable = _parentTable(_cell("x1-2"), 2);
+	$cells = _collect("_cell", "/.*/", _in($parentTable));
+	_assertEqual("x1-2", _getText($cells[16]));
+}
+
+_navigateTo("parentTest.htm");
+_runUnitTests();

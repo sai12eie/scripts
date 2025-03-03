@@ -1,0 +1,69 @@
+onScriptError = onScriptFailure = null;
+_navigateTo("/demo/positionalsNew.htm");
+_assertExists(_div("Upper blue"));
+
+function testExactAbove() {
+	_assertEqual(_div("Upper blue"), _div("/blue/", _above(_div("Lower blue"))))
+}
+
+function testAboveWithBiggerElementLeftAligned() {
+	_assertNull(_div("/red/", _above(_div("Lower red"), 49)));
+	_assertEqual(_div("Upper red"), _div("/red/", _above(_div("Lower red"), 50)))
+	_assertEqual(_div("Upper red"), _div("/red/", _above(_div("Lower red"), [0,50])))
+	_assertEqual(_div("Upper red"), _div("/red/", _above(_div("Lower red"), [10,50])))
+}
+
+function testAboveWithSmallerElementRightAligned(){
+    _assertNull(_div("/purple/", _above(_div("Lower purple"), 49)));
+	_assertEqual(_div("Upper purple"), _div("/purple/", _above(_div("Lower purple"), 50)))
+	_assertEqual(_div("Upper purple"), _div("/purple/", _above(_div("Lower purple"), [50,0])))
+	_assertEqual(_div("Upper purple"), _div("/purple/", _above(_div("Lower purple"), [50,10])))
+
+}
+
+function testAboveWithSmallerElementAlignedInBetween(){
+    _assertNull(_div("/white/", _above(_div("Lower white"), 19)));
+	_assertEqual(_div("Upper white"), _div("/white/", _above(_div("Lower white"), 30)))
+	_assertEqual(_div("Upper white"), _div("/white/", _above(_div("Lower white"), [20,30])))
+	_assertEqual(_div("Upper white"), _div("/white/", _above(_div("Lower white"), [30,40])))
+}
+
+function testAboveWithSmallerElementAbove(){
+    _assertNotNull(_div("/grey/", _above(_div("Lower grey"))));
+	_assertEqual(_div("Upper grey"), _div("/grey/", _above(_div("Lower grey"))))
+	_assertEqual(_div("Upper grey"), _div("/grey/", _above(_div("Lower grey"), [10,10])))
+}
+
+function testExactUnder() {
+	_assertEqual(_div("Lower blue"), _div("/blue/", _under(_div("Upper blue"))));
+}
+
+function testUnderWithBiggerElementLeftAligned() {
+	_assertNull(_div("/red/", _under(_div("Lower red"), 49)));
+	_assertEqual(_div("Lower red"), _div("/red/", _under(_div("Upper red"), 50)));
+	_assertEqual(_div("Lower red"), _div("/red/", _under(_div("Upper red"),[0,50])));
+	_assertEqual(_div("Lower red"), _div("/red/", _under(_div("Upper red"),[10,50])));
+}
+
+function testUnderWithSmallerElementRightAligned(){
+    _assertNull(_div("/purple/", _under(_div("Lower purple"), 49)));
+	_assertEqual(_div("Lower purple"), _div("/purple/", _under(_div("Upper purple"))));
+	_assertEqual(_div("Lower purple"), _div("/purple/", _under(_div("Upper purple"),50)));
+	_assertEqual(_div("Lower purple"), _div("/purple/", _under(_div("Upper purple"),[50,0])));
+	_assertEqual(_div("Lower purple"), _div("/purple/", _under(_div("Upper purple"),[50,10])));
+}
+
+function testUnderWithSmallerElementAlignedInBetween(){
+    _assertNull(_div("/white/", _under(_div("Under white"), 19)));
+	_assertEqual(_div("Lower white"), _div("/Lower white/", _under(_div("Upper white"))));
+	_assertEqual(_div("Lower white"), _div("/Lower white/", _under(_div("Upper white"),20)));	
+	_assertEqual(_div("Lower white"), _div("/Lower white/", _under(_div("Upper white"),[20,30])));
+}
+
+function testUnderWithSmallerElementAbove(){
+    _assertNotNull(_div("/grey/", _under(_div("Upper grey"),30)));
+	_assertEqual(_div("Lower grey"), _div("/Lower grey/", _under(_div("Upper grey"),[30,20])));
+	_assertEqual(_div("Lower grey"), _div("/Lower grey/", _under(_div("Upper grey"),30)));
+}
+
+_runUnitTests();

@@ -1,0 +1,9 @@
+_navigateTo("/demo/IE7TestPage.htm");
+
+if(_isIE()){
+	_log("IE document Mode:" + _fetch(document.documentMode));
+	_assertEqual(7, _fetch(document.documentMode));
+	_assertExists(_heading1("IE7"));
+}else{
+	_log("This test only support IE browser");
+}

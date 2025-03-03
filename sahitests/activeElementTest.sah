@@ -1,0 +1,15 @@
+_navigateTo("/demo/linkTest.htm");
+_focus(_textbox("t1"));
+_assertEqual(_textbox("t1"), _activeElement());
+
+_focus(_textbox("tb", _in(_iframe("myframe"))));
+_assertEqual(_textbox("tb"), _activeElement());
+
+_navigateTo("/demo/iframesTest.htm");
+_click(_link("Link Test"));
+_click(_link("Link Test"));
+_focus(_textbox("t1"));
+_assertEqual(_textbox("t1"), _activeElement());
+
+_focus(_textbox("tb", _in(_iframe("myframe"))));
+_assertEqual(_textbox("tb"), _activeElement());

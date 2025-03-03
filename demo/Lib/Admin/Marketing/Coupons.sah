@@ -1,0 +1,68 @@
+_include("../Admin.sah");
+_include("../../../AR/OpenCart_AR.sah");
+
+/**
+ * GotoMarketinCouponsPage()
+ */
+function GotoMarketingCouponsPage(){
+	_click($_LINK_MARKETING);
+	_click($_LINK_COUPONS);
+}
+
+/**
+ * AddNewCoupon($object)
+ * @param $object - 
+ * @paramobject CouponName,Code,Type,Discount,UsesTotal,UsesCustomer,Status
+ */
+function CreateNewCoupon($object){
+	_click($_LINK_BTN_BTNPRIMARY);
+	_setValue($_TEXTBOX_COUPONNAME, $object.CouponName);
+	_setValue($_TEXTBOX_CODE, $object.Code);
+	_setSelected($_SELECT_TYPE, $object.Type);
+	_setValue($_TEXTBOX_DISCOUNT, $object.Discount);
+	_setValue($_TEXTBOX_USES_TOTAL, $object.UsesTotal);
+	_setValue($_TEXTBOX_USES_CUSTOMER, $object.UsesCustomer);
+	_setSelected($_SELECT_STATUS, $object.Status);
+	_click($_SUBMIT_BTN_BTNPRIMARY);
+	_assertContainsText( "Success: You have modified coupons!", $_DIV_ALERTSUCCESS);
+}
+
+function DeleteCoupon($coupon){
+	if(_exists(_cell($coupon))){
+		_check(_checkbox(0, _leftOf(_cell($coupon))));
+		_clearLastConfirm();
+		_expectConfirm("Are you sure?", true);
+		_click(_button("btn btn-danger"));
+		_assertEqual("Are you sure?", _lastConfirm(false));
+		_assertExists(_div("/Success: You have modified coupons!/"));
+	}else{
+		_log("coupon not exists...", "CUSTOM");
+	}
+}
+
+/**
+* AddNewCouponIfNotExists
+* @param $object - 
+* @paramobject CouponName,Code,Type,Discount,UsesTotal,UsesCustomer,Status
+*/
+function CreateNewCouponIfNotExists($object) {
+	GotoMarketingCouponsPage();
+	CreateNewCoupon($object);
+}
+
+/**
+* DeleteCouponIfExists
+* @param $object - 
+* @paramobject Code
+*/
+function DeleteCouponIfExists($object){
+    GotoMarketingCouponsPage();
+	
+	if(!_exists(_cell($object.Code))){
+		// Shorting
+		_click(_link("Code", _in(_cell("Code"))));
+		_click(_link("Code", _in(_cell("Code"))));
+	}
+	DeleteCoupon($object.Code);
+}
+

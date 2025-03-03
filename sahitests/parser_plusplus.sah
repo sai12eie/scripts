@@ -1,0 +1,6 @@
+var $i=0;
+_assertEqual(0, $i++);
+_assertEqual(2, ++$i);
+_assertEqual(2, $i--);
+_assertEqual(0, --$i);
+_assertEqual("--" + "$" + "abcd" + "$" + "--", "--$abcd$--")

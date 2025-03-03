@@ -1,0 +1,16 @@
+_resource("snapshot_login_short.png");
+_resource("snapshot_totaled.png");
+_sahi.SKIP_SCREENSHOTS = true;
+
+var $usrPath = _userDataPath("scripts");
+_takeScreenShot($usrPath + "/screen.png");
+_takePageScreenShot(null, $usrPath + "/page-screen.png");
+var $exists = _fileExists($usrPath + "/screen.png");
+_assert(!$exists);
+var $exists2 = _fileExists($usrPath + "/page-screen.png");
+_assert(!$exists2);
+
+_sahi.SKIP_ASSERT_SNAPSHOTS = true;
+_assertSnapShot("snapshot_login_short.png", 20, true);
+var $same = _compareImages("snapshot_login_short.png", "snapshot_totaled.png", 10);
+_assertNull($same);

@@ -1,0 +1,85 @@
+function setUp() {
+  _sahi.initMultiLanguage();
+}
+
+function testStringsWithNoSetLanguage() {
+   _assertEqual("aaa", "aaa");
+   _assertEqual("aa" + "a", "aaa");
+   _assertEqual("aaa", "aa" + "a");
+}
+
+function testStringsWithSetLanguageOfBlankFiles(){
+   _setLanguage("blank_en.properties", "blank_en.properties");
+   _assertEqual("S_NO_TR:aaa", "aaa");
+   _assertEqual("S_NO_TR:aa" + "S_NO_TR:a", "aaa");
+   _assertEqual("S_NO_TR:aaa", "aa" + "a");
+}
+
+function testTranslateToGermanWithReverseLookupValidEntries(){
+   _setLanguage("german.properties", "en.properties");
+   _assertEqual("S_NO_TR:ja ja", "ha ha");
+}
+
+function testTranslateToGermanWithKey(){
+   _setLanguage("german.properties", "en.properties");
+   _assertEqual("S_NO_TR:ja ja", "K:laugh");
+}
+
+function testTranslateToGermanWithKeyNotExists(){
+   _setLanguage("german.properties", "en.properties");
+   _assertEqual("S_NO_TR:K:NOKEY", "K:NOKEY");
+}
+
+function testTranslateToGermanLiteral(){
+   _setLanguage("german.properties", "en.properties");
+   _assertEqual("S_NO_TR:ja ja ja", "L:ja ja ja");
+}
+
+function testTranslateToGermanWithReverseLookupNoEn(){
+   _setLanguage("german.properties", "en.properties");
+   _assertEqual("S_NO_TR:no key in en", "no key in en");
+}
+
+function testTranslateToGermanWithReverseLookupNoGerman(){
+   _setLanguage("german.properties", "en.properties");
+   _assertEqual("S_NO_TR:key in en, no key in german", "key in en, no key in german");
+}
+
+function testTranslateToGermanLiteralSameLanguages(){
+   _setLanguage("german.properties", "german.properties");
+   _assertEqual("S_NO_TR:ja ja ja", "L:ja ja ja");
+}
+
+function testTranslateToGermanKeySameLanguages(){
+   _setLanguage("german.properties", "german.properties");
+   _assertEqual("S_NO_TR:ja ja", "K:laugh");
+}
+
+function testTranslateToGermanStringSameLanguagesKeyExists(){
+   _setLanguage("german.properties", "german.properties");
+   _assertEqual("ja ja", "ja ja");
+}
+
+function testTranslateToGermanStringSameLanguagesKeyNotExists(){
+   _setLanguage("german.properties", "german.properties");
+   _assertEqual("german no key", "german no key");
+}
+
+function testMultipleSetLanguage() {
+	_setLanguage("german.properties", "en.properties");
+	_assertEqual("S_NO_TR:ja ja", "ha ha");
+	_assertEqual("S_NO_TR:English", "English");
+	_setLanguage("german.properties", "en2.properties");
+	_assertEqual("S_NO_TR:German", "English");
+	_assertEqual("S_NO_TR:ha ha", "ha ha");
+	_setLanguage("german2.properties", "en.properties", true);
+	_assertEqual("S_NO_TR:ja ja", "ha ha");
+	_assertEqual("S_NO_TR:german2.properties", "en2.properties");
+}
+
+_resource("german.properties");
+_resource("german2.properties");
+_resource("en.properties");
+_resource("en2.properties");
+_resource("blank_en.properties");
+_runUnitTests();

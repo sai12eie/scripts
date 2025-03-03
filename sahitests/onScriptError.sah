@@ -1,0 +1,50 @@
+function onScriptErrorReturnsTrue(e){
+	_logException(e);
+	$shouldContinue = true;
+	return true;
+} 
+
+function onScriptErrorReturnsFalse(e){
+	_logException(e);
+	$shouldContinue = false;
+//	_focusWindow();
+//	_takeScreenShot();
+	return false;
+} 
+
+function onScriptErrorReturnsNothing(e){
+	_logException(e);
+	$shouldContinue = false;
+	//_focusWindow();
+//	_takeScreenShot();	
+} 
+
+function performTest() {
+	_navigateTo("/demo/");
+	_click(_link("Link Test"));
+    _click(_link("does not exist"));
+	_click(_link("Back"));
+	_assertExists(_link("Link Test"));
+}
+
+function testOnScriptErrorReturnsTrue() {
+	onScriptError = onScriptErrorReturnsTrue;
+	performTest();
+	_assertTrue($shouldContinue);
+}
+
+function testOnScriptErrorReturnsFalse() {
+	onScriptError = onScriptErrorReturnsFalse;
+	performTest();
+	_fail("Should never reach here");
+}
+
+
+function testOnScriptErrorReturnsNothing() {
+	onScriptError = onScriptErrorReturnsNothing;
+	performTest();
+	_fail("Should never reach here");
+}
+
+
+_runUnitTests();

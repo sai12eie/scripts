@@ -1,0 +1,149 @@
+{
+  "modifiedOn": "2024-06-19T11:16:52.341Z",
+  "name": "user",
+  "id": "-1",
+  "type": 1,
+  "createdOn": "2024-04-15T04:41:30Z",
+  "content": {
+    "default": {
+      "attr_01713433667114": {
+        "name": "firstname",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Firstname Input",
+            "accessor": "_textbox(\"firstname\")",
+            "messageAccessor": "_div(\"text-danger\", _near(_label(\"First Name\")))"
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "Pratik",
+          "min-length": "0",
+          "max-length": "0",
+          "add-timestamp": "false"
+        },
+        "invalidData": [
+          {
+            "value": "",
+            "message": "First Name must be between 1 and 32 characters!",
+            "comment": "Should not be blank"
+          },
+          {
+            "value": "Thisislongstringwhichshouldnotwork",
+            "message": "First Name must be between 1 and 32 characters!",
+            "comment": "33 characters long string"
+          }
+        ],
+        "validData": [
+          {
+            "value": "a",
+            "comment": "1 character string"
+          },
+          {
+            "value": "thirtytwocharacterlongstringabcd",
+            "comment": "32 character long string"
+          }
+        ]
+      },
+      "attr_11713433667115": {
+        "name": "lastname",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Lastname Input",
+            "accessor": "_textbox(\"lastname\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "Shah",
+          "min-length": "0",
+          "max-length": "0",
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_21713433667115": {
+        "name": "email",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Email Input",
+            "accessor": "_emailbox(\"email\")",
+            "messageAccessor": "_div(\"text-danger\", _near(_label(\"E-Mail\")))"
+          }
+        ],
+        "type": "email",
+        "props": {
+          "names": [
+            "pratik.shah"
+          ],
+          "domains": [
+            "example.com"
+          ],
+          "add-timestamp": "true"
+        },
+        "invalidData": [
+          {
+            "value": "",
+            "message": "E-Mail Address does not appear to be valid!",
+            "comment": "Should not be blank"
+          },
+          {
+            "value": "name.example.com",
+            "message": "E-Mail Address does not appear to be valid!",
+            "comment": "@ is missing"
+          }
+        ],
+        "validData": []
+      },
+      "attr_31713433667115": {
+        "name": "telephone",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Telephone Input",
+            "accessor": "_telephonebox(\"telephone\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "number",
+        "props": {
+          "min": "987654321",
+          "max": "987654321"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_41713433667115": {
+        "name": "password",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Password Input",
+            "accessor": "_password(\"password\")",
+            "messageAccessor": ""
+          },
+          {
+            "id": "acc1",
+            "name": "Confirm Input",
+            "accessor": "_password(\"confirm\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "simpletext",
+        "props": {
+          "text": "testsahi",
+          "is-password": "true"
+        },
+        "invalidData": [],
+        "validData": []
+      }
+    }
+  },
+  "enabled": false,
+  "parentId": ""
+}

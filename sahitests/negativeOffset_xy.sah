@@ -1,0 +1,22 @@
+/**
+* Script to test negative offset in _xy works.
+* Original Bug(#213: https://sahi-apps.sourcerepo.com/redmine/sahi/issues/213): If a positive offset is provided for _xy and then a negative offset, it fails.
+* Fixed by: Narayan
+* Script author: Vivek Dwivedi
+*/
+_navigateTo("http://dev.sencha.com/deploy/ext-4.0.0/examples/toolbar/reorderable.html");
+_click(_div("Menu Button"));
+_assert(!_isVisible(_span("Menu Item 1"))); //menu options will not be visible
+_click(document.body);
+
+_click(_xy(_div("Menu Button"),-5,5));
+_assert(_isVisible(_span("Menu Item 1"))); // menu options will be visible with negative offset
+_click(document.body);
+
+_click(_xy(_button("Menu Button"),5,5));
+_assert(!_isVisible(_span("Menu Item 1")));//menu options will not be visible with positive offset
+_click(document.body);
+
+_click(_xy(_div("Menu Button"),-5,5));
+_assert(_isVisible(_span("Menu Item 1"))); //menu option should be visible for negative offset
+_click(document.body);

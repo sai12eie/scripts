@@ -1,0 +1,85 @@
+_navigateTo("/demo/strict_visible.htm");
+
+function testFormElement(){
+	_assertExists(_textbox("q"));
+	_assertExists(_textbox("q[1]"));
+	_assert(!_isVisible(_textbox("q[1]")));
+	_assertExists(_textbox("q[2]"));
+	
+	_setStrictVisibilityCheck(true);
+	_assertExists(_textbox("q"));
+	_assertExists(_textbox("q[1]"));
+	_assertNotExists(_textbox("q[2]"));
+	
+	_setStrictVisibilityCheck(false);
+	_assertExists(_textbox("q"));
+	_assertExists(_textbox("q[1]"));
+	_assert(!_isVisible(_textbox("q[1]")));
+	_assertExists(_textbox("q[2]"));
+}
+
+function testDiv(){
+	_assertExists(_div("blue"));
+	_assertExists(_div("blue[1]"));
+	_assert(!_isVisible(_div("blue[1]")));
+	_assertExists(_div("blue[2]"));
+	
+	_setStrictVisibilityCheck(true);
+	_assertExists(_div("blue"));
+	_assertExists(_div("blue[1]"));
+	_assertNotExists(_div("blue[2]"));
+	
+	_setStrictVisibilityCheck(false);
+	_assertExists(_div("blue"));
+	_assertExists(_div("blue[1]"));
+	_assert(!_isVisible(_div("blue[1]")));
+	_assertExists(_div("blue[2]"));	
+}
+
+function testStrictVisibilityPersistsAcrossReloads() {
+	_navigateTo("/demo/strict_visible.htm", true);
+	_setStrictVisibilityCheck(true);
+	_assertNotExists(_div("blue[2]"));
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assertNotExists(_div("blue[2]"));
+
+	_setStrictVisibilityCheck(false);
+	_assert(!_isVisible(_div("blue[1]")));
+	_assertExists(_div("blue[2]"));	
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assert(!_isVisible(_div("blue[1]")));
+	_assertExists(_div("blue[2]"));	
+}
+
+function testWithZIndexAndScrollBar() {
+	_navigateTo("/demo/strict_visible.htm", true);
+	
+	_setStrictVisibilityCheck(true, false);
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assertExists(_textbox("ztext"));
+	_assertExists(_textbox("ztext[1]"));
+	_assert(_textbox("ztext") == _textbox("zbelow"));
+	
+	
+	_setStrictVisibilityCheck(true, true,true);   
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assertExists(_textbox("ztext"));
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assertNotExists(_textbox("ztext[1]"));
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assert(_textbox("ztext") == _textbox("zabove"));
+	
+	
+	_setStrictVisibilityCheck(true, true,false);   
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assertNotExists(_textbox("ztext"));
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assertNotExists(_textbox("ztext[1]"));
+	_navigateTo("/demo/strict_visible.htm", true);
+	_assertNotTrue(_textbox("ztext") != _textbox("zabove"));
+	
+	}
+
+_runUnitTests();
+
+

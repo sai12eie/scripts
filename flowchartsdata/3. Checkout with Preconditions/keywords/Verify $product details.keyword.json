@@ -1,0 +1,72 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.794Z",
+  "name": "Verify $product details",
+  "id": "45906",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.794Z",
+  "content": {
+    "title": "Verify $product details",
+    "parameters": [
+      {
+        "parameterId": "product_",
+        "entityTypeId": "product",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_textbox(\"filter_name\")"
+          },
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_01679636522544"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_button(\"Filter\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_exists",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_cell(\"$\" + $product.price + \".00\")"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Is_True"
+      },
+      {
+        "commented": false,
+        "action": "_exists",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_cell($product.name)"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Is_True"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

@@ -1,0 +1,59 @@
+{
+  "modifiedOn": "2024-04-08T05:22:31.290Z",
+  "name": "Apply $coupon",
+  "id": "44872",
+  "type": 3,
+  "createdOn": "2024-04-08T05:22:31.290Z",
+  "content": {
+    "title": "Apply $coupon",
+    "parameters": [
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Use Coupon Code\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_textbox(\"coupon\")"
+          },
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_11679636456422"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_button(\"Apply Coupon\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

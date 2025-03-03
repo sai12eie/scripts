@@ -1,0 +1,15 @@
+//<browser>
+_setFlexReadyCondition(function(fl){
+	return !_isVisible(fl.ypreloader("/PreloaderView/"));
+});
+//</browser>
+//_setStrictVisibilityCheck(true);
+_navigateTo("http://gramam/sfl/yodlee/yodlee.html");
+_setValue(_f("mymovie").textinput("txtDescription[7]"), "");
+_click(_f("mymovie").uitextfield("-INR12,000.00"));
+_setValue(_f("mymovie").textinput("txtUserDescription"), "asdasd");
+_click(_f("mymovie").button("Close"));
+_click(_f("mymovie").button("Button43"));
+_setSelected(_f("mymovie").ygroupcombobox("category_cb"), "Split");
+_assertEqual("12/22/2010", _getValue(_f("mymovie").uitextfield("12/22/2010")));
+_setSelected(_f("mymovie").combobox("duration_cb"), "1 Month");

@@ -1,0 +1,135 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.289Z",
+  "name": "user",
+  "id": "45860",
+  "type": 1,
+  "createdOn": "2024-05-09T04:56:34.289Z",
+  "content": {
+    "default": {
+      "attr_01679571973977": {
+        "name": "firstName",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "First Name Input",
+            "accessor": "_textbox(\"firstname\")",
+            "messageAccessor": ""
+          },
+          {
+            "id": "acc1",
+            "name": "Alert Alert Danger Alert Dismissible Input",
+            "accessor": "_div(\"alert alert-danger alert-dismissible\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "Mahi",
+          "min-length": 0,
+          "max-length": 0
+        },
+        "invalidData": [
+          {
+            "value": "",
+            "message": "",
+            "comment": "Should not be blank"
+          },
+          {
+            "value": "thisisalongtextwithmorethan32characters",
+            "message": "",
+            "comment": "Length is too long"
+          }
+        ],
+        "validData": []
+      },
+      "attr_11679571973977": {
+        "name": "lastName",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Last Name Input",
+            "accessor": "_textbox(\"lastname\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "Dhoni",
+          "min-length": 0,
+          "max-length": 0
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_21679571973977": {
+        "name": "email",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Email Input",
+            "accessor": "_emailbox(\"email\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "email",
+        "props": {
+          "names": [
+            "mahi"
+          ],
+          "domains": [
+            "example.com"
+          ],
+          "add-timestamp": "true"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_31679571973977": {
+        "name": "telephone",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Telephone Input",
+            "accessor": "_telephonebox(\"telephone\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "number",
+        "props": {
+          "min": "1234554321",
+          "max": "1234554321"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_41679571973977": {
+        "name": "password",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Password Input",
+            "accessor": "_password(\"password\")",
+            "messageAccessor": ""
+          },
+          {
+            "id": "acc1",
+            "name": "Confirm Input",
+            "accessor": "_password(\"confirm\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "shhh",
+          "min-length": 0,
+          "max-length": 0
+        },
+        "invalidData": [],
+        "validData": []
+      }
+    },
+    "specific": []
+  },
+  "enabled": false,
+  "parentId": ""
+}

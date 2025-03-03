@@ -1,0 +1,52 @@
+{
+  "modifiedOn": "2024-05-28T09:28:12.862Z",
+  "name": "Verify $coupon created",
+  "id": "0",
+  "type": 3,
+  "createdOn": "2024-05-28T09:28:12.862Z",
+  "content": {
+    "title": "Verify $coupon created",
+    "parameters": [
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_exists",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_div(\"alert alert-success alert-dismissible\")"
+          }
+        ],
+        "stepType": "Assert",
+        "stepCategory": "inbuilt",
+        "assertType": "Is_True"
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_div(\"alert alert-success alert-dismissible\")"
+          }
+        ],
+        "stepType": "Assert",
+        "stepCategory": "inbuilt",
+        "assertType": "Contains",
+        "secondaryParam": {
+          "paramMode": "string",
+          "customValue": "Success: You have modified coupons!"
+        }
+      }
+    ],
+    "isSystemKeyword": false
+  },
+  "enabled": false,
+  "parentId": ""
+}

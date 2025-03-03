@@ -1,0 +1,50 @@
+"TestCase","Key Word","Argument 1","Argument 2"
+,"loadSahi","objectTest.sah"
+
+"My First Testcase","[Documentation]","My testcase description. Modify as needed"
+,"checkNumber","10"
+,"checkBoolean","true"
+,"checkString","""abc"""
+,"checkString","abc"
+,"checkJSONArray","[{""Name"":""abc"", ""Age"":23},{""Name"":""xyz"", ""Age"":25}]"
+,"checkArray","[10,30,20]"
+,"checkObject","{""Name"":""abc"", ""Age"":23}"
+,"checkArrayWithBracket","[""data1"",""data (value)"",""data(value2)"",""final data""]"
+,"checkObjectWithBracket","{""Name"":""abc(abc)"", ""Age"":23}"
+
+"Pass Variable","[Documentation]","Check object by assigning it to variable"
+,"$number =","10"
+,"checkNumber","$number"
+
+,"$flag =","true"
+,"checkBoolean","$flag"
+
+,"$string =","""abc"""
+,"checkString","$string"
+
+,"$string =","abc"
+,"checkString","$string"
+
+,"$json_array =","[{""Name"":""abc"", ""Age"":23},{""Name"":""xyz"", ""Age"":25}]"
+,"checkJSONArray","$json_array"
+
+,"$array =","[10,30,20]"
+,"checkArray","$array"
+
+,"$object =","{""Name"":""abc"", ""Age"":23}"
+,"checkObject","$object"
+
+,"$array_bracket =","[""data1"",""data (value)"",""data(value2)"",""final data""]"
+,"checkArrayWithBracket","$array_bracket"
+
+,"$object_bracket =","{""Name"":""abc(abc)"", ""Age"":23}"
+,"checkObjectWithBracket","$object_bracket"
+
+"My Third Testcase","[Documentation]","Check for string combinations"
+,"checkStringPackage","""com.apple.Preferences"""
+,"checkStringPackage","com.apple.Preferences"
+,"checkStringEmail","""user@example.com"""
+,"checkStringEmail","user@example.com"
+,"checkStringBracket","""data (value)"""
+,"checkStringDoubleQuote","""da\""ta"""
+,"checkStringDoubleQuote","da""ta"

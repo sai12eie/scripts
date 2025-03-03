@@ -1,0 +1,55 @@
+function setUp(){
+	_navigateTo("http://sahitest.com/demo/");
+}
+
+function testARWithReplaceCSV(){
+	var $txt = "Test";
+	_assertEqual("Link Test", _getText($_LINK_LINK_TEXT.replace2("Not", "Link").replace2("Exists", $txt)));
+	_navigateTo("training/login.htm");
+	_includeAR("AR_file.csv", "ArValue2");
+	var $USER = "user";
+	var $PASSWORD = "password";
+	_setValue($_TEXTBOX_USER.replace2("$USER", $USER), "test");
+	_setPassword($_PASSWORD_PASSWORD.replace2("$PASSWORD", $PASSWORD), "MgkKEQBU");
+	_click( $_SUBMIT_LOGIN);
+	_click( $_BUTTON_LOGOUT);
+	_assertExists( $_SUBMIT_LOGIN);
+}
+
+function testARFromCSV(){
+	_navigateTo("training/login.htm");
+	_setValue($_TEXTBOX_USER, "test");
+	_setPassword($_PASSWORD_PASSWORD, "MgkKEQBU");
+	_click( $_SUBMIT_LOGIN);
+	_click( $_BUTTON_LOGOUT);
+	_assertExists( $_SUBMIT_LOGIN);
+}
+
+_includeAR("AR_file.csv", "ArValue1");
+_runUnitTests(["testARFromCSV", "testARWithReplaceCSV"]);
+
+function testARWithReplaceARCSV(){
+	var $txt = "Test";
+	_assertEqual("Link Test", _getText($_LINK_LINK_TEXT.replace2("Not", "Link").replace2("Exists", $txt)));
+	_navigateTo("training/login.htm");
+	_includeAR("AR_file.ar.csv", "ArValue2");
+	var $USER = "user";
+	var $PASSWORD = "password";
+	_setValue($_TEXTBOX_USER.replace2("$USER", $USER), "test");
+	_setPassword($_PASSWORD_PASSWORD.replace2("$PASSWORD", $PASSWORD), "MgkKEQBU");
+	_click( $_SUBMIT_LOGIN);
+	_click( $_BUTTON_LOGOUT);
+	_assertExists( $_SUBMIT_LOGIN);
+}
+
+function testARFromARCSV(){
+	_navigateTo("training/login.htm");
+	_setValue($_TEXTBOX_USER, "test");
+	_setPassword($_PASSWORD_PASSWORD, "MgkKEQBU");
+	_click( $_SUBMIT_LOGIN);
+	_click( $_BUTTON_LOGOUT);
+	_assertExists( $_SUBMIT_LOGIN);
+}
+
+_includeAR("AR_file.ar.csv", "ArValue1");
+_runUnitTests(["testARFromARCSV", "testARWithReplaceARCSV"]);

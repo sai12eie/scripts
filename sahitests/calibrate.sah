@@ -1,0 +1,18 @@
+function mouseMoveNative(x,y) {
+	var robot = new java.awt.Robot();
+	robot.mouseMove(x, y);
+}
+
+_navigateTo("/_s_/sprm/calibrate.htm");
+_wait(1000);
+_focusWindow();
+_windowAction("maximize");
+_wait(4000);
+mouseMoveNative(100,100);
+var $offsets = "0,0";
+_set($offsets, _getText(_div("offsetDiv")));
+$offsets = $offsets.split(",");
+var $offsetX = parseInt($offsets[0]);
+var $offsetY = parseInt($offsets[1]);
+
+

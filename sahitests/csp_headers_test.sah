@@ -1,0 +1,33 @@
+// Test with Content-Security-Policy header sent for Google account sign-in page.
+_navigateTo("https://accounts.google.com/signin");
+_assertVisible(_emailbox("identifier"));
+
+if(_exists(_submit("Next"))){
+	_highlight(_submit("Next"));
+	_click(_submit("Next"));
+}else{
+	_highlight(_span("Next"));
+	_click(_span("Next"));
+}
+
+// Test with Content-Security-Policy header sent for Twitter sign-in page.
+
+if(_isIE()){
+	_log("Twitter is not supported in IE browser !!!");
+}else {
+	_navigateTo("https://twitter.com/");
+	var $el = null;
+	
+	if(_exists(_span("Next"))){
+		$el = _span("Next");
+	}
+	else if(_exists(_link("/Sign up/"))){
+		$el = _link("/Sign up/");
+	}
+	else{
+		$el = _span("/Sign up/");
+	}
+	_assertVisible($el);
+	_click($el);
+	_assertExists(_div("Create account"));
+}

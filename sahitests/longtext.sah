@@ -1,0 +1,12 @@
+function ab($notes1, $notes2)
+{
+    _setValue(_textarea(0), $notes1);
+    _setValue(_textarea(0), $notes2);
+    _log("hi", "success");
+}
+
+_navigateTo("/demo/formTest.htm");
+
+var $notes1 = "is a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 charactersis a string with over 984 characters";
+$notes1 = $notes1+$notes1+$notes1+$notes1+$notes1;
+ab($notes1, $notes1);

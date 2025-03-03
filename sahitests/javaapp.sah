@@ -1,0 +1,52 @@
+_navigateTo("/demo/clicks.htm");
+
+//_doubleClick(_div("dbl click me"));
+//_assertEqual("[DOUBLE_CLICK]", _textarea("t2").value);
+//_click(_button("Clear"));
+
+_sahi._setMode("JAVA");
+_selectWindow("Sample");
+
+$TEST_BUTTON = _jvJButton("Test Button");
+
+_click($TEST_BUTTON);
+_selectWindow("Sample Frame Title");
+_setSelected(_jvJTabbedPane("TabbedPane"),"ComboBox Test Frame");
+var $value = "Ahmedabad";
+_setSelected(_jvJComboBox("ComboBox"), $value);
+
+var $selText = _getText(_jvJComboBox("ComboBox"));
+_sahi.print(">>>>>>>>>>>>> " + $selText);
+
+
+_assertEqual("Ahmedabad22", _getText(_jvJComboBox("ComboBox")));
+
+_sahi._setMode("BROWSER");
+
+_click(_button("click me"));
+_assertEqual("[CLICK]", _textarea("t2").value);
+_click(_button("Clear"));
+
+
+
+/*
+_setMode("Windows") 
+_selectWindow("Notepad++");
+_click(_wButton());
+_setSelected(_wSelect("age"), "23);
+_setMode("Android");
+*/
+
+/*
+SahiWindow win = new SahiWindow("Notepad++");
+win.FocusWindow();
+SahiActions.Click(win.FindElement("Search", "menu item"));
+SahiActions.Click(win.FindElement("Replace...", "menu item"));
+SahiElement.ListWindows("");
+//SahiElements.ListElements("", "", win);
+Thread.Sleep(500);
+SahiActions.Click(win.FindElement("Find", "tab item"));
+SahiActions.Click(win.FindElement("Match case", "check box"));
+SahiActions.SetValue(win.FindElement("Find what", "edit"), "abcde");
+SahiActions.Click(win.FindElement("Close", "button"));
+*/

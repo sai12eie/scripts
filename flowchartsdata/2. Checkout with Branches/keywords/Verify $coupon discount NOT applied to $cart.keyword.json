@@ -1,0 +1,78 @@
+{
+  "modifiedOn": "2024-04-08T05:22:31.330Z",
+  "name": "Verify $coupon discount NOT applied to $cart",
+  "id": "44877",
+  "type": 3,
+  "createdOn": "2024-04-08T05:22:31.330Z",
+  "content": {
+    "title": "Verify $coupon discount NOT applied to $cart",
+    "parameters": [
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      },
+      {
+        "parameterId": "cart_",
+        "entityTypeId": "cart",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_div(\"alert alert-danger alert-dismissible\")"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Contains",
+        "secondaryParam": {
+          "isCustomParameter": true,
+          "customValue": "\"Warning: Coupon is either invalid, expired or reached its usage limit!\""
+        }
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_01679636987669",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "cart_",
+          "attributeId": "attr_01679636987669"
+        },
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_21679636987670",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "cart_",
+          "attributeId": "attr_21679636987670"
+        },
+        "visibleCheck": false
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

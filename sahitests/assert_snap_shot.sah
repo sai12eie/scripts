@@ -1,0 +1,81 @@
+_resource("images/snapshot_totaled.png");
+_resource("images/snapshot_totaled_trimmed.png");
+_resource("images/snapshot_cart_div.png");
+
+_resource("images/snapshot_totaled_edge.png");
+_resource("images/snapshot_totaled_trimmed_edge.png");
+_resource("images/snapshot_cart_div_edge.png");
+
+_resource("images/snapshot_totaled_ff.png");
+_resource("images/snapshot_totaled_trimmed_ff.png");
+_resource("images/snapshot_cart_div_ff.png");
+
+_resource("images/snapshot_totaled_ie.png");
+_resource("images/snapshot_totaled_trimmed_ie.png");
+_resource("images/snapshot_cart_div_ie.png");
+
+_navigateTo("http://sahitest.com/demo/training/");
+_windowAction("maximize");
+_setValue(_textbox("user"), "test");
+_setValue(_password("password"), "secret");
+_click(_submit("Login"));
+_setValue(_textbox("q"), "2");
+_setValue(_textbox("q[1]"), "1");
+_setValue(_textbox("q[2]"), "1");
+_click(_button("Add"));
+_assertEqual("1150", _textbox("total").value);
+_setValue(_textbox("total"), "8811188");
+_lockWindow();
+_focusWindow();
+
+if(_isChrome() || _isEdgeNew() || _isBrave()){
+	_assertSnapShot("images/snapshot_totaled.png");
+	_assertSnapShot("images/snapshot_totaled.png", null, 20, true);
+	_assertSnapShot("images/snapshot_totaled.png", null, 20, true, {delay:200});
+	
+	_assertSnapShot("images/snapshot_totaled_trimmed.png", null, 20, true, {trim:true});
+	_assertSnapShot("images/snapshot_totaled_trimmed.png", null, 20, true, {delay:200, trim:true});
+	
+	_assertSnapShot("images/snapshot_cart_div.png", _div("cart"));
+	_assertSnapShot("images/snapshot_cart_div.png", _div("cart"), 20, true);
+	_assertSnapShot("images/snapshot_cart_div.png", _div("cart"), 20, true, {delay:200});
+}else if(_isFF()){
+	_assertSnapShot("images/snapshot_totaled_ff.png");
+	_assertSnapShot("images/snapshot_totaled_ff.png", null, 20, true);
+	_assertSnapShot("images/snapshot_totaled_ff.png", null, 20, true, {delay:200});
+	
+	_assertSnapShot("images/snapshot_totaled_trimmed_ff.png", null, 20, true, {trim:true});
+	_assertSnapShot("images/snapshot_totaled_trimmed_ff.png", null, 20, true, {delay:200, trim:true});
+	
+	_assertSnapShot("images/snapshot_cart_div_ff.png", _div("cart"));
+	_assertSnapShot("images/snapshot_cart_div_ff.png", _div("cart"), 20, true);
+	_assertSnapShot("images/snapshot_cart_div_ff.png", _div("cart"), 20, true, {delay:200});
+}else if(_isIE()){
+	_assertSnapShot("images/snapshot_totaled_ie.png");
+	_assertSnapShot("images/snapshot_totaled_ie.png", null, 20, true);
+	_assertSnapShot("images/snapshot_totaled_ie.png", null, 20, true, {delay:200});
+	
+	_assertSnapShot("images/snapshot_totaled_trimmed_ie.png", null, 20, true, {trim:true});
+	_assertSnapShot("images/snapshot_totaled_trimmed_ie.png", null, 20, true, {delay:200, trim:true});
+	
+	_assertSnapShot("images/snapshot_cart_div_ie.png", _div("cart"));
+	_assertSnapShot("images/snapshot_cart_div_ie.png", _div("cart"), 20, true);
+	_assertSnapShot("images/snapshot_cart_div_ie.png", _div("cart"), 20, true, {delay:200});
+}
+else{
+	_log("Not implemented for this browser !!!");
+	_assert(false);
+}
+
+_unlockWindow();
+_click(_button("Logout"));
+
+_navigateTo("http://en.wikipedia.org/wiki/Tytonidae");
+_lockWindow(20000);
+_focusWindow();
+_wait(1000);
+_assertVisible(_table("infobox biota"));
+_takePageScreenShot(_table("infobox biota"), "reference.png");
+_assertSnapShot("reference.png", _table("infobox biota"), 30, true);
+_assertSnapShot("reference.png", _table("infobox biota"), 30, true, {delay:200});
+_unlockWindow();

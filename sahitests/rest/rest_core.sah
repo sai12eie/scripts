@@ -1,0 +1,310 @@
+onScriptError=onScriptFailure=null
+
+// Added test for redirect automatically with apache client(default true).
+function GetResponseRedirectWithApacheClient() {
+	$request = new RESTRequest();
+	$request.setURL("http://sahitest.com/demo");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	_assertEqual("200", $response.getResponseCode());
+	_assertNotEqual("301", $response.getResponseCode());
+}
+
+/**
+* GetResponse()
+*/
+function GetResponse(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/response-headers");
+	$request.addToQueryString("freeform", "freeform");
+	$request.addToQueryString("freeform", "freeform");
+	$request.setHeader(":method", "GET");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/response-headers?freeform=freeform");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$request.setHeader("cookie", "fake=fake_value; stale_after=never; last_nonce=bea5a7c7af4b770612bef5b6aae5f6c9");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertNotNull($responseBodyObj.freeform);
+	_assertEqual("freeform", $responseBodyObj.freeform[0]);
+	_assertEqual("freeform", $responseBodyObj.freeform[1]);
+}
+
+/**
+* PostResponse()
+*/
+function PostResponse(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/response-headers");
+	$request.addToQueryString("freeform", "freeform");
+	$request.addToQueryString("freeform", "freeform");
+	$request.setHeader(":method", "POST");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/response-headers?freeform=freeform");
+	$request.setHeader("content-length", "0");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("origin", "https://httpbin.org");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$request.setHeader("cookie", "fake=fake_value; stale_after=never; last_nonce=bea5a7c7af4b770612bef5b6aae5f6c9");
+	$response = $request.submit("POST");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertNotNull($responseBodyObj.freeform);
+	_assertEqual("freeform", $responseBodyObj.freeform[0]);
+	_assertEqual("freeform", $responseBodyObj.freeform[1]);
+}
+
+/**
+* BasicAuth()
+*/
+function BasicAuth(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/basic-auth/basic-auth/basic-auth");
+	$request.setHeader(":method", "GET");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/basic-auth/basic-auth/basic-auth");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$request.setHeader("cookie", "stale_after=never; fake=fake_value; last_nonce=d05cb7967e9c6fc30529a51b130d9cc4");
+	$request.setAuthCredentials("authType", "Basic Auth");
+	$request.setAuthCredentials("userName", "basic-auth");
+	$request.setAuthCredentials("passWord", "basic-auth");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertEqual(true, $responseBodyObj.authenticated);
+	_assertEqual("basic-auth", $responseBodyObj.user);
+}
+
+/**
+* Bearer()
+*/
+function Bearer(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/bearer");
+	$request.setHeader("Host", "httpbin.org");
+	$request.setHeader("User-Agent", "Mozilla/5.0 %28Windows NT 10.0; Win64; x64; rv:65.0%29 Gecko/20100101 Firefox/65.0");
+	$request.setHeader("Accept", "application/json");
+	$request.setHeader("Accept-Language", "en-US,en;q=0.5");
+	$request.setHeader("Accept-Encoding", "gzip, deflate, br");
+	$request.setHeader("Referer", "https://httpbin.org/");
+	$request.setHeader("authorization", "Bearer testToken");
+	$request.setHeader("Connection", "keep-alive");
+	$request.setHeader("TE", "Trailers");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertEqual(true, $responseBodyObj.authenticated);
+	_assertEqual("testToken", $responseBodyObj.token);
+}
+
+/**
+* DigestAuth()
+*/
+function DigestAuth(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/digest-auth/digestAuth/digestAuth/digestAuth");
+	$request.setHeader(":method", "GET");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/digest-auth/digestAuth/digestAuth/digestAuth");
+	$request.setHeader("authorization", "Digest username=\"digestAuth\", realm=\"me@kennethreitz.com\", nonce=\"e577afcddd9be9cc6b8b6d622ad776a4\", uri=\"/digest-auth/digestAuth/digestAuth/digestAuth\", algorithm=MD5, response=\"f3891f2d94c672e3e4bd98c9638da2a7\", opaque=\"e091ff433c2b1caf65408226de57b438\", qop=auth, nc=00000002, cnonce=\"e53cdece8c30c7c2\"");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$request.setHeader("cookie", "stale_after=never; fake=fake_value; last_nonce=9f4be2cd76771696deb3c1ef3569e3dd");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertEqual(true, $responseBodyObj.authenticated);
+	_assertEqual("digestAuth", $responseBodyObj.user);
+}
+
+/**
+* DigestAuthwithSHA256()
+*/
+function DigestAuthWithSHA256(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/digest-auth/DigestAuthAlgorithm/DigestAuthAlgorithm/DigestAuthAlgorithm/HMAC-SHA256/never");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":method", "GET");
+	$request.setHeader(":path", "/digest-auth/DigestAuthAlgorithm/DigestAuthAlgorithm/DigestAuthAlgorithm/HMAC-SHA256/never");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en-US,en;q=0.9");
+	$request.setHeader("authorization", "Digest username=\"DigestAuthAlgorithm\", realm=\"me@kennethreitz.com\", nonce=\"5791f8898981f83e458bbf4149509679\", uri=\"/digest-auth/DigestAuthAlgorithm/DigestAuthAlgorithm/DigestAuthAlgorithm/HMAC-SHA256/never\", algorithm=MD5, response=\"2bcec76038027b9313c0d367f84971bd\", opaque=\"e0736f69a1a55ca5abc04352e14897cd\", qop=auth, nc=00000002, cnonce=\"681244dce10a1eb6\"");
+	$request.setHeader("cache-control", "max-age=0");
+	$request.setHeader("cookie", "stale_after=never; fake=fake_value");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("sec-ch-ua", "\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\"");
+	$request.setHeader("sec-ch-ua-mobile", "?0");
+	$request.setHeader("sec-ch-ua-platform", "\"Windows\"");
+	$request.setHeader("sec-fetch-dest", "document");
+	$request.setHeader("sec-fetch-mode", "navigate");
+	$request.setHeader("sec-fetch-site", "none");
+	$request.setHeader("sec-fetch-user", "?1");
+	$request.setHeader("upgrade-insecure-requests", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertEqual('true', $response.getHeader('Access-Control-Allow-Credentials'));
+	_assertEqual(true, $responseBodyObj.authenticated);
+	_assertEqual("DigestAuthAlgorithm", $responseBodyObj.user);
+}
+
+/**
+* POST()
+*/
+function POST(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/post");
+	$request.setHeader(":method", "POST");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/post");
+	$request.setHeader("content-length", "0");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("origin", "https://httpbin.org");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$response = $request.submit("POST");
+	var $responseBody = $response.getBodyAsString();
+	_assertEqual("200", $response.getResponseCode());
+}
+
+/**
+* PUT()
+*/
+function PUT(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/put");
+	$request.setHeader(":method", "PUT");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/put");
+	$request.setHeader("content-length", "0");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 %28Windows NT 10.0; Win64; x64%29 AppleWebKit/537.36 %28KHTML, like Gecko%29 Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("origin", "https://httpbin.org");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$response = $request.submit("PUT");
+	var $responseBody = $response.getBodyAsString();
+	_assertEqual("200", $response.getResponseCode());
+}
+
+/**
+* PATCH()
+*/
+function PATCH(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/patch");
+	$request.setHeader(":method", "PATCH");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/patch");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 %28Windows NT 10.0; Win64; x64%29 AppleWebKit/537.36 %28KHTML, like Gecko%29 Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("origin", "https://httpbin.org");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$response = $request.submit("PATCH");
+	var $responseBody = $response.getBodyAsString();
+	_assertEqual("200", $response.getResponseCode());
+}
+
+/**
+* GET()
+*/
+function GET(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/get");
+	$request.setHeader(":method", "GET");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/get");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 %28Windows NT 10.0; Win64; x64%29 AppleWebKit/537.36 %28KHTML, like Gecko%29 Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	_assertEqual("200", $response.getResponseCode());
+}
+
+/**
+* DELETE()
+*/
+function DELETE(){
+	$request = new RESTRequest();
+	$request.setURL("https://httpbin.org/delete");
+	$request.setHeader(":method", "DELETE");
+	$request.setHeader(":authority", "httpbin.org");
+	$request.setHeader(":scheme", "https");
+	$request.setHeader(":path", "/delete");
+	$request.setHeader("accept", "application/json");
+	$request.setHeader("dnt", "1");
+	$request.setHeader("user-agent", "Mozilla/5.0 %28Windows NT 10.0; Win64; x64%29 AppleWebKit/537.36 %28KHTML, like Gecko%29 Chrome/79.0.3945.130 Safari/537.36");
+	$request.setHeader("origin", "https://httpbin.org");
+	$request.setHeader("sec-fetch-site", "same-origin");
+	$request.setHeader("sec-fetch-mode", "cors");
+	$request.setHeader("referer", "https://httpbin.org/");
+	$request.setHeader("accept-encoding", "gzip, deflate, br");
+	$request.setHeader("accept-language", "en,en-US;q=0.9");
+	$response = $request.submit("DELETE");
+	var $responseBody = $response.getBodyAsString();
+	_assertEqual("200", $response.getResponseCode());
+}

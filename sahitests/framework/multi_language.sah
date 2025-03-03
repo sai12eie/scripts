@@ -1,0 +1,65 @@
+
+/**
+* LogThisLanguage
+* @param $Language - English
+*/
+function LogThisLanguage($Language) {
+	_log($Language);
+	_assertEqual("This is English", $Language);
+}
+/**
+* 记录此语言
+* @param $Language - Chinese
+*/
+function 记录此语言($Language) {
+	_log($Language);
+	_assertEqual("This is 中国人", $Language);
+}
+/**
+* DieseSpracheprotokollieren
+* @param $Language - German
+*/
+function DieseSpracheprotokollieren($Language) {
+	_log($Language);
+	_assertEqual("This is Deutsch", $Language);
+}
+/**
+* इसभाषामेंलॉगकरें
+* @param $Language - Hindi
+*/
+function इसभाषामेंलॉगकरें($Language) {
+	_log($Language);
+	_assertEqual("This is हिंदी", $Language);
+}
+/**
+* Registraresteidioma
+* @param $Language - Spanish
+*/
+function Registraresteidioma($Language) {
+	_log($Language);
+	_assertEqual("This is española", $Language);
+}
+/**
+* Записатьэтотязык
+* @param $Language - Russian
+*/
+function Записатьэтотязык($Language) {
+	_log($Language);
+	_assertEqual("This is русский", $Language);
+}
+/**
+* આભાષાલોગકરો
+* @param $Language - 
+*/
+function આભાષાલોગકરો($Language) {
+	_log($Language);
+	_assertEqual("This is ગુજરાતી", $Language);
+}
+/**
+* ಈಭಾಷೆಯನ್ನುಲಾಗ್ಮಾಡಿ
+* @param $Language - 
+*/
+function ಈಭಾಷೆಯನ್ನುಲಾಗ್ಮಾಡಿ($Language){
+	_log($Language);
+	_assertEqual("This is ಕನ್ನಡ", $Language);
+}

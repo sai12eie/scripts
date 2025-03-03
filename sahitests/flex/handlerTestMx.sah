@@ -1,0 +1,19 @@
+_navigateTo("/demo/flex/mx/handlerTestMx41.html");
+_setValue(_f("sampleId1").textinput("user"), "demo");
+_click(_button("Click Me"));
+var $handlerSequence = _getText(_f("sampleId1").s_panel("Events")); 
+var $handlerSequenceExpected = "_creationCompleteHandler"
+											+"\r\n_focusInHandler"
+											+"\r\n_keyDownHandler"
+											+"\r\n_changeHandler"
+											+"\r\n_keyUpHandler"
+											+"\r\n_keyDownHandler"
+											+"\r\n_changeHandler"
+											+"\r\n_keyUpHandler"
+											+"\r\n_keyDownHandler"
+											+"\r\n_changeHandler"
+											+"\r\n_keyUpHandler"
+											+"\r\n_keyDownHandler"
+											+"\r\n_changeHandler"
+											+"\r\n_keyUpHandler";
+_assertEqual($handlerSequenceExpected, $handlerSequence);

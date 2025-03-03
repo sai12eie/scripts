@@ -1,0 +1,169 @@
+//<browser>
+Sahi.prototype.getArrayNameAndIndex = function (id, makeRegexGlobal) {
+    var o = new Object();
+    if (!(id instanceof RegExp)) {
+    	if (typeof id == "object") {
+    		o.index = (id.sahiIndex != null) ? id.sahiIndex : -1;
+    		o.name = {};
+    		for (var k in id) {
+    			if (k != "sahiIndex") o.name[k] = this.checkRegex(id[k], makeRegexGlobal);
+    		}
+    		return o;
+    	} else {
+	    	var m = id.match(/(.*)\[([0-9]*)\]$/);
+	    	if (m){
+		        o.name = this.checkRegex(m[1], makeRegexGlobal);
+		        o.index = m[2];
+		        return o;
+	    	}
+    	}
+    }
+	o.name = this.checkRegex(id, makeRegexGlobal);
+	o.index = -1;
+    return o;
+};
+Sahi.prototype.checkRegex = function(s, makeRegexGlobal){
+	return ((typeof s) == "string" && s.match(this.CHECK_REGEXP)) ?  eval(s + (makeRegexGlobal?"g":"")) : s;
+};
+Sahi.prototype.getTextNodesIn = function(node) {
+	var textNodes = [];
+	if (node.nodeType == 3) {
+		textNodes.push(node);
+	} else {
+		var children = node.childNodes;
+		for ( var i = 0, len = children.length; i < len; ++i) {
+			textNodes.push.apply(textNodes, this.getTextNodesIn(children[i]));
+		}
+	}
+	return textNodes;
+}
+Sahi.prototype.getDocumentNode = function(el) {
+	if (el.tagName.toLowerCase() == 'iframe') {
+		el = el.contentWindow.document.body;
+	} else if (this.isWindow(el)) {
+		el = el.document.body;
+	}	
+	return el;
+}
+Sahi.prototype.getStartEndIndexes = function(searchFor, searchIn) {
+	var start = -1;
+	var end = -1;
+    var o = this.getArrayNameAndIndex(searchFor, true);
+    var ix = o.index;
+    var toMatch = o.name;
+    if (ix == -1) ix = 0;
+	if (toMatch instanceof RegExp) {
+		var res = null;
+		for (var i=0; i<=ix; i++) {
+			res = toMatch.exec(searchIn);
+			if (res == null) break;
+		}
+		if (res) {
+			start = res.index;
+			end = toMatch.lastIndex;
+		}
+		
+	} else {
+		var startIx = -1;
+		for (var i=0; i<=ix; i++) {
+			startIx = searchIn.indexOf(toMatch, startIx+1);
+			if (startIx == -1) break;
+		}
+		if (startIx != -1) {
+			start = startIx;
+			end = start + toMatch.length;						
+		}
+	}
+	return [start, end];
+}
+Sahi.prototype._selectTextRange = function(el, text, type) {
+	this.checkNull(el, "_selectTextRange");
+	var start = 0;
+	var end = 0;
+	var el = this.getDocumentNode(el);
+	var s = el.textContent;
+	if (s) {
+		var ixes = this.getStartEndIndexes(text, s);
+		start = ixes[0];
+		end = ixes[1];
+	}
+	this._selectRange(el, start, end, type);
+	
+}
+Sahi.prototype._selectRange = function(el, start, end, type) {
+	if (start == -1 || end == -1) return;
+	if (type == "after") start = end;
+	this.checkNull(el, "_selectRange");
+	var el = this.getDocumentNode(el);
+	var win = this.getWindow(el);
+	if (document.createRange && window.getSelection) {
+		var range = win.document.createRange();
+		range.selectNodeContents(el);
+
+		var textNodes = this.getTextNodesIn(el);
+		var foundStart = false;
+		var charCount = 0, endCharCount;
+
+		for ( var i = 0, textNode; textNode = textNodes[i++];) {
+			endCharCount = charCount + textNode.length;
+
+			if (!foundStart
+					&& start >= charCount
+					&& (start < endCharCount || (start == endCharCount && i < textNodes.length))) {
+				if (type == "before") {
+					if (start - charCount == textNode.length && end != start) {
+						if (i+1 < textNodes.length) {
+							var nextTextNode = textNodes[i];
+							range.setStartBefore(nextTextNode);
+							range.setEnd(nextTextNode, 0);
+							range.collapse(true);
+							break;
+						}
+					}
+					range.setStart(textNode, start - charCount);
+					range.setEnd(textNode, start - charCount);
+					break;
+				}
+				range.setStart(textNode, start - charCount);
+				foundStart = true;
+			}
+
+			if (foundStart && end <= endCharCount) {
+				range.setEnd(textNode, end - charCount);
+				break;
+			}
+
+			charCount = endCharCount;
+		}
+
+		var sel = win.getSelection();
+
+		sel.removeAllRanges();
+		sel.addRange(range);
+	} else if (document.selection && document.body.createTextRange) {
+		var textRange = this.getWindow(el).document.body.createTextRange();
+
+		textRange.moveToElementText(el);
+		textRange.collapse(true);
+		textRange.moveEnd('character', end);
+		textRange.moveStart('character', start);
+		textRange.select();
+	}
+}
+//</browser>
+
+_navigateTo("http://developer.yahoo.com/yui/examples/editor/icon_editor_clean.html");
+_call(_sahi._selectTextRange(_rte(1), "his is some more[1]", "before"));
+_click(_link("Insert Image"));
+
+
+_navigateTo("http://developer.yahoo.com/yui/examples/editor/icon_editor_clean.html", true);
+_call(_sahi._selectTextRange(_rte(1), "This is some more[3]", "before"));
+_click(_link("Insert Image"));
+
+
+
+_navigateTo("http://developer.yahoo.com/yui/examples/editor/icon_editor_clean.html", true);
+_call(_sahi._selectTextRange(_rte(1), "This is some more[3]"));
+_click(_link("Insert Image"));
+

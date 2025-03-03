@@ -1,0 +1,27 @@
+var $host = _fetch("location.host");
+
+var $ip = java.net.InetAddress.getByName($host).getHostAddress();
+
+var $nonExistantUrl = "https://non.existant.dom.in/";
+_navigateTo($nonExistantUrl + "demo/", true);
+_assertNotTrue(_isVisible(_link("Link Test")));
+
+// add mapping
+_mapDomainToIP($nonExistantUrl, $ip);
+_navigateTo($nonExistantUrl + "demo/", true);
+_assert(_isVisible(_link("Link Test")));
+
+// Remove mapping
+_mapDomainToIP($nonExistantUrl);
+_navigateTo($nonExistantUrl + "demo/", true);
+_assertNotTrue(_isVisible(_link("Link Test")));
+
+//add mapping
+_mapDomainToIP($nonExistantUrl, $ip);
+_navigateTo($nonExistantUrl + "demo/", true);
+_assert(_isVisible(_link("Link Test")));
+
+// Remove mapping
+_mapDomainToIP($nonExistantUrl);
+_navigateTo($nonExistantUrl + "demo/", true);
+_assertNotTrue(_isVisible(_link("Link Test")));

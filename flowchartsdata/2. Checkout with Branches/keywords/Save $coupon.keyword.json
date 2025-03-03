@@ -1,0 +1,32 @@
+{
+  "modifiedOn": "2024-04-08T05:22:31.180Z",
+  "name": "Save $coupon",
+  "id": "44862",
+  "type": 3,
+  "createdOn": "2024-04-08T05:22:31.180Z",
+  "content": {
+    "title": "Save $coupon",
+    "parameters": [
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_italic(\"fa fa-save\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

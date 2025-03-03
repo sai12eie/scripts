@@ -1,0 +1,36 @@
+var $props = new java.util.Properties();
+$props.put("user", "user");
+$props.put("password", "password");
+
+function getRawDB(driverName, jdbcurl, props, sql) {
+    try {
+        java.lang.Class.forName(driverName);
+        var connection = java.sql.DriverManager.getConnection(jdbcurl, props);
+        var stmt = connection.createStatement();
+        var rs = stmt.executeQuery(sql);
+        return [rs, stmt, connection];
+    } catch ($e) {
+    	_debug($e);
+    } finally {
+    }
+}
+
+
+var $sql = "select id, name, age from user order by age asc limit 10";
+var $rsObj = getRawDB("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/sahitest?user=user&password=password", $props, $sql);
+var $resultSet = $rsObj[0]; 
+var $statement = $rsObj[1]; 
+var $connection = $rsObj[2]; 
+
+try {
+	while ($resultSet.next()) {
+		var $name = $resultSet.getString("name");
+		var $age = $resultSet.getString("age");
+		_log($name + " " + $age);
+	}
+} catch (e) {
+} finally {
+	$statement.close();
+	$connection.close();
+}
+

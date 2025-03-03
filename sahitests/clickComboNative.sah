@@ -1,0 +1,44 @@
+function click($combo, $expected){
+	_clickNative(_div("Experiment Zone"), $combo);
+	_assertEqual($expected, _textbox("tb").value);
+}
+function tearDown(){
+	_setValue(_textbox("tb"), "");
+}
+function testNormalClick(){
+	click(null, "click");
+}
+
+function testCtrlClick(){
+	click("CTRL", "<ctrl>click");
+}
+
+function testAltClick(){
+  if(!_isIE()){ 
+    click("ALT", "<alt>click");
+  }
+}
+
+function testShiftClick(){
+	click("SHIFT", "<shift>click");
+}
+
+function xtestMetaClick(){
+	click("META", "<meta>click");
+}
+
+function testCombinationClicks(){
+	click("CTRL|SHIFT", "<ctrl><shift>click");
+	click("CTRL|ALT", "<ctrl><alt>click");
+	click("ALT|SHIFT", "<alt><shift>click");
+	click("SHIFT|ALT", "<alt><shift>click");
+	click("CTRL|ALT|SHIFT", "<ctrl><alt><shift>click");
+}
+
+_navigateTo("clickCombo.htm");
+_focusWindow();
+_runUnitTests();
+
+_navigateTo("framesTest.htm");
+_click(_link("Combo Clicks Page[1]"));
+_runUnitTests();

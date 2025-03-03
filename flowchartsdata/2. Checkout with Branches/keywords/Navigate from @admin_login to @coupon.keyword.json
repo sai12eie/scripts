@@ -1,0 +1,36 @@
+{
+  "modifiedOn": "2024-05-07T10:28:01.237Z",
+  "name": "Navigate from @admin_login to @coupon",
+  "id": "-1",
+  "type": 3,
+  "createdOn": "2024-05-07T04:57:54Z",
+  "content": {
+    "title": "Navigate from @admin_login to @coupon",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "customValue": "_link(\"Marketing\")",
+            "paramMode": "code"
+          }
+        ]
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "customValue": "_link(\"Coupons\")",
+            "paramMode": "code"
+          }
+        ]
+      }
+    ],
+    "isSystemKeyword": true
+  },
+  "enabled": false,
+  "parentId": ""
+}

@@ -1,0 +1,11 @@
+_include("../AR/OpenCart_AR.sah");
+/**
+* logout
+*/
+function Logout(){
+   _click($_LINK_LOGOUT);
+}
+
+function ParseValueToFloat($value){
+	return parseFloat($value).toFixed(2);
+}

@@ -1,0 +1,5 @@
+_resource("../snapshot_login_short.png");
+_resource("../assert_log_tiger.jpg");
+_resource("login.png");
+
+_include("../resolveRelativePathTest.sah");

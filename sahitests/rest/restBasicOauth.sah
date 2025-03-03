@@ -1,0 +1,30 @@
+function testGetBasicAuth(){
+	$request = new RESTRequest();
+	$request.setURL("https://api.twilio.com/2010-04-01/Accounts");
+	$request.setAuthCredentials("authType", "Basic Auth");
+	$request.setAuthCredentials("userName", "ACbcx6e7c8c5e2250a8d7526f70b0d502144a");
+	$request.setAuthCredentials("passWord", "a9d7x62f60225de22c422b1a4e05b240c17");
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	$responseBody = $responseBody.replace(/<\?xml.*?>/g, '').replace(/\n/g, '');
+	var $responseBodyObj = new XML($responseBody);
+	_assertNotNull($responseBodyObj.Accounts);
+	_assertEqual("0", $responseBodyObj.Accounts["@page"].toString());
+	_assertEqual("50", $responseBodyObj.Accounts["@pagesize"].toString());
+	_assertEqual("0", $responseBodyObj.Accounts["@start"].toString());
+	_assertEqual("3", $responseBodyObj.Accounts["@end"].toString());
+	_assertEqual("/2010-04-01/Accounts?PageSize=50&Page=0", $responseBodyObj.Accounts["@uri"].toString());
+	_assertEqual("/2010-04-01/Accounts?PageSize=50&Page=0", $responseBodyObj.Accounts["@firstpageuri"].toString());
+	_assertEqual("", $responseBodyObj.Accounts["@previouspageuri"].toString());
+	_assertEqual("", $responseBodyObj.Accounts["@nextpageuri"].toString());
+	_assertNotNull($responseBodyObj.Accounts.Account[0].Sid);
+	_assertEqual("ACbc6e7c5c5e150a8d7526f79b0d50244a", $responseBodyObj.Accounts.Account[0].Sid.toString());
+	_assertNotNull($responseBodyObj.Accounts.Account[0].FriendlyName);
+	_assertEqual("example@gmail.com's Account", $responseBodyObj.Accounts.Account[0].FriendlyName.toString());
+	_assertNotNull($responseBodyObj.Accounts.Account[0].DateCreated);
+	_assertEqual("Thu, 12 Jan 2017 03:32:13 +0000", $responseBodyObj.Accounts.Account[0].DateCreated.toString());
+	_assertNotNull($responseBodyObj.Accounts.Account[0].Uri);
+	_assertEqual("/2010-04-01/Accounts/ACbc6e7c5c5e150a8d7526f79b0d50244a", $responseBodyObj.Accounts.Account[0].Uri.toString());
+}
+
+_runUnitTests();

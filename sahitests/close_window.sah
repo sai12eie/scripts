@@ -1,0 +1,8 @@
+_click(_link("Window Open Test"));
+_selectWindow("popWin");
+_click(_link("Form Test"));
+_closeWindow();
+_selectWindow();
+_wait(5000);
+var $exists = _windowExists("popWin", 4000);
+_assertFalse($exists);

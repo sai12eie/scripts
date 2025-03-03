@@ -1,0 +1,10 @@
+_navigateTo("/demo/flex/mx/mxComponents.html");
+_assertEqual("Visa", _getValue(_f("mxComponents").combobox("selectCB")));
+ _keyDown(_f("mxComponents").combobox("selectCB"), 'm')
+_assertEqual("MasterCard", _getValue(_f("mxComponents").combobox("selectCB"))); 
+_assertEqual("true", _getValue(_f("mxComponents").checkbox("Enabler")));
+_assertEqual("enablerCB.selected", _getValue(_f("mxComponents").textarea("enablableTextarea")));
+_keyDown(_f("mxComponents").checkbox("Enabler"), [32,32])
+_keyUp(_f("mxComponents").checkbox("Enabler"), [32,32])
+_assertEqual("false", _getValue(_f("mxComponents").checkbox("Enabler")));
+_assertEqual("Checkbox Unchecked", _getValue(_f("mxComponents").textarea("enablableTextarea")));

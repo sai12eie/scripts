@@ -1,0 +1,72 @@
+_navigateTo("/_s_/dyn/Cookies_showAll");
+_assertNotExists(_cell("json", _in(_table(0))));
+var $cookieValue = "{ name: \"name\", age: 25 }";
+_createCookie("json", $cookieValue);
+_navigateTo("/_s_/dyn/Cookies_showAll");
+_assertExists(_cell("json", _in(_table(0))));
+_deleteCookie("json");
+_navigateTo("/_s_/dyn/Cookies_showAll");
+_assertNotExists(_cell("json", _in(_table(0))));
+
+var $cookieValue = "{ name: \"name\", age: 25 }";
+_createCookie("json", $cookieValue);
+_navigateTo("/_s_/dyn/Cookies_showAll");
+//var $tableData = _getTableContents(_table(0));
+//_assertEqual("json", $tableData[1][1]);
+//_assertEqual($cookieValue, $tableData[1][2]);
+_assertExists(_cell("json", _in(_table(0))));
+_assertEqual($cookieValue, _getText(_cell(0, _rightOf(_cell("json")))));
+
+_click(_checkbox("_sahi_chooseAll"));
+_click(_button("Delete"));
+$tableData = _getTableContents(_table(0));
+_assertEqual(1, $tableData.length);
+
+_navigateTo("/demo");
+$cookieValue = "cookie_value";
+_createCookie("cookie_name", $cookieValue, 1, "/demo");
+_navigateTo("/demo", true);
+var $cookieWithPath = _cookie("cookie_name", "demo");
+_navigateTo("_s_/dyn/Cookies_showAll");
+//var $tableData = _getTableContents(_table(0));
+//_assertEqual("cookie_name", $tableData[1][1]);
+//_assertEqual($cookieWithPath, $tableData[1][2]);
+_assertExists(_cell("cookie_name", _in(_table(0))));
+_assertEqual($cookieWithPath, _getText(_cell(0, _rightOf(_cell("cookie_name")))));
+
+//below test is for cookie with path
+_navigateTo("https://www.google.com", true);
+if(_isIE()){
+	_setValue(_textbox("q"), "sahi");
+	_click(_submit("Google Search"));
+}
+else {
+	_assertVisible(_submit("Google Search[1]"));
+	var $searchBox = _textbox("Search");
+	if(!_isVisible($searchBox)){
+		$searchBox = _textarea("q");
+	}
+	_setValue($searchBox, "sahi");
+	_click(_submit("Google Search[1]"));
+}
+if(_isIE()){
+	$searchBox = _textbox("q");
+}
+else{
+	$searchBox = _textbox("Search");
+	if(!_isVisible($searchBox)){
+		$searchBox = _textarea("q");
+	}
+}
+_assertVisible($searchBox);
+_wait(1000);
+var $cookieWithPath = _cookie("AEC");
+_navigateTo("/search/_s_/dyn/Cookies_showAll", true);
+//var $tableData1 = _getTableContents(_table(0));
+//_assertEqual($cookieWithPath, $tableData1[1][2]);
+
+_assertExists(_cell("AEC", _in(_table(0))));
+_assertEqual($cookieWithPath, _getText(_cell(0, _rightOf(_cell("AEC")))));
+
+_click(_checkbox("_sahi_chooseAll"));
+_click(_button("Delete"));

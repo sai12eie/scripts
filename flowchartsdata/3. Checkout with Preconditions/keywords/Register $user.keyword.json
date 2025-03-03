@@ -1,0 +1,164 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.470Z",
+  "name": "Register $user",
+  "id": "45876",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.470Z",
+  "content": {
+    "title": "Register $user",
+    "parameters": [
+      {
+        "parameterId": "user_",
+        "entityTypeId": "user",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_01679571973977",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_01679571973977"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_11679571973977",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_11679571973977"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_21679571973977",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_21679571973977"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_31679571973977",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_31679571973977"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_41679571973977",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_41679571973977"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_41679571973977",
+            "accessorId": "acc1"
+          },
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_41679571973977"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_setSelected",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_radioGroup(\"newsletter\")"
+          },
+          {
+            "isCustomParameter": true,
+            "customValue": "\"1\""
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_check",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_checkbox(\"agree\")"
+          },
+          {
+            "isCustomParameter": true,
+            "customValue": "true"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_submit(\"Continue\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

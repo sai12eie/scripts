@@ -1,0 +1,70 @@
+
+/**
+ * testTheEventAfterRemovingProperty()
+ */
+function testTheEventAfterRemovingProperty() {
+	if(!_isIE()) {
+		_navigateTo("/demo/IsTrustedTestPage.htm", true);
+		_wait(2000);
+
+		_click(_submit("Try it[1]"));
+		_assertVisible(_div("The click event is not trusted."));
+		_assertEqual("The click event is not trusted.", _getText(_div("The click event is not trusted.")));
+	}
+}
+
+
+/**
+ * testTheEventIsTrustedAfterAddingProperty()
+ */
+function testTheEventIsTrustedAfterAddingProperty() {
+	if(!_isIE()) {
+		try {
+			_readURL("http://localhost:9999/_s_/dyn/ConfigureUI_changePropertyValue?fileName=config%2Fuserdata.properties&propertyName=sahi.browser.events.addIsTrusted&propertyValue=true&t=" + Date.now());
+			// wait for 2 seconds for the configure to take effect
+			_wait(2000);
+
+			_addResponseSubstitutionRule("isTrustedEvent", ".*/demo/IsTrustedTestPage.htm", false, "isTrusted", "__isTrusted");
+			_navigateTo("/demo/IsTrustedTestPage.htm", true);
+
+			_click(_submit("Try it"));
+			_assertVisible(_div("The click event is trusted."));
+			_assertEqual("The click event is trusted.", _getText(_div("The click event is trusted.")));
+
+			_click(_submit("Try it[1]"));
+			_assertVisible(_div("The click event is trusted."));
+			_assertEqual("The click event is trusted.", _getText(_div("The click event is trusted.")));
+
+			_removeResponseSubstitutionRule("isTrustedEvent");
+		}
+		catch (e) {
+			//Do nothing
+		}
+		finally {
+			_readURL("http://localhost:9999/_s_/dyn/ConfigureUI_changePropertyValue?fileName=config%2Fuserdata.properties&propertyName=sahi.browser.events.addIsTrusted&propertyValue=false&t=" + Date.now());
+			// wait for 2 seconds for the configure to take effect
+			_wait(2000);
+		}
+	}
+}
+
+
+/**
+ * testTheEventIsTrusted()
+ * Check before applying the property both the events are not trusted as it clicks from code.
+ */
+function testTheEventIsTrusted() {
+	if(!_isIE()) {
+		_navigateTo("/demo/IsTrustedTestPage.htm", true);
+		_wait(3000)
+		_click(_submit("Try it"));
+		_assertVisible(_div("The click event is not trusted."));
+		_assertEqual("The click event is not trusted.", _getText(_div("The click event is not trusted.")));
+
+		_click(_submit("Try it[1]"));
+		_assertVisible(_div("The click event is not trusted."));
+		_assertEqual("The click event is not trusted.", _getText(_div("The click event is not trusted.")));
+	}
+}
+
+_runUnitTests();

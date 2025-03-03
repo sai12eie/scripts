@@ -1,0 +1,17 @@
+"TestCase","Key Word","Argument 1","Argument 2"
+,"loadSahi","scenarioTest.sah"
+
+"Test first blank cell","[Documentation]","Check first blank cell"
+,"check First Blank Cell",,"TC1A2","TC1A3"
+,"check First Blank Cell","b:TC1A2","c:TC1A3"
+,"check First Blank Cell","a:","b:TC1A2","c:TC1A3"
+
+"Test middle blank cell","[Documentation]","Check middle blank cell"
+,"check Middle Blank Cell","TC1A1",,"TC1A3"
+,"check Middle Blank Cell","a:TC1A1","c:TC1A3"
+,"check Middle Blank Cell","a:TC1A1","b:","c:TC1A3"
+
+"Test last blank cell","[Documentation]","Check last blank cell"
+,"check Last Blank Cell","TC1A1","TC1A2"
+,"check Last Blank Cell","a:TC1A1","b:TC1A2"
+,"check Last Blank Cell","a:TC1A1","b:TC1A2","c:"

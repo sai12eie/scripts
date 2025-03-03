@@ -1,0 +1,216 @@
+var $count = 0;
+
+function stringValue($a, $b){
+	_assertEqual("test", $a);
+	_assertEqual("secret", $b);
+}
+
+function intValue($a, $b, $c){
+	_assertEqual(1, $a);
+	_assertEqual(2, $b);
+	_assertEqual(3, $c);
+}
+
+function manipulation($a, $b, $c){
+	_assertEqual("testsecret", $a);
+	_assertEqual("testram", $b);
+	_assertEqual("secretwrong", $c);
+}
+
+function excelValues($user, $pass, $msg){
+	if($count == 0){
+		_assertEqual("qa1", $user);
+		_assertEqual("Sahipro", $pass);
+		_assertEqual("test success 1", $msg);
+		$count++;
+	}
+	else{
+		_assertEqual("QA", $user);
+		_assertEqual("sahi_pro", $pass);
+		_assertEqual("test success 2", $msg);
+	}
+}
+
+function excelValue($user, $pass){
+	_assertEqual("ram", $user);
+	_assertEqual("myPassword", $pass);
+}
+
+function resetCount(){
+	$count = 0;
+}
+
+function excelManipulation($user, $msg){
+	if($count == 0){
+		_assertEqual("ram test", $user);
+		$count++;
+	}
+	else if($count == 1){
+		_assertEqual("sita test", $user);
+		$count++;
+	}
+	else{
+		_assertEqual("dev test", $user);
+	}
+	_assertEqual("test success", $msg);
+}
+
+function excelManipulation2($user, $msg){
+	if($count == 0){
+		_assertEqual("ram test", $user);
+		_assertEqual("test success", $msg);
+		$count++;
+	}
+	else if($count == 1){
+		_assertEqual("sita test", $user);
+		_assertNull($msg);
+		$count++;
+	}
+	else{
+		_assertEqual("dev test", $user);
+		_assertNull($msg);
+	}
+}
+
+function readValueFromTwoFiles($user, $pass, $comment){
+	if($count == 0){
+		_assertEqual("ram", $user);
+		_assertEqual("myPassword", $pass);
+		$count++;
+	}
+	else if($count == 1){
+		_assertEqual("sita", $user);
+		_assertEqual("secret123", $pass);
+		$count++;
+	}
+	else if($count == 2){
+		_assertEqual("dev", $user);
+		_assertEqual("$ecret123.", $pass);
+		$count++;
+	}
+	else{
+		_assertNull($user);
+		_assertNotEqual("", $pass);
+	}
+	_assertEqual("Hi..!!!",  $comment);
+}
+
+function checkValues($user, $constant){
+	if($count == 0){
+		_assertEqual("ram", $user);
+		$count++;
+	}
+	else if($count == 1){
+		_assertEqual("sita", $user);
+		$count++;
+	}
+	else{
+		_assertEqual("dev", $user);
+	}
+	_assertEqual("I'm ram", $constant);
+}
+
+function quotes($arg1, $arg2){
+	_assertEqual("\"ram\" + ram", $arg1);
+	_assertEqual("\"quotes\"", $arg2);
+}
+
+function rowDetails($user, $pass){
+	_assertEqual("sita", $user);
+	_assertEqual("secret123", $pass);
+}
+
+function rowData($user, $pass, $msg){
+	if($count == 0){
+		_assertEqual("sita", $user);
+		_assertEqual("wrong_pass", $pass);
+		_assertEqual("I'm Sita", $msg);
+		$count++;
+	}
+	else{
+		_assertEqual("sita", $user);
+		_assertEqual("wrong_pass", $pass);
+		_assertEqual("I'm Sita", $msg);
+	}
+}
+
+function dataFirstRow($user, $pass, $msg){
+	_assertEqual("ram", $user);
+	_assertEqual("example", $pass);
+	_assertEqual("I'm Ram", $msg);
+}
+
+function checkDate($date1, $date2) {
+	_assertEqual("23-01-1993", $date1);
+	_assertEqual("23/01/1993", $date2);
+}
+
+function checkStringsDirectPass($a, $b, $c, $d, $e, $f){
+	_assertEqual("ram", $a);
+	_assertEqual("sita", $b);
+	_assertEqual("ram", $c);
+	_assertEqual("1", $d);
+	_assertEqual(2, $e);
+	_assertEqual(["a", "b"], $f);
+}
+
+function checkStringsExternalDataPass($a, $b, $c, $d, $e, $f){
+	_assertEqual("ram", $a);
+	_assertEqual("sita", $b);
+	_assertEqual("ram", $c);
+	_assertEqual("1", $d);
+	_assertEqual(2, $e);
+	_assertEqual(["a", "b"], $f);
+}
+
+function checkStringsStartWithNormalString($a, $b, $c, $d, $e, $f){
+	_assertEqual("Description [Data]", $a);
+	_assertEqual("User \"ram\"", $b);
+	_assertEqual("User ram", $c);
+	_assertEqual("User [D4:data2:h1]", $d);
+	_assertEqual("[D4:data2:h1]", $e);
+	_assertEqual("ram", $f);
+}
+
+function checkStringsWithNormalNExternalData1($a, $b, $c, $d){
+	_assertEqual("User [D42:data234]", $a);
+	_assertEqual("User null", $b);
+	_assertEqual(null, $c);
+	_assertEqual("ram", $d);
+}
+
+function checkStringsWithNormalNExternalData2($a, $b, $c){
+	_assertEqual("User [D42:data234]", $a);
+	_assertEqual(null, $b);
+	_assertEqual("User null", $c);
+}
+
+
+function checkStringsStartWithExternalData($a, $b, $c){
+	_assertEqual("Description [Data]", $a);
+	_assertEqual(null, $b);
+	_assertEqual("User null", $c);
+}
+
+function checkStringsWithBracket($a, $b, $c, $d){
+	_assertEqual("stringValue(\"test\", \"secret\")credentials", $a);
+	_assertEqual("abc()\\\"'", $b);
+	_assertEqual("stringValue(\"test\", \"secret\")credentials", $c);
+	_assertEqual("abc()\\\"'", $d);
+}
+
+function checkStringsWithDollar($a){
+	_assertEqual("I'm $ecret123.", $a);
+}
+
+function checkStringsWithColon($a, $b, $c, $d, $e, $f){
+	_assertEqual("User : ram", $a);
+	_assertEqual("User : ram", $b);
+	_assertEqual("User : ram", $c);
+	_assertEqual("User : [D4:data2:h1]", $d);
+	_assertEqual("User : ram", $e);
+	_assertEqual("User : ram", $f);
+}
+
+
+

@@ -1,0 +1,31 @@
+/*
+$clientID, $ClientSecret , redirect_uri, email and password need to changed accordingly
+*/
+
+var $clientID = "sample_client_Id";
+var $clientSecret = "sample_client_secret";
+
+_setValue(_textbox("restui_authz_endPointUrl"), "https://api.login.yahoo.com/oauth2/request_auth");
+_setValue(_textbox("client_id"), $clientID);
+_setValue(_textbox("redirect_uri"), "http://www.example.com");
+_setValue(_textbox("scope"), "sdct-r");
+_click(_submit("Go"));
+
+if(_isVisible(_paragraph("example@yahoo.com"))){
+	_click(_paragraph("example@yahoo.com"));
+}
+if(_isVisible(_textbox("username"))){
+_setValue(_textbox("username"), "example@yahoo.com");
+_click(_submit("Next"));
+_setPassword(_password("password"), "Encrypted_Password");
+_click(_submit("Sign in"));
+}
+_click(_submit("agree"));
+
+_setValue(_textbox("restui_access_endPointUrl"), "https://api.login.yahoo.com/oauth2/get_token");
+_setValue(_textbox("client_id"), $clientID);
+_setValue(_textbox("client_secret"), $clientSecret);
+_setValue(_textbox("redirect_uri"), "http://www.example.com");
+
+_click(_submit("Get Access Token"));
+_wait(1000);

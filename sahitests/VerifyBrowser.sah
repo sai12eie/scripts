@@ -1,0 +1,53 @@
+var $scriptInfo = _scriptInfo();
+var $browserVersion = $scriptInfo["browserVersion"];
+var $browserName = $browserVersion.split(" ")[0];
+
+_log("Browser is " + $browserName, "CUSTOM");
+
+function testIsChromeAPI() {
+	if(_isChrome()) {
+		_assertEqual(false, _isFF());
+		_assertEqual(false, _isEdgeNew());
+		_assertEqual(false, _isBrave());
+		_assertEqual(false, _isIE());
+		_assertEqual("Chrome", $browserName);
+	}
+	else if(_isFF()) {
+		_assertEqual(false, _isEdgeNew());
+		_assertEqual(false, _isBrave());
+		_assertEqual(false, _isIE());
+		_assertEqual(false, _isChrome());
+		_assertEqual("Firefox", $browserName);
+	}
+	else if(_isEdgeNew()) {
+		_assertEqual(false, _isBrave());
+		_assertEqual(false, _isIE());
+		_assertEqual(false, _isFF());
+		_assertEqual(false, _isChrome());
+		_assertEqual("Edge", $browserName);
+	}
+	else if(_isBrave()) {
+		_assertEqual(false, _isIE());
+		_assertEqual(false, _isFF());
+		_assertEqual(false, _isEdgeNew());
+		_assertEqual(false, _isChrome());
+		_assertEqual("Brave", $browserName);
+	}
+	else if(_isIE()){
+		_assertEqual(false, _isFF());
+		_assertEqual(false, _isEdgeNew());
+		_assertEqual(false, _isChrome());
+		_assertEqual(false, _isBrave());
+		_assertEqual("IE", $browserName);
+	}
+	else {
+		_assertEqual(false, _isIE());
+		_assertEqual(false, _isFF());
+		_assertEqual(false, _isEdgeNew());
+		_assertEqual(false, _isChrome());
+		_assertEqual(false, _isBrave());
+		_assertNotEqual("", $browserName);
+	}
+}
+
+_runUnitTests();

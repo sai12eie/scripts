@@ -1,0 +1,76 @@
+_include("../../AR/OpenCart_AR.sah");
+
+/**
+* RegisterUser
+* @param $object - 
+* @paramobject Firstname,Lastname,Email,Telephone,Password,Confirm
+*/
+function RegisterUser($object) {
+	_navigateTo("/opencart/");
+	_click($_LINK_MYACCOUNT);
+	_click($_LINK_REGISTER);
+	_setValue($_TEXTBOX_FIRSTNAME, $object.Firstname);
+	_setValue($_TEXTBOX_LASTNAME, $object.Lastname);
+	_setValue($_EMAILBOX_EMAIL, $object.Email);
+	_setValue($_TELEPHONEBOX_TELEPHONE, $object.Telephone);
+	_setPassword($_PASSWORD_PASSWORD, $object.Password);
+	_setPassword($_PASSWORD_CONFIRM, $object.Confirm);
+	_check($_CHECKBOX_AGREE);
+	_click($_SUBMIT_CONTINUE);
+}
+
+/**
+* LoginByUser
+* @param $object - 
+* @paramobject Email,Password
+*/
+function LoginAsUser($object) {
+	_click($_SPAN_CARET);
+	_click($_LINK_LOGIN);
+	_setValue($_TEXTBOX_EMAIL, $object.Email);
+	_setPassword($_PASSWORD_PASSWORD, $object.Password);
+	_click($_SUBMIT_LOGIN);
+	_click($_LINK_EDITYOURACCOUNTINFORMATION);
+	_assertEqual($object.Email, _getText($_EMAILBOX_EMAIL));
+}
+
+/**
+* VerifyUserCreatedSuccessfully
+*/
+function VerifyUserCreatedSuccessfully() {
+	_assertExists($_HEADING1_YOURACCOUNTHASBEENCREATED);
+}
+
+/**
+* AddAddress
+* @param $object - 
+* @paramobject Firstname,Lastname,Company,Address1,Address2,City,Postcode,CountryId,ZoneId
+*/
+function AddAddress($object) {
+	_navigateTo("/opencart/");
+	_click($_LINK_MYACCOUNT);
+	_click($_LINK_MYACCOUNT1);
+	_click($_LINK_MODIFYYOURADDRESSBOOKENTRIES);
+	_click($_LINK_NEWADDRESS);
+	_setValue($_TEXTBOX_FIRSTNAME, $object.Firstname);
+	_setValue($_TEXTBOX_LASTNAME, $object.Lastname);
+	_setValue($_TEXTBOX_COMPANY, $object.Company);
+	_setValue($_TEXTBOX_ADDRESS_1, $object.Address1);
+	_setValue($_TEXTBOX_ADDRESS_2, $object.Address2);
+	_setValue($_TEXTBOX_CITY, $object.City);
+	_setValue($_TEXTBOX_POSTCODE, $object.Postcode);
+	_setSelected($_SELECT_COUNTRY_ID, $object.CountryId);
+	_setSelected($_SELECT_ZONE_ID, $object.ZoneId);
+	_check($_RADIO_DEFAULT);
+	_click($_SUBMIT_CONTINUE);
+	_assertExists($_DIV_YOURADDRESSHASBEENSUCCESSFULLYADDED);
+	_assertExists($_CELL_TYTOSOFTWARE);
+}
+
+/**
+* VerifyErrorMessage
+* @param $Message - 
+*/
+function VerifyErrorMessage($Message){	
+_assertVisible(_div($Message));	
+}

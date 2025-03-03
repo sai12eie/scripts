@@ -1,0 +1,24 @@
+/**
+ * Test Script for Bug #214
+ * java.awt.Robot moved inside _typeKeyCodeNative and _typeNative - Narayan
+ * Script - Vivek
+ */
+_navigateTo("/demo/");
+_click(_link("File Upload Test"));
+_wait(5000, _isVisible(_file("file")));
+_focusWindow();
+// focus on the element
+_focus(_file("file"));
+_wait(5000);
+_typeKeyCodeNative(32);
+_wait(7000);
+// type the file path
+var $filePath = _resolvePath("uploadme.txt")
+_typeNative($filePath);
+_wait(1000);
+// press enter
+_typeKeyCodeNative(java.awt.event.KeyEvent.VK_ENTER);
+_wait(5000);
+_click(_submit("Submit Single"));
+_assertExists(_span("uploadme.txt"));
+_assert(_isVisible(_span("uploadme.txt")));

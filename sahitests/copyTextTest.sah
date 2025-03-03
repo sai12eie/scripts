@@ -1,0 +1,22 @@
+function testClipboardApiCopy(){
+	if(_isIE()){
+		_log("IE not supporting this.");
+	}else{
+		_lockWindow();
+		_focusWindow();
+		_clickNative(_submit("Copy Text using Clipboard Api"));
+		_unlockWindow();
+		_assertEqual("Copied using clipboard api", _getCopiedText());
+	}
+}
+
+function testExecCommandCopy(){
+	_click(_submit("Copy Text using execCommand"));
+	_assertEqual("Copied using execCommand", _getCopiedText());
+}
+
+//clipboard api works only on https websites
+_navigateTo("https://sahitest.com/demo/copyTextTest.htm");	
+
+_runUnitTests();
+

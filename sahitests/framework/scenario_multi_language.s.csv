@@ -1,0 +1,12 @@
+"Comment","TestCase","Key Word","Argument 1","Argument 2"
+,,"loadSahi","multi_language.sah"
+
+,"My First Testcase","[Documentation]","My testcase description. Modify as needed"
+"English",,"Log This Language (For Multi-Language Support)","Language:This is English"
+"Chinese",,"记录此语言 (用于多语言支持)","Language:This is 中国人"
+"German",,"Diese Sprache protokollieren (für mehrsprachigen Support)","Language:This is Deutsch"
+"Hindi",,"इस भाषा में लॉग करें (बहु भाषा समर्थन के लिए)","Language:This is हिंदी"
+"Spanish",,"Registrar este idioma (para compatibilidad con varios idiomas)","Language:This is española"
+"Russian",,"Записать этот язык (для многоязычной поддержки)","Language:This is русский"
+"Gujarati",,"આ ભાષા લોગ કરો (મલ્ટી લેંગ્વેજ સપોર્ટ માટે)","Language:This is ગુજરાતી"
+"Kannada",,"ಈ ಭಾಷೆಯನ್ನು ಲಾಗ್ ಮಾಡಿ (ಬಹು ಭಾಷಾ ಬೆಂಬಲಕ್ಕಾಗಿ)","Language:This is ಕನ್ನಡ"

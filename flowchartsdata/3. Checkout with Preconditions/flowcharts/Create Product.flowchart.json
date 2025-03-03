@@ -1,0 +1,123 @@
+{
+  "modifiedOn": "2024-05-09T05:33:20.630Z",
+  "name": "Create Product",
+  "id": "-1",
+  "type": 0,
+  "createdOn": "2024-05-08T06:56:34Z",
+  "content": {
+    "pathExecutionOrder": [],
+    "settings": {
+      "maxProceedDepth": 100,
+      "maxProceedsForFirstDepth": 1,
+      "maxProceedsPerDepth": 1,
+      "maxPathRepititionsPerComboPath": 1,
+      "maxProceedsPerPath": 10000,
+      "maxToggles": 2,
+      "maxMatchingPaths": 3
+    },
+    "flowChartUID": "fcUID_1715230723376",
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "nodeType": "start",
+        "branches": [
+          "fcn_createproduct_0"
+        ],
+        "content": "Start"
+      },
+      "fcn_createproduct_0": {
+        "id": "fcn_createproduct_0",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_login_adminadmin_0"
+        ],
+        "content": "Create Product"
+      },
+      "fcn_fillproductdetails_0": {
+        "id": "fcn_fillproductdetails_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_saveproduct_0"
+        ],
+        "content": "Fill $product details"
+      },
+      "fcn_saveproduct_0": {
+        "id": "fcn_saveproduct_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifyproductdetails_0"
+        ],
+        "content": "Save $product"
+      },
+      "fcn_productexiststrue_0": {
+        "id": "fcn_productexiststrue_0",
+        "nodeType": "state",
+        "branches": [],
+        "content": "$product.exists\u003dtrue"
+      },
+      "fcn_product_0": {
+        "id": "fcn_product_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_fillproductdetails_0"
+        ],
+        "content": "@product"
+      },
+      "fcn_login_adminadmin_0": {
+        "id": "fcn_login_adminadmin_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_product_0"
+        ],
+        "content": "[login_admin]"
+      },
+      "fcn_verifyproductdetails_0": {
+        "id": "fcn_verifyproductdetails_0",
+        "nodeType": "state",
+        "branches": [
+          "fcn_productexiststrue_0"
+        ],
+        "content": "Verify $product details"
+      }
+    },
+    "pathNames": [],
+    "isPrimary": true,
+    "positions": {
+      "fcn_start_0": {
+        "top": 150.0,
+        "left": 500.0
+      },
+      "fcn_createproduct_0": {
+        "top": 212.0,
+        "left": 500.0
+      },
+      "fcn_login_adminadmin_0": {
+        "top": 296.0,
+        "left": 500.0
+      },
+      "fcn_product_0": {
+        "top": 382.0,
+        "left": 500.0
+      },
+      "fcn_fillproductdetails_0": {
+        "top": 472.0,
+        "left": 500.0
+      },
+      "fcn_saveproduct_0": {
+        "top": 537.15625,
+        "left": 500.0
+      },
+      "fcn_verifyproductdetails_0": {
+        "top": 625.328125,
+        "left": 500.0
+      },
+      "fcn_productexiststrue_0": {
+        "top": 716.328125,
+        "left": 500.0
+      }
+    },
+    "tags": ""
+  },
+  "enabled": true,
+  "parentId": ""
+}

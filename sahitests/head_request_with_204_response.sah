@@ -1,0 +1,3 @@
+_navigateTo("/demo/HeadRequestWith204Response.htm");
+_click(_button("Click to send Head Request"));
+_assertEqual("204 status code.", _getValue(_textbox("div_204")));

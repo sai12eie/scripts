@@ -1,0 +1,20 @@
+function testBlur(){
+	/*
+	* We set value in first textbox. After this when we try to set value on second textbox, blur event gets called for first textbox.
+	* In this script, we verify if the blur event is getting called for the previous element (in this case - first textbox).
+	* By default, blur timeout is 5 seconds. If the blur event for the previous element does not get called, the blur event will get called after blur timeout. As we dont want the blur timeout to occur, we set the timeout to 30 seconds.
+	*/
+	_call(_sahi.sahiBlurTimeout = 30000);
+	_assertEqual(_getText(_div("onBlurMessage")), "");
+	_setValue(_textbox("tb_1"), "test value");
+	_setValue(_textbox("tb_2"), "test value 2");
+	_assertEqual(_getText(_div("onBlurMessage")), "Blur event called on textbox 1");
+
+	_setValue(_textbox("tb_1"), "value3");
+	_assertEqual(_getText(_div("onBlurMessage")), "");
+	_click(_submit("Click me!"));
+	_assertEqual(_getText(_div("onBlurMessage")), "Blur event called on textbox 1");
+}
+
+_navigateTo("/demo/blurTest.htm");
+_runUnitTests();

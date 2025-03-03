@@ -1,0 +1,264 @@
+function setUp(){
+	_navigateTo("/demo/keypress.htm", true);
+	_check(_radio("Key Press"));
+	_wait(2000);
+}
+
+function testFunctionsKeys(){
+	_navigateTo("/demo/events.htm");
+	_wait(5000);
+	_lockWindow();
+	_focusWindow();
+	_clickNative(_textarea("input"));
+	_keyPressNative("F4");
+	_unlockWindow();
+	if(!_isIE()){
+		_assertContainsText("code=F4;", _textarea("log"));
+	}
+	_assertContainsText("key=F4;", _textarea("log"));
+	_assertContainsText("keyCode=115;", _textarea("log"));
+	_click(_button("Clear me"));
+	
+	_lockWindow();
+	_focusWindow();
+	_clickNative(_textarea("input"));
+	_keyPressNative("F5");
+	_unlockWindow();
+	if(_isFF()){
+		_assertContainsText("code=F5;", _textarea("log"));
+		_assertContainsText("key=F5;", _textarea("log"));
+		_assertContainsText("keyCode=116;", _textarea("log"));
+	}
+	else{
+		_assertEqual("", _getText(_textarea("log")));
+	}
+	_click(_button("Clear me"));
+
+	_lockWindow();
+	_focusWindow();
+	_clickNative(_textarea("input"));
+	_keyPressNative("D", "ALT|SHIFT");
+	_unlockWindow();
+
+	_assertContainsText("key=Alt;", _textarea("log"));
+	_assertContainsText("keyCode=18;", _textarea("log"));
+	_assertContainsText("altKey=true;", _textarea("log"));
+
+	_assertContainsText("key=Shift;", _textarea("log"));
+	_assertContainsText("keyCode=16;", _textarea("log"));
+	_assertContainsText("shiftKey=true;", _textarea("log"));
+
+	if(!_isIE()){
+		_assertContainsText("key=D;", _textarea("log"));
+		_assertContainsText("code=KeyD;", _textarea("log"));
+		_assertContainsText("keyCode=68;", _textarea("log"));
+	}
+	_click(_button("Clear me"));
+}
+
+function testCommonControlKeys(){
+	_setValue(_textbox("t2"), "sahi");
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("SPACE");
+	_keyPressNative("p");
+	_keyPressNative("ENTER");
+	_focus(_textbox("t2"));
+	_keyPressNative("TAB");
+	_unlockWindow();
+	_assertEqual("sahi p", _getValue(_textbox("t2")));
+	_assertEqual("submitted", _getValue(_textbox("t3")));
+	_assertEqual("submitted", _getSelectionText());
+
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("LEFT");
+	_keyPressNative("LEFT");
+	_keyPressNative("DELETE");
+	_keyPressNative("DELETE");
+	_unlockWindow();
+	_assertEqual("sahi", _getValue(_textbox("t2")));
+	
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("BACKSPACE");
+	_keyPressNative("BACK_SPACE");
+	_unlockWindow();
+	_assertEqual("sa", _getValue(_textbox("t2")));
+}
+
+function testSpecialCharOnNonNumberKeys(){
+	// Using symbols
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("`");
+	_keyPressNative("~");
+	_keyPressNative("-");
+	_keyPressNative("_");
+	_keyPressNative("=");
+	_keyPressNative("=", "SHIFT");
+	_keyPressNative("+");
+	_keyPressNative("[");
+	_keyPressNative("{");
+	_keyPressNative("]");
+	_keyPressNative("}");
+	_keyPressNative("\\");
+	_keyPressNative("|");
+	_keyPressNative(";");
+	_keyPressNative(":");
+	_keyPressNative("'");
+	_keyPressNative("\"");
+	_keyPressNative(",");
+	_keyPressNative("<");
+	_keyPressNative(".");
+	_keyPressNative(">");
+	_keyPressNative("/");
+	_keyPressNative("?");
+	_unlockWindow();
+	_assertEqual("`~-_=++[{]}\\|;:'\",<.>/?", _getValue(_textbox("t2")));
+	
+	_setValue(_textbox("t2"), "");
+	_assertEqual("", _getValue(_textbox("t2")));
+	
+//	 Using KeyEvent
+	_lockWindow();
+	_focusWindow();
+	_keyPressNative("BACK_QUOTE");
+	_keyPressNative("BACK_QUOTE", "SHIFT");
+	_keyPressNative("UNDERSCORE");
+	_keyPressNative("SUBTRACT");
+	_keyPressNative("EQUALS");
+	_keyPressNative("PLUS");
+	_keyPressNative("equals", "shift");
+	_keyPressNative("OPEN_BRACKET");
+	_keyPressNative("BRACELEFT");
+	_keyPressNative("CLOSE_BRACKET");
+	_keyPressNative("BRACERIGHT");
+	_keyPressNative("BACK_SLASH");
+//  To make this work remove "VK_BACK_SLASH":"92" from userdata/config/keyCode_combinations.txt
+//	_keyPressNative("BACK_SLASH", "SHIFT"); // |
+	_keyPressNative("SEMICOLON");
+	_keyPressNative("COLON");
+	_keyPressNative("QUOTEDBL");
+	_keyPressNative("QUOTE");
+	_keyPressNative("COMMA");
+	_keyPressNative("LESS");
+	_keyPressNative("PERIOD");
+	_keyPressNative("DECIMAL");
+	_keyPressNative("GREATER");
+	_keyPressNative("SLASH");
+	_keyPressNative("DIVIDE");
+	_keyPressNative("SLASH", "SHIFT"); // ?
+//	_keyPressNative("EURO_SIGN"); // €
+	_unlockWindow();
+//	_assertEqual("`~_-=++[{]}\\|;:\"',<..>//?", _getValue(_textbox("t2")));
+	_assertEqual("`~_-=++[{]}\\;:\"',<..>//?", _getValue(_textbox("t2")));
+}
+
+function testSpecialCharOnNumberKeys(){
+	// Using symbols
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("!");
+	_keyPressNative("@");
+	_keyPressNative("#");
+	_keyPressNative("$");
+	_keyPressNative("%");
+	_keyPressNative("^");
+	_keyPressNative("&");
+	_keyPressNative("*");
+	_keyPressNative("(");
+	_keyPressNative(")");
+	_unlockWindow();
+	_assertEqual("!@#$%^&*()", _getValue(_textbox("t2")));
+	
+	_setValue(_textbox("t2"), "");
+	_assertEqual("", _getValue(_textbox("t2")));
+	
+	// Using KeyEvent
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("EXCLAMATION_MARK");
+	_keyPressNative("AT");
+	_keyPressNative("3", "SHIFT"); // #
+	_keyPressNative("DOLLAR");
+	_keyPressNative("5", "SHIFT"); // %
+	_keyPressNative("6", "SHIFT"); // ^
+	_keyPressNative("AMPERSAND");
+	_keyPressNative("MULTIPLY");
+	_keyPressNative("ASTERISK");
+	_keyPressNative("LEFT_PARENTHESIS");
+	_keyPressNative("RIGHT_PARENTHESIS");
+	_unlockWindow();
+	_assertEqual("!@#$%^&**()", _getValue(_textbox("t2")));
+}
+
+function testNumbers(){
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("1");
+	_keyPressNative("2");
+	_keyPressNative("3");
+	_keyPressNative("4");
+	_keyPressNative("5");
+	_keyPressNative("6");
+	_keyPressNative("7");
+	_keyPressNative("8");
+	_keyPressNative("9");
+	_keyPressNative("0");
+	_unlockWindow();
+	_assertEqual("1234567890", _getValue(_textbox("t2")));
+	
+	_setValue(_textbox("t2"), "");
+	_assertEqual("", _getValue(_textbox("t2")));
+	
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("NUMPAD0");
+	_keyPressNative("NUMPAD9");
+	_keyPressNative("NUMPAD8");
+	_keyPressNative("NUMPAD7");
+	_keyPressNative("NUMPAD6");
+	_keyPressNative("NUMPAD5");
+	_keyPressNative("NUMPAD4");
+	_keyPressNative("NUMPAD3");
+	_keyPressNative("NUMPAD2");
+	_keyPressNative("NUMPAD1");	
+	_unlockWindow();
+	_assertEqual("0987654321", _getValue(_textbox("t2")));
+}
+
+function testUppercaseLetters(){
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("P");
+	_keyPressNative("r", "SHIFT");
+	_keyPressNative("CAPS_LOCK");
+	_keyPressNative("o");
+	_keyPressNative("CAPS_LOCK");
+	_unlockWindow();
+	_assertEqual("PRO", _getValue(_textbox("t2")));
+}
+
+function testLowercaseLetters(){
+	_lockWindow();
+	_focusWindow();
+	_focus(_textbox("t2"));
+	_keyPressNative("s");
+	_keyPressNative("a");
+	_keyPressNative("h");
+	_keyPressNative("i");
+	_unlockWindow();
+	_assertEqual("sahi", _getValue(_textbox("t2")));
+}
+
+_runUnitTests();

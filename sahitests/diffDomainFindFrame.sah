@@ -1,0 +1,23 @@
+//<browser>
+function getFrameWithURL(u) {
+	var frames = top.frames;
+	for (var i=0; i<frames.length; i++) {
+		try {
+			if (frames[i].location.href.indexOf(u) != -1) {
+				return frames[i].document;
+			}
+		} catch (e) {}
+	}
+	return null;
+}
+//</browser>
+
+_navigateTo("/demo/iframesDomainTest.htm");
+_domain("www.tytosoftware.com")._assertExists(_link("Link Test"));
+_domain("www.tytosoftware.com")._assertExists(_link("Link Test[1]"));
+_setValue(_textbox("checkRecord"), "abc");
+_domain("www.tytosoftware.com")._click(_link("Form Test", _in(getFrameWithURL("222"))));
+_wait(1000);
+_domain("www.tytosoftware.com")._click(_link("Form Test"));
+_domain("www.tytosoftware.com")._setValue(_textbox("t1"), "aa");
+_domain("www.tytosoftware.com")._setValue(_textbox("t1[1]"), "bb");

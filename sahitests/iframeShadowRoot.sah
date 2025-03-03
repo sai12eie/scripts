@@ -1,0 +1,15 @@
+_navigateTo("/demo/iframeShadowRoot.html");
+_click(_button("Click to open the iframe"));
+_assertVisible(_paragraph("Shadow Paragraph"));
+
+_selectDomain("sahitest1.com");
+_click(_link("Link Test"));
+_assertVisible(_link("linkByContent"));
+
+_selectDomain();
+_click(_button("Click to open the iframe2"));
+_assertVisible(_paragraph("Shadow Paragraph2"));
+
+_selectDomain("sahitest2.com");
+_click(_link("Table Test"));
+_assertVisible(_heading2("Table Test"));

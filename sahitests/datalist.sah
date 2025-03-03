@@ -1,0 +1,225 @@
+_navigateTo("/demo/datalist.htm");
+
+function testGetOptionsByFilterByTypeValueAndWithoutValue(){
+	var $list = _getOptions(_datalistFilter(_textbox("d3Id")));
+	_assertEqual(["first text","second text With spaces","third text With nbsp","","last text"], $list);
+	$list = _getOptions(_datalistFilter(_textbox("d3Id"), "value"));
+	_assertEqual(["first text","second text With spaces","third text With nbsp","last text"], $list);
+	$list = _getOptions(_textbox("d3Id"), "value");
+	_assertEqual(["first value","second value With spaces","third value With nbsp","","last value"], $list);
+	$list = _getOptions(_textbox("d3Id"));
+	_assertEqual(["first text","second text With spaces","third text With nbsp","","last text"], $list);
+}
+
+function testListByValue(){
+	_setValueFromList(_textbox("d1Id"), "first", 0);
+	_assertEqual("first_value", _getValue(_textbox("d1Id")));
+	
+	_setValueFromList(_textbox("d1Id"), "with", 0);
+	_assertEqual("second_value    with spaces", _getValue(_textbox("d1Id")));
+	
+	_setValueFromList(_textbox("d1Id"), "with", "/nbsp/");
+	_assertEqual("third_value    with nbsp", _getValue(_textbox("d1Id")));
+	
+}
+
+function testListByText(){
+	_setValueFromList(_textbox("d2Id"), "first", 0);
+	_assertEqual("first_text", _getValue(_textbox("d2Id")));
+	
+	_setValueFromList(_textbox("d2Id"), "with", 0);
+	_assertEqual("second_text    with spaces", _getValue(_textbox("d2Id")));
+	
+	_setValueFromList(_textbox("d2Id"), "with", "/nbsp/");
+	_assertEqual("third_text    with nbsp", _getValue(_textbox("d2Id")));
+}
+
+function testListByValueAndText(){
+	_setValueFromList(_textbox("d3Id"), "first text", 0);
+	_assertEqual("first value", _getValue(_textbox("d3Id")));
+	
+	_setValueFromList(_textbox("d3Id"), "with", /spaces/);
+	_assertEqual("second value    With spaces", _getValue(_textbox("d3Id")));
+	
+	_setValueFromList(_textbox("d3Id"), "with", /nbsp/);
+	_assertEqual("third value    With nbsp", _getValue(_textbox("d3Id")));
+	
+	_setValueFromList(_textbox("country"), "a", 0);
+	_assertEqual("AF", _getValue(_textbox("country")));
+}
+
+function testListByFilterCase(){
+	_setValueFromList(_textbox("d3Id"), "first TEXT", 0);
+	_assertEqual("first value", _getValue(_textbox("d3Id")));
+	
+	_setValueFromList(_textbox("d3Id"), "WiTH", /spaces/);
+	_assertEqual("second value    With spaces", _getValue(_textbox("d3Id")));
+	
+	_setValueFromList(_textbox("d3Id"), "wITH", /nbsp/);
+	_assertEqual("third value    With nbsp", _getValue(_textbox("d3Id")));
+}
+
+// Without 3rd Argument
+function testListByWritingFilter(){
+	_setValueFromList(_textbox("d3Id"), "WITH");
+	_assertEqual("WITH", _getValue(_textbox("d3Id")));
+}
+
+function testListMultipleForEmail(){
+	if(_isFF()) return;
+	_setValueFromList(_emailbox("d4Id_email"), ["EMPLOYEE", "EMPLOYEE", "4"], [0, 1, 0]);
+	_assertEqual("first@example.com,second@example.com,fourth@example.com", _getText(_emailbox("d4Id_email")));
+	
+	_setValueFromList(_emailbox("d4Id_email"), ["EMPLOYEE", "EMPLOYEE", "1"], ["/first/", "/example/[1]", 0]);
+	_assertEqual("first@example.com,second@example.com,first@example.com", _getText(_emailbox("d4Id_email")));
+}
+
+function testListMultipleForDifferentOptionToSelect(){
+	if(_isFF()) return;
+	_setValueFromList(_emailbox("d4Id_email"), ["EMPLOYEE", "EMPLOYEE", "EMPLOYEE", "EMPLOYEE", "EMPLOYEE"], ["/first/", /first/, "/example/[1]", 0, "second@example.com"]);
+	_assertEqual("first@example.com,first@example.com,second@example.com,first@example.com,second@example.com", _getText(_emailbox("d4Id_email")));
+}
+
+function testListForDifferentOptionToSelect(){
+	_setValueFromList(_emailbox("d4Id_email"), "EMPLOYEE", "/first/");
+	_assertEqual("first@example.com", _getText(_emailbox("d4Id_email")));
+	
+	_setValueFromList(_emailbox("d4Id_email"), "EMPLOYEE", /second/);
+	_assertEqual("second@example.com", _getText(_emailbox("d4Id_email")));
+	
+	_setValueFromList(_emailbox("d4Id_email"), "EMPLOYEE", "/example/[2]");
+	_assertEqual("third@example.com", _getText(_emailbox("d4Id_email")));
+	
+	_setValueFromList(_emailbox("d4Id_email"), "EMPLOYEE", "/example/[2]");
+	_assertEqual("third@example.com", _getText(_emailbox("d4Id_email")));
+	
+	_setValueFromList(_emailbox("d4Id_email"), "EMPLOYEE", 3);
+	_assertEqual("fourth@example.com", _getText(_emailbox("d4Id_email")));
+	
+	_setValueFromList(_emailbox("d4Id_email"), "EMPLOYEE", "second@example.com");
+	_assertEqual("second@example.com", _getText(_emailbox("d4Id_email")));
+}
+
+function testListMultipleByWritingFilter(){
+	if(_isFF()) return;
+	_setValueFromList(_emailbox("d4Id_email"), ["EMPLOYEE", "EMPLOYEE", "4"]);
+	_assertEqual("EMPLOYEE,EMPLOYEE,4", _getText(_emailbox("d4Id_email")));
+	
+	_setValueFromList(_emailbox("d4Id_email"), ["EMPLOYEE", "EMPLOYEE", "4"], [0]);
+	_assertEqual("first@example.com,EMPLOYEE,4", _getText(_emailbox("d4Id_email")));
+	
+	_setValueFromList(_emailbox("d4Id_email"), ["EMPLOYEE", "EMPLOYEE", "4"], [, 0]);
+	_assertEqual("EMPLOYEE,first@example.com,4", _getText(_emailbox("d4Id_email")));
+}
+
+function testListMultipleWithNoMatch(){
+	if(_isFF()) return;
+	try{
+		_disableDefaultErrorLogging();
+		_setValueFromList(_emailbox("d4Id_email"), ["EMPLOYEE"], [5]);
+	} catch($e){
+			var $errorMsg = $e.message;
+			if($errorMsg.indexOf("Error: Option not found: 5") == -1) _fail($errorMsg);
+			_logException($e); 
+	}
+	try{
+		_setValueFromList(_emailbox("d4Id_email"), ["EMPLOYEE", "EMPLOYEE", "EMPLOYEE"], ["/example/[1]", "/example2/[0]", "/example/[1]"]);
+	} catch($e){
+			_assertEqual("second@example.com", _getText(_emailbox("d4Id_email")));
+			var $errorMsg = $e.message;
+			if($errorMsg.indexOf("Error: Option not found: /example2/[0]") == -1) _fail($errorMsg);
+			_logException($e); 
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testListWithNoMatch(){
+	try{
+		_disableDefaultErrorLogging();
+		_setValueFromList(_emailbox("d4Id_email"), "EMPLOYEE", 5);
+	} catch($e){
+			var $errorMsg = $e.message;
+			if($errorMsg.indexOf("Error: Option not found: 5") == -1) _fail($errorMsg);
+			_logException($e); 
+	}
+	try{
+		_setValueFromList(_emailbox("d4Id_email"), "EMPLOYEE", "/example2/[0]");
+	} catch($e){
+			var $errorMsg = $e.message;
+			if($errorMsg.indexOf("Error: Option not found: /example2/[0]") == -1) _fail($errorMsg);
+			_logException($e); 
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testListWithElementNotExists(){
+	try{
+		_disableDefaultErrorLogging();
+		_setValueFromList(_emailbox("d5Id_email"), "xyz");
+	} catch($e){
+		var $errorMsg = $e.message;
+		if($errorMsg.replace(/_sahi./g, "").indexOf('Error: _emailbox("d5Id_email") was not found on the browser'.replace(/_sahi./g, "")) != 0) {
+			_fail("Fail with message:\n" + $errorMsg);
+		}
+		_logException($e); 
+	}
+	_enableDefaultErrorLogging();
+}
+
+function testListInDifferentInputType(){
+	_setValueFromList(_rangebox("donation"), "25", 0);
+	_assertEqual("25", _getText(_rangebox("donation")));
+	
+	_setValueFromList(_rangebox("donation"), "", 1);
+	_assertEqual("50", _getText(_rangebox("donation")));
+}
+
+function testGetOptionsByInputEl(){
+	var $list = _getOptions(_textbox("country"), "text");
+	_assertEqual(["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa"], $list);
+	$list = _getOptions(_textbox("country"), "value");
+	_assertEqual(["AF", "AX", "AL", "DZ", "AS"], $list);
+	$list = _getOptions(_textbox("country"));
+	_assertEqual(["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa"], $list);
+}
+
+function testGetOptionsByDatalistEl(){
+	var $list = _getOptions(_datalist("country_list"), "text");
+	_assertEqual(["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa"], $list);
+	$list = _getOptions(_datalist("country_list"), "value");
+	_assertEqual(["AF", "AX", "AL", "DZ", "AS"], $list);
+	$list = _getOptions(_datalist("country_list"));
+	_assertEqual(["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa"], $list);
+}
+
+function testGetOptionsByFilterByInputEl(){
+	var $list = _getOptions(_datalistFilter(_textbox("country"), ""), "text");
+	_assertEqual(["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa"], $list);
+	$list = _getOptions(_datalistFilter(_textbox("country")), "text");
+	_assertEqual(["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa"], $list);
+	$list = _getOptions(_datalistFilter(_textbox("country"), "AL"), "text");
+	_assertEqual(["Aland Islands", "Albania", "Algeria"], $list);
+	$list = _getOptions(_datalistFilter(_textbox("country"), "d"), "text");
+	_assertEqual(["Aland Islands", "Algeria"], $list);
+	$list = _getOptions(_datalistFilter(_emailbox("d4Id_email"), "s"), "value");
+	_assertEqual(["first@example.com", "second@example.com"], $list);
+}
+
+function testGetOptionsByFilterByDatalistEl(){
+	var $list = _getOptions(_datalistFilter(_datalist("country_list"), ""), "text");
+	_assertEqual(["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa"], $list);
+	$list = _getOptions(_datalistFilter(_datalist("country_list")), "text");
+	_assertEqual(["Afghanistan", "Aland Islands", "Albania", "Algeria", "American Samoa"], $list);
+	$list = _getOptions(_datalistFilter(_datalist("country_list"), "AL"), "text");
+	_assertEqual(["Aland Islands", "Albania", "Algeria"], $list);
+	$list = _getOptions(_datalistFilter(_datalist("country_list"), "d"), "text");
+	_assertEqual(["Aland Islands", "Algeria"], $list);
+	$list = _getOptions(_datalistFilter(_datalist("country_list")), "text");
+	_assertEqual(["Afghanistan","Aland Islands","Albania","Algeria","American Samoa"], $list);
+	var $datalistFilter = _datalistFilter(_datalist("email_list"), "s")
+	$list = _getOptions($datalistFilter, "value");
+	_assertEqual(["first@example.com", "second@example.com"], $list);
+}
+
+
+_runUnitTests();

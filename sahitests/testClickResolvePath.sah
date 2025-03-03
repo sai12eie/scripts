@@ -1,0 +1,15 @@
+_navigateTo("/demo/resolveSafariClick/f1/a.htm",true);
+_click(_button("Click the button"));
+if(_isSafari()){
+  _assertNotExists(_paragraph("f1/abc.htm"));
+}
+else _assertExists(_paragraph("f1/abc.htm"));
+_navigateTo("/demo/resolveSafariClick/f1/a.htm",true);
+_click(_button("Click"));
+_assertExists(_paragraph("f1/abc.htm"));
+_navigateTo("/demo/resolveSafariClick/f1/a.htm",true);
+_click(_button("ClickFn"));
+_assertExists(_paragraph("f1/abc.htm"));
+_navigateTo("/demo/resolveSafariClick/f1/a.htm",true);
+_click(_button("Click the button[1]"));
+_assertExists(_paragraph("f1/abc.htm"));

@@ -1,0 +1,107 @@
+var $userDir = _userDataDir() + "/scripts/demo/";
+var $file = $userDir + "getLayout.txt";
+
+function testDeleteAndLoguot(){
+	_deleteFile($file);
+	_assertFalse(_fileExists($file));
+	_click(_button("Logout"));
+}
+
+function testAllElementTypes(){
+	var	$temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $table = _getLayout();
+	_writeFile($table, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testTable(){
+	var	$temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $table = _getLayout(["_heading2", "_div", "_row", "_cell", "_textbox", "_button"]);
+	_writeFile($table, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testDiv(){
+	var	$temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $div = _getLayout(["_table", "_heading2", "_row", "_cell", "_textbox", "_button"]);
+	_writeFile($div, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testRow(){
+	var	$temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $row = _getLayout(["_table", "_heading2", "_div", "_cell", "_textbox", "_button"]);
+	_writeFile($row, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testCell(){
+	var	$temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $cell = _getLayout(["_table", "_heading2", "_div", "_row", "_textbox", "_button"]);
+	_writeFile($cell, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testTextbox(){
+	var	$temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $textbox = _getLayout(["_table", "_heading2", "_div", "_row", "_cell", "_button"]);
+	_writeFile($textbox, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testButton(){
+	var	$temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $button = _getLayout(["_table", "_heading2", "_div", "_row", "_cell", "_textbox"]);
+	_writeFile($button, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testHeading(){
+	var	$temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $heading = _getLayout(["_table", "_div", "_row", "_cell", "_textbox", "_button"]);
+	_writeFile($heading, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testForMultipleElements(){
+	var $temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $layoutWdMultipleEls = _getLayout(null, [_div("cart"), _row("Python Cookbook7Rs. 350"), _row("Ruby for Rails12Rs. 200")]);
+	_writeFile($layoutWdMultipleEls, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+function testEmptyLayout(){
+	var $temp = "_select(\"s4Id\")";
+	_writeFile($temp, $file, true);
+	var $disableAll = _getLayout(["_table", "_heading2", "_div", "_row", "_cell", "_textbox", "_button"]);
+	_writeFile($disableAll, $file, true);
+	var $temp = _readLayoutFile($file);
+	_verifyLayout($temp,9);
+}
+
+_navigateTo("http://sahitest.com/demo/training/", true);
+_setValue(_textbox("user"), "test");
+_setPassword(_password("password"), "MgkKEQBU");
+_click(_submit("Login"));
+_setValue(_textbox("q"), "1");
+_click(_button("Add"));
+
+_runUnitTests();

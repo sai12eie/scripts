@@ -1,0 +1,42 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.834Z",
+  "name": "Verify success",
+  "id": "45910",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.834Z",
+  "content": {
+    "title": "Verify success",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_heading1(0)"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Contains",
+        "secondaryParam": {
+          "isCustomParameter": true,
+          "customValue": "\"Your Account Has Been Created!\""
+        }
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Continue\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

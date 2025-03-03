@@ -1,0 +1,8 @@
+_logOutput("Script started.");
+_navigateTo("/demo/training/");
+_setValue(_textbox("user"), "test");
+_setValue(_password("password"), "secret");
+_click(_submit("Login"));
+_logOutput("Login passed.");
+_click(_button("Logout"));
+_logOutput("Script stopped.");

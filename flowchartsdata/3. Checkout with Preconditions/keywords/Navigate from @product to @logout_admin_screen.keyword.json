@@ -1,0 +1,14 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.646Z",
+  "name": "Navigate from @product to @logout_admin_screen",
+  "id": "45892",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.646Z",
+  "content": {
+    "title": "Navigate from @product to @logout_admin_screen",
+    "parameters": [],
+    "steps": []
+  },
+  "enabled": false,
+  "parentId": ""
+}

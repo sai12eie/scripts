@@ -1,0 +1,153 @@
+function verifyCommonHARLogs($harLogs, $length){
+	var $actualRequestUrl = [];
+	var $expectedRequestUrl = ["https://app.testflowchart.com/tfc/static/images/correctness._ve88615b8404307b398cc0aa68c50c3b2v_.png;jsessionid", "https://app.testflowchart.com/tfc/static/images/linkedin.png;jsessionid",
+							   "https://app.testflowchart.com/tfc/static/images/login_arrow._vc8724900dc18408113bf3fb3f4c873d0v_.svg;jsessionid", "https://app.testflowchart.com/tfc/static/images/arrows._v2364c4828519c48ec8c4a51e1e56eecev_.png;jsessionid",
+							   "https://app.testflowchart.com/tfc/login/", "https://app.testflowchart.com/tfc/static/css/public._v13c7991ec566307a371a2ca3dd18f232v_.css;jsessionid", "https://app.testflowchart.com/tfc/static/images/eye-with-eyelash._v24463b573e14cea3842ef229cbdfd2fcv_.svg;jsessionid",
+							   "https://app.testflowchart.com/tfc/static/images/start_logo._v35bbe49fca27378efa3390b89d993b30v_.png;jsessionid", "https://accounts.google.com/gsi/log?client_id"];
+
+	for (var $i=0; $i<$length-1; $i++) {
+		var $requestUrl = $harLogs[$i].requestUrl;
+		var $url = $requestUrl.split("=")[0];
+		$actualRequestUrl.push($url);
+
+		if($url.indexOf("google") != -1){
+			_assertEqual("POST", $harLogs[$i].requestMethod);
+			_assertEqual("OK", $harLogs[$i].responseStatusText);
+		}
+		else{
+			_assertEqual("GET", $harLogs[$i].requestMethod);
+			_assertEqual("", $harLogs[$i].responseStatusText);
+		}
+		
+		_assertEqual("200", $harLogs[$i].responseStatus);
+		_assertEqual("/^[0-9]/", $harLogs[$i].responseBodySize.toString());
+		_assertEqual("/^[0-9][0-9]/", $harLogs[$i].time.toString());
+	}
+
+
+	for(var $i=0; $i<$actualRequestUrl.length; $i++){
+		_log($actualRequestUrl[$i], "CUSTOM2");
+		_assertTrue($expectedRequestUrl.includes($actualRequestUrl[$i]));
+	}
+
+	_assertEqual("GET", $harLogs[$length-1].requestMethod);
+	_assertEqual("https://sahitest.com/demo/showModal.htm", $harLogs[$length-1].requestUrl);
+	_assertEqual("200", $harLogs[$length-1].responseStatus);
+	_assertEqual("OK", $harLogs[$length-1].responseStatusText);
+	_assertEqual("/^[0-9][0-9]/", $harLogs[$length-1].responseBodySize.toString());
+	_assertEqual("/^[0-9][0-9]/", $harLogs[$length-1].time.toString());
+}
+
+function login($user, $password){
+	_setValue(_textbox("user"), $user);
+	_setPassword(_password("password"), $password);
+	_click(_submit("Login"));
+}
+
+// Case 5
+_addToSession("https://sahitest.com/demo/");
+_navigateTo("https://sahitest.com/demo/selectTest.htm");
+_assertEqual("--SELECT--", _getSelectedText(_select("s1")));
+var $harLogs = _getHarLogs();
+_assertEqual([], $harLogs);
+_assertEqual(0, $harLogs.length);
+
+// Case 1
+_startHarLogging();
+_navigateTo("https://sahitest.com/demo/linkTest.htm");
+_assertExists(_link("linkByHtml"));
+_navigateTo("https://sahitest.com/demo/headingsTest.htm");
+_assertExists(_heading1("Heading A"));
+_navigateTo("https://sahitest.com/demo/training/login.htm");
+
+login("test", "MgkKEQBU");
+_click(_button("Logout"));
+_click(_link("Register"));
+
+_addToSession("https://resources.sahipro.com/");
+_navigateTo("https://resources.sahipro.com/docs/introduction/index.html");
+_assertExists(_div("Sahi Pro Classic"));
+
+_stopHarLogging();
+
+var $harLogs = _getHarLogs();
+//_assertEqual(19, $harLogs.length);
+
+var $expectedRequestUrl = ["https://sahitest.com/demo/linkTest.htm", "https://sahitest.com/demo/add.gif", "https://sahitest.com/demo/clickCombo.htm", "https://sahitest.com/demo/headingsTest.htm", "https://sahitest.com/demo/training/login.htm",
+						   "https://sahitest.com/demo/training/books.htm", "https://sahitest.com/demo/training/common.css", "https://sahitest.com/demo/training/register.htm", "https://resources.sahipro.com/docs/introduction/index.html",
+						   "https://resources.sahipro.com/docs/assets/images/common/search_icon.svg", "https://resources.sahipro.com/docs/assets/js/prettify/prettify.css", "https://resources.sahipro.com/docs/assets/images/common/sahi_pro_logo2.png",
+						   "https://resources.sahipro.com/docs/assets/css/sahidocs.css", "https://resources.sahipro.com/docs/assets/images/document_icon.svg", "https://resources.sahipro.com/docs/assets/js/sahiapis.js",
+						   "https://resources.sahipro.com/docs/assets/images/collapse_all.svg", "https://resources.sahipro.com/docs/assets/images/expand_all.svg", "https://resources.sahipro.com/docs/assets/js/prettify/prettify.js",
+						   "https://resources.sahipro.com/docs/assets/images/hamburger-icon.svg", "https://resources.sahipro.com/docs/assets/images/docs-globe-icon-blue.svg", "https://resources.sahipro.com/docs/assets/images/fi-rr-cross-small.svg",
+						   "https://resources.sahipro.com/docs/assets/images/common/sahi_pro_logo_transparent_sm.png", "https://resources.sahipro.com/docs/assets/images/docs-globe-icon.svg", "https://resources.sahipro.com/docs/assets/images/sub-menu-caret.svg",
+						   "https://resources.sahipro.com/docs/assets/images/fi-rr-arrow-link.svg", "https://resources.sahipro.com/docs/assets/images/common/logo-web-addon.svg", "https://resources.sahipro.com/docs/assets/images/fi-rr-arrow.svg",
+						   "https://resources.sahipro.com/docs/assets/images/common/logo-desktop-addon.svg", "https://resources.sahipro.com/docs/assets/images/common/tp-logo-flowcharts.svg", "https://resources.sahipro.com/docs/assets/images/common/logo-mobile-addon.svg",
+						   "https://resources.sahipro.com/docs/assets/images/common/logo-sap-addon.svg", "https://resources.sahipro.com/docs/assets/images/common/tp-logo-sahi-pro.svg", "https://resources.sahipro.com/docs/assets/images/common/tp-logo-sahi-pro-runner.svg"];
+
+
+for (var $i=0; $i<$harLogs.length; $i++) {
+	_assertEqual("GET", $harLogs[$i].requestMethod);
+	_log($harLogs[$i].requestUrl, "CUSTOM2")
+	_assertTrue($expectedRequestUrl.includes($harLogs[$i].requestUrl));
+	_assertEqual("200", $harLogs[$i].responseStatus);
+	_assertEqual("OK", $harLogs[$i].responseStatusText);
+	_assertEqual("/^[0-9][0-9]/", $harLogs[$i].responseBodySize.toString());
+	_assertEqual("/^[0-9][0-9]/", $harLogs[$i].time.toString());
+}
+
+// Case 2
+_startHarLogging();
+_addToSession("https://app.testflowchart.com/");
+_navigateTo("https://app.testflowchart.com/tfc/login/");
+_assertExists(_submit("Login"));
+_navigateTo("https://sahitest.com/demo/showModal.htm");
+_assertExists(_button("openComments"));
+
+var $harLogsBetween = _getHarLogs();
+_navigateTo("https://sahitest.com/demo/php/fileUpload.htm");
+_click(_submit("Submit Single"));
+_stopHarLogging();
+
+//_assertEqual(9, $harLogsBetween.length);
+_log($harLogsBetween.length, "CUSTOM1");
+verifyCommonHARLogs($harLogsBetween,$harLogsBetween.length);
+
+// Case 3
+var $harLogsAfter = _getHarLogs();
+
+_assertTrue($harLogsBetween.length < $harLogsAfter.length);
+
+//_assertEqual(11, $harLogsAfter.length);
+_log($harLogsAfter.length, "CUSTOM1");
+verifyCommonHARLogs($harLogsAfter, $harLogsAfter.length-2);
+
+_assertEqual("GET", $harLogsAfter[$harLogsAfter.length-2].requestMethod);
+_assertEqual("https://sahitest.com/demo/php/fileUpload.htm", $harLogsAfter[$harLogsAfter.length-2].requestUrl);
+_assertEqual("200", $harLogsAfter[$harLogsAfter.length-2].responseStatus);
+_assertEqual("OK", $harLogsAfter[$harLogsAfter.length-2].responseStatusText);
+_assertEqual("/^[0-9][0-9]/", $harLogsAfter[$harLogsAfter.length-2].responseBodySize.toString());
+_assertEqual("/^[0-9][0-9]/", $harLogsAfter[$harLogsAfter.length-2].time.toString());
+
+_assertEqual("POST", $harLogsAfter[$harLogsAfter.length-1].requestMethod);
+_assertEqual("https://sahitest.com/demo/php/fileUpload.php", $harLogsAfter[$harLogsAfter.length-1].requestUrl);
+_assertEqual("200", $harLogsAfter[$harLogsAfter.length-1].responseStatus);
+_assertEqual("OK", $harLogsAfter[$harLogsAfter.length-1].responseStatusText);
+_assertEqual("/^[0-9][0-9]/", $harLogsAfter[$harLogsAfter.length-1].responseBodySize.toString());
+_assertEqual("/^[0-9][0-9]/", $harLogsAfter[$harLogsAfter.length-1].time.toString());
+
+
+//Test for Enabling response body in HAR logs.
+
+_startHarLogging(true);
+_addToSession("https://sahitest.com/demo/");
+_navigateTo("https://sahitest.com/demo/linkTest.htm");
+_openWindow("https://sahitest.com/demo/");
+_wait(4000);
+_stopHarLogging();
+_wait(2000);
+var $harLogsCon = _getHarLogs();
+_log("Length is "+$harLogsCon.length, "CUSTOM3");
+
+
+_assertTrue($harLogsCon[0].responseContent.indexOf("Link Test") != -1);
+_assertTrue($harLogsCon[2].responseContent.indexOf("Sahi Tests") != -1);

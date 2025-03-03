@@ -1,0 +1,19 @@
+"TestCase","Key Word","Argument 1","Argument 2"
+,"loadSahi","../resolveRelativePathTest.sah"
+,"_resource","../snapshot_login_short.png"
+,"_resource","../assert_log_tiger.jpg"
+,"_resource","login.png"
+
+"test assertEqualImages","[Documentation]","test assertEqualImages"
+,"_assertEqualImages","login.png","../snapshot_login_short.png"
+
+"test logImage","[Documentation]","test logImage"
+,"_logImage","../assert_log_tiger.jpg"
+
+"test compareImages","[Documentation]","test compareImages"
+,"$same=_compareImages","login.png","../snapshot_login_short.png"
+,"_assert","$same"
+
+"test scriptPath is scenario file and not excelfw.sah","[Documentation]","test scriptPath"
+,"$path=_scriptPath"
+,"_assert","$path.indexOf(""use_resolveRelativePathTest.s.csv"") != -1"

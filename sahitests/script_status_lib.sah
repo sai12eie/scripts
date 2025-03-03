@@ -1,0 +1,10 @@
+function testScriptStatus(){
+	try{
+		_navigateTo("/demo/linkTest.htm");
+		_click(_link("linkByContent"));
+		_assertExists(_heading2("Link By Content Test"));
+	}
+	finally{
+		_assertEqual("SUCCESS",_scriptStatus().toUpperCase());
+	}
+}

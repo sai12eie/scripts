@@ -1,0 +1,3 @@
+var $lorem = new Packages.de.svenjacobs.loremipsum.LoremIpsum();
+var $text = $lorem.getWords(5);
+_alert($text);

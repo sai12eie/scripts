@@ -1,0 +1,96 @@
+{
+  "modifiedOn": "2024-04-08T05:22:31.298Z",
+  "name": "Verify $coupon discount applied to $cart",
+  "id": "44873",
+  "type": 3,
+  "createdOn": "2024-04-08T05:22:31.298Z",
+  "content": {
+    "title": "Verify $coupon discount applied to $cart",
+    "parameters": [
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      },
+      {
+        "parameterId": "cart_",
+        "entityTypeId": "cart",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_div(\"alert alert-success alert-dismissible\")"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Contains",
+        "secondaryParam": {
+          "isCustomParameter": true,
+          "customValue": "\"Success: Your coupon discount has been applied!\""
+        }
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_01679636987669",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "cart_",
+          "attributeId": "attr_01679636987669"
+        },
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_11679636987670",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "cart_",
+          "attributeId": "attr_11679636987670"
+        },
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_21679636987670",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "cart_",
+          "attributeId": "attr_21679636987670"
+        },
+        "visibleCheck": false
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

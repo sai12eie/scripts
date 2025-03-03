@@ -1,0 +1,28 @@
+function testCollectElementsInfo(){
+	var $accs = _collectElementsInfo("/.*/");
+	_assertEqual(39, $accs.length);
+	var $accs = _collectElementsInfo("_button");
+	_assertEqual(3, $accs.length);
+}
+
+function testCollectElementsInfoRegex(){
+	var $accs = _collectElementsInfo("/text/"); // _textbox
+	_assertEqual(4, $accs.length);
+	$accs = _collectElementsInfo("/_t/"); // _textbox and _table
+	_assertEqual(6, $accs.length);
+}
+
+function testCollectElementsInfoWithRelations(){
+	var $accs = _collectElementsInfo("_textbox", _in(_div("cart")));
+	_assertEqual(1, $accs.length);
+	$accs = _collectElementsInfo("/text/", _in(_table("listing")));
+	_assertEqual(3, $accs.length);
+	$accs = _collectElementsInfo("_textbox", _in(_table("listing")), _rightOf(_cell("Python Cookbook")));
+	_assertEqual(1, $accs.length);
+}
+
+_navigateTo("/demo/training/login.htm");
+_setValue(_textbox("user"), "test");
+_setValue(_password("password"), "secret");
+_click(_submit("Login"));
+_runUnitTests();

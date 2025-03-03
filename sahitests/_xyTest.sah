@@ -1,0 +1,28 @@
+function testRightPadding(){
+	_click(_xy(_div("div1"),-5, 5));
+	_assertExists(_div("Click triggered in right corner padding"));
+}
+
+function testLeftPadding(){
+	_click(_xy(_div("div1"),5, 5));
+	_assertExists(_div("Click triggered in left corner padding"));
+}
+
+function testNormalXY(){
+	 _click(_xy(_div("div1"), 30, 30));
+	_assertExists(_div("Click triggered in element textcontent area"));
+}
+
+function testBottomPadding(){
+	_click(_xy(_div("div1"), 30, -2));
+	_assertExists(_div("Click triggered in bottom padding"));
+}
+
+function testTopPadding(){
+	_click(_xy(_div("div1"), 30, 5));
+	_assertExists(_div("Click triggered in top padding"));
+}
+
+_navigateTo("/demo/_xyTest.htm");
+_runUnitTests();
+

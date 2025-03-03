@@ -1,0 +1,51 @@
+function onScriptErrorReturnsTrue(e){
+	_logExceptionAsFailure(e);
+	_focusWindow();
+	_takeScreenShot();	
+	return true;
+} 
+
+function onScriptErrorReturnsFalse(e){
+	_logExceptionAsFailure(e);
+	_focusWindow();
+	_takeScreenShot();
+	return false;
+} 
+
+function onScriptErrorReturnsNothing(e){
+	_logExceptionAsFailure(e);
+	_focusWindow();
+	_takeScreenShot();	
+} 
+
+function performTest() {
+	_click(_link("Link Test"));
+	try{
+	  _click(_link("does not exist"));
+	}catch(e){
+	  _logException(e);
+	  _click(_link("linkByHtml"));
+	}
+	_click(_link("Back"));
+	_click(_link("Back"));
+	_assertExists(_link("Link Test"));
+}
+
+function testOnScriptErrorReturnsTrue() {
+	onScriptError = onScriptErrorReturnsTrue;
+	performTest();
+}
+
+function testOnScriptErrorReturnsFalse() {
+	onScriptError = onScriptErrorReturnsFalse;
+	performTest();
+}
+
+
+function testOnScriptErrorReturnsNothing() {
+	onScriptError = onScriptErrorReturnsNothing;
+	performTest();
+}
+
+
+_runUnitTests();

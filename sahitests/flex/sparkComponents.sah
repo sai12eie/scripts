@@ -1,0 +1,312 @@
+_navigateTo("/demo/flex/spark/sparkComponents.html");
+//Spark Button
+_click(_f("sparkComponents").s_button("SparkButton"));
+_assertExists(_f("sparkComponents").s_button("Default Button Label"));
+_assertEqual("Default Button Label", _getValue(_f("sparkComponents").s_button("Default Button Label")));
+_assertExists(_f("sparkComponents").s_button("Default Button"));
+_assertEqual("Default Button Label", _getValue(_f("sparkComponents").s_button("Default Button")));
+_assertExists(_f("sparkComponents").s_button("DBtn"));
+_assertEqual("Default Button Label", _getValue(_f("sparkComponents").s_button("DBtn")));
+_assertExists(_f("sparkComponents").s_button("autoRepeat Button"));
+_assertEqual("autoRepeat Button", _getValue(_f("sparkComponents").s_button("autoRepeat Button")));
+_assertExists(_f("sparkComponents").s_button("ARBtn"));
+_assertEqual("autoRepeat Button", _getValue(_f("sparkComponents").s_button("ARBtn")));
+_assertEqual("Label", _getValue(_f("sparkComponents").s_label("lbl")));
+_click(_f("sparkComponents").s_button("Default Button"));
+_assertEqual("Default Button Label pressed", _getValue(_f("sparkComponents").s_label("lbl")));
+
+//Spark ButtonBar
+_click(_f("sparkComponents").s_button("SparkButtonBar"));
+_assertExists(_f("sparkComponents").s_buttonbar("sparkButtonBar"));
+_assertEqual("", _getValue(_f("sparkComponents").s_buttonbar("sparkButtonBar")));
+_assertExists(_f("sparkComponents").s_buttonbar("sBBId"));
+_assertEqual("", _getValue(_f("sparkComponents").s_buttonbar("sBBId")));
+_assertExists(_f("sparkComponents").s_label("Red"));
+_assertExists(_f("sparkComponents").s_label("Halo Orange"));
+_assertExists(_f("sparkComponents").s_label("Yellow"));
+_assertExists(_f("sparkComponents").s_label("Halo Green"));
+_assertExists(_f("sparkComponents").s_label("Halo Blue"));
+_assertExists(_f("sparkComponents").s_label("A"));
+_assertExists(_f("sparkComponents").s_label("The quick brown fox"));
+_click(_f("sparkComponents").s_label("Halo Orange"));
+_assertEqual("Selected Item: Halo Orange", _getValue(_f("sparkComponents").s_label("selectionText")));
+_click(_f("sparkComponents").s_label("Yellow"));
+_assertEqual("Selected Item: Yellow", _getValue(_f("sparkComponents").s_label("selectionText")));
+_click(_f("sparkComponents").s_label("Halo Green"));
+_assertEqual("Selected Item: Halo Green", _getValue(_f("sparkComponents").s_label("selectionText")));
+_click(_f("sparkComponents").s_label("Halo Blue"));
+_assertEqual("Selected Item: Halo Blue", _getValue(_f("sparkComponents").s_label("selectionText")));
+_click(_f("sparkComponents").s_label("The quick brown fox"));
+_assertEqual("Selected Item: The quick brown fox", _getValue(_f("sparkComponents").s_label("selectionText")));
+_click(_f("sparkComponents").s_label("Red"));
+_assertEqual("Selected Item: Red", _getValue(_f("sparkComponents").s_label("selectionText")));
+
+//Spark ButtonBarButton
+_click(_f("sparkComponents").s_button("SparkButtonBarButton"));
+_assertExists(_f("sparkComponents").s_buttonbarbutton("sparkButtonBarButton"));
+_assertEqual("sparkButtonBarButton", _getValue(_f("sparkComponents").s_buttonbarbutton("sparkButtonBarButton")));
+_assertExists(_f("sparkComponents").s_buttonbarbutton("sparkButtonBarButton"));
+_assertEqual("sparkButtonBarButton", _getValue(_f("sparkComponents").s_buttonbarbutton("sparkButtonBarButton")));
+_assertExists(_f("sparkComponents").s_buttonbarbutton("sBBB"));
+_assertEqual("sparkButtonBarButton", _getValue(_f("sparkComponents").s_buttonbarbutton("sBBB")));
+_assertExists(_f("sparkComponents").s_label("sparkLabel"));
+_assertEqual("",_getValue(_f("sparkComponents").s_label("sparkLabel")));
+_click(_f("sparkComponents").s_buttonbarbutton("sparkButtonBarButton"));
+_assertEqual("sparkButtonBarButtonClicked",_getValue(_f("sparkComponents").s_label("sparkLabel")));
+
+//Spark CheckBox
+_click(_f("sparkComponents").s_button("SparkCheckBox"));
+_assertExists(_f("sparkComponents").s_checkbox("Pickles"));
+_assertEqual("false", _getValue(_f("sparkComponents").s_checkbox("Pickles")));
+_assertEqual("result here", _getValue(_f("sparkComponents").s_richeditabletext("selectionCheckBoxText")));
+_click(_f("sparkComponents").s_checkbox("Tomato"));
+_assertEqual("Tomato", _getValue(_f("sparkComponents").s_richeditabletext("selectionCheckBoxText")));
+ _click(_f("sparkComponents").s_checkbox("Pickles"));
+_assertEqual("Pickles", _getValue(_f("sparkComponents").s_richeditabletext("selectionCheckBoxText")));
+
+//Spark Combobox
+_click(_f("sparkComponents").s_button("SparkComboBox"));
+_assertExists(_f("sparkComponents").s_combobox("sparkCmBox"));
+_assertEqual("Salmon", _getValue(_f("sparkComponents").s_combobox("sparkCombobox")));
+_assertExists(_f("sparkComponents").s_combobox("sparkCmBox"));
+_assertEqual("Salmon", _getValue(_f("sparkComponents").s_combobox("sparkCmBox")));
+_assertExists(_f("sparkComponents").s_combobox(0));
+_assertEqual("Salmon", _getValue(_f("sparkComponents").s_combobox(0)));
+_setSelected(_f("sparkComponents").s_combobox(0),"Cucumber");
+_assertEqual("Index : 2 Item :Cucumber Type :Vegetable",_getValue(_f("sparkComponents").s_richeditabletext("sprkCmbobox")));
+_setSelected(_f("sparkComponents").s_combobox(0),"Salmon");
+_assertEqual("Index : 0 Item :Salmon Type :Meat",_getValue(_f("sparkComponents").s_richeditabletext("sprkCmbobox")));
+_setSelected(_f("sparkComponents").s_combobox(0),"Potato");
+_assertEqual("Index : 1 Item :Potato Type :Starch",_getValue(_f("sparkComponents").s_richeditabletext("sprkCmbobox")));
+_setSelected(_f("sparkComponents").s_combobox(0),"Steak");
+_assertEqual("Index : 3 Item :Steak Type :Meat",_getValue(_f("sparkComponents").s_richeditabletext("sprkCmbobox")));
+_setSelected(_f("sparkComponents").s_combobox(0),"Rice");
+_assertEqual("Index : 4 Item :Rice Type :Starch",_getValue(_f("sparkComponents").s_richeditabletext("sprkCmbobox")));
+_setSelected(_f("sparkComponents").s_combobox(0),"Cumin");
+_assertEqual("Index : 5 Item :Cumin Type :Spice",_getValue(_f("sparkComponents").s_richeditabletext("sprkCmbobox")));
+
+//Spark DropDownList
+_click(_f("sparkComponents").s_button("SparkDropDownList"));
+_assertExists(_f("sparkComponents").s_dropdownlist("sparkDDL"));
+_assertExists(_f("sparkComponents").s_dropdownlist("sDDL"));
+_assertExists(_f("sparkComponents").s_richeditabletext("currSel"));
+_assertEqual("Current Product = -", _getValue(_f("sparkComponents").s_richeditabletext("currSel")));
+_setSelected(_f("sparkComponents").s_dropdownlist("sDDL"),"Air");
+_assertExists(_f("sparkComponents").s_richeditabletext("currSel"));
+_assertEqual("Current Product = Air", _getValue(_f("sparkComponents").s_richeditabletext("currSel")));
+_assertExists(_f("sparkComponents").s_richeditabletext("currPrc"));
+_assertEqual("Price = $200", _getValue(_f("sparkComponents").s_richeditabletext("currPrc")));
+_setSelected(_f("sparkComponents").s_dropdownlist("sDDL"),"Catalyst");
+_assertExists(_f("sparkComponents").s_richeditabletext("currSel"));
+_assertEqual("Current Product = Catalyst", _getValue(_f("sparkComponents").s_richeditabletext("currSel")));
+_assertExists(_f("sparkComponents").s_richeditabletext("currPrc"));
+_assertEqual("Price = $300", _getValue(_f("sparkComponents").s_richeditabletext("currPrc")));
+
+//Spark RadioButton
+_click(_f("sparkComponents").s_button("SparkRadioButton"));
+_assertExists(_f("sparkComponents").s_radiobutton("Nonstop flights only"));
+_assertEqual("Nonstop flights only", _getValue(_f("sparkComponents").s_radiobutton("Nonstop flights only")));
+_assertExists(_f("sparkComponents").s_radiobutton("nonStop"));
+_assertEqual("Nonstop flights only", _getValue(_f("sparkComponents").s_radiobutton("nonStop")));
+_assertExists(_f("sparkComponents").s_radiobutton("One stop"));
+_assertEqual("One stop", _getValue(_f("sparkComponents").s_radiobutton("One stop")));
+_assertExists(_f("sparkComponents").s_radiobutton("twoStops"));
+_assertEqual("Two stops", _getValue(_f("sparkComponents").s_radiobutton("twoStops")));
+_click(_f("sparkComponents").s_radiobutton("Nonstop flights only"));
+_assertExists(_f("sparkComponents").s_textarea("myTA"));
+_assertEqual("You selected nonstop flights", _getValue(_f("sparkComponents").s_textarea("myTA")));
+_click(_f("sparkComponents").s_radiobutton("Two stops"));
+_assertExists(_f("sparkComponents").s_textarea("myTA"));
+_assertEqual("You selected two stops", _getValue(_f("sparkComponents").s_textarea("myTA")));
+_click(_f("sparkComponents").s_radiobutton("One stop"));
+_assertExists(_f("sparkComponents").s_textarea("myTA"));
+_assertEqual("You selected one stop", _getValue(_f("sparkComponents").s_textarea("myTA")));
+
+//Spark Spinner
+_click(_f("sparkComponents").s_button("SparkSpinner"));
+_assertExists(_f("sparkComponents").s_spinner("mySpinner"));
+_assertEqual("0", _getValue(_f("sparkComponents").s_spinner("mySpinner")));
+_assertEqual("Text on Tab 1", _getValue(_f("sparkComponents").uitextfield("Text on Tab 1")));
+_assertEqual("Current Tab = 1", _getValue(_f("sparkComponents").s_richeditabletext("tablbl")));
+_setValue(_f("sparkComponents").s_spinner("mySpinner"),"1");
+_assertEqual("Text on Tab 2", _getValue(_f("sparkComponents").uitextfield("Text on Tab 2")));
+_assertEqual("Current Tab = 2", _getValue(_f("sparkComponents").s_richeditabletext("tablbl")));
+_setValue(_f("sparkComponents").s_spinner("mySpinner"),"2");
+_assertEqual("Text on Tab 3", _getValue(_f("sparkComponents").uitextfield("Text on Tab 3")));
+_assertEqual("Current Tab = 3", _getValue(_f("sparkComponents").s_richeditabletext("tablbl")));
+_setValue(_f("sparkComponents").s_spinner("mySpinner"),"3");
+_assertEqual("Text on Tab 4", _getValue(_f("sparkComponents").uitextfield("Text on Tab 4")));
+_assertEqual("Current Tab = 4", _getValue(_f("sparkComponents").s_richeditabletext("tablbl")));
+
+//Spark TileGroup
+_click(_f("sparkComponents").s_button("SparkTileGroup"));
+_assertExists(_f("sparkComponents").s_richeditabletext("tilelbl"));
+_assertEqual("result Here", _getValue(_f("sparkComponents").s_richeditabletext("tilelbl")));
+_click(_f("sparkComponents").s_button("1"));
+_assertExists(_f("sparkComponents").s_richeditabletext("tilelbl"));
+_assertEqual("1 pressed", _getValue(_f("sparkComponents").s_richeditabletext("tilelbl")));
+_click(_f("sparkComponents").s_button("8"));
+_assertExists(_f("sparkComponents").s_richeditabletext("tilelbl"));
+_assertEqual("8 pressed", _getValue(_f("sparkComponents").s_richeditabletext("tilelbl")));
+
+//Spark NumericStepper
+_click(_f("sparkComponents").s_button("SparkNumericStepper"));
+_assertExists(_f("sparkComponents").s_numericstepper("myNS"));
+_assertEqual("1.5", _getValue(_f("sparkComponents").s_numericstepper("myNS")));
+_assertExists(_f("sparkComponents").s_numericstepper("sparkNumericStepper"));
+_assertEqual("1.5", _getValue(_f("sparkComponents").s_numericstepper("sparkNumericStepper")));
+_assertExists(_f("sparkComponents").s_richeditabletext("numsteplbl"));
+_assertEqual("Current value = 1.5", _getValue(_f("sparkComponents").s_richeditabletext("numsteplbl")));
+_setValue(_f("sparkComponents").s_numericstepper("sparkNumericStepper"),"3")
+_assertExists(_f("sparkComponents").s_richeditabletext("numsteplbl"));
+_assertEqual("Current value = 3", _getValue(_f("sparkComponents").s_richeditabletext("numsteplbl")));
+
+//Spark Scroller
+_click(_f("sparkComponents").s_button("SparkScroller"));
+_assertExists(_f("sparkComponents").s_vscrollbar("verticalScrollBar"));
+_assertEqual("", _getValue(_f("sparkComponents").s_vscrollbar("verticalScrollBar")));
+_assertExists(_f("sparkComponents").s_hscrollbar("horizontalScrollBar"));
+_assertEqual("0", _getValue(_f("sparkComponents").s_hscrollbar("horizontalScrollBar")));
+_setValue(_f("sparkComponents").s_hscrollbar("horizontalScrollBar"),"30");
+
+//Spark Slider
+_click(_f("sparkComponents").s_button("SparkSlider"));
+_assertExists(_f("sparkComponents").s_hslider("hSlider"));
+_assertEqual("1", _getValue(_f("sparkComponents").s_hslider("hSlider")));
+_assertExists(_f("sparkComponents").s_hslider("hSliderName"));
+_assertEqual("1", _getValue(_f("sparkComponents").s_hslider("hSliderName")));
+_assertExists(_f("sparkComponents").s_vslider("vSliderName"));
+_assertEqual("20", _getValue(_f("sparkComponents").s_vslider("vSliderName")));
+_assertExists(_f("sparkComponents").s_vslider("vSlider"));
+_assertEqual("20", _getValue(_f("sparkComponents").s_vslider("vSlider")));
+_setValue(_f("sparkComponents").s_vslider("vSlider"),"180");
+_setValue(_f("sparkComponents").s_hslider("hSlider"),"0.8");
+
+//Spark NavigatorContent
+_click(_f("sparkComponents").s_button("SparkNavigatorContent"));
+_assertExists(_f("sparkComponents").s_navigatorcontent("ScrollerComponentsView"));
+_assertEqual("ScrollerComponentsView", _getValue(_f("sparkComponents").s_navigatorcontent("ScrollerComponentsView")));
+
+//Spark Image
+_click(_f("sparkComponents").s_button("SparkImage"));
+_assertExists(_f("sparkComponents").s_image("HImage"));
+
+//Spark RichText
+_click(_f("sparkComponents").s_button("SparkRichText"));
+_assertExists(_f("sparkComponents").s_richtext("richEditTxt"));
+_assertEqual("The quick brown fox jumps over the lazy dogg.", _getValue(_f("sparkComponents").s_richtext("richEditTxt")));
+_assertExists(_f("sparkComponents").s_richeditabletext("Rich Editable Text"));
+_assertEqual("The quick brown fox jumps over the lazy dog.", _getValue(_f("sparkComponents").s_richeditabletext("Rich Editable Text")));
+_assertExists(_f("sparkComponents").s_richeditabletext("richEdTxt"));
+_assertEqual("The quick brown fox jumps over the lazy dog.", _getValue(_f("sparkComponents").s_richeditabletext("richEdTxt")));
+_setValue(_f("sparkComponents").s_richeditabletext("richEdTxt"),"The Fox ran on seeing Tiger");
+_assertEqual("The Fox ran on seeing Tiger", _getValue(_f("sparkComponents").s_richeditabletext("richEdTxt")));
+
+//Spark RichEditableText
+_click(_f("sparkComponents").s_button("SparkRichEditableText"));
+_assertExists(_f("sparkComponents").s_richtext("richEditTxt"));
+_assertEqual("The quick brown fox jumps over the lazy dogg.", _getValue(_f("sparkComponents").s_richtext("richEditTxt")));
+_assertExists(_f("sparkComponents").s_richeditabletext("Rich Editable Text"));
+_assertEqual("The Fox ran on seeing Tiger", _getValue(_f("sparkComponents").s_richeditabletext("Rich Editable Text")));
+_assertExists(_f("sparkComponents").s_richeditabletext("richEdTxt"));
+_assertEqual("The Fox ran on seeing Tiger", _getValue(_f("sparkComponents").s_richeditabletext("richEdTxt")));
+_setValue(_f("sparkComponents").s_richeditabletext("richEdTxt"),"The Fox ran on seeing Tiger");
+_assertEqual("The Fox ran on seeing Tiger", _getValue(_f("sparkComponents").s_richeditabletext("richEdTxt")));
+
+//Spark TextInput
+_click(_f("sparkComponents").s_button("SparkTextInput"));
+_assertExists(_f("sparkComponents").s_textinput("src"));
+_assertEqual("Hello World!", _getValue(_f("sparkComponents").s_textinput("src")));
+_assertExists(_f("sparkComponents").s_textinput("TextInput"));
+_assertEqual("Hello World!", _getValue(_f("sparkComponents").s_textinput("TextInput")));
+_setValue(_f("sparkComponents").s_textinput("TextInput"),"Hai Hello Everyone!");
+_assertEqual("Hai Hello Everyone!", _getValue(_f("sparkComponents").s_textinput("TextInput")));
+
+//Spark TextArea
+_click(_f("sparkComponents").s_button("SparkTextArea"));
+_assertExists(_f("sparkComponents").s_textarea("SparkTextArea"));
+_assertEqual("This is a multiline, editable Spark TextArea control. If you need a non-editable multiline control, use the Text control.", _getValue(_f("sparkComponents").s_textarea("SparkTextArea")));
+_assertExists(_f("sparkComponents").s_textarea("sprktxtArea"));
+_assertEqual("This is a multiline, editable Spark TextArea control. If you need a non-editable multiline control, use the Text control.", _getValue(_f("sparkComponents").s_textarea("sprktxtArea")));
+_setValue(_f("sparkComponents").s_textarea("sprktxtArea"),"Hello World");
+_assertEqual("Hello World", _getValue(_f("sparkComponents").s_textarea("SparkTextArea")));
+
+//Spark ToggleButton
+_click(_f("sparkComponents").s_button("SparkToggleButton"));
+_assertExists(_f("sparkComponents").s_togglebutton("togBtn"));
+_assertEqual("Normal", _getValue(_f("sparkComponents").s_togglebutton("togBtn")));
+_assertExists(_f("sparkComponents").s_togglebutton("ToggleButton"));
+_assertEqual("Normal", _getValue(_f("sparkComponents").s_togglebutton("ToggleButton")));
+_assertExists(_f("sparkComponents").s_togglebutton("Normal"));
+_assertEqual("Normal", _getValue(_f("sparkComponents").s_togglebutton("Normal")));
+_assertExists(_f("sparkComponents").s_richeditabletext("textDisplay"));
+_click(_f("sparkComponents").s_togglebutton("togBtn"));
+_assertEqual("Normal", _getValue(_f("sparkComponents").s_togglebutton("togBtn")));
+_click(_f("sparkComponents").s_togglebutton("togBtn"));
+_assertEqual("Bold", _getValue(_f("sparkComponents").s_togglebutton("togBtn")));
+
+//Spark TitleWindow
+_click(_f("sparkComponents").s_button("SparkTitleWindow"));
+_assertExists(_f("sparkComponents").s_titlewindow("tw1"));
+_assertEqual("", _getValue(_f("sparkComponents").s_titlewindow("tw1")));
+_assertExists(_f("sparkComponents").s_titlewindow("TitleWindow"));
+_assertEqual("", _getValue(_f("sparkComponents").s_titlewindow("TitleWindow")));
+
+//Spark List
+_click(_f("sparkComponents").s_button("SparkList"));
+_assertExists(_f("sparkComponents").s_list("sparkList"));
+_assertExists(_f("sparkComponents").s_list("lst"));
+_assertExists(_f("sparkComponents").listbasecontentholder(0));
+_assertEqual("", _getValue(_f("sparkComponents").listbasecontentholder(0)));
+_click(_f("sparkComponents").s_label("Four"));
+_assertEqual("change", _getValue(_f("sparkComponents").datagriditemrenderer(1)));
+_assertEqual("Four", _getValue(_f("sparkComponents").datagriditemrenderer(2)));
+_click(_f("sparkComponents").s_label("Six"));
+_assertEqual("change", _getValue(_f("sparkComponents").datagriditemrenderer(4)));
+_assertEqual("Six", _getValue(_f("sparkComponents").datagriditemrenderer(5)));
+
+//Spark TabBar
+_click(_f("sparkComponents").s_button("SparkTabBar"));
+_assertExists(_f("sparkComponents").s_tabbar("View Menu"));
+_assertEqual("Appetizers", _getValue(_f("sparkComponents").s_tabbar("View Menu")));
+_assertExists(_f("sparkComponents").s_tabbar("viewMenu"));
+_assertEqual("Appetizers", _getValue(_f("sparkComponents").s_tabbar("viewMenu")));
+_assertEqual("", _getValue(_f("sparkComponents").s_richeditabletext("tabbarSelectionText")));
+_setSelected(_f("sparkComponents").s_tabbar("View Menu"),"Entrees");
+_assertEqual("Selected Item: Entrees", _getValue(_f("sparkComponents").s_richeditabletext("tabbarSelectionText")));
+_setSelected(_f("sparkComponents").s_tabbar("View Menu"),"Desserts");
+_assertEqual("Selected Item: Desserts", _getValue(_f("sparkComponents").s_richeditabletext("tabbarSelectionText")));
+_setSelected(_f("sparkComponents").s_tabbar("View Menu"),"Appetizers");
+_assertEqual("Selected Item: Appetizers", _getValue(_f("sparkComponents").s_richeditabletext("tabbarSelectionText")));
+
+//Spark VideoPlayer
+_click(_f("sparkComponents").s_button("SparkVideoPlayer"));
+_assertExists(_f("sparkComponents").s_videoplayer("sparkVideoDisplay"));
+_assertEqual("", _getValue(_f("sparkComponents").s_videoplayer("sparkVideoDisplay")));
+
+//Spark VideoDisplay
+_click(_f("sparkComponents").s_button("SparkVideoPlayer"));
+_click(_f("sparkComponents").s_togglebutton("playPauseButton"));
+_assertExists(_f("sparkComponents").s_videodisplay("videoDisplay"));
+_assertEqual("", _getValue(_f("sparkComponents").s_videodisplay("videoDisplay")));
+
+//Spark DataGrid
+_click(_f("sparkComponents").s_button("SparkDataGrid"));
+_assertExists(_f("sparkComponents").s_datagrid("dg"));
+_assertEqual("", _getValue(_f("sparkComponents").s_datagrid("dg")));
+
+//Spark Grid
+_click(_f("sparkComponents").s_button("SparkGrid"));
+_assertExists(_f("sparkComponents").s_grid("grid"));
+_assertEqual("", _getValue(_f("sparkComponents").s_grid("grid")));
+
+//Spark FormHeading
+_click(_f("sparkComponents").s_button("SparkFormHeading"));
+_assertExists(_f("sparkComponents").s_formheading("Spark Form Heading"));
+_assertEqual("Spark Form Heading", _getValue(_f("sparkComponents").s_formheading("Spark Form Heading")));
+
+//Spark FormItem
+_click(_f("sparkComponents").s_button("SparkFormItem"));
+_assertExists(_f("sparkComponents").s_formitem("Username:"));
+_assertEqual("Username:", _getValue(_f("sparkComponents").s_formitem("Username:")));
+_setValue(_f("sparkComponents").s_textinput("username"),"Ravi");

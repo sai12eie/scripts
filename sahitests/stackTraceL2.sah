@@ -1,0 +1,14 @@
+function level3(){
+	//var $s = _sahi.getSahiScriptStackTrace();
+	//_alert($s);
+	var $t1 = new Date().getTime();
+	_click(_link("Link Test"));
+	$t2 = new Date().getTime();
+	_alert($t2-$t1);
+	_assertExists(_title());
+	$t2 = new Date().getTime();
+	_alert($t2-$t1);
+	_assertEqual("abc", _textbox("t1").value);
+	_assertExists(_link("Link Test XX"));
+	_click(_link("Link Test XX"));
+}

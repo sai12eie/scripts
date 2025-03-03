@@ -1,0 +1,48 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.678Z",
+  "name": "Search $product",
+  "id": "45895",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.678Z",
+  "content": {
+    "title": "Search $product",
+    "parameters": [
+      {
+        "parameterId": "product_",
+        "entityTypeId": "product",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_textbox(\"search\")"
+          },
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_01679636522544"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_button(\"btn btn-default btn-lg\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

@@ -1,0 +1,190 @@
+_include("../Admin/Admin.sah");
+_include("../../AR/OpenCart_AR.sah");
+
+var $data=_readCSVFile("../../Data/Admin.csv")[0];
+var $Username = $data[0];
+var $Password = $data[1];
+
+/**
+ * Checkout($ProductName, $Model, $OrderQuantity, $Price, $ShippingRate, $FinalTotal)
+ * @param $ProductName - 
+ * @param $Model - 
+ * @param $OrderQuantity - 
+ * @param $Price - 
+ * @param $ShippingRate - 
+ * @param $FinalTotal - 
+*/
+
+/**
+* ProcessCheckout
+*/
+function ProcessCheckout(){
+	_click($_LINK_CHECKOUT_IN_DIV_CHECKOUT);
+	_check($_RADIO_PAYMENT_ADDRESS);
+	_click($_BUTTON_CONTINUE);
+	_check($_RADIO_SHIPPING_ADDRESS);
+	_click($_BUTTON_CONTINUE_IN_DIV_SHIPPINGADDRESS);
+	_assert(_isChecked($_RADIO_SHIPPING_METHOD));
+	_check($_RADIO_SHIPPING_METHOD);
+	_click($_BUTTON_CONTINUE_IN_DIV_SHIPPINGMETHOD);
+	_assert(_isChecked($_RADIO_CASHONDELIVERY));
+	_check($_RADIO_CASHONDELIVERY);
+	_check($_CHECKBOX_AGREE);
+	_click($_BUTTON_CONTINUE_IN_DIV_IHAVEREADANDAGREETOTHETERMSCONDITIONS);
+}
+
+/**
+* VerifyCartTotal
+*/
+function VerifyCartTotal($ProductName, $Model, $OrderQuantity, $Price, $ShippingRate, $FinalTotal){
+	_assertExists(_link($ProductName, _under($_CELL_PRODUCTNAME)));
+	_assertExists(_cell($Model, _under($_CELL_MODEL)));
+	_assertExists(_cell("" + $OrderQuantity, _under($_CELL_QUANTITY)));
+	
+	var $Total = $Price * $OrderQuantity;
+	
+	var $UnitPrice = "$" + ParseValueToFloat($Price);
+	_assertEqual($UnitPrice, _getText(_cell(0, _under($_CELL_UNITPRICE))));
+	
+	$Total = "$" + ParseValueToFloat($Total);
+	_assertEqual($Total, _getText(_cell(0, _under($_CELL_UNITPRICE))));
+	_assertEqual($Total, _getText(_cell(0, _rightOf($_CELL_SUBTOTAL))));
+	
+	$ShippingRate = "$" + ParseValueToFloat($ShippingRate);
+	_assertEqual($ShippingRate, _getText(_cell(0, _rightOf($_CELL_FLATSHIPPINGRATE))));
+	
+	$FinalTotal = "$" + ParseValueToFloat($FinalTotal);
+	_assertEqual($FinalTotal, _getText(_cell(0, _rightOf($_CELL_TOTAL))));
+}
+
+/**
+* ConfirmOrder
+*/
+function ConfirmOrder(){
+	_click($_BUTTON_CONFIRMORDER);
+	if(!_isVisible($_HEADING1_YOURORDERHASBEENPLACED)) {
+		try{
+			_log("Button \"Confirm Order\" has to click twice", "CUSTOM2");
+		}catch($e){
+			_click($_BUTTON_CONFIRMORDER);
+		}
+	}
+	_assertVisible($_HEADING1_YOURORDERHASBEENPLACED);
+}
+
+/**
+* VerifyDiscountOnCoupon
+*/
+function VerifyDiscountOnCoupon($DiscountAmount){
+	$DiscountAmount = "$-" + ParseValueToFloat($DiscountAmount);
+	_assertEqual($DiscountAmount, _getText(_cell(0, _rightOf($CELL_COUPON))));
+}
+
+function Checkout($ProductName, $Model, $OrderQuantity, $Price, $ShippingRate, $FinalTotal){
+	ProcessCheckout();
+	VerifyCartTotal($ProductName, $Model, $OrderQuantity, $Price, $ShippingRate, $FinalTotal);
+	ConfirmOrder();
+}
+
+/**
+ * Checkout($ProductName, $Model, $OrderQuantity, $Price, $ShippingRate, $DiscountAmount, $FinalTotal)
+ * @param $ProductName - 
+ * @param $Model - 
+ * @param $OrderQuantity - 
+ * @param $Price - 
+ * @param $ShippingRate - 
+ * @param $DiscountAmount - 
+ * @param $FinalTotal - 
+*/
+function CheckoutWithCoupon($ProductName, $Model, $OrderQuantity, $Price, $ShippingRate, $DiscountAmount, $FinalTotal){
+	ProcessCheckout();
+	VerifyCartTotal($ProductName, $Model, $OrderQuantity, $Price, $ShippingRate, $FinalTotal);
+	VerifyDiscountOnCoupon($DiscountAmount);
+	ConfirmOrder();
+}
+
+/**
+ * GotoCartAndVerify($ProductName, $Model, $Quantity, $Price)
+ * @param $ProductName - 
+ * @param $Model - 
+ * @param $Quantity - 
+ * @param $Price - 
+ * @param $Weight - 
+ * @param $WeightClass - 
+*/
+function GotoCartAndVerify($ProductName, $Model, $OrderQuantity, $Price, $Weight, $WeightClass){
+	$Price = parseFloat($Price).toFixed(2);
+	_click($_LINK_SHOPPINGCART);
+	var $ActualWeight = _getText($_HEADING1_SHOPPINGCART);
+	$Weight = parseFloat($Weight).toFixed(2);
+	if($WeightClass == "Gram"){
+		$Weight = parseFloat($Weight).toFixed(2)/1000;
+	}
+	_assertEqual("Shopping Cart (" + $Weight + "kg)", $ActualWeight);
+	_assertVisible(_link($ProductName, _under($_CELL_PRODUCTNAME)));
+	_assertVisible(_cell($Model, _under($_CELL_MODEL)));
+	_assertEqual($OrderQuantity, _getValue($_TEXTBOX_QUANTITY_UNDER_CELL_QUANTITY));
+	var $PriceWithSymbol = "$" + $Price;
+	_assertVisible(_cell($PriceWithSymbol, _under($_CELL_UNITPRICE)));
+	_assertEqual($PriceWithSymbol, _getText(_cell(0, _under($_CELL_UNITPRICE))));
+	var $cellTotal = $_CELL_TOTAL_IN_DIV_TABLERESPONSIVE;
+	_assertVisible(_cell($PriceWithSymbol, _under($cellTotal)));
+	_assertEqual($PriceWithSymbol, _getText(_cell(0, _under($cellTotal))));
+}
+
+/**
+ * AddProductToCart($ProductName, $ProductName, $Quantity, $Model)
+ * @param $ProductName - 
+ * @param $Quantity - 
+ * @param $Model - 
+ */
+function AddProductToCart($ProductName, $OrderQuantity, $Model){
+	_setValue($_TEXTBOX_SEARCH, $ProductName);
+	_click($_BUTTON_0_IN_DIV_SEARCH);
+	//	_click(_button("grid-view"));
+	_assertExists(_link($ProductName));
+	_click(_link($ProductName));
+	_setValue($_TEXTBOX_QUANTITY, $OrderQuantity);
+	_assertVisible($_LISTITEM_AVAILABILITYINSTOCK);
+	_assertVisible(_listItem("Product Code: " + $Model));
+	_click($_BUTTON_ADDTOCART);
+	_assertContainsText("Success: You have added " + $ProductName +" to your shopping cart!", $_DIV_ALERTALERTSUCCESSALERTDISMISSIBLE);
+}
+
+/**
+* VerifyOrderHistoryIsEmpty
+*/
+function VerifyOrderHistoryIsEmpty() {
+	_click($_LINK_MYACCOUNT);
+	_click($_LINK_MYACCOUNT1);
+	_click($_LINK_ORDERHISTORY_IN_DIV_LISTGROUP);
+	_assertVisible($_HEADING1_ORDERHISTORY);
+	_assertVisible($_PARAGRAPH_YOUHAVENOTMADEANYPREVIOUSORDERS);
+}
+
+/**
+* AddProductToCartAndVerify
+* @param $ProductName - 
+* @param $Quantity - 
+* @param $Model - 
+* @param $Price - 
+* @param $Weight - 
+*/
+function AddProductToCartAndVerify($ProductName, $OrderQuantity, $Model, $Price, $Weight, $WeightClass){
+	AddProductToCart($ProductName, $OrderQuantity, $Model);
+	GotoCartAndVerify($ProductName, $Model, $OrderQuantity, $Price, $Weight, $WeightClass);
+}
+
+/**
+* ApplyCoupon
+* @param $object - 
+* @paramobject Code
+*/
+function ApplyCoupon($object){
+	_click($_LINK_USECOUPONCODE);
+	_setValue($_TEXTBOX_COUPON, $object.Code);
+	_click($_BUTTON_APPLYCOUPON);
+	_wait(1000);
+	_assertContainsText("Success: Your coupon discount has been applied!", $_DIV_ALERTALERTSUCCESSALERTDISMISSIBLE);
+}
+

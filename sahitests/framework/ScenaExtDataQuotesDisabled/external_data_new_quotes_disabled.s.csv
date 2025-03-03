@@ -1,0 +1,82 @@
+"TestCase","Key Word","Argument 1","Argument 2","Argument 3"
+,"loadSahi","external_lib_quotes_disabled.sah"
+,"_resource","../../data.xls"
+,"_resource","../../data.csv"
+,"_resource","../../data2.csv"
+,"_resource","../../data3.csv"
+,"D1=_readExcelFile","../../data.xls","Sheet1","{includeHeader:true}"
+,"D2=_readCSVFile","../../data.csv","{includeHeader:true}"
+,"D3=_readCSVFile","../../data2.csv","{includeHeader:true}"
+,"D4=_readCSVFile","../../data3.csv","{includeHeader:true}"
+
+"Varibles and manupulation","[Documentation]","Passing value using variables"
+,"$user=","""test"""
+,"$pass=","""secret"""
+,"stringValue","$user","$pass"
+,"intValue","1","2","2+1"
+,"manipulation","$user + $pass","$user + 'ram'","$pass + ""wrong"""
+,"manipulation","""test"" + ""secret""","""test"" + 'ram'","'secret' + 'wrong'"
+
+
+"External data","[Documentation]","Fetching data from Excel file"
+,"excelValue","[D1:credential1]"
+,"excelValue","[D1:credential1:username]","[D1:credential1:password]"
+,"excelValue","[D1:credential1:username]","myPassword"
+
+,"[Keyword]","excelValues"
+,"[Data]","[D1:credential3]"
+,"resetCount"
+
+"//","[Keyword]","excelManipulation"
+"//","[Data]","[D1:credential1:username] + "" test""","[D1:credential2#qateam:message]"
+"//","resetCount"
+
+,"$msg=","[D1:credential2#qateam:message]"
+,"[Keyword]","excelManipulation"
+,"[Data]","[D1:credential1:username] + "" test""","$msg"
+,"resetCount"
+
+,"rowDetails","[D1:credential1#sita]"
+,"rowDetails","[D1:credential1#sita:]"
+,"rowData","[D3:#sita]"
+,"dataFirstRow","[D3:#]"
+,"resetCount"
+
+,"[Keyword]","excelManipulation2"
+,"[Data]","[D2::user] + "" test""","[D1:credential2:message]"
+,"resetCount"
+
+,"[Keyword]","checkValues"
+,"[Data]","[D2::user]","I'm ram"
+,"resetCount"
+
+,"$who=","""I'm """
+,"[Keyword]","checkValues"
+,"[Data]","[D2:details:user]","$who + ""ram"""
+,"resetCount"
+
+,"$comment=","""Hi..!!!"""
+,"readValueFromTwoFiles","[D2::user]","[D1::password]","$comment"
+,"resetCount"
+
+,"[Keyword]","readValueFromTwoFiles"
+,"[Data]","[D2::user]","[D1::password]","""Hi..!!!"""
+,"resetCount"
+
+,"quotes","[D2::user] + ram","""\""quotes\"""""
+
+,"checkDate","[D2:details:date1]","[D2:details:date2]"
+,"checkDate","""23-01-1993""","""23/01/1993"""
+
+,"checkStringsDirectPass","""ram""","sita","'ram'","""1""","2","[""a"", ""b""]"
+,"checkStringsExternalDataPass","[D4:data1:h1]","[D4:data1:h2]","[D4:data1:h3]","[D4:data1:h4]","[D4:data1:h5]","[D4:data1:h6]"
+
+,"checkStringsStartWithNormalString","Description [Data]","User [D4:data2:h1]","""User "" + [D4:data2:h1]","""User [D4:data2:h1]""","""[D4:data2:h1]""","[D4:data2:h1]"
+,"checkStringsWithNormalNExternalData1","User [D42:data234]","User [D4:data235]","[D4:data236]","[D4:data2:h1]"
+,"checkStringsWithNormalNExternalData2","User [D42:data234]","[D4:data236]","User [D4:data235]"
+,"checkStringsStartWithExternalData","[D4:data3:h1]","[D4:data2:h10]","User [D4:data2:h11]"
+,"checkStringsWithBracket","stringValue(""test"", ""secret"")credentials","abc()\\""\'","[D4:data4:h1]","[D4:data4:h2]"
+,"checkStringsWithDollar","$who + [D4:data4:h3]"
+
+"//Disable Key Value Seperation","[Documentation]","Add property mentioned in next cell in userdata.properties","scenario.parameter.keyvalue_separation.enabled=false"
+"//","checkStringsWithColon","""User : ram""","User : ram","""User : "" + [D4:data2:h1]","""User : [D4:data2:h1]""","[D4:data3:h2]","[D4:data3:h3]"

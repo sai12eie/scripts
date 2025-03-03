@@ -1,0 +1,6 @@
+_resource("includes/values.txt");
+var $exists = _fileExists("includes/values.txt");
+var $doesNotExists = _fileExists("includes/randomvalues.txt");
+_assertEqual(true, $exists);
+_assertEqual(false, _fileExists("includes/randomvalues.txt"));
+_log("File Exists: " + _fileExists("includes/values.txt"));

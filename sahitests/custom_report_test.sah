@@ -1,0 +1,8 @@
+_include("custom_report.sah");
+addToReport("2.1", "This is fine");
+_click(_link("Link Test"));
+_click(_link("Back"))
+addToReport("1.1", "This depends");
+_click(_link("Form Test"));
+_click(_link("Back"))
+addToReport("1.1", "This fails", "FAILURE");

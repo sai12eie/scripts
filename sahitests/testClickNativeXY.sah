@@ -1,0 +1,1 @@
+_clickNative(_xy(document.applets[0], 45, 45));

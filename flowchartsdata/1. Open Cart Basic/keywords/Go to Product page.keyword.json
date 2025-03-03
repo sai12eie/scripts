@@ -1,0 +1,26 @@
+{
+  "modifiedOn": "2024-05-06T05:35:00.050Z",
+  "name": "Go to Product page",
+  "id": "0",
+  "type": 3,
+  "createdOn": "2024-05-06T05:35:00.050Z",
+  "content": {
+    "title": "Go to Product page",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "customValue": "_link(\"Phones \u0026 PDAs\")",
+            "paramMode": "code"
+          }
+        ]
+      }
+    ],
+    "isSystemKeyword": false
+  },
+  "enabled": false,
+  "parentId": ""
+}

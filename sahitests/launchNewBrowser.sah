@@ -1,0 +1,73 @@
+var $browser, $diffBrowser;
+
+if (_isFF()) {
+	$browser = "firefox";
+	$diffBrowser = "edgenew";
+} else if (_isEdgeNew()) {
+	$browser = "edgenew";
+	$diffBrowser = "chrome";
+} else if (_isChrome()){
+	$browser = "chrome";
+	$diffBrowser = "firefox";
+} else {
+	$browser = "ie";
+	$diffBrowser = "chrome";
+}
+	
+function loginLogout() {
+	_setValue(_textbox("user"), "test");
+	_setValue(_password("password"), "secret");
+	_click(_submit("Login"));
+	_assertExists(_button("Logout"));
+	_click(_button("Logout"));
+}
+
+function testSameBrowser() {
+	var $s2 = _launchNewBrowser("http://sahitest.com/demo/training/login.htm");
+	_wait(5000);
+	_selectBrowser($s2);
+	_log($s2);
+	loginLogout();
+	_selectBrowser();
+}
+
+function testSameBrowserWithName() {
+	var $s3 = _launchNewBrowser(null, $browser);
+	_wait(5000);
+	_selectBrowser($s3);
+	_log($s3);
+	_navigateTo("http://sahitest.com/demo/training/login.htm");
+	loginLogout();
+	_selectBrowser();
+}
+
+function testDifferentBrowser() {
+	var $s4 = _launchNewBrowser("http://sahitest.com/demo/training/login.htm", $diffBrowser);
+	_wait(5000);
+	_selectBrowser($s4);
+	_log($s4);
+	loginLogout();
+
+	_selectBrowser();
+	loginLogout();
+}
+
+function testSwitchBrowsers() {
+	var $s5 = _launchNewBrowser("http://sahitest.com/demo/training/login.htm", $diffBrowser);
+	_wait(5000);
+	_selectBrowser($s5);
+	_log($s5);
+	loginLogout();
+	var $s6 = _launchNewBrowser("http://sahitest.com/demo/training/login.htm", $browser);
+	_wait(5000);
+	_selectBrowser($s6);
+	_log($s6);
+	loginLogout();
+
+	_selectBrowser($s5);
+	_log($s5);
+	loginLogout();
+	_selectBrowser();
+}
+_navigateTo("http://sahitest.com/demo/training/login.htm");
+_runUnitTests();

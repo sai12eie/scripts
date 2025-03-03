@@ -1,0 +1,138 @@
+{
+  "modifiedOn": "2024-05-10T12:51:57.046190400Z",
+  "name": "Registration",
+  "id": "-1",
+  "type": 0,
+  "createdOn": "2024-04-03T17:36:44Z",
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_userregistration_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_userregistration_0": {
+        "id": "fcn_userregistration_0",
+        "content": "Registration",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_gotoregistrationpage_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_gotoregistrationpage_0": {
+        "id": "fcn_gotoregistrationpage_0",
+        "content": "Go To Registration Page",
+        "nodeType": "action",
+        "branches": [
+          "fcn_registernewuser_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_registernewuser_0": {
+        "id": "fcn_registernewuser_0",
+        "content": "Enter $user details",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifyuserregistered_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_verifyuserregistered_0": {
+        "id": "fcn_verifyuserregistered_0",
+        "content": "Confirm Registration",
+        "nodeType": "state",
+        "branches": [
+          "fcn_logout_0"
+        ],
+        "dataSetId": "-1"
+      },
+      "fcn_logout_0": {
+        "id": "fcn_logout_0",
+        "content": "Logout",
+        "nodeType": "action",
+        "branches": [],
+        "dataSetId": "-1"
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150,
+        "left": 500
+      },
+      "fcn_userregistration_0": {
+        "top": 211,
+        "left": 500
+      },
+      "fcn_gotoregistrationpage_0": {
+        "top": 270,
+        "left": 500
+      },
+      "fcn_registernewuser_0": {
+        "top": 329,
+        "left": 502
+      },
+      "fcn_verifyuserregistered_0": {
+        "top": 393.13543701171875,
+        "left": 500
+      },
+      "fcn_logout_0": {
+        "top": 458.29168701171875,
+        "left": 501
+      }
+    },
+    "settings": {
+      "maxProceedDepth": 100,
+      "maxProceedsForFirstDepth": 1,
+      "maxProceedsPerDepth": 1,
+      "maxPathRepititionsPerComboPath": 1,
+      "maxProceedsPerPath": 10000,
+      "maxToggles": 2,
+      "maxMatchingPaths": 3
+    },
+    "isPrimary": true,
+    "pathNames": [
+      {
+        "pathName": "Registration",
+        "dependsPathUID": "1713764926800",
+        "isValidationsEnabled": true,
+        "pathKey": [
+          "fcn_userregistration_0",
+          "fcn_gotoregistrationpage_0",
+          "fcn_registernewuser_0",
+          "fcn_verifyuserregistered_0",
+          "fcn_logout_0"
+        ],
+        "pathTags": "Test",
+        "dataSet": {
+          "dataSetName": "user_details.csv",
+          "dataSetGroupName": "group_1"
+        }
+      },
+      {
+        "dependsPathUID": "1713764926838",
+        "isValidationsEnabled": false,
+        "pathKey": [
+          "fcn_userregistration_0",
+          "fcn_gotoregistrationpage_0",
+          "fcn_registernewuser_0",
+          "fcn_verifyuserregistered_0"
+        ],
+        "dataSet": {}
+      }
+    ],
+    "flowChartUID": "fcUID_1713432997066",
+    "pathExecutionOrder": [
+      "1713764926800",
+      "1713764926838",
+      "1713764926877",
+      "17153234547943"
+    ]
+  },
+  "enabled": true,
+  "parentId": ""
+}

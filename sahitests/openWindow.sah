@@ -1,0 +1,50 @@
+_openWindow("http://sahitest.com/demo/training/login.htm","first window",[1280,600]);
+_wait(2000);
+_selectWindow("first window");
+_log("===============script is running on first window==============", "CUSTOM1");
+var $recentWindow = _getRecentWindow();
+_assertEqual('first window', $recentWindow.windowName);
+_assertEqual("1", $recentWindow.wasOpened);
+_setValue(_textbox("user"), "test");
+_setValue(_password("password"), "secret");
+_click(_submit("Login"));
+_setValue(_textbox("q"), "2");
+_setValue(_textbox("q[1]"), "1");
+_setValue(_textbox("q[2]"), "1");
+
+_openWindow("http://sahitest.com/demo/training/login.htm","second window",[1280,600]);
+_wait(2000);
+_selectWindow("second window");
+_log("===============script is running on second window==============", "CUSTOM1");
+var $recentWindow = _getRecentWindow();
+_assertEqual('second window', $recentWindow.windowName);
+_assertEqual("1", $recentWindow.wasOpened);
+_setValue(_textbox("user"), "test");
+_setValue(_password("password"), "secret");
+_click(_submit("Login"));
+_setValue(_textbox("q"), "2");
+_setValue(_textbox("q[1]"), "1");
+_setValue(_textbox("q[2]"), "1");
+
+_selectWindow("first window");
+_log("===============script is running on first window==============", "CUSTOM1");
+_click(_button("Add"));
+_assertExists(_textbox("total"));
+_assert(_isVisible(_textbox("total")));
+_assertEqual("1150", _textbox("total").value);
+_click(_button("Logout"));
+
+_selectWindow("second window");
+_log("===============script is running on second window==============", "CUSTOM1");
+_click(_button("Add"));
+_assertExists(_textbox("total"));
+_assert(_isVisible(_textbox("total")));
+_assertEqual("1150", _textbox("total").value);
+_click(_button("Logout"));
+
+var $windows = _getWindows();
+_assertEqual(3, $windows.length);
+_assertEqual('first window', $windows[1].windowName);
+_assertEqual("1", $windows[1].wasOpened);
+_assertEqual('second window', $windows[2].windowName);
+_assertEqual("1", $windows[2].wasOpened);

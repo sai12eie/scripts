@@ -1,0 +1,74 @@
+function oauth1Credential(){
+	$request.setAuthCredentials("authType", "OAuth 1.0");
+	$request.setAuthCredentials("oauth_consumer_key", "F17gyWJWvBWR5wTXyz7WTkcb2");
+	$request.setAuthCredentials("oauth_consumer_secret", "V6T5ZX8rEREDIOu7EMLxGe3juJLn8UgwjqDKRXus24FXMHuO0");
+	$request.setAuthCredentials("oauth_token", "84912269443545089-NHKBZrxELLHZQ5P23LfB0UBHUpTkKfCt");
+	$request.setAuthCredentials("oauth_token_secret", "pbVxJ1cJI9IgACPaPtdBmvuPLmF48GDVXTSz0wUrbIwkho");
+	$request.setAuthCredentials("oauth_signature_method", "HMAC-SHA1");
+	$request.setAuthCredentials("oauth_version", "1.0");
+}
+
+function testOAuth1HttpRequest(){
+	$request = new RESTRequest();
+	$request.setURL("https://api.twitter.com/1.1/friends/list.json");
+	oauth1Credential();
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+}
+
+function testPostOAuth1(){
+	var $actualValue = _scriptStartTime() + " a!b@c#d$e%f^gh*i(j)k_l+M{n}o|p:q\"rst?u,v.w/x;y'z[1]2\\3=4-5`6~";
+	$request = new RESTRequest();
+	$request.setHeader("Content-Type", "application/x-www-form-urlencoded");
+	$request.setURL("https://api.twitter.com/1.1/statuses/update.json");
+	oauth1Credential();
+	$request.addToBody("status", $actualValue);
+	$response = $request.submit("POST");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertEqual('application/json;charset=utf-8', $response.getHeader('content-type'));
+	_assertEqual($actualValue, $responseBodyObj.text);
+	_assertEqual("Test Rest Sahi", $responseBodyObj.user.name);
+	_assertEqual("testRestSahi123", $responseBodyObj.user.screen_name);
+}
+
+function testGetOAuth1(){
+	$request = new RESTRequest();
+	$request.setURL("https://api.twitter.com/1.1/friends/list.json");
+	oauth1Credential();
+	$response = $request.submit("GET");
+	var $responseBody = $response.getBodyAsString();
+	var $responseBodyObj = JSON.parse($response.getBodyAsString());
+	_assertEqual("200", $response.getResponseCode());
+	_assertNotNull($responseBodyObj.users[0]);
+	_assertEqual("2590719642", $responseBodyObj.users[0].id);
+	_assertEqual("2590719642", $responseBodyObj.users[0].id_str);
+	_assertEqual("Sahi Pro", $responseBodyObj.users[0].name);
+	_assertEqual("sahipro", $responseBodyObj.users[0].screen_name);
+	_assertEqual("", $responseBodyObj.users[0].location);
+	_assertEqual("", $responseBodyObj.users[0].description);
+	_assertEqual("http://t.co/PDfDx1JyNv", $responseBodyObj.users[0].url);
+	_assertNotNull($responseBodyObj.users[0].entities.url.urls[0]);
+	_assertEqual("http://t.co/PDfDx1JyNv", $responseBodyObj.users[0].entities.url.urls[0].url);
+	_assertEqual("http://www.sahipro.com", $responseBodyObj.users[0].entities.url.urls[0].expanded_url);
+	_assertEqual("sahipro.com", $responseBodyObj.users[0].entities.url.urls[0].display_url);
+	_assertEqual("Fri Jun 27 04:07:34 +0000 2014", $responseBodyObj.users[0].created_at);
+	_assertEqual(false, $responseBodyObj.users[0].geo_enabled);
+	//validate boolean check
+	_assertEqual(false, $responseBodyObj.users[0].verified);
+	_assertEqual("en", $responseBodyObj.users[0].lang);
+	_assertNotNull($responseBodyObj.users[0].status);
+	//_assertEqual(false, $responseBodyObj.users[0].status.truncated);
+	_assertNotNull($responseBodyObj.users[0].status.entities);
+	//_assertEqual("<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>", $responseBodyObj.users[0].status.source);
+	//validate special characters escaping
+	_assertEqual("http://abs.twimg.com/images/themes/theme1/bg.png", $responseBodyObj.users[0].profile_background_image_url);
+	_assertEqual("https://abs.twimg.com/images/themes/theme1/bg.png", $responseBodyObj.users[0].profile_background_image_url_https);
+	_assertEqual(false, $responseBodyObj.users[0].profile_background_tile);
+	_assertEqual("http://pbs.twimg.com/profile_images/502035803032137728/KPQSocdn_normal.png", $responseBodyObj.users[0].profile_image_url);
+}
+
+_runUnitTests();

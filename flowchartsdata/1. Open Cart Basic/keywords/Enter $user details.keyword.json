@@ -1,0 +1,164 @@
+{
+  "modifiedOn": "2024-05-08T07:29:34.879827Z",
+  "name": "Enter $user details",
+  "id": "-1",
+  "type": 3,
+  "createdOn": "2024-04-17T22:42:13Z",
+  "content": {
+    "isSystemKeyword": false,
+    "title": "Enter $user details",
+    "parameters": [
+      {
+        "parameterId": "user_",
+        "entityTypeId": "user",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_01713433667114",
+            "accessorId": "acc0"
+          },
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_01713433667114"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_11713433667115",
+            "accessorId": "acc0"
+          },
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_11713433667115"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_21713433667115",
+            "accessorId": "acc0"
+          },
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_21713433667115"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_31713433667115",
+            "accessorId": "acc0"
+          },
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_31713433667115"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setPassword",
+        "stepParameters": [
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_41713433667115",
+            "accessorId": "acc0"
+          },
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_41713433667115"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setPassword",
+        "stepParameters": [
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_41713433667115",
+            "accessorId": "acc1"
+          },
+          {
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_41713433667115"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_check",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_checkbox(\"agree\")"
+          },
+          {
+            "paramMode": "code",
+            "customValue": "true"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_submit(\"Continue\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

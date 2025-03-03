@@ -1,0 +1,13 @@
+function testScriptWaitsForPromptInput(){
+	var $r = _prompt("Enter Value");
+	_alert($r);
+}
+function testScriptWaitsInIf(){
+	if(_prompt("Checking IF: Enter Value")) {
+		_alert("Entered");
+	} else {
+		_alert("Not entered!");
+	}
+}
+
+_runUnitTests();

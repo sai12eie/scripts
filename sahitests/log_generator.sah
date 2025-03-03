@@ -1,0 +1,7 @@
+// 18230 causes OME with Xmx128m with
+// "Am on line : Am on line : Am on line : " + i, "", "INFO"
+// in.co.sahi.report.ReportHelper.buildScriptSummaryPageXML(ReportHelper.java:201)
+
+for (var i=0; i<10; i++) {
+	ScriptRunner.log("Am on line :" + i, "", "INFO");
+}

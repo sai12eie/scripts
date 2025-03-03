@@ -1,0 +1,9 @@
+"TestCase","Key Word","Argument 1","Argument 2"
+,"_resource","german.properties"
+,"_resource","en.properties"
+,"_resource","blank_en.properties"
+,"_setLanguage","german.properties","en.properties"
+
+"Test Translate To German With Reverse Lookup Valid Entries","_assertEqual","'S_NO_TR:ja ja'","ha ha"
+
+"Test Translate To German With Key","_assertEqual","'S_NO_TR:ja ja'","'K:laugh'"

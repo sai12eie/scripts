@@ -1,0 +1,46 @@
+_include("../Admin.sah");
+_include("../../../AR/OpenCart_AR.sah");
+
+/**
+ * GotoManufacturesPage()
+ */
+function GotoManufacturesPage(){
+	_click($_LINK_CATALOG);
+	_click($_LINK_MANUFACTURERS);
+}
+
+function IsManufactureAlreadyExists($ManufacturerName){
+	if(_isVisible($_LINK_FIRSTPAGE)){
+		_click($_LINK_FIRSTPAGE);
+	}
+	while(true){
+		if(_exists(_cell($ManufacturerName))){
+			return true;
+		}else if(_isVisible($_LINK_NEXT)){
+			_click($_LINK_NEXT);
+		}else{
+			return false;
+		}
+	}
+}
+
+/**
+* AddNewManufactureIfNotExists
+* @param $object - 
+* @paramobject ManufacturerName,ManufacturerKeyword
+*/
+function CreateNewManufactureIfNotExists($object) {
+	GotoManufacturesPage();
+	var $IsManufacturerExists = IsManufactureAlreadyExists($object.ManufacturerName);
+	if($IsManufacturerExists){
+		_log("Manufacturer already exists...");
+	}else{
+		_click($_LINK_BTN_BTNPRIMARY);
+		_setValue($_TEXTBOX_NAME, $object.ManufacturerName);
+		_click($_LINK_SEO);
+		_setValue($_TEXTBOX_MANUFACTURER_SEO_Keyword, $object.ManufacturerKeyword);
+		_click($_SUBMIT_BTN_BTNPRIMARY);
+		_assertContainsText( "Success: You have modified manufacturers!", $_DIV_ALERTSUCCESS);
+		_assertExists(_cell( $object.ManufacturerName));
+	}
+}

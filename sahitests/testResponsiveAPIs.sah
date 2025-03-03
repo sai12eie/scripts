@@ -1,0 +1,141 @@
+function testOnMaxWindowSize(){
+	_windowAction("maximize");
+	_assertTrue(_isVisible(_nav(0), true, true)); //isSidebar visible
+	
+	//assertHorizontallyAligned
+	_assertTrue(_areHorizontallyAligned(_div("Today Sales 45"),_div("Today Visitors 80")));  //By default position="middle"
+	_assertHorizontallyAligned(_div("Today Sales 45"),_div("Today Visitors 80"));
+	_assertTrue(_areHorizontallyAligned(_div("circleDiv"),_div("rectangleDiv"), "both"));
+	_assertHorizontallyAligned(_div("circleDiv"),_div("rectangleDiv"), "both");
+	_assertNotTrue(_areHorizontallyAligned(_div("Today Sales 45"),_div("rectangleDiv"), "middle"));
+	
+	//_assertVerticallyAligned
+	_assertTrue(_areVerticallyAligned(_div("Today Sales 45"),_div("circleDiv"))); //By default position="center"
+	_assertVerticallyAligned(_div("Today Sales 45"),_div("circleDiv"), "center");
+	_assertTrue(_areVerticallyAligned(_div("Today Sales 45"),_div("circleDiv"), "both"));
+	_assertNotTrue(_areVerticallyAligned(_div("Today Sales 45"),_div("rectangleDiv"), "center"));
+	_assertTrue(_areVerticallyAligned(_link("Dashboard"),_link("Forms"), "both"));
+	
+	//_assertCentered
+	_assertTrue(_isCentered(_div("Today Sales"),_div("Today Sales 45"), "vertical"));
+	_assertCentered(_div("Today Sales"),_div("Today Sales 45"), "vertical");
+	_assertNotTrue(_isCentered(_div("Today Sales"),_div("Today Sales 45"), "horizontal"));
+	_assertTrue(_isCentered(_div("wid-social vimeo"),_div("row[1]"), "horizontal"));
+	
+	//_assertVisiblyInside
+	_assertTrue(_isVisiblyInside(_div("Today Sales"),_div("Today Sales 45")));
+	_assertVisiblyInside(_div("Today Sales"),_div("Today Sales 45"));
+	_assertTrue(_isVisiblyInside(_svg_circle(0), _div("circleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_circle(1), _div("circleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_circle(2), _div("circleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_rect(0), _div("rectangleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_rect(1), _div("rectangleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_rect(2), _div("rectangleDiv")));
+	_assertNotTrue(_isVisiblyInside(_svg_rect(0), _div("circleDiv")));
+	_assertNotTrue(_isVisiblyInside(_svg_circle(2), _div("rectangleDiv")));
+	
+	//_assertVisiblyOutside
+	_assertTrue(_isVisiblyOutside(_svg_rect(0), _div("circleDiv")));
+	_assertVisiblyOutside(_svg_rect(0), _div("circleDiv"));
+	_assertNotTrue(_isVisiblyOutside(_svg_circle(0), _div("circleDiv")));
+	_assertTrue(_isVisiblyOutside(_svg_rect(0), _svg_rect(2)));
+	_assertTrue(_isVisiblyOutside(_svg_circle(0), _svg_circle(2)));
+	_assertNotTrue(_isVisiblyOutside(_svg_rect(0), _div("rectangleDiv")));
+	
+	//_assertVisiblyOn
+	_assertTrue(_isVisiblyOn(_svg_rect(1), _svg_rect(0)));
+	_assertVisiblyOn(_svg_rect(1), _svg_rect(0));
+	_assertNotTrue(_isVisiblyOn(_svg_rect(2), _svg_rect(0)));
+	_assertNotTrue(_isVisiblyOn(_svg_circle(1), _svg_circle(0), null, null, null, [0,20]));
+	_isVisiblyOn(_svg_circle(1), _svg_circle(0),null, null, null, [0,100]);
+	_assertNotTrue(_isVisiblyOn(_svg_circle(2), _svg_circle(0)));
+	_assertTrue(_isVisiblyOn(_svg_rect(3), _svg_rect(2), [0,100]));
+	
+	//_assertFitsWidth
+	_assertNotTrue(_fitsWidth(_div("Today Orders"), _div("col-md-4 widget states-last")));
+	_assertTrue(_fitsWidth(_div("Today Orders"), _div("col-md-4 widget states-last"),[0,20],[-20,0]));
+	_assertFitsWidth(_div("Today Orders"), _div("col-md-4 widget states-last"),[0,20],[-20,0])
+	_assertNotTrue(_fitsWidth(_div("Today Sales"),_div("Today Sales 45")));
+	
+	//_assertFitsHeight
+	_assertTrue(_fitsHeight(_div("Today Orders"), _div("col-md-4 widget states-last"),1,-1));
+	_assertFitsHeight(_div("Today Orders"), _div("col-md-4 widget states-last"), [0,5], [-5,0]);
+	_assertNotTrue(_fitsHeight(_div("Today Sales"),_div("Today Sales 45")));
+	
+}
+
+function testOnMobileSize(){
+	_windowAction("restore");
+	_windowAction("resize",320,480);
+	_assertNotTrue(_isVisible(_nav(0), true, true)); //isSidebar visible
+	
+	//assertHorizontallyAligned
+	if(!_isEdgeNew()){
+		_assertNotTrue(_areHorizontallyAligned(_div("Today Sales 45"),_div("Today Visitors 80")));  //By default position="middle"
+		_assertNotTrue(_areHorizontallyAligned(_div("circleDiv"),_div("rectangleDiv"), "both"));
+	}
+	_assertHorizontallyAligned(_div("Today Sales"),_div("Today Sales 45"));
+	_assertNotTrue(_areHorizontallyAligned(_div("Today Sales 45"),_div("rectangleDiv"), "middle"));
+	
+	//_assertVerticallyAligned
+	_assertTrue(_areVerticallyAligned(_div("Today Sales 45"),_div("circleDiv"))); //By default position="center"
+	_assertVerticallyAligned(_div("Today Sales 45"),_div("circleDiv"), "center");
+	_assertTrue(_areVerticallyAligned(_div("Today Sales 45"),_div("circleDiv"), "both"));
+	if(!_isEdgeNew()){
+		_assertTrue(_areVerticallyAligned(_div("Today Sales 45"),_div("rectangleDiv"), "center"));
+	}
+	
+	//_assertCentered
+	_assertTrue(_isCentered(_div("Today Sales"),_div("Today Sales 45"), "vertical"));
+	_assertCentered(_div("Today Sales"),_div("Today Sales 45"), "vertical");
+	_assertNotTrue(_isCentered(_div("Today Sales"),_div("Today Sales 45"), "horizontal"));
+	_assertTrue(_isCentered(_div("wid-social vimeo"),_div("row[1]"), "horizontal", 1));
+	
+	//_assertVisiblyInside
+	_assertTrue(_isVisiblyInside(_div("Today Sales"),_div("Today Sales 45")));
+	_assertVisiblyInside(_div("Today Sales"),_div("Today Sales 45"));
+	_assertTrue(_isVisiblyInside(_svg_circle(0), _div("circleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_circle(1), _div("circleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_circle(2), _div("circleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_rect(0), _div("rectangleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_rect(1), _div("rectangleDiv")));
+	_assertTrue(_isVisiblyInside(_svg_rect(2), _div("rectangleDiv")));
+	_assertNotTrue(_isVisiblyInside(_svg_rect(0), _div("circleDiv")));
+	_assertNotTrue(_isVisiblyInside(_svg_circle(2), _div("rectangleDiv")));
+	
+	//_assertVisiblyOutside
+	_assertTrue(_isVisiblyOutside(_svg_rect(0), _div("circleDiv")));
+	_assertVisiblyOutside(_svg_rect(0), _div("circleDiv"));
+	_assertNotTrue(_isVisiblyOutside(_svg_circle(0), _div("circleDiv")));
+	_assertTrue(_isVisiblyOutside(_svg_rect(0), _svg_rect(2)));
+	_assertTrue(_isVisiblyOutside(_svg_circle(0), _svg_circle(2)));
+	_assertNotTrue(_isVisiblyOutside(_svg_rect(0), _div("rectangleDiv")));
+	
+	//_assertVisiblyOn
+	_assertTrue(_isVisiblyOn(_svg_rect(1), _svg_rect(0)));
+	_assertVisiblyOn(_svg_rect(1), _svg_rect(0));
+	_assertNotTrue(_isVisiblyOn(_svg_rect(2), _svg_rect(0)));
+	_assertNotTrue(_isVisiblyOn(_svg_circle(1), _svg_circle(0), null, null, null, [0,20]));
+	_isVisiblyOn(_svg_circle(1), _svg_circle(0),null, null, null, [0,100]);
+	_assertNotTrue(_isVisiblyOn(_svg_circle(2), _svg_circle(0)));
+	_assertTrue(_isVisiblyOn(_svg_rect(3), _svg_rect(2), [0,100]));
+	
+	//_assertFitsWidth
+	_assertNotTrue(_fitsWidth(_div("Today Orders"), _div("col-md-4 widget states-last")));
+	_assertTrue(_fitsWidth(_div("Today Orders"), _div("col-md-4 widget states-last"),[0,25],[-25,0]));
+	_assertFitsWidth(_div("Today Orders"), _div("col-md-4 widget states-last"),[0,25],[-25,0]);
+	_assertNotTrue(_fitsWidth(_div("Today Sales"),_div("Today Sales 45")));
+	
+	//_assertFitsHeight
+	_assertTrue(_fitsHeight(_div("Today Orders"), _div("col-md-4 widget states-last"),1,-1));
+	_assertFitsHeight(_div("Today Orders"), _div("col-md-4 widget states-last"), [0,5], [-5,0]);
+	_assertNotTrue(_fitsHeight(_div("Today Sales"),_div("Today Sales 45")));
+}
+
+_navigateTo("responsiveTestPage.htm");
+testOnMaxWindowSize();
+testOnMobileSize(); //changing window size
+
+
+	
+	

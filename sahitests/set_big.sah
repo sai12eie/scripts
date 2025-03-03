@@ -1,0 +1,46 @@
+_navigateTo("/demo/largeTable.htm");
+//<browser>
+function getTableValues(table,getHTML)
+{
+   // Create the array to return
+   var resultsArr = new Array();
+ 
+   // Get the table
+   var table = document.getElementById(table);
+ 
+   // Loop through the rows
+   for (var i = 0, row; row = table.rows[i]; i++) 
+   {
+      // Create an array for the row
+      var rowArr = new Array();
+ 
+      // Loop through the cells.
+      for (var j = 0, col; col = row.cells[j]; j++) 
+      {
+          // The value var
+         var cellValue;
+ 
+         // Get the value
+         if(getHTML)
+               cellValue = col.innerHTML;
+         else
+               cellValue = _getText(col);
+ 
+         // Add the cell value to the rowArr
+         rowArr.push(cellValue);
+      }  
+ 
+      // Add the row array to resultsArr
+      resultsArr.push(rowArr);
+   }
+ 
+   // Return the results array
+   return resultsArr;
+}
+//</browser>
+
+// Get the data from the table
+var $tableData;
+_set($tableData, getTableValues("table1"),true);
+_sahi.print($tableData);
+

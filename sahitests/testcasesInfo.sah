@@ -1,0 +1,53 @@
+_navigateTo("/demo/training/");
+
+var $t = _testcase("TC_1", "Login");
+$t.start();
+var $tcs1 = _testcasesInfo();
+var $tc1 = $tcs1[$tcs1.length-1];
+_assertEqual($tc1.id,"TC_1");
+
+_setValue(_textbox("user"), "test");
+_setValue(_password("password"), "secret");
+_click(_submit("Login"));
+$t.end();
+
+var $t2 = _testcase("TC_2", "Add books").start(); // can be in one line also
+var $tcs2 = _testcasesInfo();
+var $tc2 = $tcs2[$tcs2.length-1];
+_assertEqual($tc2.id,"TC_2");
+
+_setValue(_textbox("q"), "2");
+_setValue(_textbox("q[1]"), "1");
+_setValue(_textbox("q[2]"), "1");
+_click(_button("Add"));
+$t2.end();
+
+var $t3 = _testcase("TC_8", "Verify total");
+$t3.start();
+var $tcs8 = _testcasesInfo();
+var $tc8 = $tcs8[$tcs8.length-1];
+_assertEqual($tc8.id,"TC_8");
+
+_assertExists(_textbox("total"));
+_assert(_isVisible(_textbox("total")));
+_assertEqual("1150", _textbox("total").value);
+$t3.end();
+
+var $tcs = _testcasesInfo();
+_assertEqual(3, $tcs.length);
+for(var $i=0; $i<$tcs.length; $i++){
+	var $tc = $tcs[$i];
+	_assertEqual("SUCCESS", $tc.status);
+	if($i==0){
+		_assertEqual("TC_1", $tc.id);
+		_assertEqual("Login", $tc.description);
+	}
+	else if($i==1){
+		_assertEqual("TC_2", $tc.id);
+		_assertEqual("Add books", $tc.description);
+	}
+	else if($i==2){
+		_assertEqual("TC_8", $tc.id);
+		_assertEqual("Verify total", $tc.description);
+	}
+}

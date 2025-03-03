@@ -1,0 +1,32 @@
+_include("calibrate.sah");
+
+function clickNative($el) {
+	var $x, $y;
+	_set($x, _sahi.findPosX($el) + ($el).offsetWidth - 20 ); 
+	_set($y, _sahi.findPosY($el) + ($el).offsetHeight/2); 
+	_debug($x + " " + $y);
+	var robot = new java.awt.Robot();
+	robot.mouseMove($offsetX + $x, $offsetY + $y);
+	_wait(100);
+	robot.mousePress(java.awt.event.InputEvent.BUTTON1_DOWN_MASK);
+	robot.mouseRelease(java.awt.event.InputEvent.BUTTON1_DOWN_MASK);
+}
+
+_navigateTo("/demo/");
+_click(_link("File Upload Test"));
+_wait(5000, _isVisible(_file("file")));
+_focusWindow();
+// focus on the element
+clickNative(_file("file[][1]"));
+//_wait(5000);
+_wait(7000);
+//// type the file path
+var $filePath = _resolvePath("uploadme.txt")
+_typeNative($filePath);
+_wait(1000);
+//// press enter
+_typeKeyCodeNative(java.awt.event.KeyEvent.VK_ENTER);
+_wait(5000);
+//_click(_submit("Submit Single"));
+//_assertExists(_span("uploadme.txt"));
+//_assert(_isVisible(_span("uploadme.txt")));

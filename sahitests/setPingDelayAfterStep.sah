@@ -1,0 +1,13 @@
+onScriptError = onScriptFailure = null;
+_click(_link("Link Test"));
+_click(_link("Back"));
+_setPingDelayAfterStep(5000);
+$t = new Date().getTime(); // initial time
+_click(_link("Link Test")); // will execute immediately, but will force wait of 5000 ms before next step
+// 5000 ms
+_click(_link("Back")); // will execute around 5010 ms.
+$diff = new Date().getTime() - $t; // will execute around 5015 ms.
+_setPingDelayAfterStep(100);  // will execute around 5020 ms.
+_assert($diff > 5000); // will execute after 10000 ms from initial time.
+_click(_link("Link Test")); // will speed up now.
+_click(_link("Back"));

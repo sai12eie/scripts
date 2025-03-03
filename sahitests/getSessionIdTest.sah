@@ -1,0 +1,89 @@
+_navigateTo("https://sahitest.com/demo/training/login.htm");
+_wait(1000);
+
+var $s = _getSessionId("https://sahitest.com/demo/training/login.htm");
+_assertNotNull($s);
+_assertNotNull($s[0]);
+
+$s = _getSessionId("Login");
+_assertNotNull($s);
+_assertNotNull($s[0]);
+
+var $isSidInSessionId = false;
+var $currentWinId = null;
+_set($currentWinId, _sahi.sid);
+for(var $i=0; $i<$s.length; $i++){
+	var $sid = $s[$i];
+	if($sid == $currentWinId) {
+		$isSidInSessionId = true;
+		break;
+	}	
+}
+_assertTrue($isSidInSessionId, "Current window session id not found.");
+
+$s = _getSessionId("/Log/");
+_assertNotNull($s);
+_assertNotNull($s[0]);
+
+$s = _getSessionId("/sahi_/");
+_assertNotNull($s);
+_assertNotNull($s[0]);
+
+$s = _getSessionId("/demo/training/");
+_assertNotNull($s);
+_assertNotNull($s[0]);
+
+var $s = _getSessionId();
+_assertNotNull($s);
+_assertNotNull($s[0]);
+
+var $browser1 = _launchNewBrowser("https://sahitest.com/demo/training/login.htm");
+_selectBrowser($browser1);
+waitTillMoreThanOneWindow("Login");
+$s = _getSessionId("Login");
+_log($s);
+_assertNotNull($s[0]);
+_assertNotNull($s[1]);
+
+$s = _getSessionId("Login[0]");
+_assertNotNull($s);
+$s = _getSessionId("Login[1]");
+_assertNotNull($s);
+
+$s = _getSessionId("/Log/[0]");
+_assertNotNull($s);
+$s = _getSessionId("/Log/[1]");
+_assertNotNull($s);
+
+
+$s = _getSessionId("https://sahitest.com/demo/training/login.htm");
+_assertNotNull($s[0]);
+_assertNotNull($s[1]);
+
+$s = _getSessionId("https://sahitest.com/demo/training/login.htm[0]");
+_assertNotNull($s);
+$s = _getSessionId("https://sahitest.com/demo/training/login.htm[1]");
+_assertNotNull($s);
+
+$s = _getSessionId("/demo/training/[0]");
+_assertNotNull($s);
+$s = _getSessionId("/demo/training/[1]");
+_assertNotNull($s);
+
+
+$s = _getSessionId("/sahi_/");
+_assertNotNull($s[0]);
+_assertNotNull($s[1]);
+
+$s = _getSessionId("/sahi_/[0]");
+_assertNotNull($s);
+$s = _getSessionId("/sahi_/[1]");
+_assertNotNull($s);
+
+function waitTillMoreThanOneWindow($title){
+	for(var $i=0; $i<10; $i++){
+		var $length = _getSessionId($title).length;
+		if($length > 1) return true;
+		_wait(1000);
+	}
+}

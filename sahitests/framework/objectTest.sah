@@ -1,0 +1,78 @@
+function checkNumber($n){
+  _assertEqual("number",  typeof $n);
+  _assertEqual(10, $n);
+}
+
+function checkBoolean($b){
+  _assertEqual("boolean",  typeof $b);
+  _assertEqual(true, $b);
+}
+
+function checkString($s){
+  _assertEqual("string",  typeof $s);
+  _assertEqual("abc", $s);
+}
+
+function checkStringPackage($s){
+  _assertEqual("string",  typeof $s);
+  _assertEqual("com.apple.Preferences", $s);
+}
+
+function checkStringEmail($s){
+  _assertEqual("string",  typeof $s);
+  _assertEqual("user@example.com", $s);
+}
+
+function checkStringBracket($s){
+  _assertEqual("string",  typeof $s);
+  _assertEqual("data (value)", $s);
+}
+
+function checkStringDoubleQuote($s){
+  _assertEqual("string",  typeof $s);
+  _assertEqual("da\"ta", $s);
+}
+
+function checkJSONArray($info){
+   _assertEqual("object",  typeof $info);
+
+  _assertEqual("abc", $info[0]["Name"]);
+  _assertEqual(23, $info[0]["Age"]);
+  _assertEqual("xyz", $info[1]["Name"]);
+  _assertEqual(25, $info[1]["Age"]);
+}
+
+function checkArray($arr){
+  _assertEqual("object",  typeof $arr);
+  
+  _assertEqual(3,  $arr.length);
+  
+  _assertEqual(10, $arr[0]);
+  _assertEqual(30, $arr[1]);
+  _assertEqual(20, $arr[2]);
+}
+
+function checkObject($obj){
+  _assertEqual("object",  typeof $obj);
+
+  _assertEqual("abc", $obj["Name"]);
+  _assertEqual(23, $obj["Age"]);
+}
+
+function checkArrayWithBracket($arr){
+  _assertEqual("object",  typeof $arr);
+  
+  _assertEqual(4,  $arr.length);
+  
+  _assertEqual("data1", $arr[0]);
+  _assertEqual("data (value)", $arr[1]);
+  _assertEqual("data(value2)", $arr[2]);
+  _assertEqual("final data", $arr[3]);
+}
+
+function checkObjectWithBracket($obj){
+  _assertEqual("object",  typeof $obj);
+
+  _assertEqual("abc(abc)", $obj["Name"]);
+  _assertEqual(23, $obj["Age"]);
+}

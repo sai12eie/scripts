@@ -1,0 +1,38 @@
+"Comment","Tags","TestCase","Key Word","Argument1","Argument2","Argument3"
+,,,"loadSahi","sample_passByObject.sah"
+
+"Pass By Object (Key:Value)","all","Check shopping cart total - PBO-KV","[Documentation]","Smoke test for add books"
+,,,"login1","user:test","password:MgkKEQBU"
+,,,"add Books1","java:3","ruby:2","python:1"
+,,,"verify Total1","total:1650"
+,,,"logout"
+
+"Pass By Value (Key:Value)","all","Check shopping cart total - PBV-KV","[Documentation]","Smoke test for add books"
+,,,"login2","user:test","password:MgkKEQBU"
+,,,"addBooks2","java:3","ruby:2","python:1"
+,,,"verifyTotal2","total:1650"
+,,,"logout"
+
+"Pass By Object ($Key:Value)","all","Check shopping cart total - PBO-$KV","[Documentation]","Smoke test for add books"
+,,,"login1","$user:test","password:MgkKEQBU"
+,,,"add Books1","java:3","$ruby:2","python:1"
+,,,"verify Total1","$total:1650"
+,,,"logout"
+
+"Pass By Value ($Key:Value)","all","Check shopping cart total - PBV-KV","[Documentation]","Smoke test for add books"
+,,,"login2","user:test","$password:MgkKEQBU"
+,,,"addBooks2","$java:3","ruby:2","$python:1"
+,,,"verifyTotal2","$total:1650"
+,,,"logout"
+
+"//Pass By Object (Value) - This will not work as expected as function expect an object argument but object keys are not specified in scenario","all","Check shopping cart total - PBO-V","[Documentation]","Smoke test for add books"
+"//",,,"login","test","MgkKEQBU"
+"//",,,"addBooks","3","2","1"
+"//",,,"verifyTotal","1650"
+"//",,,"logout"
+
+"Pass By Value (Key:Value)","all","Check shopping cart total - PBV-V","[Documentation]","Smoke test for add books"
+,,,"login2","test","MgkKEQBU"
+,,,"addBooks2","3","2","1"
+,,,"verifyTotal2","1650"
+,,,"logout"

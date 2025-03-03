@@ -1,0 +1,7 @@
+//<browser>
+__zzz = 20;
+//</browser>
+
+_assertEqual(20, __zzz);
+_navigateTo("/demo/linkTest.htm");
+_assertEqual(20, __zzz);

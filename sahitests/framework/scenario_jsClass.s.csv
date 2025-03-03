@@ -1,0 +1,15 @@
+"Comment","Tags","TestCase","Key Word","Argument1","Argument2","Argument3"
+,,,"loadSahi","sample_lib_class.sah"
+
+"Check shopping cart total","all","Check shopping cart total","[Documentation]","Smoke test for add books"
+,,,"$objDC =","new DemoClass();"
+,,,"$objDC.login","test","secret"
+,,,"$objDC.addBooks","3","2","1"
+,,,"$objDC.verifyTotal","1650"
+,,,"$objDC.logout"
+
+"Test login error message","all,invalidlogin","Test login error message","[Documentation]","Checks Invalid login message"
+,,,"$objDC2 =","new DemoClass();"
+,,,"$objDC2.login","test","bad password"
+,,,"$objDC2.verifyNotLoggedIn"
+,,,"$objDC2.verifyErrorMessage","Invalid username or password"

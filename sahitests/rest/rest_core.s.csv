@@ -1,0 +1,38 @@
+"Tags","TestCase","Key Word","Argument 1","Argument 2"
+,,"loadSahi","rest_core.sah"
+
+"external","DELETE","[Documentation]","DELETE"
+,,"DELETE"
+
+"external","GET","[Documentation]","GET"
+,,"GET"
+
+"external","PATCH","[Documentation]","PATCH"
+,,"PATCH"
+
+"external","PUT","[Documentation]","PUT"
+,,"PUT"
+
+"external","POST","[Documentation]","POST"
+,,"POST"
+
+"external","Digest Auth With SHA256","[Documentation]","Digest Auth With SHA256"
+,,"Digest Auth With SHA256"
+
+"external","Digest Auth","[Documentation]","Digest Auth"
+,,"Digest Auth"
+
+"external","Bearer","[Documentation]","Bearer"
+,,"Bearer"
+
+"external","Basic Auth","[Documentation]","Basic Auth"
+,,"Basic Auth"
+
+"external","Post Response","[Documentation]","Post Response"
+,,"Post Response"
+
+"external","Get Response","[Documentation]","Get Response"
+,,"Get Response"
+
+"all","Get Response Redirect With Apache Client","[Documentation]","Get Response Redirect With Apache Client"
+,,"Get Response Redirect With Apache Client"

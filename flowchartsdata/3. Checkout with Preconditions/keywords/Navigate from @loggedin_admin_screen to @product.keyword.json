@@ -1,0 +1,39 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.732Z",
+  "name": "Navigate from @loggedin_admin_screen to @product",
+  "id": "45900",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.732Z",
+  "content": {
+    "title": "Navigate from @loggedin_admin_screen to @product",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "screenId": "loggedin_admin_screen",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "screenId": "loggedin_admin_screen",
+            "accessorId": "acc1"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

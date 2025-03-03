@@ -1,0 +1,3 @@
+<xsl:variable name="strCacheMemory"><!--XLATESTART-->Cache Memory<!--XLATESTOP--></xsl:variable>
+<xsl:variable name="strCeleron"><!--XLATESTART-->Celeron<!--XLATESTOP--></xsl:variable>
+<xsl:variable name="strCeleronD"><!--XLATESTART-->Intel Celeron D processor<!--XLATESTOP--></xsl:variable>

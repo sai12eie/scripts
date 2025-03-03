@@ -1,0 +1,27 @@
+_lockWindow();
+_focusWindow();
+_navigateTo("http://sahitest.com/demo/linkTest.htm", true);
+var $expectedImg = _userDataDir() + "/../htdocs/demo/add.gif";
+_assertSnapShot($expectedImg, _image("imageWithReturnFalse"), 20, true, {trim:true});
+_unlockWindow();
+
+_closeBrowser();
+_openBrowser();
+var $pattern = ".*add[.]gif";
+_mockImage($pattern, "net.sf.sahi.command.MockResponder_mockImage");
+_lockWindow();
+_focusWindow();
+_navigateTo("http://sahitest.com/demo/linkTest.htm", true);
+$expectedImg = _userDataDir() + "/../htdocs/spr/mock.gif";
+_assertSnapShot($expectedImg, _image("imageWithReturnFalse"), 20, true, {trim:true});
+_removeMock($pattern);
+_unlockWindow();
+
+_closeBrowser();
+_openBrowser();
+_lockWindow();
+_focusWindow();
+_navigateTo("http://sahitest.com/demo/linkTest.htm", true);
+$expectedImg = _userDataDir() + "/../htdocs/demo/add.gif";
+_assertSnapShot($expectedImg, _image("imageWithReturnFalse"), 20, true, {trim:true});
+_unlockWindow();

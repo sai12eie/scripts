@@ -1,0 +1,115 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.493Z",
+  "name": "Verify $user details",
+  "id": "45878",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.493Z",
+  "content": {
+    "title": "Verify $user details",
+    "parameters": [
+      {
+        "parameterId": "user_",
+        "entityTypeId": "user",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Edit Account\")"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_01679571973977",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "user_",
+          "attributeId": "attr_01679571973977"
+        },
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_11679571973977",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "user_",
+          "attributeId": "attr_11679571973977"
+        },
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_21679571973977",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "user_",
+          "attributeId": "attr_21679571973977"
+        },
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_getText",
+        "stepParameters": [
+          {
+            "parameterId": "user_",
+            "attributeId": "attr_31679571973977",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "user_",
+          "attributeId": "attr_31679571973977"
+        },
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Back\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

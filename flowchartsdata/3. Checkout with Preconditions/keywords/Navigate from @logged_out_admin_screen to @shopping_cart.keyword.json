@@ -1,0 +1,26 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.667Z",
+  "name": "Navigate from @logged_out_admin_screen to @shopping_cart",
+  "id": "45894",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.667Z",
+  "content": {
+    "title": "Navigate from @logged_out_admin_screen to @shopping_cart",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_navigateTo",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "\"/opencart/\""
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

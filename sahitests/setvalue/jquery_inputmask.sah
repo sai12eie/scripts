@@ -1,0 +1,146 @@
+function SpecialCharsValues() {
+	_navigateTo("https://ace.c9.io/");
+	if(_exists(_textarea("ace_text-input"))){
+		_setValue(_textarea("ace_text-input"), "!#$&\"%");
+		_assertContainsText("!#$&\"%", _textarea("ace_text-input"));
+	}
+}
+
+function CustomerInputMaskIssues() {
+	_navigateTo("/demo/setvalue/SSNsetValueTestPage.html");
+
+	_assertEqual("666-23-1111", _getValue(_textbox("ctl00$ContentPlaceHolder1$txtSSN")));
+	_setValue(_textbox("ctl00$ContentPlaceHolder1$txtSSN"), "678-91-2345");
+	_assertEqual("678-91-2345", _getValue(_textbox("ctl00$ContentPlaceHolder1$txtSSN")));
+	_setValue(_textbox("ctl00$ContentPlaceHolder1$txtSSN"), "678-9");
+	_assertEqual("678-90-0000", _getValue(_textbox("ctl00$ContentPlaceHolder1$txtSSN")));
+	_setValue(_textbox("ctl00$ContentPlaceHolder1$txtSSN"), "678-91-2345");
+	_assertEqual("678-91-2345", _getValue(_textbox("ctl00$ContentPlaceHolder1$txtSSN")));
+
+	_assertEqual("(714) 555-1234", _getValue(_textbox("ctl00$ContentPlaceHolder1$txtHomePhone")));
+	_setValue(_textbox("ctl00$ContentPlaceHolder1$txtHomePhone"), "(612) 712-7896");
+	_assertEqual("(612) 712-7896", _getValue(_textbox("ctl00$ContentPlaceHolder1$txtHomePhone")));
+	_setValue(_textbox("ctl00$ContentPlaceHolder1$txtHomePhone"), "712");
+	_assertEqual("(712) ___-____", _getValue(_textbox("ctl00$ContentPlaceHolder1$txtHomePhone")));
+	_setValue(_textbox("ctl00$ContentPlaceHolder1$txtHomePhone"), "(812) 712-7896");
+	_assertEqual("(812) 712-7896", _getValue(_textbox("ctl00$ContentPlaceHolder1$txtHomePhone")));
+
+	_assertEqual("45407", _getValue(_textbox("ctl00$ContentPlaceHolder1$zip")));
+	_setValue(_textbox("ctl00$ContentPlaceHolder1$zip"), "22");
+	_assertEqual("22___", _getValue(_textbox("ctl00$ContentPlaceHolder1$zip")));
+	_setValue(_textbox("ctl00$ContentPlaceHolder1$zip"), "90210");
+	_assertEqual("90210", _getValue(_textbox("ctl00$ContentPlaceHolder1$zip")));
+}
+
+function HiddenElements(){
+	_navigateTo("/demo/setvalue/SSNsetValueTestPage.html");
+	var $textsToSet = ["hiddenBoolean", "hiddenString", "hiddenBlank", "hiddenBoolean", "hiddenfromJS", "visibilityHidden", "displayNone", "visibleTextEl", "shownfromJS"];
+	for(var $i=0; $i < $textsToSet.length; $i++){
+		$textToSet = $textsToSet[$i];
+		_setValue(_textbox($textToSet), $textToSet);
+		if($textToSet != "visibleTextEl" && $textToSet != "shownfromJS"){
+			_assertEqual("", _getText(_textbox($textToSet)));
+			_type(_textbox($textToSet), $textToSet);
+			_assertEqual("", _getText(_textbox($textToSet)));
+		}else{
+			_assertEqual($textToSet, _getText(_textbox($textToSet)));
+			_type(_textbox($textToSet), $textToSet);
+			_assertEqual($textToSet + $textToSet, _getText(_textbox($textToSet)));
+		}
+	}
+}
+
+function CompleteValuesWithSeparators() {
+	_navigateTo("/demo/setvalue/");
+	_click(document.getElementById("demolnk"));
+	_setValue(_textbox(0), "16/04/1990");
+	_assertEqual("16/04/1990", _getValue(_textbox(0)));
+
+	_setValue(_textbox(1), "08/22/1982");
+	_assertEqual("08/22/1982", _getValue(_textbox(1)));
+
+	//Uncomment later
+	//	_setValue(_textbox(2), "$ 8.00");
+	//	_assertEqual("$ 8.00", _getValue(_textbox(2)));
+
+	//	_setValue(_textbox(2), "$ 89.76");
+	//	_assertEqual("$ 89.76", _getValue(_textbox(2)));
+
+	_setValue(_textbox(3), "8-YGH-211");
+	_assertEqual("8-YGH-211", _getValue(_textbox(3)));
+
+	//Uncomment later
+	//	_setValue(_textbox(4), "19,800.76");
+	//	_assertEqual("19,800.76", _getValue(_textbox(4)));
+
+	_setValue(_textbox("ip"), "192.168.1.222");
+	_assertEqual("192.168.1.222", _getValue(_textbox("ip")));
+
+	_setValue(_textbox("email"), "ab@example.com");
+	_assertEqual("ab@example.com", _getValue(_textbox("email")));
+}
+
+function CompleteValuesWithoutSeparators() {
+	_navigateTo("/demo/setvalue/");
+	_click(document.getElementById("demolnk"));
+	_setValue(_textbox(0), "16041990");
+	_assertEqual("16/04/1990", _getValue(_textbox(0)));
+
+	_setValue(_textbox(1), "08221982");
+	_assertEqual("08/22/1982", _getValue(_textbox(1)));
+
+	// Uncomment later
+	//	_setValue(_textbox(2), "$ 8.00");
+	//	_assertEqual("$ 8.00", _getValue(_textbox(2)));
+
+	//	_setValue(_textbox(2), "89.76");
+	//	_assertEqual("$ 89.76", _getValue(_textbox(2)));
+
+	_setValue(_textbox(3), "8YGH211");
+	_assertEqual("8-YGH-211", _getValue(_textbox(3)));
+
+	_setValue(_textbox(4), "19800.76");
+	_assertEqual("19,800.76", _getValue(_textbox(4)));
+
+	_setValue(_textbox("ip"), "1921681.222");
+	_assertEqual("192.168.1.222", _getValue(_textbox("ip")));
+
+}
+
+function IncompleteValues() {
+	_navigateTo("/demo/setvalue/");
+	_click(document.getElementById("demolnk"));
+	_setValue(_textbox(0), "16/04/19");
+	_assertEqual("16/04/19yy", _getValue(_textbox(0)));
+
+	_setValue(_textbox(1), "08");
+	_assertEqual("08/dd/yyyy", _getValue(_textbox(1)));
+
+	//uncomment later
+	//	_setValue(_textbox(2), "$ 8.00");
+	//	_assertEqual("$ 8.00", _getValue(_textbox(2)));
+
+	_setValue(_textbox(3), "8-A");
+	_assertEqual("8-A__-___", _getValue(_textbox(3)));
+
+	//uncomment later
+	//	_setValue(_textbox(4), "19,800.76");
+	//	_assertEqual("19,800.76", _getValue(_textbox(4)));
+
+	_setValue(_textbox("ip"), "10");
+	_assertEqual("10._._._", _getValue(_textbox("ip")));
+
+	_setValue(_textbox("email"), "ab");
+	_assertEqual("ab@_._", _getValue(_textbox("email")));
+}
+
+function TestWithTypeAPI() {
+	_navigateTo("/demo/setvalue/");
+	_click(document.getElementById("demolnk"));
+	_setValue(_textbox(3), "8");
+	_focus(_textbox(3));
+	_type(_textbox(3), "AAA");
+	_focus(_textbox(3));
+	_type(_textbox(3), "323");
+	_assertEqual("8-AAA-323", _getValue(_textbox(3)));
+}

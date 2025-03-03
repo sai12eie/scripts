@@ -1,0 +1,161 @@
+_resource("upload me.txt");
+_resource("uploadme2.txt");
+var $userDirPath = _userDataDir();
+
+function setUp(){
+	_navigateTo("/demo/php/fileUpload.htm");	
+}
+
+function tearDown(){
+	//_click(_link("Back to form"));
+}
+
+function testFileSingle(){
+	_setFile(_file("file"), "scripts/sahitests/upload me.txt");
+	_click(_submit("Submit Single"));
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+function testFileSingleWithSetFile2(){
+	_setFile2(_file("file"), "scripts/sahitests/upload me.txt");
+	_click(_submit("Submit Single"));
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+function testFileSingleWith3rdParam(){
+	_setFile(_file("file4"), "scripts/sahitests/upload me.txt", "fileUpload.php");
+	_click(_submit("Submit Single"));
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+function testFileSingleWith3rdParamAsRegex(){
+	_setFile(_file("file4"), "scripts/sahitests/upload me.txt", "/.*file.*php.*/");
+	_click(_submit("Submit Single"));
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+function testFileSingleWith3rdParamAsRegex2(){
+	_setFile(_file("file5"), "scripts/sahitests/upload me.txt", "fileUpload.php?q=a$&*+^");//
+	_click(_submit("Submit Single[1]")); 
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+function testFileSingleWith3rdParamWithSetFile2(){
+	_setFile2(_file("file4"), "scripts/sahitests/upload me.txt", "fileUpload.php");
+	_click(_submit("Submit Single"));
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+var $_FILE_FILE = _file("file");
+
+function testWithTypeChange(){
+	_setFile($_FILE_FILE, "scripts/sahitests/upload me.txt");
+	if (_isIE()){
+		_call($_FILE_FILE.outerHTML = $_FILE_FILE.outerHTML.replace(/type=['"]?file['"]?/, "type=text"));
+	}else{
+		_call($_FILE_FILE.type = "text");
+	}
+	_setValue(_textbox("file"), "scripts/sahitests/upload me.txt");
+	_click(_submit("Submit Single"));
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+function testSetFile2WithTypeChange(){
+	_setFile2(_file("file"), "scripts/sahitests/upload me.txt");
+	_assertEqual("scripts/sahitests/upload me.txt", _getValue(_textbox("file")));
+	_click(_submit("Submit Single"));
+	_assertExists(_span("size"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_assertContainsText("Single", _span("type"));
+}
+
+function testFileMulti(){
+	_setFile(_file("file[]"), "scripts/sahitests/upload me.txt");
+	_setFile(_file("file[]"), "scripts/sahitests/uploadme2.txt");
+	_click(_submit("Submit Array"));
+	_assertContainsText("Array", _span("type"));
+	_assertContainsText("upload me.txt", _span("file"));
+	_assertContainsText("0.3046875 Kb", _span("size"));		
+	_assertContainsText("uploadme2.txt", _span("file[1]"));
+	_assertContainsText("0.32421875 Kb", _span("size[1]"));	
+}
+
+function testFileMultiWithSetFile2(){
+	_setFile2(_file("file[]"), "scripts/sahitests/upload me.txt");
+	_setFile2(_file("file[]"), "scripts/sahitests/uploadme2.txt");
+	_click(_submit("Submit Array"));
+	_assertContainsText("Array", _span("type"));
+	_assertContainsText("upload me.txt", _span("file"));
+	_assertContainsText("0.3046875 Kb", _span("size"));		
+	_assertContainsText("uploadme2.txt", _span("file[1]"));
+	_assertContainsText("0.32421875 Kb", _span("size[1]"));	
+}
+
+function testMultiFilesWithSetFile2(){
+	_setFile2(_file("file[][2]"), ["scripts/sahitests/upload me.txt", "scripts/sahitests/uploadme2.txt"]);
+	_click(_submit("Submit Multiple"));
+	_assertContainsText("Array", _span("type"));
+	_assertContainsText("upload me.txt", _span("file"));
+	_assertContainsText("0.3046875 Kb", _span("size"));		
+	_assertContainsText("uploadme2.txt", _span("file[1]"));
+	_assertContainsText("0.32421875 Kb", _span("size[1]"));	
+}
+
+function testMultiFilesWithAllParamsWithSetFile2(){
+	_setFile2(_file("file[][2]"), ["scripts/sahitests/upload me.txt", "scripts/sahitests/uploadme2.txt"], "fileUpload.php", true, false);
+	_click(_submit("Submit Multiple"));
+	_assertContainsText("Array", _span("type"));
+	_assertContainsText("upload me.txt", _span("file"));
+	_assertContainsText("0.3046875 Kb", _span("size"));		
+	_assertContainsText("uploadme2.txt", _span("file[1]"));
+	_assertContainsText("0.32421875 Kb", _span("size[1]"));	
+}
+
+function testSingleFileValidationWithAllParamsWithSetFile2(){
+	_setFile2(_file("file[3]"), "upload me.txt", "fileUpload.php", false, true);
+	_assertContainsText("upload me.txt", _span("fileName"));
+	_assertContainsText("312", _span("fileSize"));	
+	_assertContainsText("text/plain", _span("fileType"));	
+	_call(_textbox("file").type="file");
+}
+
+function testMultiFilesValidationWithAllParamsWithSetFile2(){
+	 _setFile2(_file("file[3]"), ["upload me.txt", "uploadme2.txt"], "fileUpload.php", false, true);
+	 _assertExists(_span("File Size:312"));
+	_assertExists(_span("File Size:332"));	
+	_assertExists(_span("File Name:upload me.txt"));
+	_assertExists(_span("File Name:uploadme2.txt"));
+	_assertExists(_span("upload me.txt"));
+	_assertExists(_span("0.3046875 Kb"));
+	_assertExists(_span("uploadme2.txt"));
+	_assertExists(_span("0.32421875 Kb"));
+	_call(_textbox("file").type="file");
+}
+
+function testFileItemFunction(){
+	_setFile2(_file("file[3]"), ["upload me.txt", "uploadme2.txt"], "", false, true);
+    var $files = _eval('_sahi._textbox("file")._file');
+	var $filesName = [_fetch($files.item(0).name), _fetch($files.item(1).name)];
+    _assert($filesName.indexOf("upload me.txt") != -1);
+    _assert($filesName.indexOf("uploadme2.txt") != -1);
+	var $filesSize = [_fetch($files.item(0).size), _fetch($files.item(1).size)];
+	_assert($filesSize.indexOf(332) != -1);
+    _assert($filesSize.indexOf(312) != -1);
+	_call(_textbox("file").type="file");
+}
+
+_runUnitTests();

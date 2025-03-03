@@ -1,0 +1,200 @@
+function testHorizontallyAlignedWithNoParameter(){
+	_assertTrue(_areHorizontallyAligned(_submit("H1a"), _submit("H1b")));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H2a"), _submit("H2b")));
+}
+
+function testHorizontallyAlignedWithPositionTop(){
+	_assertTrue(_areHorizontallyAligned(_submit("H2a"), _submit("H2b"), "top"));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H3a"), _submit("H3b"), "top"));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H1a"), _submit("H1b"), "top"));
+}
+
+function testHorizontallyAlignedWithPositionTopAndGapAndOffset(){
+	_assertTrue(_areHorizontallyAligned(_submit("H3a"), _submit("H3b"), "top", null, [5,0]));
+	_assertTrue(_areHorizontallyAligned(_submit("H3a"), _submit("H3b"), "top", 50, [5,0]));
+	_assertTrue(_areHorizontallyAligned(_submit("H3a"), _submit("H3b"), "top", [0,50], [5,0]));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H3a"), _submit("H3b"), "top", [0,20], [5,0]));
+}
+
+function testHorizontallyAlignedWithPositionMiddle(){
+	_assertTrue(_areHorizontallyAligned(_submit("H4a"), _submit("H4b"), "middle"));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H6a"), _submit("H6b"), "middle"));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H2a"), _submit("H2b"), "middle"));
+}
+
+function testHorizontallyAlignedWithPositionMiddleAndGapAndOffset(){
+	_assertTrue(_areHorizontallyAligned(_submit("H5a"), _submit("H5b"), "middle", null, [5,0]));
+	_assertTrue(_areHorizontallyAligned(_submit("H5a"), _submit("H5b"), "middle", 50, [5,0]));
+	_assertTrue(_areHorizontallyAligned(_submit("H5a"), _submit("H5b"), "middle", [0,50], [5,0]));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H5a"), _submit("H5b"), "middle", [0,40], [5,0]));
+}
+
+function testHorizontallyAlignedWithPositionBottom(){
+	_assertTrue(_areHorizontallyAligned(_submit("H6a"), _submit("H6b"), "bottom"));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H4a"), _submit("H4b"), "bottom"));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H2a"), _submit("H2b"), "bottom"));
+}
+
+function testHorizontallyAlignedWithPositionBottomAndGapAndOffset(){
+	_assertTrue(_areHorizontallyAligned(_submit("H7a"), _submit("H7b"), "bottom", null, [0,5]));
+	_assertTrue(_areHorizontallyAligned(_submit("H7a"), _submit("H7b"), "bottom", 50, [0,5]));
+	_assertTrue(_areHorizontallyAligned(_submit("H7a"), _submit("H7b"), "bottom", [0,50], [0,5]));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H7a"), _submit("H7b"), "bottom", [0,30], [0,5]));
+}
+
+function testHorizontallyAlignedWithPositionBoth(){
+	_assertTrue(_areHorizontallyAligned(_submit("H8a"), _submit("H8b"), "both"));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H4a"), _submit("H4b"), "both"));
+	_assertNotTrue(_areHorizontallyAligned(_submit("H2a"), _submit("H2b"), "both"));
+}
+
+//verticallyAligned
+function testVerticallyAlignedWithNoOtherParameter(){
+	_assertTrue(_areVerticallyAligned(_submit("V1a"), _submit("V1b")));
+	_assertNotTrue(_areVerticallyAligned(_submit("V2a"), _submit("V2b")));
+}
+
+function testVerticallyAlignedWithPositionLeft(){
+	_assertTrue(_areVerticallyAligned(_submit("V2a"), _submit("V2b"), "left"));
+	_assertNotTrue(_areVerticallyAligned(_submit("V3a"), _submit("V3b"), "left"));
+	_assertNotTrue(_areVerticallyAligned(_submit("V1a"), _submit("V1b"), "left"));
+}
+
+function testVerticallyAlignedWithPositionLeftAndGapAndOffset(){
+	_assertTrue(_areVerticallyAligned(_submit("V3a"), _submit("V3b"), "left", null, [10,0]));
+	_assertTrue(_areVerticallyAligned(_submit("V3a"), _submit("V3b"), "left", 12, [10,0]));
+	_assertTrue(_areVerticallyAligned(_submit("V3a"), _submit("V3b"), "left", [0,15], [10,0]));
+	_assertNotTrue(_areVerticallyAligned(_submit("V3a"), _submit("V3b"), "left", [0,10], [10,0]));
+}
+
+function testVerticallyAlignedWithPositionCenter(){
+	_assertTrue(_areVerticallyAligned(_submit("V4a"), _submit("V4b"), "center"));
+	_assertNotTrue(_areVerticallyAligned(_submit("V6a"), _submit("V6b"), "center"));
+	_assertNotTrue(_areVerticallyAligned(_submit("V2a"), _submit("V2b"), "center"));
+}
+
+function testVerticallyAlignedWithPositionCenterAndGapAndOffset(){
+	_assertTrue(_areVerticallyAligned(_submit("V5a"), _submit("V5b"), "center", null, [10,0]));
+	_assertTrue(_areVerticallyAligned(_submit("V5a"), _submit("V5b"), "center", 12, [10,0]));
+	_assertTrue(_areVerticallyAligned(_submit("V5a"), _submit("V5b"), "center", [0,15], [10,0]));
+	_assertNotTrue(_areVerticallyAligned(_submit("V5a"), _submit("V5b"), "center", [0,10], [10,0]));
+}
+
+function testVerticallyAlignedWithPositionRight(){
+	_assertTrue(_areVerticallyAligned(_submit("V6a"), _submit("V6b"), "right"));
+	_assertNotTrue(_areVerticallyAligned(_submit("V4a"), _submit("V4b"), "right"));
+	_assertNotTrue(_areVerticallyAligned(_submit("V2a"), _submit("V2b"), "right"));
+}
+
+function testVerticallyAlignedWithPositionRightAndGapAndOffset(){
+	_assertTrue(_areVerticallyAligned(_submit("V7a"), _submit("V7b"), "right", null, [0,10]));
+	_assertTrue(_areVerticallyAligned(_submit("V7a"), _submit("V7b"), "right", 12, [0,10]));
+	_assertTrue(_areVerticallyAligned(_submit("V7a"), _submit("V7b"), "right", [0,15], [0,10]));
+	_assertNotTrue(_areVerticallyAligned(_submit("V7a"), _submit("V7b"), "right", [0,10], [0,10]));
+}
+
+function testVerticallyAlignedWithPositionBothAndGapAndOffset(){
+	_assertTrue(_areVerticallyAligned(_submit("V8a"), _submit("V8b"), "both"));
+	_assertNotTrue(_areVerticallyAligned(_submit("V4a"), _submit("V4b"), "both"));
+	_assertNotTrue(_areVerticallyAligned(_submit("V2a"), _submit("V2b"), "both"));
+}
+
+//visiblyInside
+function testVisiblyInside(){
+	_assertTrue(_isVisiblyInside(_div("I am vertically centered"),_div("vertCenterDiv")));
+	_assertTrue(_isVisiblyInside(_div("I am horizontally centered"),_div("horCenterDiv")));
+	_assertNotTrue(_isVisiblyInside(_div("I am horizontally centered"),_div("vertCenterDiv")));
+	_assertNotTrue(_isVisiblyInside(_div("I am vertically centered"),_div("horCenterDiv")));
+}
+
+//visiblyOutside
+function testVisiblyOutside(){
+	_assertTrue(_isVisiblyOutside(_div("I am vertically centered"),_div("horCenterDiv")));
+	_assertTrue(_isVisiblyOutside(_div("I am horizontally centered"),_div("vertCenterDiv")));
+	_assertNotTrue(_isVisiblyOutside(_div("I am horizontally centered"),_div("horCenterDiv")));
+	_assertNotTrue(_isVisiblyOutside(_div("I am vertically centered"),_div("vertCenterDiv")));
+}
+
+//isCentered
+function testCentered(){
+	_assertTrue(_isCentered(_div("I am vertically centered"), _div("vertCenterDiv"), "vertical"));
+	_assertNotTrue(_isCentered(_div("I am vertically centered"), _div("vertCenterDiv"), "horizontal"));
+	_assertTrue(_isCentered(_div("I am horizontally centered"), _div("horCenterDiv"), "horizontal"));
+	_assertNotTrue(_isCentered(_div("I am horizontally centered"), _div("horCenterDiv"), "vertical"));
+}
+
+//VisiblyOn
+function testVisiblyOnWithNoSpacingParameter(){
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1")));
+}
+
+
+function testVisiblyOnWithTopSpacingOnly(){
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), -50));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), -60));
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), [-50,0]));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), [-40,0]));
+}
+
+function testVisiblyOnWithRightSpacingOnly(){
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, -100));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, -90));
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, [-100,0]));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, [-80,0]));
+}
+
+function testVisiblyOnWithBottomSpacingOnly(){
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, null, 50));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, null, 60));
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, null, [0,50]));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, null, [0,40]));
+}
+
+function testVisiblyOnWithLeftSpacingOnly(){
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, null, null, 100));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, null, null, 90));
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, null, null, [0,100]));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), null, null, null, [0,80]));
+}
+
+function testVisiblyOnWithAllParameters(){
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), -50, -100, 50, 100));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), -60, -110, 40, 90));
+	_assertTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), [-50,0], [-100,0], [0,50], [0,100]));
+	_assertNotTrue(_isVisiblyOn(_div("visOnDiv2"), _div("visOnDiv1"), [-40,0], [-90,0], [0,40], [0,80]));
+}
+
+
+//fitsWidth
+function testFitsWidthWithNoOtherSpacing(){
+	_assertTrue(_fitsWidth(_textbox(0), _div("fitsWidthDiv1")));
+	_assertTrue(_fitsWidth(_textbox(0), _div("fitsWidthDiv1"), 0, 0));
+	_assertNotTrue(_fitsWidth(_textbox(0), _div("fitsWidthDiv1"), [1,30], [-30,-1]));
+}
+
+function testFitsWidthWithSpacing(){
+	_assertNotTrue(_fitsWidth(_textbox(1), _div("fitsWidthDiv2")));
+	_assertNotTrue(_fitsWidth(_textbox(1), _div("fitsWidthDiv2"), 0, 0));
+	_assertTrue(_fitsWidth(_textbox(1), _div("fitsWidthDiv2"), [0,35], [-30,0]));
+	_assertTrue(_fitsWidth(_textbox(1), _div("fitsWidthDiv2"), 31, -27));
+}
+
+//fitsHeight
+function testFitsHeightWithNoOtherSpacing(){
+	_assertTrue(_fitsHeight(_textbox(2), _div("fitsHeightDiv1")));
+	_assertTrue(_fitsHeight(_textbox(2), _div("fitsHeightDiv1"), 0, 0));
+	_assertNotTrue(_fitsHeight(_textbox(2), _div("fitsHeightDiv1"), [1,30], [-30,-1]));
+}
+
+function testFitsHeightWithSpacing(){
+	_assertNotTrue(_fitsHeight(_textbox(3), _div("fitsHeightDiv2")));
+	_assertNotTrue(_fitsHeight(_textbox(3), _div("fitsHeightDiv2"), 0, 0));
+	_assertTrue(_fitsHeight(_textbox(3), _div("fitsHeightDiv2"), [0,20], [-20,0]));
+	_assertTrue(_fitsHeight(_textbox(3), _div("fitsHeightDiv2"), 11, -15));
+}
+
+
+_navigateTo("/demo/alignmentTestPage.htm");
+_windowAction("maximize");
+_runUnitTests();
+

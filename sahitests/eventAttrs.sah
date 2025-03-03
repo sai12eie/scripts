@@ -1,0 +1,97 @@
+function setUp(){
+	_navigateTo("/demo/eventSequence.htm");
+	_check(_checkbox("testEventAttrs"));
+	_click(_button("Clear"));
+	_click(_button("Clear All"));
+}
+
+function testClickEventAttrs(){
+	_check(_checkbox("click"));
+	_click(_button("Add event listeners"));
+	_lockWindow();
+	_focusWindow();
+	_clickNative(_button("Button"));
+	// changing cursor position due to effects other script
+	_mouseOverNative(_label("Test All Attributes:"));
+	_unlockWindow();
+	var $nativeEvntAttrs = _getText(_textarea("logs"));
+	_click(_button("Clear"));
+	_assertEqual(_textarea("logs").value, "");
+	_click(_button("Button"));
+	var $nonNativevntAttrs = _getText(_textarea("logs"));
+	_assertEqual( $nativeEvntAttrs, $nonNativevntAttrs);
+}
+
+function testPointerEventAttrs(){
+	_check(_checkbox("pointerover"));
+	_click(_button("Add event listeners"));
+	_lockWindow();
+	_focusWindow();
+	_mouseOverNative(_span("Span"));
+	// changing cursor position due to effects other script
+	_mouseOverNative(_label("Test All Attributes:"));
+	_unlockWindow();
+	var $nativeEvntAttrs = _getText(_textarea("logs"));
+	_click(_button("Clear"));
+	_assertEqual(_textarea("logs").value, "");
+	_mouseOver(_span("Span"));
+	var $nonNativevntAttrs = _getText(_textarea("logs"));
+	_assertEqual( $nativeEvntAttrs, $nonNativevntAttrs);
+}
+
+function testKeypressEventAttrs(){
+	_click(_checkbox("keydown"));
+	_click(_checkbox("keypress"));
+	_click(_button("Add event listeners"));
+	_focus(_textbox("t1"));
+	_lockWindow();
+	_focusWindow();
+	_typeNative("t");
+	_mouseOverNative(_label("Test All Attributes:"));
+	_unlockWindow();
+	var $nativeEvntAttrs = _getText(_textarea("logs"));
+	_click(_button("Clear"));
+	_assertEqual(_textarea("logs").value, "");
+	_type(_textbox("t1"), "t");
+	var $nonNativevntAttrs =_getText(_textarea("logs"));
+	_assertEqual( $nativeEvntAttrs, $nonNativevntAttrs);
+}
+
+function testFocusEventAttrs(){
+	_click(_checkbox("focus"));
+	_click(_checkbox("focusin"));
+	_click(_button("Add event listeners"));
+	_lockWindow();
+	_focusWindow();
+	_clickNative(_button("Button"));
+	_mouseOverNative(_label("Test All Attributes:"));
+	_unlockWindow();
+	var $nativeEvntAttrs = _getText(_textarea("logs"));
+	_click(_button("Clear"));
+	_assertEqual(_textarea("logs").value, "");
+	_click(_button("Button"));
+	var $nonNativevntAttrs = _getText(_textarea("logs"));
+	_assertEqual( $nativeEvntAttrs, $nonNativevntAttrs);
+}
+
+function testMouseOverEventAttrs(){
+	_check(_checkbox("mouseover"));
+	_click(_button("Add event listeners"));
+	_lockWindow();
+	_focusWindow();
+	_mouseOverNative(_label("Test All Attributes:"));
+	_click(_button("Clear"));
+	_mouseOverNative(_span("Span"));
+	var $nativeEvntAttrs = _getText(_textarea("logs"));
+	// changing cursor position due to effects other script
+	_mouseOverNative(_label("Test All Attributes:"));
+	_unlockWindow();
+	_click(_button("Clear"));
+	_assertEqual(_textarea("logs").value, "");
+	_mouseOver(_span("Span"));
+	var $nonNativevntAttrs = _getText(_textarea("logs"));
+	_assertEqual( $nativeEvntAttrs, $nonNativevntAttrs);
+}
+
+_windowAction("maximize");
+_runUnitTests();

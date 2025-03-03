@@ -1,0 +1,3 @@
+_call(top.document.title = top.document.title + " " + (new Date().getTime()));
+_set($title, top.document.title);
+_execute("cmd /C D:\\Dev\\Sahi\\sahi_pro\\tools\\focus.vbs \"" + $title + "\"");

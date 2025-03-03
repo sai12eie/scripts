@@ -1,0 +1,43 @@
+function Apple ($color, $taste) {
+    this.$color = $color ? $color : "red";
+    this.$taste = $taste ? $taste : "sweet";
+	
+    this.$printColor = function() {
+		_log(this.$color);
+    };
+    this.$printTaste = function() {
+		_log(this.$taste);
+    };
+    
+    this.$getColor = function() {
+		return this.$color;
+    };
+    this.$getTaste = function() {
+		return this.$taste;
+    };
+    return "Called Apple Function!";
+}
+
+
+
+//var appleObj = new Apple_sahiorig();
+var appleObj = new Apple();
+appleObj.$printColor(); 
+appleObj.$printTaste();
+_assertEqual("red", appleObj.$getColor());
+_assertEqual("sweet", appleObj.$getTaste());
+
+var appleObj = new Apple("green");
+appleObj.$printColor(); 
+appleObj.$printTaste(); 
+_assertEqual("green", appleObj.$getColor());
+_assertEqual("sweet", appleObj.$getTaste());
+
+var appleObj = new Apple("green", "sour");
+appleObj.$printColor(); 
+appleObj.$printTaste(); 
+_assertEqual("green", appleObj.$getColor());
+_assertEqual("sour", appleObj.$getTaste());
+
+var $appleFnCall = Apple("green", "sour");
+_assertEqual("Called Apple Function!", $appleFnCall);

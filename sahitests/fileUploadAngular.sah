@@ -1,0 +1,8 @@
+_resource("upload me.txt");
+_navigateTo("/demo/fileUploadAngular/fileUpload.html");
+var $userDirPath = _userDataDir();
+_setFile("file", _userDataPath("scripts/sahitests/upload me.txt"), "/fileUploadAngular/fileUpload.php")
+_click(_submit("Upload"));
+_assertExists(_span("size"));
+_assertContainsText("0.3046875 Kb", _span("size"));
+_assertContainsText("Single", _span("type"));

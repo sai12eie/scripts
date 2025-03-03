@@ -1,0 +1,4 @@
+_navigateTo("/demo/");
+var $content = null;
+_set($content, document.body.innerHTML);
+_writeFile($content, "C:\\myfile.txt", true);

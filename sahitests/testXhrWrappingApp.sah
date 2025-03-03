@@ -1,0 +1,23 @@
+_resource("upload me.txt");
+
+function setUp(){
+	_navigateTo("/demo/customer/xhrWrappingApp/testPage.html");
+}
+
+function testIdentification(){
+	_setValue(_textbox("userName"), "testUser");
+	_assertEqual("testUser", _getValue(_textbox("userName")));
+	_setValue(_textbox("userName"), "");
+	_assertEqual("", _getValue(_textbox("userName")));
+}
+
+function testFormSubmission(){
+	_setFile3(_file("files"), ["upload me.txt"]);
+	_click(_submit("Submit"));
+	_assertContainsText("Array", _span("type"));
+	_assertContainsText("upload me.txt", _span("file"));
+	_assertContainsText("0.3046875 Kb", _span("size"));
+	_click(_link("Back to form"));
+}
+
+_runUnitTests();

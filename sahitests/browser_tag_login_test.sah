@@ -1,0 +1,10 @@
+//<browser>
+function loginSample($user, $password){
+	_setValue(_textbox("user"), $user);
+	_setValue(_password("password"), $password);
+	_click(_submit("Login"));
+}
+//</browser>
+//_navigateTo("http://sahitest.com/demo/training/");
+_call(loginSample("test", "secret"));
+_assertExists(_button("Logout"));

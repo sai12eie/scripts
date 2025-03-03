@@ -1,0 +1,48 @@
+function testSimpleWWWDomain(){
+	_assertTrue(_fetch(_sahi.isSameDomain("http://www.sahitest.com/demo/", "www.sahitest.com" , "http:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahitest.com/demo/", "www.sahitest.com" , "http:")));
+}
+
+function testSimpleDomain(){
+	_assertTrue(_fetch(_sahi.isSameDomain("http://sahitest.com/demo/", "sahitest.com" , "http:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahitest2.com/demo/", "sahitest.com" , "http:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahi.co.in/demo/", "sahitest.com" , "http:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://localhost.sahitest.com/demo/", "sahitest.com" , "http:")));
+	_assertTrue(_fetch(_sahi.isSameDomain("https://sahitest.com/demo/", "sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://sahitest2.com/demo/", "sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://sahi.co.in/demo/", "sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://localhost.sahitest.com/demo/", "sahitest.com" , "https:")));
+}
+
+function testRelativeDomain(){
+	_assertTrue(_fetch(_sahi.isSameDomain("/execute", "sahitest.com" , "http:")));
+	_assertTrue(_fetch(_sahi.isSameDomain("/execute", "sahitest.com" , "https:")));
+}
+
+function testDifferentPort(){
+	_assertTrue(_fetch(_sahi.isSameDomain("https://sahitest.com:8443/demo/", "sahitest.com:8443" , "https:")));
+	_assertTrue(_fetch(_sahi.isSameDomain("http://sahitest.com:8080/demo/", "sahitest.com:8080" , "http:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahitest.com/demo/", "sahitest.com:8080" , "http:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://sahitest.com:8443/demo/", "sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://sahitest.com:8443/demo/", "sahitest.com:9443" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://sahitest.com/demo/", "sahitest.com:9443" , "https:")));
+}
+
+function testDefaultPort(){
+	_assertTrue(_fetch(_sahi.isSameDomain("http://sahitest.com:80/demo/", "sahitest.com" , "http:")));
+	_assertTrue(_fetch(_sahi.isSameDomain("https://sahitest.com:443/demo/", "sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahitest.com:8080/demo/", "sahitest.com" , "http:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://sahitest.com:8443/demo/", "sahitest.com" , "https:")));
+}
+
+function testDifferentProtocol(){
+	_assertFalse(_fetch(_sahi.isSameDomain("http://www.sahitest.com/demo/", "www.sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahitest.com/demo/", "www.sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahitest.com/demo/", "sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://sahitest.com/demo/", "sahitest.com" , "http:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahitest.com:8080/demo/", "sahitest.com:8080" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("http://sahitest.com:80/demo/", "sahitest.com" , "https:")));
+	_assertFalse(_fetch(_sahi.isSameDomain("https://sahitest.com:443/demo/", "sahitest.com" , "http:")));
+}
+
+_runUnitTests();

@@ -1,0 +1,23 @@
+_navigateTo("absolutePosition.htm");
+var $element = _div("absolute");
+var $scrolledParent;
+_set($scrolledParent,  _call(_sahi.getScrolledParent($element).tagName));
+
+var $pageHeight = -1;
+var $bodyHeight = -1;
+if(_isIE()) {
+	_assertEqual("BODY", $scrolledParent);
+}
+else _assertEqual("HTML", $scrolledParent);
+
+_set($bodyHeight, _call(document.body.scrollHeight));
+_assertEqual(0, $bodyHeight);
+
+if(_isIE()){
+	_set($pageHeight, _call(document.body.scrollHeight));
+	_assert($pageHeight == 0);
+} else{
+	_set($pageHeight, _call(document.scrollingElement.scrollHeight));
+	_assert($pageHeight > 0);
+}
+_log($pageHeight);

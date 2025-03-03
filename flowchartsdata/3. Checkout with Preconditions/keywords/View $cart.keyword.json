@@ -1,0 +1,32 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.699Z",
+  "name": "View $cart",
+  "id": "45897",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.699Z",
+  "content": {
+    "title": "View $cart",
+    "parameters": [
+      {
+        "parameterId": "cart_",
+        "entityTypeId": "cart",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link(\"Shopping Cart\")"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

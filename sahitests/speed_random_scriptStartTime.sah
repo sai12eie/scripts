@@ -1,0 +1,44 @@
+var $timer = new Date();
+$timer.getHours(); // => 9
+$timer.getMinutes(); // =>  30
+var $time = $timer.getHours()+":"+$timer.getMinutes()
+
+_setSpeed(2000);
+//Each step will execute with a gap of 2000 milliseconds (2 seconds).
+//Default execution speed is 100ms;
+
+var $t = _testcase("TC_1", "RandomNumber");
+$t.start();
+var $randomNum = _random(100);
+_log($randomNum);
+_assertTrue($randomNum <= 100);
+_assertTrue($randomNum >= 0);
+$t.end();
+
+var $tcs = _testcasesInfo();
+for(var $i=0; $i<$tcs.length; $i++){
+  var $tc = $tcs[$i];
+//  _log($tc.timeTaken);
+}
+_setSpeed(100);
+_assertTrue($tc.timeTaken >= 6000);
+_assertTrue($tc.timeTaken <= 8000);
+
+
+//_log($time);
+var $dateObj = _scriptStartTime();
+var $hours = $dateObj.getHours();
+var $minutes = $dateObj.getMinutes();
+var $scriptStartTime = $hours+":"+$minutes;
+//_log($scriptStartTime);
+if($time == $scriptStartTime)
+	_assertEqual($time, $scriptStartTime);
+else{
+	var $dif = $timer.getTime() - $dateObj.getTime();
+	var $diffSeconds = Math.abs($dif / 1000);
+	_log($diffSeconds);
+	if($diffSeconds > 10) {
+		_assertEqual($time, $scriptStartTime);
+		_fail("Failed at _scriptStartTime API time.");
+	}
+}

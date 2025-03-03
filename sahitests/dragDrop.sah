@@ -1,0 +1,52 @@
+_resource("upload me.txt");
+function testDragDrop($draggable, $droppable, $result) {
+	_dragDrop($draggable, $droppable);
+	_assertExists($result);
+	_assertNotExists($droppable);
+}
+function testDragDropDataTransfer($draggable, $droppable, $result) {
+	_dragDrop($draggable, $droppable);
+	_assertExists($result);
+	_assertNotExists($draggable);
+}
+
+function testDragDropDataTransfer1($draggable, $droppable, $result){
+	_dragDrop($draggable, $droppable);
+	_assertNotExists($result);
+	_call(_sahi.isDragDropFromTopLeft = true);
+	_dragDrop($draggable, $droppable);
+	_assertExists($result);
+}
+
+function testFileDrop($filePath, $droppable){
+	_dropFile($filePath, $droppable);
+	_assertExists(_paragraph("data:text/plain;base64,YWJjZCB"));
+}
+
+_navigateTo("/demo/dragDropMooTools.htm");
+testDragDrop(_div("Drag me"), _div("Item 1"), _div("dropped"));
+testDragDrop(_div("Drag me"), _div("Item 2"), _div("dropped[1]"));
+
+_navigateTo("/demo/dragDropDataTransfer.htm");
+testDragDropDataTransfer(_image("drag1", _in(_div("div2"))), _div("div1"), _image("drag1", _in(_div("div1"))));
+
+_navigateTo("/demo/dragDropMooTools.htm");
+_log("Test slow drag drop");
+_call(Sahi.DRAG_DROP_SPEED = 50);
+testDragDrop(_div("Drag me"), _div("Item 1"), _div("dropped"));
+
+_navigateTo("/demo/dragDropDataTransfer.htm");
+_log("Test slow drag drop");
+_call(Sahi.DRAG_DROP_SPEED = 50);
+testDragDropDataTransfer(_image("drag1", _in(_div("div2"))), _div("div1"), _image("drag1", _in(_div("div1"))));
+testDragDropDataTransfer1(_image("drag3", _in(_div("div4"))), _div("div3"), _image("drag3", _in(_div("div3"))));
+_navigateTo("/demo/dragDropDataTransfer.htm");
+testDragDropDataTransfer(_image("drag3", _in(_div("div4"))), _div("droppableDiv"), _image("drag3", _in(_div("droppableDiv"))));
+_navigateTo("/demo/dragDropDataTransfer.htm");
+testDragDropDataTransfer(_image("drag3", _in(_div("div4"))), _div("droppableDiv[2]"), _image("drag3", _in(_div("droppableDiv[2]"))));
+_navigateTo("/demo/dragDropDataTransfer.htm");
+testDragDropDataTransfer(_image("drag3", _in(_div("div4"))), _div("droppableDiv[1]"), _image("drag3", _in(_div("droppableDiv[1]"))));
+
+_navigateTo("/demo/fileDragDrop.html");
+testFileDrop("upload me.txt", _div("Drag and drop file Drop files"));
+

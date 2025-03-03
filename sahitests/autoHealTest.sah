@@ -1,0 +1,75 @@
+function testAssertsAutoheal(){
+	_assertContainsText("assertContainsText test", _paragraph("assertContainsText test"));
+	_assertVisiblyInside(_paragraph("assertVisiblyInside test"), _section("assertSection"));
+	_assertVisiblyInside(_paragraph("para1"), _section("section"));
+}
+
+//function testDisabledApis(){
+//	_assertExists(_paragraph("assertExists test"));
+//}
+
+function testNameChangedWdUnderAndInRelation(){
+	_setValue(_textbox("nametext1", _under(_textbox("div2_text0")), _in(_div("div2"))), "testing");
+	_assertExists(_textbox("div2_clstext1"));
+}
+
+function testElWithIndex(){
+	_setValue(_textbox("nametext[1]"), "testing");
+	_assertExists(_textbox("div4_clstext"));
+}
+
+function testRelationalElChange(){
+	_setValue(_textbox("nametext3", _under(_textbox("nametext2")), _above(_textbox("div4_text0"), 1), _in(_div("div3"))), "testing");
+	_assertExists(_textbox("div3_clstext1"));
+	_setValue(_textbox("nametext0", _in(_div("div2")), _under(_div("div1")), _above(_div("div3"))), "testing");
+	_assertExists(_textbox("div2_clstext0"));
+}
+
+function testbuttonIdChanged(){
+	_click(_button("button0"));
+	_assertExists(_button("button Id changed autohealed Successfully"));
+}
+
+function testHeadingClassChanged(){
+	_assertEqual("heading class changed", _getText(_heading3("clshe'ading")));
+}
+
+function testLinkClassChangedWdIndex(){
+	_click(_link("clslink[1]"));
+	_assertExists(_link("link class changed with Index autohealed Successfully"));
+}
+
+function testAutohealForDynamicEl(){
+	_click(_radio("sahi"));
+	_click(_textarea("response"));
+	_assertExists(_textarea("modified_response"));
+}
+
+function testFetchAPI(){
+	if(_getText(_paragraph("assertExists test")).indexOf("assertExists test") != -1){
+		_assert(true);
+	}else{
+		_assert(false);
+	}
+}
+
+function testAutohealWdDifferentAttr(){
+	_setValue(_textbox("clstextAttr"), "testing");
+	_assertExists(_textbox("div5_nametextAttr"));
+}
+
+function testAutohealWdPosition(){
+	_assertContainsText("Volvo,Saab,Mercedes,", _heading4(0));
+}
+
+function testAutohealByAny(){
+	_assertContainsText("Sahi Type will be changed", _heading4("Sahi Type will be changed"));
+}
+
+_navigateTo("/demo/autoHealTest.htm");
+_call(_sahi.sahiBlurTimeout = 0);
+_runUnitTests();
+
+_navigateTo("/demo/autoHealTestWdElChanged.htm");
+_call(_sahi.sahiBlurTimeout = 0);
+_runUnitTests();

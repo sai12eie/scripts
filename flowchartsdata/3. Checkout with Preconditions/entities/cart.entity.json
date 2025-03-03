@@ -1,0 +1,73 @@
+{
+  "modifiedOn": "2024-06-19T11:20:33.884Z",
+  "name": "cart",
+  "id": "-1",
+  "type": 1,
+  "createdOn": "2024-05-08T23:26:34Z",
+  "content": {
+    "default": {
+      "attr_01679636987669": {
+        "name": "subtotal",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Subtotal Input",
+            "accessor": "_cell(1, _near(_strong(\"Sub-Total:\")))",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "$200.00",
+          "min-length": "0",
+          "max-length": "0",
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_11679636987670": {
+        "name": "discount",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Discount Input",
+            "accessor": "_cell(1, _near(_strong(\"/Coupon (.*):/\")))",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "$-20.00",
+          "min-length": "0",
+          "max-length": "0",
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_21679636987670": {
+        "name": "total",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Total Input",
+            "accessor": "_cell(1, _near(_strong(\"Total:\")))",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "$180.00",
+          "min-length": "0",
+          "max-length": "0",
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      }
+    }
+  },
+  "enabled": false,
+  "parentId": ""
+}

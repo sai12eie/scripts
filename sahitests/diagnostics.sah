@@ -1,0 +1,96 @@
+function Diagnostics(){}
+Diagnostics.prototype.storeDiagnostics = function(){
+	if (this.diagnostics) return;
+    this.diagnostics = new Object();
+    var $d = this.diagnostics;
+   	_set($d["UserAgent"] , navigator.userAgent);
+    _set($d["Browser Name"] , navigator.appName);
+  	_set($d["Browser Version"] , navigator.appVersion.substring(0, navigator.appVersion.indexOf(")")+1));
+   	_set($d["Java Enabled"] , navigator.javaEnabled());
+   	_set($d["Cookie Enabled"] ,("" + document.cookie).indexOf("sahisid") != -1 );
+	this.addSystemInfo();
+};
+
+Diagnostics.prototype.addSystemInfo = function(){
+	var $s = ""+ Packages.net.sf.sahi.config.Configuration.getDiagnosticInfo()
+  	if($s){
+  		var $properties = $s.split("_$sahi$_;");
+            for (var $i=0; $i<$properties.length; $i++){
+                    var $prop = $properties[$i].split("_$sahi$_:");
+                    if($prop.length == 2) this.diagnostics[$prop[0]] = $prop[1];
+            }
+  	}
+};
+
+Diagnostics.prototype.getDiagnostics = function($name){
+	if (!this.diagnostics) this.storeDiagnostics();
+    if($name){
+     	var $v = this.diagnostics[$name];
+     	return ($v != null) ? $v : "";
+    }
+    var $s = "";
+ 	for (var $key in this.diagnostics){
+    	$s += $key +": "+ this.diagnostics[$key]+"\n";
+ 	}
+    return $s;
+};
+var $diagnostics = new Diagnostics();
+
+function getDiagnostics($name) {
+	return $diagnostics.getDiagnostics($name);
+}
+
+function getBrowserName(){
+	if (_isIE())
+		return "Microsoft Internet Explorer";
+	else if (_isFF())
+		return "Mozilla Firefox";
+	else if (_isSafari())
+		return "Safari";
+	else if (_isEdgeNew())
+		return "Microsoft Edge";
+	else if (_isBrave())
+		return "Brave";
+	else if (_isChrome())
+		return "Google Chrome";
+	else
+		return getDiagnostics("Browser Name");
+}
+var $sahiVersion = getDiagnostics("sahiVersion");
+var $build = getDiagnostics("sahiBuild");
+var $userAgent = getDiagnostics("UserAgent"); 
+var $browserName = getBrowserName();
+var $browserVersion = getDiagnostics("Browser Version");
+var $nativeXHR = getDiagnostics("Native XMLHttpRequest");
+var $javaEnabled = getDiagnostics("Java Enabled");
+var $cookieEnabled = getDiagnostics("Cookie Enabled");
+var $osName = getDiagnostics("osname");
+var $osVersion = getDiagnostics("osversion");
+var $architecture = getDiagnostics("osarch");
+var $processList = getDiagnostics("istasklistavailable");
+var $certUtil = getDiagnostics("iscertutilavailable");
+var $javaDirectory = getDiagnostics("javadir");
+var $jreVersion = getDiagnostics("javaversion");
+var $keyTool = getDiagnostics("iskeytoolavailable");
+var $jarSigner = getDiagnostics("isjarsigneravailable");
+_log("------Sahi Pro Details-------");
+_log("Version: " + $sahiVersion);
+_log("Build: " + $build);
+_log("------Browser Details-------");
+_log("User Agent: " + $userAgent );
+_log("Browser Name: " + $browserName);
+_log("Version: " + $browserVersion);
+_log("Native XmlHTTPRequest: " + $nativeXHR);
+_log("Is Java enabled: " + $javaEnabled);
+_log("Is cookie enabled: " + $cookieEnabled);
+_log("------Operating System Details-------");
+_log("Name: " + $osName);
+_log("Version: " + $osVersion);
+_log("Architecture: " + $architecture);
+_log("Is process list available: " + $processList);
+_log("Is CertUtil available: " + $certUtil);
+_log("------Java Details-------");
+_log("Java Installed Directory: " + $javaDirectory);
+_log("JRE Version: " + $jreVersion);
+_log("Is keytool available: " + $keyTool);
+_log("Is jarsigner available: " + $jarSigner);

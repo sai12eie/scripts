@@ -1,0 +1,26 @@
+_resource("sample_xml.xml");
+var $read=_readFile("sample_xml.xml");
+$read = "<root xmlns:xsl=\"http://sahipro.com\">" + $read + "</root>";
+$read =$read.replace(/<\?xml[^>]*\?>/, "");
+$read =$read.replace(/\r\n/,"");
+var $x = new XML($read);
+default xml namespace = "http://sahipro.com";
+$arr = ["strCacheMemory", "strCeleron", "strCeleronD"];
+$i = 0;
+for each (var $v in $x.variable){
+var $key = $v.@name.toString();
+var $value = $v.toString();
+_log($key);
+_assertEqual($arr[$i], $v.@name.toString());
+$i++;
+}
+
+
+$t = function() {
+		this.a = function() {
+		return "aa";
+  		}
+}
+
+$x = new $t();
+_assertEqual("aa", $x.a());

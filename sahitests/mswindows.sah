@@ -1,0 +1,50 @@
+_navigateTo("/demo/clicks.htm");
+
+_doubleClick(_div("dbl click me"));
+_assertEqual("[DOUBLE_CLICK]", _textarea("t2").value);
+_click(_button("Clear"));
+
+_setMode("WINDOWS");
+_selectWindow("Notepad++");
+/*
+_click(_menuItem("Search"));
+_click(_menuItem("Replace..."));
+*/
+_mouseOver(_toolBar(""));
+_click(_button("Replace..."));
+
+
+_click(_tabItem("Find"));
+_click(_checkbox("Match case"));
+_setValue(_textbox("Find what :"), "abcde");
+_click(_button("Close"));
+
+_setMode("BROWSER");
+
+_click(_button("click me"));
+_assertEqual("[CLICK]", _textarea("t2").value);
+_click(_button("Clear"));
+
+
+
+/*
+_setMode("Windows") 
+_selectWindow("Notepad++");
+_click(_wButton());
+_setSelected(_wSelect("age"), "23);
+_setMode("Android");
+*/
+
+/*
+SahiWindow win = new SahiWindow("Notepad++");
+win.FocusWindow();
+SahiActions.Click(win.FindElement("Search", "menu item"));
+SahiActions.Click(win.FindElement("Replace...", "menu item"));
+SahiElement.ListWindows("");
+//SahiElements.ListElements("", "", win);
+Thread.Sleep(500);
+SahiActions.Click(win.FindElement("Find", "tab item"));
+SahiActions.Click(win.FindElement("Match case", "check box"));
+SahiActions.SetValue(win.FindElement("Find what", "edit"), "abcde");
+SahiActions.Click(win.FindElement("Close", "button"));
+*/

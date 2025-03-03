@@ -1,0 +1,6 @@
+_navigateTo("iframesDataURI.htm");
+_click(_button("Click here"));
+_assertExists(_div("Changes applied!"));
+_assertExists(_bold("base64 IFRAME"));
+_assertExists(_paragraph("hello datauri"));
+_assertExists(_heading1("Welcome to utf-8 iframe"));

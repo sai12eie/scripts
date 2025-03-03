@@ -1,0 +1,36 @@
+function login($user, $pass){
+	_setValue(_textbox("user"), $user);
+	_setValue(_password("password"), $pass);
+	_click(_submit("Login"));
+}
+function addBooks($qJava, $qRuby, $qPython){
+	_setValue(_textbox("q"), $qJava);
+	_setValue(_textbox("q[1]"), $qRuby);
+	_setValue(_textbox("q[2]"), $qPython);
+	_click(_button("Add"));
+}
+function verifyTotal($total){
+	_assertEqual(455, _getValue(_textbox("total")));
+	
+	
+}
+function logout(){
+	_click(_button("Logout1"));
+}
+
+function getArray($int) {
+	if ($int) {
+		return [101, 202, 303];
+	} else {
+		return ["a", "b", "c"];
+	}
+}
+function verifyArray($ar, $int) {
+	if ($int) {
+		_assertEqual($ar, [101, 202, 303]);
+	} else {
+		_assertEqual($ar, ["a", "b", "c"]);
+	}
+}
+
+_navigateTo("/demo/training/");

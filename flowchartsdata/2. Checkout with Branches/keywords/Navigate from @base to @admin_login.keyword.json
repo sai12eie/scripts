@@ -1,0 +1,28 @@
+{
+  "modifiedOn": "2024-05-07T07:30:38.049Z",
+  "name": "Navigate from @base to @admin_login",
+  "id": "0",
+  "type": 3,
+  "createdOn": "2024-05-07T07:30:38.049Z",
+  "content": {
+    "title": "Navigate from @base to @admin_login",
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_navigateTo",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "https://demoapps.testflowchart.com/opencart/admin"
+          }
+        ],
+        "stepType": "Action",
+        "stepCategory": "inbuilt"
+      }
+    ],
+    "isSystemKeyword": true
+  },
+  "enabled": false,
+  "parentId": ""
+}

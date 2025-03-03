@@ -1,0 +1,236 @@
+function testImageWrappedInLink() {
+	_selectWindow();
+	_click(_link("Link Test"));
+	_click(_image("clickMeToNavigate"));
+	_selectWindow("Login");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_closeWindow();
+}
+
+function testWindowOpen() {
+	_selectWindow();
+	_call(window.open("https://sahitest.com/demo/framesTest.htm", "FramesTest"));
+	_selectWindow("FramesTest");
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Link Test"));
+	_assertNotNull(window.opener);
+	_call(window.name="dummy");
+	_selectWindow("dummy");
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Back"));
+	_assertNotNull(window.opener);
+	// test after cross domain navigation
+	_navigateTo("https://sahitest2.com/demo/training/login.htm");
+	_assertTrue(_sahi.isPopup());
+	_assertNotNull(window.opener);
+	_click(_link("Register"));
+	_assertNotNull(window.opener);
+	_closeWindow();
+}
+
+function testWindowOpenWithNoOpener() {
+	_selectWindow();
+	_call(window.open("https://sahitest.com/demo/framesTest.htm", "popWin", "noopener"));
+	_selectWindow("popWin");
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Link Test"));
+	_assertNull(window.opener);
+	_call(window.name="test");
+	_selectWindow("test");
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Back"));
+	_assertNull(window.opener);
+	// test after cross domain navigation
+	_navigateTo("https://sahitest2.com/demo/training/login.htm");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Register"));
+	_assertNull(window.opener);
+	_closeWindow();
+}
+
+function testWindowOpenWithBlankTargetAndNoOpener() {
+	_selectWindow();
+	_call(window.open("https://sahitest.com/demo/framesTestWithTitle.htm", "_blank", "noopener"));
+	_selectWindow("With Title");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Link Test"));
+	_assertNull(window.opener);
+	_call(window.name="test");
+	_selectWindow("test");
+	_assertNull(window.opener);
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Back"));
+	_assertNull(window.opener);
+	// test after cross domain navigation
+	_navigateTo("https://sahitest2.com/demo/training/login.htm");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Register"));
+	_assertNull(window.opener);
+	_closeWindow();
+}
+
+function testCrossDomainIframeInPopup() {
+	_selectWindow();
+	_call(location.reload());
+	_call(_link("Iframe Different Domains").setAttribute("target", "test"));
+	_click(_link("Iframe Different Domains"));
+
+	_selectWindow("test");
+	_assertTrue(_sahi.isPopup());
+	_click(_button("Click me"));
+	_assertEqual("1111", _getValue(_textbox("checkRecord")));
+	_assertNotNull(window.opener);
+
+	_selectDomain("sahitest1.com");
+	_selectWindow("Sahi Tests");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Link Test"));
+	_selectWindow("Link Test");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Back"));
+	_selectWindow("Sahi Tests");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Link Test[1]"));
+	_click(_link("Back"));
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+
+	_selectWindow();
+	_selectDomain();
+	_call(_link("Iframe Different Domains").setAttribute("target", "test2"));
+	_click(_link("Iframe Different Domains"));
+
+	_selectWindow("test2");
+	_click(_button("Click me"));
+	_assertTrue(_sahi.isPopup());
+	_assertEqual("1111", _getValue(_textbox("checkRecord")));
+	_assertNotNull(window.opener);
+
+	_selectDomain("sahitest1.com");
+	_selectWindow("Sahi Tests[1]");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Link Test"));
+	_selectWindow("Link Test");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Back"));
+	_selectWindow("Sahi Tests[1]");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Link Test[1]"));
+	_click(_link("Back"));
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+
+	_selectWindow("test");
+	_selectDomain();
+	_closeWindow();
+
+	_selectWindow("test2");
+	_selectDomain();
+	_closeWindow();
+}
+
+function testPopupWithBlankTargetAndRelOpener(){
+	_selectWindow();
+	_call(location.reload());
+	_call(_link("Window Open Test With Title").setAttribute("rel", "opener"));
+	_click(_link("Window Open Test With Title"));
+	_selectWindow("With Title");
+	_assertTrue(_sahi.isPopup());
+	_assertNotNull(window.opener);
+	_click(_link("Link Test"));
+	_assertNotNull(window.opener);
+	_call(window.name="test");
+	_selectWindow("test");
+	_assertNotNull(window.opener);
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Back"));
+	_assertNotNull(window.opener);
+	_navigateTo("https://sahitest2.com/demo/training/login.htm");
+	_assertTrue(_sahi.isPopup());
+	_assertNotNull(window.opener);
+	_click(_link("Register"));
+	_assertNotNull(window.opener);
+	_closeWindow();
+}
+
+function testPopupWithBlankTarget(){
+	_selectWindow();
+	_call(location.reload());
+	_click(_link("Window Open Test With Title"));
+	
+	_selectWindow("With Title");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Link Test"));
+	_assertNull(window.opener);
+	_call(window.name="test");
+	_selectWindow("test");
+	_assertNull(window.opener);
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Back"));
+	_assertNull(window.opener);
+	// test after cross domain navigation
+	_navigateTo("https://sahitest2.com/demo/training/login.htm");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Register"));
+	_assertNull(window.opener);
+	_closeWindow();
+}
+
+function testPopupWithNonBlankTarget(){
+	_selectWindow();
+	_call(location.reload());
+	_click(_link("Window Open Test"));
+	_selectWindow("popWin");
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Link Test"));
+	_assertNotNull(window.opener);
+	_call(window.name="test");
+	_selectWindow("test");
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Back"));
+	_assertNotNull(window.opener);
+	// test after cross domain navigation
+	_navigateTo("https://sahitest2.com/demo/training/login.htm");
+	_assertTrue(_sahi.isPopup());
+	_assertNotNull(window.opener);
+	_click(_link("Register"));
+	_assertNotNull(window.opener);
+	_closeWindow();
+}
+
+function testPopupWithNoOpener(){
+	_selectWindow();
+	_call(location.reload());
+	_call(_link("Window Open Test").setAttribute("rel", "noopener"));
+	_click(_link("Window Open Test"));
+	
+	_selectWindow("popWin");
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Link Test"));
+	_assertNull(window.opener);
+	_call(window.name="test");
+	_selectWindow("test");
+	_assertTrue(_sahi.isPopup());
+	_click(_link("Back"));
+	_assertNull(window.opener);
+	// test after cross domain navigation
+	_navigateTo("https://sahitest2.com/demo/training/login.htm");
+	_assertTrue(_sahi.isPopup());
+	_assertNull(window.opener);
+	_click(_link("Register"));
+	_assertNull(window.opener);
+	_closeWindow();
+}
+_runUnitTests();

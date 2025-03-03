@@ -1,0 +1,114 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.332Z",
+  "name": "coupon",
+  "id": "45864",
+  "type": 1,
+  "createdOn": "2024-05-09T04:56:34.332Z",
+  "content": {
+    "default": {
+      "attr_01679636456422": {
+        "name": "name",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Name Input",
+            "accessor": "_textbox(\"name\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "Cpn",
+          "min-length": "5",
+          "max-length": "6"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_11679636456422": {
+        "name": "code",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Code Input",
+            "accessor": "_textbox(\"code\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "CPN",
+          "min-length": "3",
+          "max-length": "6",
+          "include-alphabet": "true",
+          "include-numeric": "true",
+          "include-special": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_21679636456422": {
+        "name": "discount",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Discount Input",
+            "accessor": "_textbox(\"discount\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "number",
+        "props": {
+          "min": "10",
+          "max": "10"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_31679636489183": {
+        "name": "status",
+        "accessors": [
+          {
+            "id": "acc0",
+            "name": "Status Input",
+            "accessor": "_select(\"status\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "Enabled",
+          "min-length": 0,
+          "max-length": 0
+        },
+        "invalidData": [],
+        "validData": []
+      }
+    },
+    "specific": [
+      {
+        "combo": {
+          "_isEnabled": true,
+          "_isForProduct": true
+        },
+        "overrides": {}
+      },
+      {
+        "combo": {
+          "_isEnabled": true,
+          "_isForProduct": false
+        },
+        "overrides": {}
+      },
+      {
+        "combo": {
+          "_isEnabled": false,
+          "_isForProduct": true
+        },
+        "overrides": {}
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

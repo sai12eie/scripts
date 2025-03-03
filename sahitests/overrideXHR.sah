@@ -1,0 +1,24 @@
+_navigateTo("/demo/IE7OverrideXHR.htm");
+_startHarLogging();
+var $docMode = null; 
+_set($docMode, _fetch(document.documentMode));
+if(_isIE() && $docMode == 7) {
+    _click(_button("Click to Invoke Another Site"));
+}
+else _click(_submit("Click to Invoke Another Site"));
+_assertVisible(_link(0));
+var $expected = "crossdomaintest.php?is_options_disable=true";
+_assertContainsText($expected, _link(0)) ;
+verifyHARLogs($expected);
+
+function verifyHARLogs($expected){
+	var $harLogs = _getHarLogs();
+	if($harLogs.length == 0) _fail("No request Url found! Expected: " + $expected);
+	for (var $i=0; $i<$harLogs.length; $i++) {
+		var $harLog = $harLogs[$i];
+		_log( "Requested url : " + $harLog.requestUrl);
+//		_assertEqual("/" + $expected + "/", $harLog.requestUrl);
+//		if($harLog.requestUrl.indexOf($expected) == -1) _fail("Following expected request not found: " + $expected + " Actual requestUrl = " + $harLog.requestUrl);
+		if(!$harLog.requestUrl.endsWith($expected)) _fail("Following expected request not found: " + $expected + " Actual requestUrl = " + $harLog.requestUrl);
+	}
+}

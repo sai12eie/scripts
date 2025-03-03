@@ -1,0 +1,17 @@
+_navigateTo("https://wymeditor.github.io/wymeditor/dist/examples/01-basic.html")
+var $el = _rte(0);
+var $html = _rteHTML($el);
+//_log($html);
+var $rte = _rteText($el);
+//_log($rte);
+_rteWrite($el, $html+"<p>Sahi text for testing</p>", _in(_div("wym_box wym_box_0 wym_skin_default")));
+_assertEqual("Sahi text for testing", _getText(_paragraph("Sahi text for testing")));
+var $html2 = _rteHTML($el);
+var $text = $html+"<p>Sahi text for testing</p>";
+_assertEqual($text, $html2);
+
+_selectRange($el, 13, 22);
+_assertEqual("Sahi text", _getSelectionText());
+
+_selectTextRange($el, "text");
+_assertEqual("text", _getSelectionText());

@@ -1,0 +1,5 @@
+_navigateTo("/demo/php/status.php?code=302NL");
+_assertContainsText("/Injected/", document.body);
+_navigateTo("/demo/php/status.php?code=302");
+_assertContainsText("/200/", document.body);
+_assertEqual("From 302", _getText(_div("msg")));

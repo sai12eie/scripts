@@ -1,0 +1,34 @@
+/**
+Reads PDF file and shows the text in the current web page.
+Useful for adding assertions
+@param $pdf- PDF file path relative to the current script directory
+*/
+function showPDFText($pdf) {
+  var $pdfboxAppJarPath = _userDataPath("extlib\\pdfbox-app-3.x.x.jar");
+  var $pdf = _resolvePath($pdf);
+  var $txt =  _resolvePath("PDFAstext.txt");
+  var $data = _execute("java -jar " + $pdfboxAppJarPath + " export:text -html -i=" + $pdf + " -o=" +$txt, true);
+  var $text = _readFile($txt); 
+  _call(document.body.innerHTML = $text);
+}
+
+/**
+Reads PDF file and returns the contents as a string
+@param $pdf- PDF file path relative to the current script directory
+@returns string text contents of the PDF file
+*/
+function getPDFText($pdf,$txt) {
+  var $pdfboxAppJarPath = _userDataPath("extlib\\pdfbox-app-3.x.x.jar");
+  var $pdf = _resolvePath($pdf);
+  var $txt =  _resolvePath("PDFAstext.txt");
+  var $data =  _execute("java -jar " + $pdfboxAppJarPath + " export:text -i=" + $pdf + " -o=" +$txt, true);
+  var $text = _readFile($txt);
+  return $text;
+}
+
+var $pdf = "Gandhiji.pdf"; // Gandhiji.pdf needs to be present in the current script directory
+showPDFText($pdf);
+_assertContainsText("2 October 1869", _paragraph("/Born/"));
+_assertContainsText("30 January 1948", _paragraph("/Died/"));
+var $data = getPDFText($pdf);
+_assertTrue($data.includes("2 October 1869"));

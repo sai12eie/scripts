@@ -1,0 +1,56 @@
+function createInMemoryDatabase($jdbcDriver, $jdbcURL) {
+  	try {
+        java.lang.Class.forName($jdbcDriver);
+        var $connection = java.sql.DriverManager.getConnection($jdbcURL, "", "");
+        var $stmt = $connection.createStatement();
+      	$stmt.execute("CREATE TABLE EXTERNALDATA(H1 INT, H2 INT, TOTAL INT, TOTALROW INT)");
+        $stmt.execute("INSERT INTO EXTERNALDATA(H1, H2, TOTAL, TOTALROW) VALUES(3, 2, 5, 1)");
+        $stmt.execute("INSERT INTO EXTERNALDATA(H1, H2, TOTAL, TOTALROW) VALUES(4, 5, 9, 2)");
+    } 
+  	catch ($e) {
+      _debug($e);
+    }
+  	finally {
+      $stmt.close();
+  	  $connection.close();
+    }
+}
+
+function dropTable($jdbcDriver, $jdbcURL) {
+  	try {
+        java.lang.Class.forName($jdbcDriver);
+        var $connection = java.sql.DriverManager.getConnection($jdbcURL, "", "");
+        var $stmt = $connection.createStatement();
+      	$stmt.execute("DROP TABLE EXTERNALDATA");
+    } 
+  	catch ($e) {
+      _debug($e);
+    }
+  	finally {
+      $stmt.close();
+  	  $connection.close();
+    }
+}
+
+var $globalCount = 1;
+var $globalCount2 = 0;
+
+function resetCount() {
+	$globalCount = 1;
+	$globalCount2 = 0;
+}
+
+function countRows($a, $b, $total, $totalRow) {
+	_assertEqual($total, $a+$b);
+  	_assertEqual($totalRow, $globalCount);
+  	$globalCount++;
+}
+
+function countRows2($arg) {
+	_log($arg);
+  	$globalCount2++;
+}
+
+function verifyDataRowsCountExcludingComments($dataRowsExcludingComments) {
+	_assertEqual($globalCount2, $dataRowsExcludingComments);
+}

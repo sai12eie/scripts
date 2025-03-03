@@ -1,0 +1,49 @@
+_include("../Common.sah");
+_include("../../AR/OpenCart_AR.sah");
+
+/**
+* LoginByAdmin
+* @param $object -
+* @paramobject Username,Password
+*/
+function LoginAsAdmin($Username, $Password){
+	_navigateTo("/opencart/admin");
+	_setValue($_TEXTBOX_USERNAME, $Username);
+	_setPassword($_PASSWORD_PASSWORD, $Password);
+	_click($_SUBMIT_LOGIN);
+	_assertVisible($_LINK_LOGOUT);
+}
+
+function DeleteUser($email){
+	_setValue($_TEXTBOX_FILTEREMAIL, $email);
+	_click($_BUTTON_FILTER);
+	if(_exists(_cell($email))){
+		_check(_checkbox(0, _leftOf(_cell($email))));
+		_clearLastConfirm();
+		_expectConfirm("Are you sure?", true);
+		_click(_button("btn btn-danger"));
+		_assertEqual("Are you sure?", _lastConfirm(false));
+		_assertExists(_div("Success: You have modified customers! ×"));
+	}else{
+		_log("user not registered...", "CUSTOM");
+	}
+}
+
+/**
+* DeleteUserIfExists
+* @param $object -
+* @paramobject Email
+*/
+function DeleteUserIfExists($object){
+	var $data=_readCSVFile("../Data/Admin.csv")[0];
+	var $Username = $data[0];
+	var $Password = $data[1];
+	LoginAsAdmin($Username, $Password);
+	GotoCustomersPage();
+	DeleteUser($object.Email);
+	Logout();
+}
+
+function GotoCustomersPage(){
+	_click($_LINK_CUSTOMERS_IN_LISTITEM_CUSTOMERS)
+}

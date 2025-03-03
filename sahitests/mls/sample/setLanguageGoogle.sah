@@ -1,0 +1,18 @@
+_resource("hindi.properties");
+_resource("en.properties");
+_navigateTo("https://www.google.com/?hl=hi");
+_setLanguage("hindi.properties", "en.properties");
+if(_isIE()){
+	_click(_link("Advanced Search"));
+	_assertVisible(_label("Advanced Search"));
+	_click(_submit("Advanced Search"));
+	_assertVisible(_submit("Google Search"));
+}
+else{
+	_assertVisible(_link("Advertising"));
+	_click(_link("Terms"));
+	_assertVisible(_link("Download PDF"));
+	_click(_link("Archived versions"));
+	_assertVisible(_link("March 31, 2020"));
+}
+_logOutput("Done");

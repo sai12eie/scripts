@@ -1,0 +1,23 @@
+onScriptError=onScriptFailure=null
+
+_resource("rename.txt");
+_assertTrue(_fileExists("rename.txt"));
+_copyFile("rename.txt", "rename2.txt");
+_writeFile("duplicate file", "rename2.txt", true);
+_assertTrue(_fileExists("rename2.txt"));
+_assertEqual("original file", _readFile("rename.txt"));
+_assertEqual("duplicate file", _readFile("rename2.txt"));
+_renameFile ("rename.txt", "rename.txt");
+_assertTrue(_fileExists("rename.txt"));
+_assertEqual("original file", _readFile("rename.txt"));
+_renameFile ("rename.txt", "Rename.txt");
+_assertTrue(_fileExists("rename.txt"));
+_assertTrue(_fileExists("Rename.txt"));
+_renameFile ("rename.txt", "rename2.txt");
+_assertFalse(_fileExists("rename.txt"));
+_assertTrue(_fileExists("rename2.txt"));
+_assertEqual("original file", _readFile("rename2.txt"));
+_renameFile ("rename2.txt", "final.txt");
+_assertFalse(_fileExists("rename2.txt"));
+_assertTrue(_fileExists("Final.txt"));
+_assertEqual("original file", _readFile("Final.txt"));

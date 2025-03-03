@@ -1,0 +1,39 @@
+var $host = "smtp.myserver.com";
+var $port = 25;
+var $username = "myemail@example.com";
+var $password = "mypassword";
+
+var $mailer = new net.sf.sahi.ant.Mailer($host, $port, $username, $password);
+$mailer.setMailProperty("mail.smtp.starttls.enable", "true");
+$mailer.setContentType("text/html");
+$mailer.send("from@example.com", "to@example.com", "my subject", "my email body");
+
+
+
+
+var $mailer = new net.sf.sahi.ant.Mailer($host, $port, $username, $password);
+$mailer.setMailProperty("mail.smtp.starttls.enable", "true");
+$mailer.setContentType("text/html");
+$mailer.setFrom("from@example.com"); 
+$mailer.setTo("to@example.com"); // $mailer.setTo("to1@example.com,to2@example.com"); 
+$mailer.addTo("to2@example.com"); // $mailer.setTo("to1@example.com,to2@example.com"); 
+$mailer.setCC("cc@example.com"); // $mailer.setCC("cc1@example.com,cc2@example.com"); $mailer.setCC(null);
+$mailer.setBCC("bcc@example.com"); // $mailer.setBCC("bcc1@example.com,bcc2@example.com"); $mailer.setBCC(null);
+$mailer.setSubject("my subject");
+$mailer.setBody("my email body");
+$mailer.addAttachment("to@example.com"); // $mailer.setTo("to1@example.com,to2@example.com"); 
+$mailer.send();
+
+
+var $mailer = new net.sf.sahi.ant.Mailer($props);
+$mailer.setMailProperty("mail.smtp.starttls.enable", "true");
+$mailer.setContentType("text/html");
+$mailer.setFrom("from@example.com"); 
+$mailer.setTo("to@example.com"); // $mailer.setTo("to1@example.com,to2@example.com"); 
+$mailer.addTo("to2@example.com"); // $mailer.setTo("to1@example.com,to2@example.com"); 
+$mailer.setCC("cc@example.com"); // $mailer.setCC("cc1@example.com,cc2@example.com"); $mailer.setCC(null);
+$mailer.setBCC("bcc@example.com"); // $mailer.setBCC("bcc1@example.com,bcc2@example.com"); $mailer.setBCC(null);
+$mailer.setSubject("my subject");
+$mailer.setBody("my email body");
+$mailer.addAttachment("to@example.com"); // $mailer.setTo("to1@example.com,to2@example.com"); 
+$mailer.send();

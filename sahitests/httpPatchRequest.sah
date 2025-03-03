@@ -1,0 +1,7 @@
+_navigateTo("/demo/spatch/index2.html");
+_assertEqual("[object Object]", _getValue(_textarea("result")));
+_assertEqual("", _getText(_preformatted("error")));
+_setValue(_textarea("result"), "changed");
+_click(_button("Patch me"));
+_assertEqual("[object Object]", _getValue(_textarea("result")));
+_assertEqual("", _getText(_preformatted("error")));

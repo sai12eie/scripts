@@ -1,0 +1,51 @@
+function testGlobalXHRWaitReadyStatesOnNavigation(){
+	verifyXHRStates("2,3");
+	_setXHRReadyStatesToWaitFor("2");
+	_click(_link("Back"));
+	verifyXHRStates("2");
+
+	var $xhrStates = "2,3";
+	var $url = "/formTest/";
+	formTestXHRStates($xhrStates, $url);
+	_click(_link("Back"));
+	formTestXHRStates($xhrStates, $url);
+}
+
+function testNonExiststingURLXHRWaitReadyStates(){
+	_setXHRReadyStatesToWaitFor("1,2,3","/abc/");
+	_click(_link("Back"));
+	_click(_link("Link Test"));
+	verifyXHRStates("2,3");
+	_setXHRReadyStatesToWaitFor("2,3","/abc/");
+}
+
+function testSpecificURLXHRWaitReadyStates(){
+	_click(_link("Link Test"));
+	verifyXHRStates("2,3");
+	verifyXHRStatesForURL("1,2,3", "/link/");
+}
+
+function testGlobalXHRWaitReadyStates(){
+	_setXHRReadyStatesToWaitFor("1,2,3");
+	verifyXHRStates("1,2,3");
+	
+	_setXHRReadyStatesToWaitFor("2,3");
+	verifyXHRStates("2,3");
+}
+
+function formTestXHRStates($xhrStates, $url){
+	_click(_link("Form Test"));
+	verifyXHRStatesForURL($xhrStates, $url);
+}
+
+function verifyXHRStates($xhrStates){
+	_assertEqual($xhrStates, _sahi.getXHRReadyStatesForURL()); 
+}
+
+function verifyXHRStatesForURL($xhrStates, $url){
+	_setXHRReadyStatesToWaitFor($xhrStates, $url);
+	_assertEqual($xhrStates, _sahi.getXHRReadyStatesForURL($url)); 
+}
+
+_navigateTo("/demo/");
+_runUnitTests();

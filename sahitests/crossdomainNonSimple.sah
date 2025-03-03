@@ -1,0 +1,26 @@
+_navigateTo("crossdomain_file_update.htm");
+_startHarLogging();
+
+_click(_submit("Click to create file on another doamin"));
+_assertExists(_paragraph("test_file.txt created.", _in(_div("div1"))));
+
+_setValue(_textarea("edit_text"), "some text");
+_click(_submit("Edit File"));
+_assertEqual("test_file.txt edited with some text data.", _getText(_paragraph(0)));
+_click(_submit("Back"));
+
+_click(_submit("Click to delete file on another doamin"));
+_assertEqual("test_file.txt deleted.", _getText(_paragraph("test_file.txt deleted.", _in(_div("div2")))));
+
+//getHar();
+_stopHarLogging();
+
+
+function getHar(){
+	var $harLogs = _getHarLogs();
+	for (var $i=0; $i<$harLogs.length; $i++) {
+		var $harLog = $harLogs[$i];
+		_log( "Requested url : " + $harLog.requestUrl );
+		_log( "HTTP request method : " + $harLog.requestMethod );
+	}	
+}

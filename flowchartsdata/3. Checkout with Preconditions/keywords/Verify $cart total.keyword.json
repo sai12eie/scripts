@@ -1,0 +1,72 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.773Z",
+  "name": "Verify $cart total",
+  "id": "45904",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.773Z",
+  "content": {
+    "title": "Verify $cart total",
+    "parameters": [
+      {
+        "parameterId": "cart_",
+        "entityTypeId": "cart",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_assertTextEquals",
+        "stepParameters": [
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_01679636987669",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_01679636987669"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": true,
+        "action": "_assertTextEquals",
+        "stepParameters": [
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_11679636987670",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_11679636987670"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_assertTextEquals",
+        "stepParameters": [
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_21679636987670",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "cart_",
+            "attributeId": "attr_21679636987670"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

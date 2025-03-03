@@ -1,0 +1,13 @@
+_navigateTo("/demo/training/");
+_setValue(_textbox("user"), "test");
+_setValue(_password("password"), "secret");
+_click(_submit("Login"));
+
+// this will open new browser but Sahi will not inject js on that page as the page has JSON data only.
+var $browser = _launchNewBrowser(_suiteInfo()["baseURL"] + "/jsonData.htm");
+_selectBrowser($browser);
+_wait(1000);
+_closeBrowser();
+
+// Logout on base browser
+_click(_button("Logout"));

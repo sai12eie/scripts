@@ -1,0 +1,39 @@
+_include("inheritance.sah");
+
+var LoginActions = SahiObject.extend({
+	$usernameF: _textbox("user"),
+	$passwordF: _password("password"),
+	$loginB: _submit("Login"),
+	$logoutB: _button("Logout"),
+	login: function($username, $password){
+		_setValue(this.$usernameF, $username);
+		_setValue(this.$passwordF, $password);
+		_click(this.$loginB);
+	},
+	logout: function() {
+		_click(this.$logoutB);
+	}
+});
+
+var CartActions = LoginActions.extend({
+	$qJava: _textbox("q"),
+	$qRuby: _textbox("q[1]"),
+	$qPython: _textbox("q[2]"),
+	login: function () {
+		this._super("test", "secret");
+	},
+	addBooks: function($q0, $q1, $q2) {
+		_setValue(this.$qJava, $q0);
+		_setValue(this.$qRuby, $q1);
+		_setValue(this.$qPython, $q2);
+	},
+	verifyTotal: function($total) {
+		_assertEqual($total, _getValue(_textbox("total")));
+	}
+});
+
+var ca = new CartActions();
+ca.login();
+ca.addBooks(2,3,1);
+ca.verifyTotal(9120);
+ca.logout();

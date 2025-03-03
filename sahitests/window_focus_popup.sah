@@ -1,0 +1,9 @@
+_click(_link("Form Test"));
+_click(_link("Back"));
+_focusWindow();
+_click(_link("Window Open Test"));
+_focusWindow();
+_selectWindow("popWin");
+_focusWindow();
+_selectWindow();
+_focusWindow();

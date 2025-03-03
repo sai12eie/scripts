@@ -1,0 +1,53 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.755Z",
+  "name": "Set $product for $coupon",
+  "id": "45902",
+  "type": 3,
+  "createdOn": "2024-05-09T04:56:34.755Z",
+  "content": {
+    "title": "Set $product for $coupon",
+    "parameters": [
+      {
+        "parameterId": "product_",
+        "entityTypeId": "product",
+        "suffix": ""
+      },
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_textbox(\"product\")"
+          },
+          {
+            "parameterId": "product_",
+            "attributeId": "attr_01679636522544"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_link($product.name)"
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

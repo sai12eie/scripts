@@ -1,0 +1,28 @@
+function testValidModeWorks() {
+	_log("Before set mode BROWSER");
+	var $failed = false;
+	try {
+		_disableDefaultErrorLogging(); 
+		_setMode("BROWSER");
+	} catch ($e) {
+		_logException($e);
+		$failed = true;
+	}
+	_assertFalse($failed);
+}
+
+function testInvalidModeThrowsException() {
+	_log("Before set mode WRONG_MODE");
+	var $failed = false;
+	try {
+		_disableDefaultErrorLogging(); 
+		_setMode("WRONG_MODE");
+	} catch ($e) {
+		_logException($e);
+		_assertEqual("Mode WRONG_MODE not available.", $e.message);
+		$failed = true;
+	}
+	_assertTrue($failed);
+}
+
+_runUnitTests();

@@ -1,0 +1,210 @@
+{
+  "modifiedOn": "2024-05-09T05:33:26.588Z",
+  "name": "Create Coupon",
+  "id": "-1",
+  "type": 0,
+  "createdOn": "2024-05-08T17:59:32Z",
+  "content": {
+    "pathExecutionOrder": [],
+    "settings": {
+      "maxProceedDepth": 100,
+      "maxProceedsForFirstDepth": 1,
+      "maxProceedsPerDepth": 1,
+      "maxPathRepititionsPerComboPath": 1,
+      "maxProceedsPerPath": 10000,
+      "maxToggles": 2,
+      "maxMatchingPaths": 3
+    },
+    "flowChartUID": "fcUID_1715230768647",
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "nodeType": "start",
+        "branches": [
+          "fcn_createcoupon_1715230784162_0"
+        ],
+        "content": "Start"
+      },
+      "fcn_createcoupon_1715230784162_0": {
+        "id": "fcn_createcoupon_1715230784162_0",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_login_admin_1715230784162_0"
+        ],
+        "content": "Create Coupon"
+      },
+      "fcn_login_admin_1715230784162_0": {
+        "id": "fcn_login_admin_1715230784162_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_coupon_1715230784162_0"
+        ],
+        "content": "[login_admin]"
+      },
+      "fcn_coupon_1715230784162_0": {
+        "id": "fcn_coupon_1715230784162_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_fillcoupondetails_1715230784162_0"
+        ],
+        "content": "@coupon"
+      },
+      "fcn_fillcoupondetails_1715230784162_0": {
+        "id": "fcn_fillcoupondetails_1715230784162_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_coupon_isforproduct_1715230784162_0"
+        ],
+        "content": "Fill $coupon details"
+      },
+      "fcn_coupon_isforproduct_1715230784162_0": {
+        "id": "fcn_coupon_isforproduct_1715230784162_0",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_connector_1715230784162_0",
+          "fcn_productexists_1715230784162_0"
+        ],
+        "content": "$coupon._isForProduct?"
+      },
+      "fcn_connector_1715230784162_0": {
+        "id": "fcn_connector_1715230784162_0",
+        "nodeType": "skip",
+        "branches": [
+          "fcn_coupon_isenabled_1715230784162_0"
+        ],
+        "content": "Connector"
+      },
+      "fcn_coupon_isenabled_1715230784162_0": {
+        "id": "fcn_coupon_isenabled_1715230784162_0",
+        "nodeType": "decision",
+        "branches": [
+          "fcn_disablecoupon_1715230784162_0",
+          "fcn_enablecoupon_1715230784162_0"
+        ],
+        "content": "$coupon._isEnabled?"
+      },
+      "fcn_disablecoupon_1715230784162_0": {
+        "id": "fcn_disablecoupon_1715230784162_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_savecoupon_1715230784162_0"
+        ],
+        "content": "Disable $coupon"
+      },
+      "fcn_savecoupon_1715230784162_0": {
+        "id": "fcn_savecoupon_1715230784162_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_couponexiststrue_1715230784162_0"
+        ],
+        "content": "Save $coupon"
+      },
+      "fcn_couponexiststrue_1715230784162_0": {
+        "id": "fcn_couponexiststrue_1715230784162_0",
+        "nodeType": "state",
+        "branches": [],
+        "content": "$coupon.exists\u003dtrue"
+      },
+      "fcn_enablecoupon_1715230784162_0": {
+        "id": "fcn_enablecoupon_1715230784162_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_savecoupon_1715230784162_0"
+        ],
+        "content": "Enable $coupon"
+      },
+      "fcn_productexists_1715230784162_0": {
+        "id": "fcn_productexists_1715230784162_0",
+        "nodeType": "decision",
+        "branches": [
+          null,
+          "fcn_setproductforcoupon_1715230784162_0"
+        ],
+        "content": "$product.exists?"
+      },
+      "fcn_setproductforcoupon_1715230784162_0": {
+        "id": "fcn_setproductforcoupon_1715230784162_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_couponproductproduct_1715230784162_0"
+        ],
+        "content": "Set $product for $coupon"
+      },
+      "fcn_couponproductproduct_1715230784162_0": {
+        "id": "fcn_couponproductproduct_1715230784162_0",
+        "nodeType": "state",
+        "branches": [
+          "fcn_connector_1715230784162_0"
+        ],
+        "content": "$coupon.product\u003d$product"
+      }
+    },
+    "pathNames": [],
+    "isPrimary": true,
+    "positions": {
+      "fcn_start_0": {
+        "top": 150.0,
+        "left": 500.0
+      },
+      "fcn_createcoupon_1715230784162_0": {
+        "top": 211.0,
+        "left": 500.0
+      },
+      "fcn_login_admin_1715230784162_0": {
+        "top": 303.0,
+        "left": 500.0
+      },
+      "fcn_coupon_1715230784162_0": {
+        "top": 369.15625,
+        "left": 500.0
+      },
+      "fcn_fillcoupondetails_1715230784162_0": {
+        "top": 438.0,
+        "left": 500.0
+      },
+      "fcn_coupon_isforproduct_1715230784162_0": {
+        "top": 524.15625,
+        "left": 500.0
+      },
+      "fcn_connector_1715230784162_0": {
+        "top": 772.65625,
+        "left": 500.0
+      },
+      "fcn_coupon_isenabled_1715230784162_0": {
+        "top": 832.65625,
+        "left": 500.0
+      },
+      "fcn_disablecoupon_1715230784162_0": {
+        "top": 1003.65625,
+        "left": 907.0
+      },
+      "fcn_savecoupon_1715230784162_0": {
+        "top": 1097.65625,
+        "left": 500.0
+      },
+      "fcn_couponexiststrue_1715230784162_0": {
+        "top": 1183.828125,
+        "left": 501.0
+      },
+      "fcn_enablecoupon_1715230784162_0": {
+        "top": 917.828125,
+        "left": 500.0
+      },
+      "fcn_productexists_1715230784162_0": {
+        "top": 571.328125,
+        "left": 986.0
+      },
+      "fcn_setproductforcoupon_1715230784162_0": {
+        "top": 640.5,
+        "left": 988.0
+      },
+      "fcn_couponproductproduct_1715230784162_0": {
+        "top": 706.65625,
+        "left": 988.0
+      }
+    },
+    "tags": ""
+  },
+  "enabled": true,
+  "parentId": ""
+}

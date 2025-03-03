@@ -1,0 +1,24 @@
+_navigateTo("/demo/php/permissions_policy.php");
+
+_highlight(_heading1("Permissions Policy"));
+_assertVisible(_heading1("Permissions Policy"));
+
+_highlight(_span("sync xhr denied"));
+_assertVisible(_span("sync xhr denied"));
+
+_selectDomain("sahitest1.com");
+_highlight(_link("Link Test"));
+_highlight(_link("Form Test"));
+
+_selectDomain();
+_navigateTo("/demo/php/feature_policy_sync_xhr.php");
+
+_highlight(_heading1("Feature Policy"));
+_assertVisible(_heading1("Feature Policy"));
+
+_highlight(_span("sync xhr denied"));
+_assertVisible(_span("sync xhr denied"));
+
+_selectDomain("sahitest1.com");
+_highlight(_link("Link Test"));
+_highlight(_link("Form Test"));

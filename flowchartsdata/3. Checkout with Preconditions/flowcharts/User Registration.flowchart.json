@@ -1,0 +1,190 @@
+{
+  "modifiedOn": "2024-05-09T04:56:34.418Z",
+  "name": "User Registration",
+  "id": "45872",
+  "type": 0,
+  "createdOn": "2024-05-09T04:56:34.418Z",
+  "content": {
+    "settings": {
+      "maxProceedDepth": 100,
+      "maxProceedsForFirstDepth": 1,
+      "maxProceedsPerDepth": 1,
+      "maxPathRepititionsPerComboPath": 1,
+      "maxProceedsPerPath": 10000,
+      "maxToggles": 2,
+      "maxMatchingPaths": 3
+    },
+    "nodesMap": {
+      "fcn_start_0": {
+        "dataSetId": -1,
+        "id": "fcn_start_0",
+        "nodeType": "start",
+        "branches": [
+          "fcn_userregistration_0",
+          "fcn_invalidlogin_0"
+        ],
+        "content": "Start"
+      },
+      "fcn_userregistration_0": {
+        "dataSetId": -1,
+        "id": "fcn_userregistration_0",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_registration_0"
+        ],
+        "content": "User Registration"
+      },
+      "fcn_registeruser_0": {
+        "dataSetId": -1,
+        "id": "fcn_registeruser_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_confirmregistration_0"
+        ],
+        "content": "Register $user"
+      },
+      "fcn_registration_0": {
+        "dataSetId": -1,
+        "id": "fcn_registration_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_registeruser_0"
+        ],
+        "content": "@registration"
+      },
+      "fcn_confirmregistration_0": {
+        "dataSetId": -1,
+        "id": "fcn_confirmregistration_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifyconfirmationmessage_0"
+        ],
+        "content": "Confirm registration"
+      },
+      "fcn_verifyconfirmationmessage_0": {
+        "dataSetId": -1,
+        "id": "fcn_verifyconfirmationmessage_0",
+        "nodeType": "state",
+        "branches": [
+          "fcn_logoutuser_0"
+        ],
+        "content": "Verify $user details"
+      },
+      "fcn_logoutuser_0": {
+        "dataSetId": -1,
+        "id": "fcn_logoutuser_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_userexiststrue_0"
+        ],
+        "content": "Logout $user"
+      },
+      "fcn_userexiststrue_0": {
+        "dataSetId": -1,
+        "id": "fcn_userexiststrue_0",
+        "nodeType": "state",
+        "branches": [],
+        "content": "$user.exists\u003dtrue"
+      },
+      "fcn_invalidlogin_0": {
+        "dataSetId": -1,
+        "id": "fcn_invalidlogin_0",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_userexists_0"
+        ],
+        "content": "Invalid Login"
+      },
+      "fcn_userexists_0": {
+        "dataSetId": -1,
+        "id": "fcn_userexists_0",
+        "nodeType": "decision",
+        "branches": [
+          null,
+          "fcn_loginuser_0"
+        ],
+        "content": "$user.exists?"
+      },
+      "fcn_loginuser_0": {
+        "dataSetId": 10631,
+        "id": "fcn_loginuser_0",
+        "nodeType": "action",
+        "branches": [
+          "fcn_verifyusernotloggedin_0"
+        ],
+        "content": "Login $user\n// with wrong password"
+      },
+      "fcn_verifyusernotloggedin_0": {
+        "dataSetId": -1,
+        "id": "fcn_verifyusernotloggedin_0",
+        "nodeType": "state",
+        "branches": [],
+        "content": "Verify $user not loggedin"
+      }
+    },
+    "pathNames": {
+      "[\"fcn_invalidlogin_0\",\"fcn_userexists_0\",\"fcn_loginuser_0\",\"fcn_verifyusernotloggedin_0\"]": {
+        "pathName": "Invalid Login",
+        "dataSetName": "-1.csv",
+        "pathDependsOn": "{}"
+      },
+      "[\"fcn_userregistration_0\",\"fcn_registration_0\",\"fcn_registeruser_0\",\"fcn_confirmregistration_0\",\"fcn_verifyconfirmationmessage_0\",\"fcn_logoutuser_0\",\"fcn_userexiststrue_0\"]": {
+        "pathName": "User Registration",
+        "pathDependsOn": "{}"
+      }
+    },
+    "isPrimary": true,
+    "positions": {
+      "fcn_start_0": {
+        "top": 153.0,
+        "left": 185.0
+      },
+      "fcn_userregistration_0": {
+        "top": 215.0,
+        "left": 185.0
+      },
+      "fcn_registration_0": {
+        "top": 275.0,
+        "left": 185.0
+      },
+      "fcn_registeruser_0": {
+        "top": 351.0,
+        "left": 186.0
+      },
+      "fcn_confirmregistration_0": {
+        "top": 416.16668701171875,
+        "left": 186.0
+      },
+      "fcn_verifyconfirmationmessage_0": {
+        "top": 476.16668701171875,
+        "left": 186.0
+      },
+      "fcn_logoutuser_0": {
+        "top": 536.1666870117188,
+        "left": 186.0
+      },
+      "fcn_userexiststrue_0": {
+        "top": 601.3333129882812,
+        "left": 186.0
+      },
+      "fcn_invalidlogin_0": {
+        "top": 215.0,
+        "left": 465.0
+      },
+      "fcn_userexists_0": {
+        "top": 275.0,
+        "left": 465.0
+      },
+      "fcn_loginuser_0": {
+        "top": 340.16668701171875,
+        "left": 465.0
+      },
+      "fcn_verifyusernotloggedin_0": {
+        "top": 436.33331298828125,
+        "left": 471.0
+      }
+    }
+  },
+  "enabled": true,
+  "parentId": ""
+}

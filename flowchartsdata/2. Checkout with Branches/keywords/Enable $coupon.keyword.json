@@ -1,0 +1,67 @@
+{
+  "modifiedOn": "2024-04-08T05:22:31.171Z",
+  "name": "Enable $coupon",
+  "id": "44861",
+  "type": 3,
+  "createdOn": "2024-04-08T05:22:31.171Z",
+  "content": {
+    "title": "Enable $coupon",
+    "parameters": [
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_wait",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "2000"
+          }
+        ],
+        "stepType": "Action"
+      },
+      {
+        "commented": false,
+        "action": "_setSelected",
+        "stepParameters": [
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_31679636489183",
+            "accessorId": "acc0"
+          },
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_31679636489183"
+          }
+        ],
+        "stepType": "Action",
+        "visibleCheck": false
+      },
+      {
+        "commented": false,
+        "action": "_getSelectedText",
+        "stepParameters": [
+          {
+            "parameterId": "coupon_",
+            "attributeId": "attr_31679636489183",
+            "accessorId": "acc0"
+          }
+        ],
+        "stepType": "Assert",
+        "assertType": "Equals",
+        "secondaryParam": {
+          "parameterId": "coupon_",
+          "attributeId": "attr_31679636489183"
+        },
+        "visibleCheck": false
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

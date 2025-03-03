@@ -1,0 +1,80 @@
+/**
+* login
+* @param $object -
+* @paramobject user,password
+*/
+
+function login1($object){
+  _setValue(_textbox("user"), $object.user);
+  _setPassword(_password("password"), $object.password);
+  _click(_submit("Login"));
+}
+
+/**
+* login2
+* @param $user - 
+* @param $password - 
+*/
+function login2($user, $password){
+  _setValue(_textbox("user"), $user);
+  _setPassword(_password("password"), $password);
+  _click(_submit("Login"));
+}
+
+/**
+* addBooks
+* @param $object -
+* @paramobject java,ruby,python
+*/
+
+function addBooks1($object){
+  _setValue(_textbox("q"), $object.java);
+  _setValue(_textbox("q[1]"), $object.ruby);
+  _setValue(_textbox("q[2]"), $object.python);
+  _click(_button("Add"));
+}
+
+/**
+* addBooks
+* @param $java -
+* @param $ruby -
+* @param $python -
+*/
+
+function addBooks2($java, $ruby, $python){
+  _setValue(_textbox("q"), $java);
+  _setValue(_textbox("q[1]"), $ruby);
+  _setValue(_textbox("q[2]"), $python);
+  _click(_button("Add"));
+}
+
+/**
+* verifyTotal
+* @param $object -
+* @paramobject total
+*/
+
+function verifyTotal1($object){
+  _assertExists(_textbox("total"));
+  _assert(_isVisible(_textbox("total")));
+  _assertEqual($object.total, _getValue(_textbox("total")));
+}
+
+/**
+* verifyTotal
+* @param $total -
+*/
+
+function verifyTotal2($total){
+  _assertExists(_textbox("total"));
+  _assert(_isVisible(_textbox("total")));
+  _assertEqual($total, _getValue(_textbox("total")));
+}
+
+function logout(){
+  _click(_button("Logout"));
+}
+
+/* --Functions Above-- */
+
+_navigateTo("http://sahitest.com/demo/training/");

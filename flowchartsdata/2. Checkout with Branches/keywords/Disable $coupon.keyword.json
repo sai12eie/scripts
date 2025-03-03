@@ -1,0 +1,36 @@
+{
+  "modifiedOn": "2024-04-08T05:22:31.361Z",
+  "name": "Disable $coupon",
+  "id": "44881",
+  "type": 3,
+  "createdOn": "2024-04-08T05:22:31.361Z",
+  "content": {
+    "title": "Disable $coupon",
+    "parameters": [
+      {
+        "parameterId": "coupon_",
+        "entityTypeId": "coupon",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setSelected",
+        "stepParameters": [
+          {
+            "isCustomParameter": true,
+            "customValue": "_select(\"status\")"
+          },
+          {
+            "isCustomParameter": true,
+            "customValue": "\"Disabled\""
+          }
+        ],
+        "stepType": "Action"
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

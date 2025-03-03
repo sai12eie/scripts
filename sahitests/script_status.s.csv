@@ -1,0 +1,5 @@
+"TestCase","Key Word","Argument 1","Argument 2"
+,"loadSahi","script_status_lib.sah"
+
+"TC1","[Documentation]","TC1"
+,"test Script Status"

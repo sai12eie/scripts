@@ -1,0 +1,5 @@
+var $xl = _getExcel(_resolvePath("framework/sample2.xls"), "Sheet1");
+var $d = $xl.getData()[0];
+$xl.insertRow(["a", "b"], 10);
+
+$xl.deleteRows([10,11]);
