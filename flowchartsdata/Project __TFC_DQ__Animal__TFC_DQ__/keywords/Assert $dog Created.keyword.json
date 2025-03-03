@@ -108,26 +108,6 @@
           {
             "paramMode": "default",
             "parameterId": "dog_",
-            "attributeId": "attr_email_2",
-            "accessorId": "acc_emailbox_email"
-          },
-          {
-            "paramMode": "default",
-            "parameterId": "dog_",
-            "attributeId": "attr_email_2"
-          }
-        ],
-        "stepCategory": "inbuilt",
-        "stepType": "Action",
-        "specific": []
-      },
-      {
-        "commented": false,
-        "action": "_setValue",
-        "stepParameters": [
-          {
-            "paramMode": "default",
-            "parameterId": "dog_",
             "attributeId": "attr_telephone_3",
             "accessorId": "acc_telephonebox_telephone"
           },
@@ -148,6 +128,26 @@
           {
             "paramMode": "code",
             "customValue": "_submit(\"Continue\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_email_2",
+            "accessorId": "acc_emailbox_email"
+          },
+          {
+            "paramMode": "default",
+            "parameterId": "dog_",
+            "attributeId": "attr_email_2"
           }
         ],
         "stepCategory": "inbuilt",
