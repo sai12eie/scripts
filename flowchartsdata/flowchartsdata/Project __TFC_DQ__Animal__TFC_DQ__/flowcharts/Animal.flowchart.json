@@ -1,0 +1,86 @@
+{
+  "name": "Animal",
+  "id": "-1",
+  "type": 0,
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_createdog_0"
+        ]
+      },
+      "fcn_createdog_0": {
+        "id": "fcn_createdog_0",
+        "content": "Create dog",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_createdog_1"
+        ]
+      },
+      "fcn_createdog_1": {
+        "id": "fcn_createdog_1",
+        "content": "Create $dog",
+        "nodeType": "action",
+        "branches": [
+          "fcn_assertdogcreated_0"
+        ]
+      },
+      "fcn_assertdogcreated_0": {
+        "id": "fcn_assertdogcreated_0",
+        "content": "Assert $dog Created",
+        "nodeType": "state",
+        "branches": [
+          "fcn_dogexiststrue_0"
+        ]
+      },
+      "fcn_dogexiststrue_0": {
+        "id": "fcn_dogexiststrue_0",
+        "content": "$dog.exists\u003dtrue",
+        "nodeType": "state",
+        "branches": []
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150.0,
+        "left": 500.0
+      },
+      "fcn_createdog_0": {
+        "top": 211.0,
+        "left": 500.0
+      },
+      "fcn_createdog_1": {
+        "top": 271.0,
+        "left": 500.0
+      },
+      "fcn_assertdogcreated_0": {
+        "top": 331.0,
+        "left": 500.0
+      },
+      "fcn_dogexiststrue_0": {
+        "top": 391.0,
+        "left": 500.0
+      }
+    },
+    "isPrimary": true,
+    "pathNames": [
+      {
+        "pathKey": [
+          "fcn_createdog_0",
+          "fcn_createdog_1",
+          "fcn_assertdogcreated_0",
+          "fcn_dogexiststrue_0"
+        ],
+        "dependsPathUID": "17409954592950",
+        "isValidationsEnabled": false
+      }
+    ],
+    "flowChartUID": "fcUID_animal_0",
+    "pathExecutionOrder": []
+  },
+  "enabled": true,
+  "parentId": ""
+}
