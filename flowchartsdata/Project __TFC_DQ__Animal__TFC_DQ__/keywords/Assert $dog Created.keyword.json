@@ -33,6 +33,19 @@
         "stepParameters": [
           {
             "paramMode": "code",
+            "customValue": "_submit(\"Continue\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
             "customValue": "_link(\"My Account\")"
           }
         ],
@@ -136,11 +149,11 @@
       },
       {
         "commented": false,
-        "action": "_click",
+        "action": "_log",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_submit(\"Continue\")"
+            "paramMode": "string",
+            "customValue": "new line"
           }
         ],
         "stepCategory": "inbuilt",
