@@ -37,6 +37,22 @@
           {
             "value": "",
             "comment": "blank"
+          },
+          {
+            "value": "kavitha",
+            "comment": "7 chars"
+          },
+          {
+            "value": "sample",
+            "comment": ""
+          },
+          {
+            "value": "abcdefghijkl",
+            "comment": "4 chars"
+          },
+          {
+            "value": ")(\u0026^%$#@",
+            "comment": "Special"
           }
         ]
       },
