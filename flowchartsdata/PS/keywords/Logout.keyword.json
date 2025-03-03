@@ -33,6 +33,19 @@
         "stepCategory": "inbuilt",
         "stepType": "Action",
         "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_log",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "third"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
       }
     ]
   },
