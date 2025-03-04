@@ -1,0 +1,86 @@
+{
+  "name": "user reg",
+  "id": "-1",
+  "type": 0,
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_userreg_0"
+        ]
+      },
+      "fcn_userreg_0": {
+        "id": "fcn_userreg_0",
+        "content": "User reg",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_gotoreg_0"
+        ]
+      },
+      "fcn_gotoreg_0": {
+        "id": "fcn_gotoreg_0",
+        "content": "go to reg",
+        "nodeType": "action",
+        "branches": [
+          "fcn_createuser_0"
+        ]
+      },
+      "fcn_createuser_0": {
+        "id": "fcn_createuser_0",
+        "content": "create $user",
+        "nodeType": "action",
+        "branches": [
+          "fcn_logout_0"
+        ]
+      },
+      "fcn_logout_0": {
+        "id": "fcn_logout_0",
+        "content": "logout",
+        "nodeType": "action",
+        "branches": []
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150.0,
+        "left": 500.0
+      },
+      "fcn_userreg_0": {
+        "top": 211.0,
+        "left": 500.0
+      },
+      "fcn_gotoreg_0": {
+        "top": 270.0,
+        "left": 500.0
+      },
+      "fcn_createuser_0": {
+        "top": 329.0,
+        "left": 500.0
+      },
+      "fcn_logout_0": {
+        "top": 394.1562,
+        "left": 500.0
+      }
+    },
+    "isPrimary": true,
+    "pathNames": [
+      {
+        "pathKey": [
+          "fcn_userreg_0",
+          "fcn_gotoreg_0",
+          "fcn_createuser_0",
+          "fcn_logout_0"
+        ],
+        "dependsPathUID": "17410704775430",
+        "isValidationsEnabled": false
+      }
+    ],
+    "flowChartUID": "fcUID_userreg_0",
+    "pathExecutionOrder": []
+  },
+  "enabled": true,
+  "parentId": ""
+}

@@ -1,0 +1,85 @@
+{
+  "name": "add $books",
+  "id": "-1",
+  "type": 3,
+  "content": {
+    "isSystemKeyword": false,
+    "title": "add $books",
+    "specific": [],
+    "parameters": [
+      {
+        "parameterId": "books_",
+        "entityTypeId": "books",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_textbox(\"q\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "2"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_textbox(\"q[1]\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "2"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_textbox(\"q[2]\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "2"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_button(\"Add\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

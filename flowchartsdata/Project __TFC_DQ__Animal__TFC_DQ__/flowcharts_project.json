@@ -8,7 +8,9 @@
     "filters": {},
     "executionOrder": [
       "Animal",
-      "New Scenario"
+      "New Scenario",
+      "user reg",
+      "books"
     ]
   }
 }

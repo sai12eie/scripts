@@ -1,0 +1,28 @@
+{
+  "name": "logout",
+  "id": "0",
+  "type": 3,
+  "content": {
+    "isSystemKeyword": false,
+    "title": "logout",
+    "specific": [],
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_link(\"Logout[1]\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

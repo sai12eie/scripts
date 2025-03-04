@@ -1,0 +1,11 @@
+{
+  "name": "books",
+  "id": "0",
+  "type": 1,
+  "content": {
+    "default": {},
+    "specific": []
+  },
+  "enabled": false,
+  "parentId": ""
+}

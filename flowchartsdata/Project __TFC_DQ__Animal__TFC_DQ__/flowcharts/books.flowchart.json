@@ -1,0 +1,86 @@
+{
+  "name": "books",
+  "id": "-1",
+  "type": 0,
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_vrifytotal_0"
+        ]
+      },
+      "fcn_vrifytotal_0": {
+        "id": "fcn_vrifytotal_0",
+        "content": "Vrify total",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_logintocart_0"
+        ]
+      },
+      "fcn_logintocart_0": {
+        "id": "fcn_logintocart_0",
+        "content": "login to cart",
+        "nodeType": "action",
+        "branches": [
+          "fcn_addbooks_0"
+        ]
+      },
+      "fcn_addbooks_0": {
+        "id": "fcn_addbooks_0",
+        "content": "add $books",
+        "nodeType": "action",
+        "branches": [
+          "fcn_logoutcart_0"
+        ]
+      },
+      "fcn_logoutcart_0": {
+        "id": "fcn_logoutcart_0",
+        "content": "logout cart",
+        "nodeType": "action",
+        "branches": []
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150.0,
+        "left": 500.0
+      },
+      "fcn_vrifytotal_0": {
+        "top": 211.0,
+        "left": 500.0
+      },
+      "fcn_logintocart_0": {
+        "top": 270.0,
+        "left": 500.0
+      },
+      "fcn_addbooks_0": {
+        "top": 329.0,
+        "left": 500.0
+      },
+      "fcn_logoutcart_0": {
+        "top": 394.1562,
+        "left": 500.0
+      }
+    },
+    "isPrimary": true,
+    "pathNames": [
+      {
+        "pathKey": [
+          "fcn_vrifytotal_0",
+          "fcn_logintocart_0",
+          "fcn_addbooks_0",
+          "fcn_logoutcart_0"
+        ],
+        "dependsPathUID": "17410706862960",
+        "isValidationsEnabled": false
+      }
+    ],
+    "flowChartUID": "fcUID_books_0",
+    "pathExecutionOrder": []
+  },
+  "enabled": true,
+  "parentId": ""
+}
