@@ -8,6 +8,30 @@
         "id": "fcn_start_0",
         "content": "Start",
         "nodeType": "start",
+        "branches": [
+          "fcn_testdoginscecondscenario_0"
+        ]
+      },
+      "fcn_testdoginscecondscenario_0": {
+        "id": "fcn_testdoginscecondscenario_0",
+        "content": "Test Dog in scecond scenario",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_newdog_0"
+        ]
+      },
+      "fcn_newdog_0": {
+        "id": "fcn_newdog_0",
+        "content": "new $dog",
+        "nodeType": "action",
+        "branches": [
+          "fcn_createdog_0"
+        ]
+      },
+      "fcn_createdog_0": {
+        "id": "fcn_createdog_0",
+        "content": "Create $dog",
+        "nodeType": "action",
         "branches": []
       }
     },
@@ -15,10 +39,32 @@
       "fcn_start_0": {
         "top": 150.0,
         "left": 500.0
+      },
+      "fcn_testdoginscecondscenario_0": {
+        "top": 211.0,
+        "left": 500.0
+      },
+      "fcn_newdog_0": {
+        "top": 270.0,
+        "left": 500.0
+      },
+      "fcn_createdog_0": {
+        "top": 335.1562,
+        "left": 500.0
       }
     },
     "isPrimary": true,
-    "pathNames": [],
+    "pathNames": [
+      {
+        "pathKey": [
+          "fcn_testdoginscecondscenario_0",
+          "fcn_newdog_0",
+          "fcn_createdog_0"
+        ],
+        "dependsPathUID": "17410686929860",
+        "isValidationsEnabled": false
+      }
+    ],
     "flowChartUID": "fcUID_newscenario_0",
     "pathExecutionOrder": []
   },
