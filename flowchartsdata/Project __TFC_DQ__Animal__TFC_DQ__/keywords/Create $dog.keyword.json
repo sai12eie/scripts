@@ -20,6 +20,19 @@
         "stepParameters": [
           {
             "paramMode": "code",
+            "customValue": "_span(\"test\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
             "customValue": "_span(\"caret\")"
           }
         ],
