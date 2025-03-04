@@ -21,8 +21,8 @@
           {
             "paramMode": "default",
             "parameterId": "dog_",
-            "attributeId": "attr_email_2",
-            "accessorId": "acc_emailbox_email"
+            "attributeId": "attr_firstname_0",
+            "accessorId": "acc_textbox_firstname"
           }
         ],
         "stepCategory": "inbuilt",
@@ -35,7 +35,7 @@
         "stepParameters": [
           {
             "paramMode": "code",
-            "customValue": "_span(\"test\")"
+            "customValue": "_span(\"None\")"
           }
         ],
         "stepCategory": "inbuilt",
