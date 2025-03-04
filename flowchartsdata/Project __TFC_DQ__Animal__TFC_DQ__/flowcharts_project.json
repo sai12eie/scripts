@@ -7,7 +7,8 @@
     "flowchartsAndExternalDdcsvInfo": {},
     "filters": {},
     "executionOrder": [
-      "Animal"
+      "Animal",
+      "New Scenario"
     ]
   }
 }
