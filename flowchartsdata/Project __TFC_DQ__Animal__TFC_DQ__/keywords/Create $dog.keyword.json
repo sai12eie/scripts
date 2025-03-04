@@ -21,8 +21,8 @@
           {
             "paramMode": "default",
             "parameterId": "dog_",
-            "attributeId": "attr_email_2",
-            "accessorId": "acc_emailbox_email"
+            "attributeId": "attr_telephone_3",
+            "accessorId": "acc_telephonebox_telephone"
           }
         ],
         "stepCategory": "inbuilt",
