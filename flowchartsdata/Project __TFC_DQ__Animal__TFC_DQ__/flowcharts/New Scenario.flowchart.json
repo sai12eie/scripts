@@ -65,9 +65,10 @@
         "isValidationsEnabled": false
       }
     ],
+    "tags": "",
     "flowChartUID": "fcUID_newscenario_0",
     "pathExecutionOrder": []
   },
-  "enabled": true,
+  "enabled": false,
   "parentId": ""
 }

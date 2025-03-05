@@ -65,7 +65,7 @@
         "left": 500.0
       }
     },
-    "isPrimary": true,
+    "isPrimary": false,
     "pathNames": [
       {
         "pathKey": [
@@ -78,6 +78,7 @@
         "isValidationsEnabled": false
       }
     ],
+    "tags": "",
     "flowChartUID": "fcUID_books_0",
     "pathExecutionOrder": []
   },

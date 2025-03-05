@@ -1,6 +1,6 @@
 {
   "name": "create $user",
-  "id": "0",
+  "id": "-1",
   "type": 3,
   "content": {
     "isSystemKeyword": false,
@@ -19,12 +19,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_textbox(\"firstname\")"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_firstname_0",
+            "accessorId": "acc_textbox_firstname"
           },
           {
-            "paramMode": "string",
-            "customValue": "test"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_firstname_0"
           }
         ],
         "stepCategory": "inbuilt",
@@ -36,12 +39,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_textbox(\"lastname\")"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_lastname_1",
+            "accessorId": "acc_textbox_lastname"
           },
           {
-            "paramMode": "string",
-            "customValue": "scret"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_lastname_1"
           }
         ],
         "stepCategory": "inbuilt",
@@ -53,12 +59,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_emailbox(\"email\")"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_email_2",
+            "accessorId": "acc_emailbox_email"
           },
           {
-            "paramMode": "string",
-            "customValue": "sfahy43@gmail.com"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_email_2"
           }
         ],
         "stepCategory": "inbuilt",
@@ -70,12 +79,15 @@
         "action": "_setValue",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_telephonebox(\"telephone\")"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_telephone_3",
+            "accessorId": "acc_telephonebox_telephone"
           },
           {
-            "paramMode": "string",
-            "customValue": "30513"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_telephone_3"
           }
         ],
         "stepCategory": "inbuilt",
@@ -87,12 +99,15 @@
         "action": "_setPassword",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_password(\"password\")"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_password_4",
+            "accessorId": "acc_password_password"
           },
           {
-            "paramMode": "string",
-            "customValue": "tyto@123"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_password_4"
           }
         ],
         "stepCategory": "inbuilt",
@@ -104,12 +119,15 @@
         "action": "_setPassword",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_password(\"confirm\")"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_confirm_5",
+            "accessorId": "acc_password_confirm"
           },
           {
-            "paramMode": "string",
-            "customValue": "tyto@123"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_confirm_5"
           }
         ],
         "stepCategory": "inbuilt",
@@ -121,12 +139,15 @@
         "action": "_check",
         "stepParameters": [
           {
-            "paramMode": "code",
-            "customValue": "_checkbox(\"agree\")"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_agree_6",
+            "accessorId": "acc_checkbox_agree"
           },
           {
-            "paramMode": "code",
-            "customValue": "true"
+            "paramMode": "default",
+            "parameterId": "user_",
+            "attributeId": "attr_agree_6"
           }
         ],
         "stepCategory": "inbuilt",
