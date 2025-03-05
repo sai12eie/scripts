@@ -179,26 +179,6 @@
         "stepCategory": "inbuilt",
         "stepType": "Action",
         "specific": []
-      },
-      {
-        "commented": false,
-        "action": "_setValue",
-        "stepParameters": [
-          {
-            "paramMode": "default",
-            "parameterId": "user_",
-            "attributeId": "attr_firstname_0",
-            "accessorId": "acc_textbox_firstname"
-          },
-          {
-            "paramMode": "default",
-            "parameterId": "user_",
-            "attributeId": "attr_lastname_1"
-          }
-        ],
-        "stepCategory": "inbuilt",
-        "stepType": "Action",
-        "specific": []
       }
     ]
   },
