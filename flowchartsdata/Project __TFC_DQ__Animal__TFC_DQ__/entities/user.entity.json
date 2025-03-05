@@ -4,12 +4,12 @@
   "type": 1,
   "content": {
     "default": {
-      "attr_firstname_0": {
-        "name": "firstname",
+      "attr_first_name_0": {
+        "name": "first_name",
         "accessors": [
           {
             "id": "acc_textbox_firstname",
-            "name": "Firstname Input",
+            "name": "First_name Input",
             "accessor": "_textbox(\"firstname\")",
             "messageAccessor": ""
           }
@@ -23,12 +23,12 @@
         "invalidData": [],
         "validData": []
       },
-      "attr_lastname_1": {
-        "name": "lastname",
+      "attr_last_name_1": {
+        "name": "last_name",
         "accessors": [
           {
             "id": "acc_textbox_lastname",
-            "name": "Lastname Input",
+            "name": "Last_name Input",
             "accessor": "_textbox(\"lastname\")",
             "messageAccessor": ""
           }
@@ -42,12 +42,12 @@
         "invalidData": [],
         "validData": []
       },
-      "attr_email_2": {
-        "name": "email",
+      "attr_e_mail_2": {
+        "name": "e_mail",
         "accessors": [
           {
             "id": "acc_emailbox_email",
-            "name": "Email Input",
+            "name": "E_mail Input",
             "accessor": "_emailbox(\"email\")",
             "messageAccessor": ""
           }
@@ -55,7 +55,7 @@
         "type": "email",
         "props": {
           "names": [
-            "sfahy431"
+            "sfahy143"
           ],
           "domains": [
             "gmail.com"
@@ -65,12 +65,12 @@
         "invalidData": [],
         "validData": []
       },
-      "attr_telephone_3": {
-        "name": "telephone",
+      "attr_tele_phone_3": {
+        "name": "tele_phone",
         "accessors": [
           {
             "id": "acc_telephonebox_telephone",
-            "name": "Telephone Input",
+            "name": "Tele_phone Input",
             "accessor": "_telephonebox(\"telephone\")",
             "messageAccessor": ""
           }
@@ -83,27 +83,15 @@
         "invalidData": [],
         "validData": []
       },
-      "attr_password_4": {
-        "name": "password",
+      "attr_pass_word_4": {
+        "name": "pass_word",
         "accessors": [
           {
             "id": "acc_password_password",
-            "name": "Password Input",
+            "name": "Pass_word Input",
             "accessor": "_password(\"password\")",
             "messageAccessor": ""
-          }
-        ],
-        "type": "simpletext",
-        "props": {
-          "text": "tyto@123",
-          "is-password": "true"
-        },
-        "invalidData": [],
-        "validData": []
-      },
-      "attr_confirm_5": {
-        "name": "confirm",
-        "accessors": [
+          },
           {
             "id": "acc_password_confirm",
             "name": "Confirm Input",
@@ -119,12 +107,12 @@
         "invalidData": [],
         "validData": []
       },
-      "attr_agree_6": {
-        "name": "agree",
+      "attr_agree1_5": {
+        "name": "agree1",
         "accessors": [
           {
             "id": "acc_checkbox_agree",
-            "name": "Agree Input",
+            "name": "Agree1 Input",
             "accessor": "_checkbox(\"agree\")",
             "messageAccessor": ""
           }

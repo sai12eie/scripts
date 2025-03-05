@@ -34,13 +34,13 @@
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_firstname_0",
+            "attributeId": "attr_first_name_0",
             "accessorId": "acc_textbox_firstname"
           },
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_firstname_0"
+            "attributeId": "attr_first_name_0"
           }
         ],
         "stepCategory": "inbuilt",
@@ -54,13 +54,13 @@
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_lastname_1",
+            "attributeId": "attr_last_name_1",
             "accessorId": "acc_textbox_lastname"
           },
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_lastname_1"
+            "attributeId": "attr_last_name_1"
           }
         ],
         "stepCategory": "inbuilt",
@@ -74,13 +74,13 @@
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_email_2",
+            "attributeId": "attr_e_mail_2",
             "accessorId": "acc_emailbox_email"
           },
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_email_2"
+            "attributeId": "attr_e_mail_2"
           }
         ],
         "stepCategory": "inbuilt",
@@ -94,13 +94,13 @@
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_telephone_3",
+            "attributeId": "attr_tele_phone_3",
             "accessorId": "acc_telephonebox_telephone"
           },
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_telephone_3"
+            "attributeId": "attr_tele_phone_3"
           }
         ],
         "stepCategory": "inbuilt",
@@ -114,13 +114,13 @@
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_password_4",
+            "attributeId": "attr_pass_word_4",
             "accessorId": "acc_password_password"
           },
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_password_4"
+            "attributeId": "attr_pass_word_4"
           }
         ],
         "stepCategory": "inbuilt",
@@ -134,13 +134,13 @@
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_confirm_5",
+            "attributeId": "attr_pass_word_4",
             "accessorId": "acc_password_confirm"
           },
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_confirm_5"
+            "attributeId": "attr_pass_word_4"
           }
         ],
         "stepCategory": "inbuilt",
@@ -154,13 +154,13 @@
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_agree_6",
+            "attributeId": "attr_agree1_5",
             "accessorId": "acc_checkbox_agree"
           },
           {
             "paramMode": "default",
             "parameterId": "user_",
-            "attributeId": "attr_agree_6"
+            "attributeId": "attr_agree1_5"
           }
         ],
         "stepCategory": "inbuilt",
