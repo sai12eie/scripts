@@ -16,6 +16,19 @@
     "steps": [
       {
         "commented": false,
+        "action": "_log",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "first step"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
         "action": "_setValue",
         "stepParameters": [
           {
