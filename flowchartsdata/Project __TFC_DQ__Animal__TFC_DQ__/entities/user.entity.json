@@ -1,10 +1,130 @@
 {
   "name": "user",
-  "id": "0",
+  "id": "-1",
   "type": 1,
   "content": {
-    "default": {},
-    "specific": []
+    "default": {
+      "attr_first_name_0": {
+        "name": "first_name",
+        "accessors": [
+          {
+            "id": "acc_textbox_firstname",
+            "name": "First_name Input",
+            "accessor": "_textbox(\"firstname\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "test",
+          "min-length": "0",
+          "max-length": "0"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_last_name_1": {
+        "name": "last_name",
+        "accessors": [
+          {
+            "id": "acc_textbox_lastname",
+            "name": "Last_name Input",
+            "accessor": "_textbox(\"lastname\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "scret",
+          "min-length": "0",
+          "max-length": "0"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_e_mail_2": {
+        "name": "e_mail",
+        "accessors": [
+          {
+            "id": "acc_emailbox_email",
+            "name": "E_mail Input",
+            "accessor": "_emailbox(\"email\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "email",
+        "props": {
+          "names": [
+            "sfahy143"
+          ],
+          "domains": [
+            "gmail.com"
+          ],
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_tele_phone_3": {
+        "name": "tele_phone",
+        "accessors": [
+          {
+            "id": "acc_telephonebox_telephone",
+            "name": "Tele_phone Input",
+            "accessor": "_telephonebox(\"telephone\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "number",
+        "props": {
+          "min": "30513",
+          "max": "30513"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_pass_word_4": {
+        "name": "pass_word",
+        "accessors": [
+          {
+            "id": "acc_password_password",
+            "name": "Pass_word Input",
+            "accessor": "_password(\"password\")",
+            "messageAccessor": ""
+          },
+          {
+            "id": "acc_password_confirm",
+            "name": "Confirm Input",
+            "accessor": "_password(\"confirm\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "simpletext",
+        "props": {
+          "text": "tyto@123",
+          "is-password": "true"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_agree1_5": {
+        "name": "agree1",
+        "accessors": [
+          {
+            "id": "acc_checkbox_agree",
+            "name": "Agree1 Input",
+            "accessor": "_checkbox(\"agree\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "boolean",
+        "props": {
+          "default-value": "true"
+        },
+        "invalidData": [],
+        "validData": []
+      }
+    }
   },
   "enabled": false,
   "parentId": ""
