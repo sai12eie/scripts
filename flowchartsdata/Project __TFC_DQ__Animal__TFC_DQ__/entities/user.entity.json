@@ -55,10 +55,13 @@
         "type": "email",
         "props": {
           "names": [
-            "sfahy143"
+            "santosh"
           ],
           "domains": [
             "gmail.com"
+          ],
+          "excludes": [
+            "@"
           ],
           "add-timestamp": "false"
         },
