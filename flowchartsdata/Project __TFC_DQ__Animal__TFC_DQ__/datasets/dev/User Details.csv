@@ -1,0 +1,2 @@
+"default","$user.first_name","$user.last_name","$user.tele_phone","$user.pass_word"
+"","dev f","dev l","0000","tyto@dev"
