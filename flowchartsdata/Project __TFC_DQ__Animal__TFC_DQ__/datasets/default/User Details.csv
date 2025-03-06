@@ -1,3 +1,4 @@
 "default","$user.first_name","$user.last_name","$user.tele_phone","$user.pass_word"
 "","Default f1","Default L1","12345","tyto@1234"
 "","Default f","Default L","99999","tyto@123"
+"","Default f2","default l2","09098","tyto@1234"
