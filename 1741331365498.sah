@@ -1,0 +1,12 @@
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_click","type":"_link","shortHand":["\"My Account\"", "\"My Account\"", 1, "\"https://demoapps.testflowchart.com/opencart/index.php?route=account/account\"", "\"dropdown-toggle\"", "\"fa fa-user\"", 2],"value":"My Account"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_click","type":"_link","shortHand":["\"Register\"", 2, "\"https://demoapps.testflowchart.com/opencart/index.php?route=account/register\""],"value":"Register"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_setValue","type":"_textbox","shortHand":["\"firstname\"", "\"input-firstname\"", "\"form-control\"", "\"First Name\"", 1],"value":"test"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_setValue","type":"_textbox","shortHand":["\"lastname\"", "\"input-lastname\"", "\"form-control[1]\"", "\"Last Name\"", 2],"value":"secret"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_click","type":"_submit","shortHand":["\"Continue\"", "\"btn btn-primary\"", 0],"value":"Continue"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_setValue","type":"_emailbox","shortHand":["\"email\"", "\"input-email\"", "\"E-Mail\"", 0, "\"form-control\""],"value":"sahiexacmple@gmail.com"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_setValue","type":"_telephonebox","shortHand":["\"telephone\"", "\"input-telephone\"", "\"Telephone\"", 0, "\"form-control\""],"value":"8980"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_setValue","type":"_password","shortHand":["\"password\"", "\"input-password\"", "\"form-control\"", "\"Password\"", 0],"value":"tyto@123"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_setValue","type":"_password","shortHand":["\"confirm\"", "\"input-confirm\"", "\"form-control[1]\"", "\"Password Confirm\"", 1],"value":"tyto@123"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_click","type":"_checkbox","shortHand":["\"agree\"", "\"1\"", 0],"value":"true"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_click","type":"_submit","shortHand":["\"Continue\"", "\"btn btn-primary\"", 0],"value":"Continue"}
+{"logger":"java.util.logging.Logger@2979e9d6","event":"_click","type":"_link","shortHand":["\"Logout[1]\"", 66, "\"https://demoapps.testflowchart.com/opencart/index.php?route=account/logout[1]\"", "\"list-group-item[12]\""],"value":"Logout"}

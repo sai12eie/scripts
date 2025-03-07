@@ -1,0 +1,74 @@
+{
+  "name": "test",
+  "id": "-1",
+  "type": 0,
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_test2_0"
+        ]
+      },
+      "fcn_test2_0": {
+        "id": "fcn_test2_0",
+        "content": "Test2",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_userexists_0"
+        ]
+      },
+      "fcn_userexists_0": {
+        "id": "fcn_userexists_0",
+        "content": "$setup.exists?",
+        "nodeType": "decision",
+        "branches": [
+          null,
+          "fcn_logot_0"
+        ]
+      },
+      "fcn_logot_0": {
+        "id": "fcn_logot_0",
+        "content": "logot",
+        "nodeType": "action",
+        "branches": []
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150.0,
+        "left": 500.0
+      },
+      "fcn_test2_0": {
+        "top": 211.0,
+        "left": 500.0
+      },
+      "fcn_userexists_0": {
+        "top": 270.0,
+        "left": 500.0
+      },
+      "fcn_logot_0": {
+        "top": 335.156266,
+        "left": 500.0
+      }
+    },
+    "isPrimary": true,
+    "pathNames": [
+      {
+        "pathKey": [
+          "fcn_test2_0",
+          "fcn_userexists_0",
+          "fcn_logot_0"
+        ],
+        "dependsPathUID": "17412632098260",
+        "isValidationsEnabled": false
+      }
+    ],
+    "flowChartUID": "fcUID_test_0",
+    "pathExecutionOrder": []
+  },
+  "enabled": true,
+  "parentId": ""
+}

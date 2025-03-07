@@ -1,0 +1,43 @@
+{
+  "name": "Tear down",
+  "id": "-1",
+  "type": 3,
+  "content": {
+    "isSystemKeyword": false,
+    "title": "Tear down",
+    "specific": [],
+    "parameters": [],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_log",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "tear"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": true,
+        "isRawScript": true,
+        "rawScript": "function onScriptEnd(){\n_log(\"from other\")\n}\nonScriptEnd()",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "dummy",
+        "stepParameters": [],
+        "stepCategory": "customfn",
+        "stepType": "Action",
+        "scriptPath": "./teardown.sah",
+        "specific": []
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

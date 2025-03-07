@@ -7,7 +7,9 @@ function onScriptFailure($e) {
 	onScriptFailureDefault($e);
 }
 
-
+function onScriptEnd(){
+_log("from global")
+}
 function onScriptErrorDefault($e) {
 	if(_sahi.isTFCModeEnabled()) _tfcLog($__tfcix+ "__tfc__:onScriptErrorDefault", "NO_LOG");
 	if ($e.isBrowserNotResponding || $e.isWindowNotExist) {

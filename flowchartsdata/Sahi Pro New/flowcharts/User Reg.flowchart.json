@@ -1,5 +1,5 @@
 {
-  "name": "user reg",
+  "name": "User Reg",
   "id": "-1",
   "type": 0,
   "content": {
@@ -14,7 +14,7 @@
       },
       "fcn_userreg_0": {
         "id": "fcn_userreg_0",
-        "content": "User reg",
+        "content": "User Reg",
         "nodeType": "pathlabel",
         "branches": [
           "fcn_gotoreg_0"
@@ -22,20 +22,15 @@
       },
       "fcn_gotoreg_0": {
         "id": "fcn_gotoreg_0",
-        "content": "go to reg",
+        "content": "Go To Reg",
         "nodeType": "action",
         "branches": [
-          "fcn_createuser_0"
-        ],
-        "dataSet": {
-          "dataSetName": "User Details.csv",
-          "dataSetGroupName": "default"
-        },
-        "dataSetBoundary": "datasetstart"
+          "fcn_createusre_0"
+        ]
       },
-      "fcn_createuser_0": {
-        "id": "fcn_createuser_0",
-        "content": "create $user",
+      "fcn_createusre_0": {
+        "id": "fcn_createusre_0",
+        "content": "Create $user",
         "nodeType": "action",
         "branches": [
           "fcn_logout_0"
@@ -43,10 +38,9 @@
       },
       "fcn_logout_0": {
         "id": "fcn_logout_0",
-        "content": "logout",
+        "content": "Logout",
         "nodeType": "action",
-        "branches": [],
-        "dataSetBoundary": "datasetend"
+        "branches": []
       }
     },
     "positions": {
@@ -62,7 +56,7 @@
         "top": 270.0,
         "left": 500.0
       },
-      "fcn_createuser_0": {
+      "fcn_createusre_0": {
         "top": 329.0,
         "left": 500.0
       },
@@ -77,10 +71,10 @@
         "pathKey": [
           "fcn_userreg_0",
           "fcn_gotoreg_0",
-          "fcn_createuser_0",
+          "fcn_createusre_0",
           "fcn_logout_0"
         ],
-        "dependsPathUID": "17410704775430",
+        "dependsPathUID": "17413312704310",
         "isValidationsEnabled": false
       }
     ],

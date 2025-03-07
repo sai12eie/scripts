@@ -1,0 +1,7 @@
+function dummy(){
+_log("dummy")
+}
+
+function onScriptEnd(){
+_log("from custom")
+}

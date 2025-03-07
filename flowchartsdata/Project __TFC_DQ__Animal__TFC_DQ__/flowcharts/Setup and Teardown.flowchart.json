@@ -1,0 +1,86 @@
+{
+  "name": "Setup and Teardown",
+  "id": "-1",
+  "type": 0,
+  "content": {
+    "nodesMap": {
+      "fcn_start_0": {
+        "id": "fcn_start_0",
+        "content": "Start",
+        "nodeType": "start",
+        "branches": [
+          "fcn_setupandteardown_0"
+        ]
+      },
+      "fcn_setupandteardown_0": {
+        "id": "fcn_setupandteardown_0",
+        "content": "Setup and Teardown",
+        "nodeType": "pathlabel",
+        "branches": [
+          "fcn_setup_0"
+        ]
+      },
+      "fcn_setup_0": {
+        "id": "fcn_setup_0",
+        "content": "Create $setup",
+        "nodeType": "action",
+        "branches": [
+          "fcn_teardown_0"
+        ]
+      },
+      "fcn_teardown_0": {
+        "id": "fcn_teardown_0",
+        "content": "Tear down",
+        "nodeType": "action",
+        "branches": [
+          "fcn_setupexiststrue_0"
+        ]
+      },
+      "fcn_setupexiststrue_0": {
+        "id": "fcn_setupexiststrue_0",
+        "content": "$setup.exists\u003dtrue",
+        "nodeType": "state",
+        "branches": []
+      }
+    },
+    "positions": {
+      "fcn_start_0": {
+        "top": 150.0,
+        "left": 500.0
+      },
+      "fcn_setupandteardown_0": {
+        "top": 211.0,
+        "left": 500.0
+      },
+      "fcn_setup_0": {
+        "top": 270.0,
+        "left": 500.0
+      },
+      "fcn_teardown_0": {
+        "top": 329.0,
+        "left": 500.0
+      },
+      "fcn_setupexiststrue_0": {
+        "top": 388.0,
+        "left": 500.0
+      }
+    },
+    "isPrimary": true,
+    "pathNames": [
+      {
+        "pathKey": [
+          "fcn_setupandteardown_0",
+          "fcn_setup_0",
+          "fcn_teardown_0",
+          "fcn_setupexiststrue_0"
+        ],
+        "dependsPathUID": "17412628541330",
+        "isValidationsEnabled": false
+      }
+    ],
+    "flowChartUID": "fcUID_setupandteardown_0",
+    "pathExecutionOrder": []
+  },
+  "enabled": true,
+  "parentId": ""
+}

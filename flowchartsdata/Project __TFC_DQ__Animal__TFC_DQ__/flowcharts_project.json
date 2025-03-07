@@ -4,14 +4,29 @@
   "content": {
     "isCustomFunctionsFromScriptsDir": true,
     "projectSuiteInfo": [],
-    "flowchartsAndExternalDdcsvInfo": {},
+    "flowchartsAndExternalDdcsvInfo": {
+      "fcUID_2_0": {
+        "uid": "fcUID_2_0",
+        "dependsOn": []
+      },
+      "fcUID_userreg_0": {
+        "uid": "fcUID_userreg_0",
+        "dependsOn": []
+      },
+      "fcUID_books_0": {
+        "uid": "fcUID_books_0",
+        "dependsOn": []
+      }
+    },
     "filters": {},
     "executionOrder": [
       "Animal",
       "New Scenario",
-      "user reg",
       "books",
-      "2"
+      "2",
+      "user reg",
+      "Setup and Teardown",
+      "test"
     ]
   }
 }

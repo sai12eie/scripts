@@ -1,0 +1,34 @@
+{
+  "name": "logot",
+  "id": "-1",
+  "type": 3,
+  "content": {
+    "isSystemKeyword": false,
+    "title": "logot",
+    "specific": [],
+    "parameters": [],
+    "steps": [
+      {
+        "commented": true,
+        "isRawScript": true,
+        "rawScript": "function onScriptEnd(){\n_log(\"from same\")\n}",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_log",
+        "stepParameters": [
+          {
+            "paramMode": "string",
+            "customValue": "53w"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}

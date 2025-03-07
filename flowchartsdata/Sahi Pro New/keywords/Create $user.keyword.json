@@ -1,0 +1,153 @@
+{
+  "name": "Create $user",
+  "id": "-1",
+  "type": 3,
+  "content": {
+    "isSystemKeyword": false,
+    "title": "Create $user",
+    "specific": [],
+    "parameters": [
+      {
+        "parameterId": "user_",
+        "entityTypeId": "user",
+        "suffix": ""
+      }
+    ],
+    "steps": [
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_textbox(\"firstname\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "test"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_textbox(\"lastname\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "secret"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_emailbox(\"email\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "sahiexacmple@gmail.com"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_setValue",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_telephonebox(\"telephone\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "8980"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_setPassword",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_password(\"password\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "tyto@123"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_setPassword",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_password(\"confirm\")"
+          },
+          {
+            "paramMode": "string",
+            "customValue": "tyto@123"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_check",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_checkbox(\"agree\")"
+          },
+          {
+            "paramMode": "code",
+            "customValue": "true"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      },
+      {
+        "commented": false,
+        "action": "_click",
+        "stepParameters": [
+          {
+            "paramMode": "code",
+            "customValue": "_submit(\"Continue\")"
+          }
+        ],
+        "stepCategory": "inbuilt",
+        "stepType": "Action",
+        "specific": []
+      }
+    ]
+  },
+  "enabled": false,
+  "parentId": ""
+}
