@@ -1,10 +1,142 @@
 {
   "name": "user",
-  "id": "0",
+  "id": "-1",
   "type": 1,
   "content": {
-    "default": {},
-    "specific": []
+    "default": {
+      "attr_firstname_0": {
+        "name": "firstname",
+        "accessors": [
+          {
+            "id": "acc_textbox_firstname",
+            "name": "Firstname Input",
+            "accessor": "_textbox(\"firstname\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "test",
+          "min-length": "0",
+          "max-length": "0"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_lastname_1": {
+        "name": "lastname",
+        "accessors": [
+          {
+            "id": "acc_textbox_lastname",
+            "name": "Lastname Input",
+            "accessor": "_textbox(\"lastname\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "text",
+        "props": {
+          "prefix": "secret",
+          "min-length": "0",
+          "max-length": "0"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_email_2": {
+        "name": "email",
+        "accessors": [
+          {
+            "id": "acc_emailbox_email",
+            "name": "Email Input",
+            "accessor": "_emailbox(\"email\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "email",
+        "props": {
+          "names": [
+            "sahiexacmple"
+          ],
+          "domains": [
+            "gmail.com"
+          ],
+          "add-timestamp": "false"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_telephone_3": {
+        "name": "telephone",
+        "accessors": [
+          {
+            "id": "acc_telephonebox_telephone",
+            "name": "Telephone Input",
+            "accessor": "_telephonebox(\"telephone\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "number",
+        "props": {
+          "min": "8980",
+          "max": "8980"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_password_4": {
+        "name": "password",
+        "accessors": [
+          {
+            "id": "acc_password_password",
+            "name": "Password Input",
+            "accessor": "_password(\"password\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "simpletext",
+        "props": {
+          "text": "tyto@123",
+          "is-password": "true"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_confirm_5": {
+        "name": "confirm",
+        "accessors": [
+          {
+            "id": "acc_password_confirm",
+            "name": "Confirm Input",
+            "accessor": "_password(\"confirm\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "simpletext",
+        "props": {
+          "text": "tyto@123",
+          "is-password": "true"
+        },
+        "invalidData": [],
+        "validData": []
+      },
+      "attr_agree_6": {
+        "name": "agree",
+        "accessors": [
+          {
+            "id": "acc_checkbox_agree",
+            "name": "Agree Input",
+            "accessor": "_checkbox(\"agree\")",
+            "messageAccessor": ""
+          }
+        ],
+        "type": "boolean",
+        "props": {
+          "default-value": "true"
+        },
+        "invalidData": [],
+        "validData": []
+      }
+    }
   },
   "enabled": false,
   "parentId": ""
