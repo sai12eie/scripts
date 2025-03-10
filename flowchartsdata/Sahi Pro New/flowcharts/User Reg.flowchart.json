@@ -76,7 +76,7 @@
         ],
         "dependsPathUID": "17413312704310",
         "dataSet": {
-          "dataSetName": "testData.csv",
+          "dataSetName": "newdata.csv",
           "dataSetGroupName": "default"
         },
         "isValidationsEnabled": false
