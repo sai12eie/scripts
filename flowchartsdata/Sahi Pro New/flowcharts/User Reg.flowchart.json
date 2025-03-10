@@ -75,6 +75,10 @@
           "fcn_logout_0"
         ],
         "dependsPathUID": "17413312704310",
+        "dataSet": {
+          "dataSetName": "testData.csv",
+          "dataSetGroupName": "default"
+        },
         "isValidationsEnabled": false
       }
     ],
