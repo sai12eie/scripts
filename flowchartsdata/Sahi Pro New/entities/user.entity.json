@@ -60,7 +60,7 @@
           "domains": [
             "gmail.com"
           ],
-          "add-timestamp": "true"
+          "add-timestamp": "false"
         },
         "invalidData": [],
         "validData": []

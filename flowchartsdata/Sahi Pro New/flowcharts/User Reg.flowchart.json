@@ -34,7 +34,11 @@
         "nodeType": "action",
         "branches": [
           "fcn_logout_0"
-        ]
+        ],
+        "dataSet": {
+          "dataSetName": "newdata.csv",
+          "dataSetGroupName": "default"
+        }
       },
       "fcn_logout_0": {
         "id": "fcn_logout_0",
@@ -83,9 +87,7 @@
       }
     ],
     "flowChartUID": "fcUID_userreg_0",
-    "pathExecutionOrder": [
-      "17413312704310"
-    ]
+    "pathExecutionOrder": []
   },
   "enabled": true,
   "parentId": ""
