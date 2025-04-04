@@ -1,6 +1,6 @@
 {
   "name": "Go to product page",
-  "id": "0",
+  "id": "-1",
   "type": 3,
   "content": {
     "isSystemKeyword": false,
@@ -27,7 +27,7 @@
         "stepParameters": [
           {
             "paramMode": "code",
-            "customValue": "_button(\"grid-view\")"
+            "customValue": "_button(\"grid-view1\")"
           }
         ],
         "stepCategory": "inbuilt",

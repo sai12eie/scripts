@@ -1,6 +1,6 @@
 {
   "name": "Add item to cart",
-  "id": "0",
+  "id": "-1",
   "type": 3,
   "content": {
     "isSystemKeyword": false,
@@ -27,7 +27,7 @@
         "stepParameters": [
           {
             "paramMode": "code",
-            "customValue": "_button(\"Add to Cart\")"
+            "customValue": "_button(\"Add to 1Cart\")"
           }
         ],
         "stepCategory": "inbuilt",
